@@ -43,7 +43,7 @@
                             <TextBlock Text="mesmo!" VerticalAlignment="Center" TextAlignment="Left" FontFamily="/Recursos/Fonts/#Poppins Bold" FontSize="20" Foreground="White" Margin="0 0 0 50"/>
                         </StackPanel>
 
-                        <Button Background="#39A048" BorderBrush="White" BorderThickness="3" Padding="12" Width="356" Height="70">
+                        <Button Background="#39A048" BorderBrush="White" BorderThickness="3" Padding="12" Width="356" Height="70" Click="Button_Click_1">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border Background="{TemplateBinding Background}"
@@ -74,7 +74,7 @@
     materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
     MaxLength="40"
     Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap"
+    TextWrapping="Wrap" Name="txt_usuario"
     />
                     </StackPanel>
 
@@ -84,8 +84,8 @@
     materialDesign:HintAssist.HelperText="Not bound password"
     materialDesign:HintAssist.Hint="Senha"
     materialDesign:TextFieldAssist.HasClearButton="True"
-    Password="Set from XAML"
-    Style="{StaticResource MaterialDesignFilledRevealPasswordBox}"
+    
+    Style="{StaticResource MaterialDesignFilledRevealPasswordBox}" Name="txt_senha"
     />
                     </StackPanel>
 
@@ -101,7 +101,7 @@
                         </TextBlock>
 
                         <!-- Botão Entrar -->
-                        <Button Background="#39A048" BorderThickness="0" Padding="12" Width="356" Height="70">
+                        <Button Background="#39A048" BorderThickness="0" Padding="12" Width="356" Height="70" Click="Button_Click">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border Background="{TemplateBinding Background}"

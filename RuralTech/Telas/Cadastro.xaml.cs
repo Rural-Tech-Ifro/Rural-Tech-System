@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -22,6 +23,27 @@ namespace RuralTech.Telas
         public Cadastro()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            var usuario = txt_usuario.Text;
+            var email = txt_email.Text;
+            var senha = txt_senha.Password;
+               
+            if (usuario != "" && email != "" && senha != "")
+            {
+                MessageBox.Show("Teste Cadastro: " + usuario + "\n" + email + " \n" + senha);
+
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Login tela = new Login();
+            this.Close();
+            tela.ShowDialog();
         }
     }
 }
