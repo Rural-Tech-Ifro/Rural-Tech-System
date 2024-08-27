@@ -94,14 +94,26 @@ TextWrapping="Wrap"
                     <!-- Campo Senha -->
                     <StackPanel>
                         <PasswordBox
-    materialDesign:HintAssist.HelperText="Not bound password"
+    materialDesign:HintAssist.HelperText="Insira uma senha válida"
     materialDesign:HintAssist.Hint="Senha"
     materialDesign:TextFieldAssist.HasClearButton="True"
     Password="Set from XAML"
     Style="{StaticResource MaterialDesignFilledRevealPasswordBox}"
     />
                     </StackPanel>
-                    
+
+
+
+                    <StackPanel Margin="0 30 0 0">
+                        <PasswordBox
+    materialDesign:HintAssist.HelperText="Insira a senha mencionada acima"
+    materialDesign:HintAssist.Hint="Confirmar Senha"
+    materialDesign:TextFieldAssist.HasClearButton="True"
+    Password="Set from XAML"
+    Style="{StaticResource MaterialDesignFilledRevealPasswordBox}"
+    />
+                    </StackPanel>
+
                     <!-- Botão Entrar -->
                     <Button Background="#39A048" BorderThickness="0" Padding="12" Margin="0 60 0 0" Width="356" Height="70">
                         <Button.Template>

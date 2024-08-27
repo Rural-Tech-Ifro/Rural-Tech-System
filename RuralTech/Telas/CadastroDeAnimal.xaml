@@ -1,0 +1,226 @@
+﻿<Window x:Class="RuralTech.Telas.CadastroDeAnimal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RuralTech.Telas"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Title="Login" 
+        Style="{StaticResource MaterialDesignWindow}"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Background="Transparent" 
+        Height="625" 
+        Width="1130">
+
+    <Grid Background="White">
+        <!-- Sidebar -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Background="Green" Width="60" Height="500" Margin="0,82,0,43">
+            <!-- Ícones da Barra Lateral -->
+            <Button Content="&#xE80F;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent"/>
+            <Button Content="&#xE7C4;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent"/>
+            <Button Content="&#xE8D4;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent"/>
+            <Button Content="&#xE710;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent"/>
+            <Button Content="&#xE77B;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent"/>
+            <Button Content="&#xE713;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent"/>
+        </StackPanel>
+
+        <!-- Conteúdo Principal -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Barra Superior -->
+            <StackPanel Orientation="Horizontal" Background="White" Height="60" Width="auto" Margin="-59,0,0,0">
+                <StackPanel.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.5"/>
+                </StackPanel.Effect>
+                <ToggleButton Margin="10" Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+                <materialDesign:PackIcon Kind="AccountCircle" Width="40" Height="40" Margin="10" Background="White" Foreground="Green" />
+
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Serjão dos Foguetes" FontFamily="/Recursos/Fonts/#Poppins Semibold" FontSize="13"/>
+                    <WrapPanel>
+                        <TextBlock Text="Fazendeiro" FontFamily="/Recursos/Fonts/#Poppins regular" FontSize="13"/>
+                        <materialDesign:PackIcon Kind="MenuDown" Width="20" Height="20" Foreground="Green" Background="White"/>
+                    </WrapPanel>
+                </StackPanel>
+
+                <!-- Adiciona um Spacer -->
+                <StackPanel Width="1100" Height="64">
+                    <materialDesign:PackIcon Kind="BellOutline" Width="90" Height="35" VerticalAlignment="Center" Margin="0 15 200 0" HorizontalAlignment="Right"/>
+                    <Image Source="/Recursos/ImagensGeral/RuralTech(Preto).png" Width="262" Height="108" Margin="0 -70 -30 9" HorizontalAlignment="Right"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Campo de Pesquisa -->
+            <materialDesign:AutoSuggestBox
+                materialDesign:HintAssist.Hint="Pesquisar Animal"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                DropDownElevation="Dp0"
+                Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
+                Suggestions="{Binding AutoSuggestBox2Suggestions}"
+                Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                ValueMember="Key" 
+                Margin="135,10,535,505" 
+                Grid.Row="1" 
+                Width="400" 
+                Height="50" 
+                RenderTransformOrigin="-0.875,-2.1">
+
+                <materialDesign:AutoSuggestBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Border Width="20" Height="20" Background="{Binding Value}" CornerRadius="10" />
+                            <TextBlock Margin="90" Text="{Binding Key}" />
+                        </DockPanel>
+                    </DataTemplate>
+                </materialDesign:AutoSuggestBox.ItemTemplate>
+            </materialDesign:AutoSuggestBox>
+
+            <!-- Cards de Animais -->
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="830" Margin="35,200,0,10">
+                <!-- Card Repetido -->
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="100">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vaca.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Numeração: 1" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="Sexo: Macho" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Peso: 600kg" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Idade: 2 anos" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Raça: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Preço: R$ 65.000" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="100">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vaca.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Numeração: 1" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="Sexo: Macho" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Peso: 600kg" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Idade: 2 anos" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Raça: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Preço: R$ 65.000" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="100">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vaca.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Numeração: 1" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="Sexo: Macho" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Peso: 600kg" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Idade: 2 anos" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Raça: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Preço: R$ 65.000" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 0, 40">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="100">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vaca.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Numeração: 1" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="Sexo: Macho" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Peso: 600kg" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Idade: 2 anos" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Raça: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Preço: R$ 65.000" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
+                    </StackPanel>
+                </Border>
+
+
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30,0">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="100">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vaca.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Numeração: 1" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="Sexo: Macho" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Peso: 600kg" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Idade: 2 anos" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Raça: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Preço: R$ 65.000" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30,0">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="100">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vaca.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Numeração: 1" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="Sexo: Macho" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Peso: 600kg" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Idade: 2 anos" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Raça: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Preço: R$ 65.000" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30,0">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="100">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vaca.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Numeração: 1" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="Sexo: Macho" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Peso: 600kg" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Idade: 2 anos" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Raça: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Preço: R$ 65.000" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="100">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vaca.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Numeração: 1" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="Sexo: Macho" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Peso: 600kg" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Idade: 2 anos" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Raça: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Preço: R$ 65.000" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
+                    </StackPanel>
+                </Border>
+            </WrapPanel>
+        </Grid>
+    </Grid>
+</Window>
