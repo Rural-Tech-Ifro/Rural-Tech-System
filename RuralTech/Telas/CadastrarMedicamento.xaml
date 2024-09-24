@@ -1,4 +1,4 @@
-﻿<Window x:Class="RuralTech.Telas.CadastroDePropriedade"
+﻿<Window x:Class="RuralTech.Telas.CadastrarMedicamento"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -66,7 +66,7 @@
 
             <!-- Campo de Pesquisa -->
             <materialDesign:AutoSuggestBox
-                materialDesign:HintAssist.Hint="Procure uma propriedade"
+                materialDesign:HintAssist.Hint="Procure um vermifugo aplicado"
                 materialDesign:TextFieldAssist.HasClearButton="True"
                 DropDownElevation="Dp0"
                 Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
@@ -90,7 +90,7 @@
             </materialDesign:AutoSuggestBox>
 
 
-            <Button Grid.Row="1"  Margin="222, 83" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
+            <Button Grid.Row="1"  Margin="300, 83" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
                 HorizontalAlignment="Right" VerticalAlignment="Top">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
@@ -104,73 +104,95 @@
             </Button>
 
             <!-- Cards de Animais -->
-            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="860" Margin="65,200,0,20">
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="800" Margin="0,200,0,20">
                 <!-- Card Repetido -->
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="10" Width="400" Height="185" Margin="0, 0, 30, 40">
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="0, 0, 30, 40">
                     <StackPanel>
-                        <Border CornerRadius="10,10,0,0" Height="100">
+                        <Border CornerRadius="5,5,0,0" Height="80">
                             <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/Sede fazenda.png"/>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/remédio.png"/>
                             </Border.Background>
                         </Border>
-                        <TextBlock Text="Estância: Santa Rita de Cássia" FontWeight="Bold" Margin="10,5,10,3"/>
-                        <TextBlock Text="N° de lotes: 47" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="linha: 207" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="N° de Hectares: 1200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="Gleba: 77" Foreground="#7C9C81" FontWeight="SemiBold" VerticalAlignment="Top" Margin="10,-58,120,3" HorizontalAlignment="Right"/>
-                        <TextBlock Text="Reserva: 10%" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-58,96,3" HorizontalAlignment="Right" Height="18"/>
-                        <TextBlock Text="Relevo: plano" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-20,96,3" HorizontalAlignment="Right"/>
+                        <TextBlock Text="Tratamento: Parasitas" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="Nome: DectoMax" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Dose: 5 ml" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Marca: MaxVibe" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Data aplicação: 24/11/2023" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
                     </StackPanel>
                 </Border>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="10" Width="400" Height="185" Margin="0, 0, 30, 40">
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="0, 0, 30, 40">
                     <StackPanel>
-                        <Border CornerRadius="10,10,0,0" Height="100">
+                        <Border CornerRadius="5,5,0,0" Height="80">
                             <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/Sede fazenda.png"/>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/remédio.png"/>
                             </Border.Background>
                         </Border>
-                        <TextBlock Text="Estância: Santa Rita de Cássia" FontWeight="Bold" Margin="10,5,10,3"/>
-                        <TextBlock Text="N° de lotes: 47" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="linha: 207" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="N° de Hectares: 1200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="Gleba: 77" Foreground="#7C9C81" FontWeight="SemiBold" VerticalAlignment="Top" Margin="10,-58,120,3" HorizontalAlignment="Right"/>
-                        <TextBlock Text="Reserva: 10%" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-58,96,3" HorizontalAlignment="Right" Height="18"/>
-                        <TextBlock Text="Relevo: plano" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-20,96,3" HorizontalAlignment="Right"/>
+                        <TextBlock Text="Tratamento: Parasitas" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="Nome: DectoMax" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Dose: 5 ml" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Marca: MaxVibe" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Data aplicação: 24/11/2023" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
                     </StackPanel>
                 </Border>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="10" Width="400" Height="185" Margin="0, 0, 30, 40">
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="0, 0, 30, 40">
                     <StackPanel>
-                        <Border CornerRadius="10,10,0,0" Height="100">
+                        <Border CornerRadius="5,5,0,0" Height="80">
                             <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/Sede fazenda.png"/>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/remédio.png"/>
                             </Border.Background>
                         </Border>
-                        <TextBlock Text="Estância: Santa Rita de Cássia" FontWeight="Bold" Margin="10,5,10,3"/>
-                        <TextBlock Text="N° de lotes: 47" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="linha: 207" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="N° de Hectares: 1200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="Gleba: 77" Foreground="#7C9C81" FontWeight="SemiBold" VerticalAlignment="Top" Margin="10,-58,120,3" HorizontalAlignment="Right"/>
-                        <TextBlock Text="Reserva: 10%" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-58,96,3" HorizontalAlignment="Right" Height="18"/>
-                        <TextBlock Text="Relevo: plano" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-20,96,3" HorizontalAlignment="Right"/>
+                        <TextBlock Text="Tratamento: Parasitas" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="Nome: DectoMax" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Dose: 5 ml" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Marca: MaxVibe" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Data aplicação: 24/11/2023" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
                     </StackPanel>
                 </Border>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="10" Width="400" Height="185" Margin="0, 0, 30, 40">
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="0, 0, 30, 40">
                     <StackPanel>
-                        <Border CornerRadius="10,10,0,0" Height="100">
+                        <Border CornerRadius="5,5,0,0" Height="80">
                             <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/Sede fazenda.png"/>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/remédio.png"/>
                             </Border.Background>
                         </Border>
-                        <TextBlock Text="Estância: Santa Rita de Cássia" FontWeight="Bold" Margin="10,5,10,3"/>
-                        <TextBlock Text="N° de lotes: 47" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="linha: 207" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="N° de Hectares: 1200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="Gleba: 77" Foreground="#7C9C81" FontWeight="SemiBold" VerticalAlignment="Top" Margin="10,-58,120,3" HorizontalAlignment="Right"/>
-                        <TextBlock Text="Reserva: 10%" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-58,96,3" HorizontalAlignment="Right" Height="18"/>
-                        <TextBlock Text="Relevo: plano" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-20,96,3" HorizontalAlignment="Right"/>
+                        <TextBlock Text="Tratamento: Parasitas" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="Nome: DectoMax" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Dose: 5 ml" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Marca: MaxVibe" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Data aplicação: 24/11/2023" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="0, 0, 30, 40">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="80">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/remédio.png"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Tratamento: Parasitas" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="Nome: DectoMax" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Dose: 5 ml" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Marca: MaxVibe" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Data aplicação: 24/11/2023" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="0, 0, 30, 40">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="80">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/remédio.png"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Tratamento: Parasitas" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="Nome: DectoMax" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Dose: 5 ml" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Marca: MaxVibe" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Data aplicação: 24/11/2023" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
                     </StackPanel>
                 </Border>
             </WrapPanel>
