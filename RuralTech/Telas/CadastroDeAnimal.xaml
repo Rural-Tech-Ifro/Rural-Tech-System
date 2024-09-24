@@ -236,7 +236,6 @@
                     </StackPanel>
                 </Border>
             </WrapPanel>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="914,0,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click"/>
         </Grid>
     </Grid>
 </Window>
