@@ -9,12 +9,18 @@
       Title="CadastrarMedicamentos">
 
     <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="106*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="113*"/>
+        </Grid.RowDefinitions>
         <!-- Sidebar -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Background="#0ca13f" Width="65" Height="auto" Margin="0,60,0,-313" Name="appBar_Esquerdo">
+        <StackPanel Background="#0ca13f" Width="65" Height="auto" Margin="0,60,0,-313" Name="appBar_Esquerdo" Grid.RowSpan="4">
             <!-- Ícones da Barra Lateral -->
             <Button Content="&#xE80F;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button1"/>
             <Button Content="&#xE7C4;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button2"/>
@@ -25,13 +31,13 @@
             <Button Content="&#xE715;" Foreground="White" FontWeight="bold" Margin="0, 220, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button7"/>
         </StackPanel>
         <!-- Conteúdo Principal -->
-        <Grid HorizontalAlignment="Left" Width="751" Grid.ColumnSpan="2" Margin="52,0,0,0">
+        <Grid Grid.RowSpan="4" Margin="55,0,0,0" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!-- Barra Superior -->
-            <StackPanel Orientation="Horizontal" Background="White" Height="60" Width="auto" Margin="-65,0,0,0">
+            <StackPanel Orientation="Horizontal" Background="White" Height="60" Width="auto" Margin="-56,0,0,0">
                 <StackPanel.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.5"/>
                 </StackPanel.Effect>

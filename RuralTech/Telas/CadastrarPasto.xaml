@@ -19,19 +19,19 @@
             <Button Content="&#xE80F;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button1"/>
             <Button Content="&#xE7C4;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button2"/>
             <Button Content="&#xE8D4;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button3"/>
-            <Button Content="&#xE710;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button4"/>
+            <Button Content="&#xE710;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button4" />
             <Button Content="&#xE77B;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button5"/>
             <Button Content="&#xE713;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button6"/>
             <Button Content="&#xE715;" Foreground="White" FontWeight="bold" Margin="0, 220, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button7"/>
         </StackPanel>
         <!-- Conteúdo Principal -->
-        <Grid HorizontalAlignment="Left" Width="745" Grid.ColumnSpan="2" Margin="55,0,0,0">
+        <Grid Grid.ColumnSpan="2" Margin="54,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!-- Barra Superior -->
-            <StackPanel Orientation="Horizontal" Background="White" Height="60" Width="auto" Margin="-65,0,0,0">
+            <StackPanel Orientation="Horizontal" Background="White" Height="60" Width="auto" Margin="-54,0,0,0">
                 <StackPanel.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.5"/>
                 </StackPanel.Effect>

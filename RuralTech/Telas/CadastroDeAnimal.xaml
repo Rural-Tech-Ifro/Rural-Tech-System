@@ -24,7 +24,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Background="#0ca13f" Width="65" Height="auto" Margin="0,60,0,-289" Name="appBar_Esquerdo" Cursor="">
+        <StackPanel Background="#0ca13f" Width="65" Height="auto" Margin="0,60,0,-289" Name="appBar_Esquerdo">
             <!-- Ícones da Barra Lateral -->
             <Button Content="&#xE80F;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button1"/>
             <Button Content="&#xE7C4;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button2"/>
@@ -35,19 +35,15 @@
             <Button Content="&#xE715;" Foreground="White" FontWeight="bold" Margin="0, 220, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button7"/>
         </StackPanel>
 
-
         <!-- Conteúdo Principal -->
-        <Grid HorizontalAlignment="Left" Width="1130" Grid.ColumnSpan="2">
+        <Grid Grid.ColumnSpan="2" Margin="59,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <!-- Barra Superior -->
-
-            <!-- Campo de Pesquisa -->
-            <!-- Barra Superior -->
-            <StackPanel Orientation="Horizontal" Background="White" Height="60" Margin="0,0,-946,0">
+            <StackPanel Orientation="Horizontal" Background="White" Height="60" Width="auto" Margin="-59,0,0,0">
                 <StackPanel.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.5"/>
                 </StackPanel.Effect>
@@ -67,27 +63,27 @@
                 </StackPanel>
 
                 <!-- Adiciona um Spacer -->
-                <StackPanel Width="1650" Height="64">
-                    <materialDesign:PackIcon Kind="BellOutline" Width="80" Height="30" VerticalAlignment="Center" Margin="0 15 200 0" HorizontalAlignment="Right"/>
-                    <Image Width="262" Source="/Recursos/ImagensGeral/RuralTech(Preto).png" Margin="0 -65 -20 9" Height="108" HorizontalAlignment="Right"/>
+                <StackPanel Width="1100" Height="64">
+                    <materialDesign:PackIcon Kind="BellOutline" Width="90" Height="35" VerticalAlignment="Center" Margin="0 15 200 0" HorizontalAlignment="Right"/>
+                    <Image Source="/Recursos/ImagensGeral/RuralTech(Preto).png" Width="262" Height="108" Margin="0 -70 -30 9" HorizontalAlignment="Right"/>
                 </StackPanel>
             </StackPanel>
 
             <!-- Campo de Pesquisa -->
+            <!-- Campo de Pesquisa -->
             <materialDesign:AutoSuggestBox
-                materialDesign:HintAssist.Hint="Pesquisar Animal"
-                materialDesign:TextFieldAssist.HasClearButton="True"
-                DropDownElevation="Dp0"
-                Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
-                Suggestions="{Binding AutoSuggestBox2Suggestions}"
-                Text="{Binding AutoSuggestBox2Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                ValueMember="Key" 
-                Margin="135,10,535,505" 
-                Grid.Row="1" 
-                Width="400" 
-                Height="50" 
-                RenderTransformOrigin="-0.875,-2.1">
-
+    materialDesign:HintAssist.Hint="Pesquisar um animal"
+    materialDesign:TextFieldAssist.HasClearButton="True"
+    DropDownElevation="Dp0"
+    Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
+    Suggestions="{Binding AutoSuggestBox2Suggestions}"
+    Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+    ValueMember="Key" 
+    Margin="135,-350,535,505" 
+    Grid.Row="1" 
+    Width="400" 
+    Height="50" 
+    RenderTransformOrigin="-0.875,-2.1">
                 <materialDesign:AutoSuggestBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>
@@ -98,22 +94,8 @@
                 </materialDesign:AutoSuggestBox.ItemTemplate>
             </materialDesign:AutoSuggestBox>
 
-
-            <Button Grid.Row="1"  Margin="225, 78" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
-                HorizontalAlignment="Right" VerticalAlignment="Top">
-                <Button.Template>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}" 
-                            CornerRadius="10">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-                <TextBlock Text="+" FontSize="40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Button>
-
             <!-- Cards de Animais -->
-            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="830" Margin="300,200,0,10">
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="830" Margin="35,200,0,10">
                 <!-- Card Repetido -->
                 <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
                     <StackPanel>

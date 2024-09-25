@@ -31,7 +31,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!-- Barra Superior -->
-            <StackPanel Orientation="Horizontal" Background="White" Height="60" Width="auto" Margin="-65,0,0,0">
+            <StackPanel Orientation="Horizontal" Background="White" Height="60" Width="auto">
                 <StackPanel.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.5"/>
                 </StackPanel.Effect>

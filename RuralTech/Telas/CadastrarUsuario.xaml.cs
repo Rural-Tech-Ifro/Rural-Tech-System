@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace RuralTech.Telas
 {
     /// <summary>
-    /// Lógica interna para Cadastro.xaml
+    /// Lógica interna para CadastrarUsuario.xaml
     /// </summary>
-    public partial class Cadastro : Window
+    public partial class CadastrarUsuario : Window
     {
-        public Cadastro()
+        public CadastrarUsuario()
         {
             InitializeComponent();
         }

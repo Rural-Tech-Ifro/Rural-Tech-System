@@ -9,16 +9,12 @@
       Title="CadastrarEquipamentos">
 
     <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="23*"/>
-        </Grid.RowDefinitions>
         <!-- Sidebar -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Background="#0ca13f" Width="65" Height="auto" Margin="0,24,0,-289" Name="appBar_Esquerdo" Grid.Row="1">
+        <StackPanel Background="#0ca13f" Width="65" Height="auto" Margin="0,60,0,-289" Name="appBar_Esquerdo">
             <!-- Ícones da Barra Lateral -->
             <Button Content="&#xE80F;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button1"/>
             <Button Content="&#xE7C4;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button2"/>
@@ -29,13 +25,13 @@
             <Button Content="&#xE715;" Foreground="White" FontWeight="bold" Margin="0, 220, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button7"/>
         </StackPanel>
         <!-- Conteúdo Principal -->
-        <Grid Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="748" Grid.RowSpan="2">
+        <Grid Grid.ColumnSpan="2" Margin="55,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!-- Barra Superior -->
-            <StackPanel Orientation="Horizontal" Background="White" Height="60" Margin="-65,0,0,0">
+            <StackPanel Orientation="Horizontal" Background="White" Height="60" Width="auto" Margin="-56,0,0,0">
                 <StackPanel.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.5"/>
                 </StackPanel.Effect>

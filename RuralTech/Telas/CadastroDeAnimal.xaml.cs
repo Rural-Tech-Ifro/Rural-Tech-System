@@ -52,7 +52,7 @@ namespace RuralTech.Telas
                 button4.Margin = new Thickness(0, 20, 0, 0);
                 button5.Margin = new Thickness(0, 20, 0, 0);
                 button6.Margin = new Thickness(0, 20, 0, 0);
-                button7.Margin = new Thickness(0, 20, 0, 0);
+                button7.Margin = new Thickness(0, 220, 0, 0);
                 animation.From = posicaoAtual;
                 animation.To = posicaoAtual + 65;
                 animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
@@ -65,7 +65,7 @@ namespace RuralTech.Telas
                 button4.Margin = new Thickness(0, 20, 120, 0);
                 button5.Margin = new Thickness(0, 20, 120, 0);
                 button6.Margin = new Thickness(0, 20, 120, 0);
-                button7.Margin = new Thickness(0, 20, 120, 0);
+                button7.Margin = new Thickness(0, 220, 120, 0);
                 animation.From = posicaoAtual;
                 animation.To = 200;
                 animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
