@@ -11,32 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static MaterialDesignThemes.Wpf.Theme;
 
 namespace RuralTech.Telas
 {
     /// <summary>
-    /// Lógica interna para CadastroDeAnimal.xaml
+    /// Interação lógica para CadastrarEquipamentos.xam
     /// </summary>
-    public partial class CadastroDeAnimal : Window
+    public partial class CadastrarEquipamentos : Page
     {
         private bool isMenuExpanded = false;
         private double posicaoAtual;
-
-        public CadastroDeAnimal()
+        public CadastrarEquipamentos()
         {
             InitializeComponent();
             posicaoAtual = appBar_Esquerdo.ActualWidth;
-
-        }
-
-        private void PackIcon_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
-        {
-
-        }
-
-        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
-        {
 
         }
 

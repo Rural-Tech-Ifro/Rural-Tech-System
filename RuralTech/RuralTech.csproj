@@ -81,6 +81,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Telas\CadastrarEquipamentos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\CadastrarMedicamentos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\CadastrarPasto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\CadastrarPropriedade.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\CadastrarVacina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Telas\Cadastro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -96,6 +116,21 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Telas\CadastrarEquipamentos.xaml.cs">
+      <DependentUpon>CadastrarEquipamentos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\CadastrarMedicamentos.xaml.cs">
+      <DependentUpon>CadastrarMedicamentos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\CadastrarPasto.xaml.cs">
+      <DependentUpon>CadastrarPasto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\CadastrarPropriedade.xaml.cs">
+      <DependentUpon>CadastrarPropriedade.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\CadastrarVacina.xaml.cs">
+      <DependentUpon>CadastrarVacina.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\Cadastro.xaml.cs">
       <DependentUpon>Cadastro.xaml</DependentUpon>
@@ -206,6 +241,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\ImagensGeral\vaca.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\ImagensGeral\img_pasto.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\ImagensGeral\img_equipamento.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\ImagensGeral\menu-tres-barras-destacadas.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets')" />

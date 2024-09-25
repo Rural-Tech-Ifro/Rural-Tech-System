@@ -24,29 +24,38 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Background="Green" Width="60" Height="500" Margin="0,82,0,43">
+        <StackPanel Background="#0ca13f" Width="65" Height="auto" Margin="0,60,0,-289" Name="appBar_Esquerdo" Cursor="">
             <!-- Ícones da Barra Lateral -->
-            <Button Content="&#xE80F;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent"/>
-            <Button Content="&#xE7C4;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent"/>
-            <Button Content="&#xE8D4;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent"/>
-            <Button Content="&#xE710;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent"/>
-            <Button Content="&#xE77B;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent"/>
-            <Button Content="&#xE713;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent"/>
+            <Button Content="&#xE80F;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button1"/>
+            <Button Content="&#xE7C4;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button2"/>
+            <Button Content="&#xE8D4;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button3"/>
+            <Button Content="&#xE710;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button4"/>
+            <Button Content="&#xE77B;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button5"/>
+            <Button Content="&#xE713;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button6"/>
+            <Button Content="&#xE715;" Foreground="White" FontWeight="bold" Margin="0, 220, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button7"/>
         </StackPanel>
 
+
         <!-- Conteúdo Principal -->
-        <Grid Grid.Column="1">
+        <Grid HorizontalAlignment="Left" Width="1130" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <!-- Barra Superior -->
-            <StackPanel Orientation="Horizontal" Background="White" Height="60" Width="auto" Margin="-59,0,0,0">
+
+            <!-- Campo de Pesquisa -->
+            <!-- Barra Superior -->
+            <StackPanel Orientation="Horizontal" Background="White" Height="60" Margin="0,0,-946,0">
                 <StackPanel.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.5"/>
                 </StackPanel.Effect>
-                <ToggleButton Margin="10" Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+                <Button Margin="10" x:Name="imagem_status" Click="imagem_status_Click" BorderBrush="White" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Recursos/ImagensGeral/menu-tres-barras-destacadas.png"/>
+                    </Button.Background>
+                </Button>
                 <materialDesign:PackIcon Kind="AccountCircle" Width="40" Height="40" Margin="10" Background="White" Foreground="Green" />
 
                 <StackPanel VerticalAlignment="Center">
@@ -58,9 +67,9 @@
                 </StackPanel>
 
                 <!-- Adiciona um Spacer -->
-                <StackPanel Width="1100" Height="64">
-                    <materialDesign:PackIcon Kind="BellOutline" Width="90" Height="35" VerticalAlignment="Center" Margin="0 15 200 0" HorizontalAlignment="Right"/>
-                    <Image Source="/Recursos/ImagensGeral/RuralTech(Preto).png" Width="262" Height="108" Margin="0 -70 -30 9" HorizontalAlignment="Right"/>
+                <StackPanel Width="1650" Height="64">
+                    <materialDesign:PackIcon Kind="BellOutline" Width="80" Height="30" VerticalAlignment="Center" Margin="0 15 200 0" HorizontalAlignment="Right"/>
+                    <Image Width="262" Source="/Recursos/ImagensGeral/RuralTech(Preto).png" Margin="0 -65 -20 9" Height="108" HorizontalAlignment="Right"/>
                 </StackPanel>
             </StackPanel>
 
@@ -71,7 +80,7 @@
                 DropDownElevation="Dp0"
                 Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
                 Suggestions="{Binding AutoSuggestBox2Suggestions}"
-                Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                Text="{Binding AutoSuggestBox2Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 ValueMember="Key" 
                 Margin="135,10,535,505" 
                 Grid.Row="1" 
@@ -89,8 +98,22 @@
                 </materialDesign:AutoSuggestBox.ItemTemplate>
             </materialDesign:AutoSuggestBox>
 
+
+            <Button Grid.Row="1"  Margin="225, 78" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
+                HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <TextBlock Text="+" FontSize="40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+
             <!-- Cards de Animais -->
-            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="830" Margin="35,200,0,10">
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="830" Margin="300,200,0,10">
                 <!-- Card Repetido -->
                 <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
                     <StackPanel>
