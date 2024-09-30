@@ -18,12 +18,30 @@
             <!-- Ícones da Barra Lateral -->
             <materialDesign:Card>
                 <StackPanel>
-                    <Expander HorizontalAlignment="Stretch" Header="Expander Example 2a">
+                    <Expander HorizontalAlignment="Stretch" Header="Consulta" Background="#0ca13f" Foreground="white">
                         <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
                             <TextBlock/>
                             <Button Background="#0ca13f" BorderBrush="white" >
                                 <WrapPanel>
-                                    <TextBlock Text="Medicamento" Foreground="white" ></TextBlock>
+                                    <TextBlock Text="Animal" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Compra" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Despesa" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Estoque" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
 
@@ -35,31 +53,7 @@
 
                             <Button Background="#0ca13f" BorderBrush="white">
                                 <WrapPanel>
-                                    <TextBlock Text="Animal" Foreground="white" ></TextBlock>
-                                </WrapPanel>
-                            </Button>
-
-                            <Button Background="#0ca13f" BorderBrush="white">
-                                <WrapPanel>
-                                    <TextBlock Text="Vacina" Foreground="white" ></TextBlock>
-                                </WrapPanel>
-                            </Button>
-
-                            <Button Background="#0ca13f" BorderBrush="white">
-                                <WrapPanel>
-                                    <TextBlock Text="Propriedade" Foreground="white" ></TextBlock>
-                                </WrapPanel>
-                            </Button>
-
-                            <Button Background="#0ca13f" BorderBrush="white">
-                                <WrapPanel>
-                                    <TextBlock Text="Pasto" Foreground="white" ></TextBlock>
-                                </WrapPanel>
-                            </Button>
-
-                            <Button Background="#0ca13f" BorderBrush="white">
-                                <WrapPanel>
-                                    <TextBlock Text="Patrimônio" Foreground="white" ></TextBlock>
+                                    <TextBlock Text="Exame" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
 
@@ -75,20 +69,16 @@
                                 </WrapPanel>
                             </Button>
 
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Inseminação" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
 
                             <Button Background="#0ca13f" BorderBrush="white">
                                 <WrapPanel>
-                                    <TextBlock Text="Inseminção" Foreground="white" ></TextBlock>
-                                </WrapPanel>
-                            </Button>
-                            <Button Background="#0ca13f" BorderBrush="white">
-                                <WrapPanel>
-                                    <TextBlock Text="Parto" Foreground="white" ></TextBlock>
-                                </WrapPanel>
-                            </Button>
-                            <Button Background="#0ca13f" BorderBrush="white">
-                                <WrapPanel>
-                                    <TextBlock Text="Exames" Foreground="white" ></TextBlock>
+                                    <TextBlock Text="Medicamento" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
                             <Button Background="#0ca13f" BorderBrush="white">
@@ -98,7 +88,17 @@
                             </Button>
                             <Button Background="#0ca13f" BorderBrush="white">
                                 <WrapPanel>
-                                    <TextBlock Text="Compra" Foreground="white" ></TextBlock>
+                                    <TextBlock Text="Parto" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Pasto" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Patrimônio" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
                             <Button Background="#0ca13f" BorderBrush="white">
@@ -108,12 +108,7 @@
                             </Button>
                             <Button Background="#0ca13f" BorderBrush="white">
                                 <WrapPanel>
-                                    <TextBlock Text="Estoque" Foreground="white" ></TextBlock>
-                                </WrapPanel>
-                            </Button>
-                            <Button Background="#0ca13f" BorderBrush="white">
-                                <WrapPanel>
-                                    <TextBlock Text="Despesa" Foreground="white" ></TextBlock>
+                                    <TextBlock Text="Propriedade" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
                             <Button Background="#0ca13f" BorderBrush="white">
@@ -121,25 +116,30 @@
                                     <TextBlock Text="Transporte" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Vacina" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
                             <TextBlock />
                         </StackPanel>
                     </Expander>
                     <Border />
-                    <Expander HorizontalAlignment="Stretch" Header="Expander Example 2b">
+                    <Expander HorizontalAlignment="Stretch" Header="Relatório" Background="#0ca13f"  Foreground="white">
                         <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
                             <TextBlock Text="Your Content" />
                             <TextBlock />
                         </StackPanel>
                     </Expander>
                     <Border />
-                    <Expander HorizontalAlignment="Stretch" Header="Expander Example 2c">
+                    <Expander HorizontalAlignment="Stretch" Header="Perfil" Background="#0ca13f"  Foreground="white">
                         <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
                             <TextBlock Text="Your Content" />
                             <TextBlock />
                         </StackPanel>
                     </Expander>
                     <Border />
-                    <Expander HorizontalAlignment="Stretch" Header="Expander Example 2d">
+                    <Expander HorizontalAlignment="Stretch" Header="Sair" Background="#0ca13f"  Foreground="white">
                         <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
                             <TextBlock Text="Your Content" />
                             <TextBlock />
@@ -147,6 +147,7 @@
                     </Expander>
                 </StackPanel>
             </materialDesign:Card>
+
 
         </StackPanel>
         <!-- Conteúdo Principal -->

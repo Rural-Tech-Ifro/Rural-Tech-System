@@ -29,5 +29,28 @@ namespace RuralTech.Telas
         {
 
         }
+        private void OpenModal(object sender, RoutedEventArgs e)
+        {
+            PropertyPopup.IsOpen = true;
+        }
+
+        private void CloseModal(object sender, RoutedEventArgs e)
+        {
+            PropertyPopup.IsOpen = false;
+        }
+
+        private void SaveProperty(object sender, RoutedEventArgs e)
+        {
+            string propertyName = txt_propriedade.Text;
+            string ownerName = txt_proprietario.Text;
+            string size = txt_tamanho.Text;
+            string phone = txt_telefone.Text;
+           
+            // Lógica para salvar as informações da propriedade
+
+            // Fechar o modal após salvar
+            PropertyPopup.IsOpen = false;
+        }
+
     }
 }
