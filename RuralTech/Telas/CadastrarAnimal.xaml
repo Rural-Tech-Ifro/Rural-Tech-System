@@ -24,15 +24,140 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Background="#0ca13f" Width="65" Height="auto" Margin="0,60,0,-289" Name="appBar_Esquerdo">
+        <StackPanel Background="#0ca13f" Width="200" Height="auto" Margin="0,60,0,-289" Name="appBar_Esquerdo">
             <!-- Ícones da Barra Lateral -->
-            <Button Content="&#xE80F;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button1"/>
-            <Button Content="&#xE7C4;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button2"/>
-            <Button Content="&#xE8D4;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button3"/>
-            <Button Content="&#xE710;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button4"/>
-            <Button Content="&#xE77B;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button5"/>
-            <Button Content="&#xE713;" Foreground="White" FontWeight="bold" Margin="0, 20, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button6"/>
-            <Button Content="&#xE715;" Foreground="White" FontWeight="bold" Margin="0, 220, 0, 0" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" Name="button7"/>
+            <materialDesign:Card>
+                <StackPanel>
+                    <Expander HorizontalAlignment="Stretch" Header="Expander Example 2a">
+                        <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBlock/>
+                            <Button Background="#0ca13f" BorderBrush="white" >
+                                <WrapPanel>
+                                    <TextBlock Text="Medicamento" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Equipamento" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Animal" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Vacina" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Propriedade" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Pasto" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Patrimônio" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Fornecedor/Cliente" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Funcionário" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Inseminção" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Parto" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Exames" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Ordenha" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Compra" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Produto" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Estoque" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Despesa" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Transporte" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <TextBlock />
+                        </StackPanel>
+                    </Expander>
+                    <Border />
+                    <Expander HorizontalAlignment="Stretch" Header="Expander Example 2b">
+                        <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBlock Text="Your Content" />
+                            <TextBlock />
+                        </StackPanel>
+                    </Expander>
+                    <Border />
+                    <Expander HorizontalAlignment="Stretch" Header="Expander Example 2c">
+                        <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBlock Text="Your Content" />
+                            <TextBlock />
+                        </StackPanel>
+                    </Expander>
+                    <Border />
+                    <Expander HorizontalAlignment="Stretch" Header="Expander Example 2d">
+                        <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBlock Text="Your Content" />
+                            <TextBlock />
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </materialDesign:Card>
+
         </StackPanel>
 
         <!-- Conteúdo Principal -->
@@ -47,11 +172,7 @@
                 <StackPanel.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.5"/>
                 </StackPanel.Effect>
-                <Button Margin="10" x:Name="imagem_status" Click="imagem_status_Click" BorderBrush="White" >
-                    <Button.Background>
-                        <ImageBrush ImageSource="/Recursos/ImagensGeral/menu-tres-barras-destacadas.png"/>
-                    </Button.Background>
-                </Button>
+                
                 <materialDesign:PackIcon Kind="AccountCircle" Width="40" Height="40" Margin="10" Background="White" Foreground="Green" />
 
                 <StackPanel VerticalAlignment="Center">
