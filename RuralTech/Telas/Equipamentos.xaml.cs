@@ -9,31 +9,20 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static MaterialDesignThemes.Wpf.Theme;
 
 namespace RuralTech.Telas
 {
     /// <summary>
-    /// Interação lógica para CadastrarMedicamentos.xam
+    /// Lógica interna para Equipamentos.xaml
     /// </summary>
-    public partial class CadastrarMedicamentos : Page
+    public partial class Equipamentos : Window
     {
-       
-        public CadastrarMedicamentos()
+        public Equipamentos()
         {
             InitializeComponent();
-
         }
-
-        private void imagem_status_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void OpenModal(object sender, RoutedEventArgs e)
         {
             PropertyPopup.IsOpen = true;
@@ -50,14 +39,46 @@ namespace RuralTech.Telas
             string ownerName = txt_proprietario.Text;
             string size = txt_tamanho.Text;
             string phone = txt_telefone.Text;
-            string zipCode = txt_cep.Text;
-            string address = txt_endereco.Text;
-           
+
             // Lógica para salvar as informações da propriedade
 
             // Fechar o modal após salvar
             PropertyPopup.IsOpen = false;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Animal tela = new Animal();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Medicamentos tela = new Medicamentos();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Propriedades tela = new Propriedades();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+           Pastos tela = new Pastos();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Vacinas tela = new Vacinas();
+            this.Close();
+            tela.ShowDialog();
+        }
     }
 }

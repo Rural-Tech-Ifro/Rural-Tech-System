@@ -81,23 +81,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Telas\CadastrarEquipamentos.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Telas\CadastrarMedicamentos.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Telas\CadastrarPasto.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Telas\CadastrarPropriedade.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Telas\CadastrarVacina.xaml">
+    <Compile Include="Telas\Medicamentos.xaml.cs">
+      <DependentUpon>Medicamentos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Pastos.xaml.cs">
+      <DependentUpon>Pastos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Propriedades.xaml.cs">
+      <DependentUpon>Propriedades.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Vacinas.xaml.cs">
+      <DependentUpon>Vacinas.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Telas\Animal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -105,7 +101,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Telas\CadastrarAnimal.xaml">
+    <Page Include="Telas\Equipamentos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,30 +113,34 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Telas\CadastrarEquipamentos.xaml.cs">
-      <DependentUpon>CadastrarEquipamentos.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Telas\CadastrarMedicamentos.xaml.cs">
-      <DependentUpon>CadastrarMedicamentos.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Telas\CadastrarPasto.xaml.cs">
-      <DependentUpon>CadastrarPasto.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Telas\CadastrarPropriedade.xaml.cs">
-      <DependentUpon>CadastrarPropriedade.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Telas\CadastrarVacina.xaml.cs">
-      <DependentUpon>CadastrarVacina.xaml</DependentUpon>
+    <Compile Include="Telas\Animal.xaml.cs">
+      <DependentUpon>Animal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\CadastrarUsuario.xaml.cs">
       <DependentUpon>CadastrarUsuario.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Telas\CadastrarAnimal.xaml.cs">
-      <DependentUpon>CadastrarAnimal.xaml</DependentUpon>
+    <Compile Include="Telas\Equipamentos.xaml.cs">
+      <DependentUpon>Equipamentos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Page Include="Telas\Medicamentos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\Pastos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\Propriedades.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\Vacinas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -9,31 +9,20 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static MaterialDesignThemes.Wpf.Theme;
 
 namespace RuralTech.Telas
 {
     /// <summary>
-    /// Interação lógica para CadastrarPropriedade.xam
+    /// Lógica interna para Propriedades.xaml
     /// </summary>
-    public partial class CadastrarPropriedade : Page
+    public partial class Propriedades : Window
     {
-        
-        public CadastrarPropriedade()
+        public Propriedades()
         {
             InitializeComponent();
-
         }
-
-        private void imagem_status_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void OpenModal(object sender, RoutedEventArgs e)
         {
             PropertyPopup.IsOpen = true;
@@ -61,5 +50,39 @@ namespace RuralTech.Telas
             PropertyPopup.IsOpen = false;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Animal tela = new Animal();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Equipamentos tela = new Equipamentos();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Medicamentos tela = new Medicamentos();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Pastos tela = new Pastos();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Vacinas tela = new Vacinas();
+            this.Close();
+            tela.ShowDialog();
+        }
     }
 }

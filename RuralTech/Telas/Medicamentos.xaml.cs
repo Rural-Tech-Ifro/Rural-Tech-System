@@ -1,5 +1,4 @@
-﻿using MaterialDesignThemes.Wpf;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,41 +9,19 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static MaterialDesignThemes.Wpf.Theme;
 
 namespace RuralTech.Telas
 {
     /// <summary>
-    /// Lógica interna para CadastroDeAnimal.xaml
+    /// Lógica interna para Medicamentos.xaml
     /// </summary>
-    public partial class CadastrarAnimal : Window
+    public partial class Medicamentos : Window
     {
-        private bool isMenuExpanded = false;
-        private double posicaoAtual;
-
-        public CadastrarAnimal()
+        public Medicamentos()
         {
             InitializeComponent();
-            posicaoAtual = appBar_Esquerdo.ActualWidth;
-
-        }
-
-        private void PackIcon_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
-        {
-
-        }
-
-        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void imagem_status_Click(object sender, RoutedEventArgs e)
-        {
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
@@ -64,9 +41,7 @@ namespace RuralTech.Telas
             string phone = txt_telefone.Text;
             string zipCode = txt_cep.Text;
             string address = txt_endereco.Text;
-            string number = txt_numero.Text;
-            string neighborhood = txt_bairro.Text;
-            string complement = txt_complemento.Text;
+         
             // Lógica para salvar as informações da propriedade
 
             // Fechar o modal após salvar
@@ -75,9 +50,16 @@ namespace RuralTech.Telas
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            CadastrarEquipamentos tela = new CadastrarEquipamentos();
+            Animal tela = new Animal();
             this.Close();
-            
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Equipamentos tela = new Equipamentos();
+            this.Close();
+            tela.ShowDialog();
         }
     }
 }
