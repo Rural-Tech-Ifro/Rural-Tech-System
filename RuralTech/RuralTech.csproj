@@ -105,7 +105,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Telas\CadastroDeAnimal.xaml">
+    <Page Include="Telas\CadastrarAnimal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -135,8 +135,8 @@
     <Compile Include="Telas\CadastrarUsuario.xaml.cs">
       <DependentUpon>CadastrarUsuario.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Telas\CadastroDeAnimal.xaml.cs">
-      <DependentUpon>CadastroDeAnimal.xaml</DependentUpon>
+    <Compile Include="Telas\CadastrarAnimal.xaml.cs">
+      <DependentUpon>CadastrarAnimal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>

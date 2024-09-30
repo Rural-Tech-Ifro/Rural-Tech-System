@@ -12,18 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static MaterialDesignThemes.Wpf.Theme;
 
 namespace RuralTech.Telas
 {
     /// <summary>
     /// Lógica interna para CadastroDeAnimal.xaml
     /// </summary>
-    public partial class CadastroDeAnimal : Window
+    public partial class CadastrarAnimal : Window
     {
         private bool isMenuExpanded = false;
         private double posicaoAtual;
 
-        public CadastroDeAnimal()
+        public CadastrarAnimal()
         {
             InitializeComponent();
             posicaoAtual = appBar_Esquerdo.ActualWidth;
