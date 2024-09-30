@@ -32,7 +32,7 @@ namespace RuralTech.Telas
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Cadastro tela = new Cadastro();
+            CadastrarUsuario tela = new CadastrarUsuario();
             this.Close();
             tela.ShowDialog();
         }
