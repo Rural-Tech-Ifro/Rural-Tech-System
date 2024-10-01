@@ -28,6 +28,10 @@ namespace RuralTech.Telas
         {
             var usuario = txt_usuario.Text;
             var senha = txt_senha.Password;
+
+            Animal login = new Animal();
+            this.Close();
+            login.ShowDialog();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

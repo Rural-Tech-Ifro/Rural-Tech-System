@@ -5,13 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RuralTech.Telas" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Pastos" Height="450" Width="800">
+        Title="Pastos"         WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Background="Transparent" 
+        Height="625" 
+        Width="1130">
     <Grid Background="White">
         <!-- Sidebar -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+
         <StackPanel Background="#0ca13f" Width="200" Height="auto" Margin="0,60,0,-289" Name="appBar_Esquerdo">
             <!-- Ícones da Barra Lateral -->
             <materialDesign:Card>
@@ -19,11 +27,7 @@
                     <Expander HorizontalAlignment="Stretch" Header="Consulta" Background="#0ca13f" Foreground="white">
                         <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
                             <TextBlock/>
-                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click" >
-                                <WrapPanel>
-                                    <TextBlock Text="Animal" Foreground="white" ></TextBlock>
-                                </WrapPanel>
-                            </Button>
+
 
                             <Button Background="#0ca13f" BorderBrush="white">
                                 <WrapPanel>
@@ -43,7 +47,7 @@
                                 </WrapPanel>
                             </Button>
 
-                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click_1">
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click">
                                 <WrapPanel>
                                     <TextBlock Text="Equipamento" Foreground="white" ></TextBlock>
                                 </WrapPanel>
@@ -74,7 +78,7 @@
                             </Button>
 
 
-                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click_2">
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click_1">
                                 <WrapPanel>
                                     <TextBlock Text="Medicamento" Foreground="white" ></TextBlock>
                                 </WrapPanel>
@@ -89,7 +93,11 @@
                                     <TextBlock Text="Parto" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
-                           
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click_3">
+                                <WrapPanel>
+                                    <TextBlock Text="Pasto" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
                             <Button Background="#0ca13f" BorderBrush="white">
                                 <WrapPanel>
                                     <TextBlock Text="Patrimônio" Foreground="white" ></TextBlock>
@@ -100,7 +108,7 @@
                                     <TextBlock Text="Produto" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
-                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click_3">
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click_2">
                                 <WrapPanel>
                                     <TextBlock Text="Propriedade" Foreground="white" ></TextBlock>
                                 </WrapPanel>
@@ -144,19 +152,21 @@
 
 
         </StackPanel>
+
         <!-- Conteúdo Principal -->
-        <Grid Grid.ColumnSpan="2" Margin="54,0,0,0">
+        <Grid Grid.ColumnSpan="2" Margin="59,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+
             <!-- Barra Superior -->
-            <StackPanel Orientation="Horizontal" Background="White" Height="60" Width="auto" Margin="-54,0,0,0">
+            <StackPanel Orientation="Horizontal" Background="White" Height="60" Width="auto" Margin="-65,0,0,0">
                 <StackPanel.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.5"/>
                 </StackPanel.Effect>
-
                 <materialDesign:PackIcon Kind="AccountCircle" Width="40" Height="40" Margin="10" Background="White" Foreground="Green" />
+
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="Serjão dos Foguetes" FontFamily="/Recursos/Fonts/#Poppins Semibold" FontSize="13"/>
                     <WrapPanel>
@@ -164,26 +174,28 @@
                         <materialDesign:PackIcon Kind="MenuDown" Width="20" Height="20" Foreground="Green" Background="White"/>
                     </WrapPanel>
                 </StackPanel>
+
                 <!-- Adiciona um Spacer -->
-                <StackPanel Width="1100" Height="64">
-                    <materialDesign:PackIcon Kind="BellOutline" Width="80" Height="30" VerticalAlignment="Center" Margin="0 15 200 0" HorizontalAlignment="Right"/>
-                    <Image Source="/Recursos/ImagensGeral/RuralTech(Preto).png" Width="262" Height="108" Margin="0 -65 -30 9" HorizontalAlignment="Right"/>
+                <StackPanel Width="1150" Height="64">
+                    <materialDesign:PackIcon Kind="BellOutline" Width="80" Height="30" VerticalAlignment="Center" Margin="0 15 190 0" HorizontalAlignment="Right"/>
+                    <Image Source="/Recursos/ImagensGeral/RuralTech(Preto).png" Width="262" Height="108" Margin="0 -60 -40 9" HorizontalAlignment="Right"/>
                 </StackPanel>
             </StackPanel>
-            <!-- Campo de Pesquisa -->
+
             <materialDesign:AutoSuggestBox
-             materialDesign:HintAssist.Hint="Perocure um pasto "
-             materialDesign:TextFieldAssist.HasClearButton="True"
-             DropDownElevation="Dp0"
-             Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
-             Suggestions="{Binding AutoSuggestBox2Suggestions}"
-             Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-             ValueMember="Key" 
-             Margin="135,10,535,505" 
-             Grid.Row="1" 
-             Width="400" 
-             Height="50" 
-             RenderTransformOrigin="-0.875,-2.1">
+               materialDesign:HintAssist.Hint="Pesquise pasto"
+               materialDesign:TextFieldAssist.HasClearButton="True"
+               DropDownElevation="Dp0"
+               Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
+               Suggestions="{Binding AutoSuggestBox2Suggestions}"
+               Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+               ValueMember="Key" 
+               Margin="135,10,535,505" 
+               Grid.Row="1" 
+               Width="400" 
+               Height="50" 
+               RenderTransformOrigin="-0.875,-2.1">
+
                 <materialDesign:AutoSuggestBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>
@@ -193,20 +205,22 @@
                     </DataTemplate>
                 </materialDesign:AutoSuggestBox.ItemTemplate>
             </materialDesign:AutoSuggestBox>
+
             <Button Grid.Row="1"  Margin="326, 83" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
-             HorizontalAlignment="Right" VerticalAlignment="Top">
+                HorizontalAlignment="Right" VerticalAlignment="Top">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" 
-                         CornerRadius="10">
+        CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-                <TextBlock Text="+" FontSize="40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="+" FontSize="40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-10,0,0"/>
             </Button>
+
+
             <!-- Cards de Animais -->
-            <!-- Cards Pasto -->
             <WrapPanel Grid.Row="2" HorizontalAlignment="Left" Width="900" Margin="249,194,0,16">
                 <!-- Card Repetido -->
                 <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="300" Height="213" Margin="0, 0, 125, 40">
@@ -224,6 +238,7 @@
                         <TextBlock Text="Limite de Animais: 200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
                     </StackPanel>
                 </Border>
+
                 <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="300" Height="213" Margin="0, 0, 30, 40">
                     <StackPanel>
                         <Border CornerRadius="5,5,0,0" Height="100">
@@ -239,6 +254,8 @@
                         <TextBlock Text="Limite de Animais: 200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
                     </StackPanel>
                 </Border>
+
+
                 <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="300" Height="213" Margin="0, 0, 125,0">
                     <StackPanel>
                         <Border CornerRadius="5,5,0,0" Height="100">
@@ -254,6 +271,7 @@
                         <TextBlock Text="Limite de Animais: 200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
                     </StackPanel>
                 </Border>
+
                 <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="300" Height="213" Margin="0, 0, 30,0">
                     <StackPanel>
                         <Border CornerRadius="5,5,0,0" Height="100">

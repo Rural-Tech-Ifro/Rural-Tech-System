@@ -5,13 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RuralTech.Telas" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Propriedades" Height="450" Width="800">
+        Title="Propriedades"         WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Background="Transparent" 
+        Height="625" 
+        Width="1130">
     <Grid Background="White">
         <!-- Sidebar -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+
         <StackPanel Background="#0ca13f" Width="200" Height="auto" Margin="0,60,0,-289" Name="appBar_Esquerdo">
             <!-- Ícones da Barra Lateral -->
             <materialDesign:Card>
@@ -19,11 +27,7 @@
                     <Expander HorizontalAlignment="Stretch" Header="Consulta" Background="#0ca13f" Foreground="white">
                         <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
                             <TextBlock/>
-                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click" >
-                                <WrapPanel>
-                                    <TextBlock Text="Animal" Foreground="white" ></TextBlock>
-                                </WrapPanel>
-                            </Button>
+
 
                             <Button Background="#0ca13f" BorderBrush="white">
                                 <WrapPanel>
@@ -43,7 +47,7 @@
                                 </WrapPanel>
                             </Button>
 
-                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click_1">
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click">
                                 <WrapPanel>
                                     <TextBlock Text="Equipamento" Foreground="white" ></TextBlock>
                                 </WrapPanel>
@@ -74,7 +78,7 @@
                             </Button>
 
 
-                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click_2">
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click_1">
                                 <WrapPanel>
                                     <TextBlock Text="Medicamento" Foreground="white" ></TextBlock>
                                 </WrapPanel>
@@ -104,7 +108,11 @@
                                     <TextBlock Text="Produto" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
-                            
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click_2">
+                                <WrapPanel>
+                                    <TextBlock Text="Propriedade" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
                             <Button Background="#0ca13f" BorderBrush="white">
                                 <WrapPanel>
                                     <TextBlock Text="Transporte" Foreground="white" ></TextBlock>
@@ -144,19 +152,21 @@
 
 
         </StackPanel>
+
         <!-- Conteúdo Principal -->
-        <Grid Grid.ColumnSpan="2">
+        <Grid Grid.ColumnSpan="2" Margin="59,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+
             <!-- Barra Superior -->
-            <StackPanel Orientation="Horizontal" Background="White" Height="60" Width="auto">
+            <StackPanel Orientation="Horizontal" Background="White" Height="60" Width="auto" Margin="-65,0,0,0">
                 <StackPanel.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.5"/>
                 </StackPanel.Effect>
-
                 <materialDesign:PackIcon Kind="AccountCircle" Width="40" Height="40" Margin="10" Background="White" Foreground="Green" />
+
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="Serjão dos Foguetes" FontFamily="/Recursos/Fonts/#Poppins Semibold" FontSize="13"/>
                     <WrapPanel>
@@ -164,26 +174,29 @@
                         <materialDesign:PackIcon Kind="MenuDown" Width="20" Height="20" Foreground="Green" Background="White"/>
                     </WrapPanel>
                 </StackPanel>
+
                 <!-- Adiciona um Spacer -->
-                <StackPanel Width="1100" Height="64">
-                    <materialDesign:PackIcon Kind="BellOutline" Width="80" Height="30" VerticalAlignment="Center" Margin="0 15 200 0" HorizontalAlignment="Right"/>
-                    <Image Source="/Recursos/ImagensGeral/RuralTech(Preto).png" Width="262" Height="108" Margin="0 -65 -30 9" HorizontalAlignment="Right"/>
+                <StackPanel Width="1150" Height="64">
+                    <materialDesign:PackIcon Kind="BellOutline" Width="80" Height="30" VerticalAlignment="Center" Margin="0 15 190 0" HorizontalAlignment="Right"/>
+                    <Image Source="/Recursos/ImagensGeral/RuralTech(Preto).png" Width="262" Height="108" Margin="0 -60 -40 9" HorizontalAlignment="Right"/>
                 </StackPanel>
             </StackPanel>
+
             <!-- Campo de Pesquisa -->
             <materialDesign:AutoSuggestBox
-               materialDesign:HintAssist.Hint="Procure uma propriedade"
-               materialDesign:TextFieldAssist.HasClearButton="True"
-               DropDownElevation="Dp0"
-               Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
-               Suggestions="{Binding AutoSuggestBox2Suggestions}"
-               Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-               ValueMember="Key" 
-               Margin="135,10,535,505" 
-               Grid.Row="1" 
-               Width="400" 
-               Height="50" 
-               RenderTransformOrigin="-0.875,-2.1">
+    materialDesign:HintAssist.Hint="Pesquisar Propriedade"
+    materialDesign:TextFieldAssist.HasClearButton="True"
+    DropDownElevation="Dp0"
+    Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
+    Suggestions="{Binding AutoSuggestBox2Suggestions}"
+    Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+    ValueMember="Key" 
+    Margin="135,10,535,505" 
+    Grid.Row="1" 
+    Width="400" 
+    Height="50" 
+    RenderTransformOrigin="-0.875,-2.1">
+
                 <materialDesign:AutoSuggestBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>
@@ -193,97 +206,97 @@
                     </DataTemplate>
                 </materialDesign:AutoSuggestBox.ItemTemplate>
             </materialDesign:AutoSuggestBox>
+
+            <Button Grid.Row="1"  Margin="225, 83" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
+            HorizontalAlignment="Right" VerticalAlignment="Top" Click="OpenModal">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+        CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <TextBlock Text="+" FontSize="40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-10,0,0"/>
+            </Button>
+
+            <Popup Name="PropertyPopup" HorizontalAlignment="Center" VerticalAlignment="Center" Placement="Mouse" StaysOpen="False">
+                <Border Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Padding="10">
+                    <StackPanel Width="300" Margin="0 0 0 30">
+                        <TextBlock Text="Propriedade" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="Nome da Propriedade"
+MaxLength="40"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_propriedade"
+Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="Nome do Proprietário"
+MaxLength="40"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_proprietario"
+Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="Tamanho em Hectares"
+MaxLength="40"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_tamanho"
+Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="Telefone"
+MaxLength="40"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_telefone"
+Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="CEP"
+MaxLength="40"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_cep"
+Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="Endereço"
+MaxLength="40"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_endereco"
+Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="Número"
+MaxLength="10"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_numero"
+Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="Bairro"
+MaxLength="40"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_bairro"
+Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="Complemento"
+MaxLength="40"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_complemento"
+Margin="0,0,0,5"/>
+
+                        <Button Content="Salvar" Click="SaveProperty" Margin="0,10,0,0"/>
+                        <Button Content="Fechar" Click="CloseModal" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
+
+
             <!-- Cards de Animais -->
             <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="860" Margin="65,200,0,20">
-
-                <Grid>
-                    <Button Grid.Row="1" Margin="222, 83" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
-HorizontalAlignment="Right" VerticalAlignment="Top" Click="OpenModal">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}" 
-            CornerRadius="10">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                        <TextBlock Text="+" FontSize="40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Button>
-
-                    <Popup Name="PropertyPopup" Placement="Mouse" StaysOpen="False">
-                        <Border Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Padding="10">
-                            <StackPanel Width="300" Margin="0 0 0 30">
-                                <TextBlock Text="Propriedade" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
-
-                                <TextBox
-    materialDesign:HintAssist.Hint="Nome da Propriedade"
-    MaxLength="40"
-    Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_propriedade"
-    Margin="0,0,0,5"/>
-
-                                <TextBox
-    materialDesign:HintAssist.Hint="Nome do Proprietário"
-    MaxLength="40"
-    Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_proprietario"
-    Margin="0,0,0,5"/>
-
-                                <TextBox
-    materialDesign:HintAssist.Hint="Tamanho em Hectares"
-    MaxLength="40"
-    Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_tamanho"
-    Margin="0,0,0,5"/>
-
-                                <TextBox
-    materialDesign:HintAssist.Hint="Telefone"
-    MaxLength="40"
-    Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_telefone"
-    Margin="0,0,0,5"/>
-
-                                <TextBox
-    materialDesign:HintAssist.Hint="CEP"
-    MaxLength="40"
-    Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_cep"
-    Margin="0,0,0,5"/>
-
-                                <TextBox
-    materialDesign:HintAssist.Hint="Endereço"
-    MaxLength="40"
-    Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_endereco"
-    Margin="0,0,0,5"/>
-
-                                <TextBox
-    materialDesign:HintAssist.Hint="Número"
-    MaxLength="10"
-    Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_numero"
-    Margin="0,0,0,5"/>
-
-                                <TextBox
-    materialDesign:HintAssist.Hint="Bairro"
-    MaxLength="40"
-    Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_bairro"
-    Margin="0,0,0,5"/>
-
-                                <TextBox
-    materialDesign:HintAssist.Hint="Complemento"
-    MaxLength="40"
-    Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_complemento"
-    Margin="0,0,0,5"/>
-
-                                <Button Content="Salvar" Click="SaveProperty" Margin="0,10,0,0"/>
-                                <Button Content="Fechar" Click="CloseModal" Margin="0,5,0,0"/>
-                            </StackPanel>
-                        </Border>
-                    </Popup>
-                </Grid>
                 <!-- Card Repetido -->
                 <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="10" Width="400" Height="185" Margin="0, 0, 30, 40">
                     <StackPanel>
@@ -301,6 +314,7 @@ HorizontalAlignment="Right" VerticalAlignment="Top" Click="OpenModal">
                         <TextBlock Text="Relevo: plano" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-20,96,3" HorizontalAlignment="Right"/>
                     </StackPanel>
                 </Border>
+
                 <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="10" Width="400" Height="185" Margin="0, 0, 30, 40">
                     <StackPanel>
                         <Border CornerRadius="10,10,0,0" Height="100">
@@ -317,6 +331,7 @@ HorizontalAlignment="Right" VerticalAlignment="Top" Click="OpenModal">
                         <TextBlock Text="Relevo: plano" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-20,96,3" HorizontalAlignment="Right"/>
                     </StackPanel>
                 </Border>
+
                 <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="10" Width="400" Height="185" Margin="0, 0, 30, 40">
                     <StackPanel>
                         <Border CornerRadius="10,10,0,0" Height="100">
@@ -333,6 +348,7 @@ HorizontalAlignment="Right" VerticalAlignment="Top" Click="OpenModal">
                         <TextBlock Text="Relevo: plano" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-20,96,3" HorizontalAlignment="Right"/>
                     </StackPanel>
                 </Border>
+
                 <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="10" Width="400" Height="185" Margin="0, 0, 30, 40">
                     <StackPanel>
                         <Border CornerRadius="10,10,0,0" Height="100">

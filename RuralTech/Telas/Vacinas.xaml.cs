@@ -24,6 +24,29 @@ namespace RuralTech.Telas
             InitializeComponent();
         }
 
+        private void OpenModal(object sender, RoutedEventArgs e)
+        {
+            PropertyPopup.IsOpen = true;
+        }
+
+        private void CloseModal(object sender, RoutedEventArgs e)
+        {
+            PropertyPopup.IsOpen = false;
+        }
+
+        private void SaveProperty(object sender, RoutedEventArgs e)
+        {
+            string propertyName = txt_propriedade.Text;
+            string ownerName = txt_proprietario.Text;
+            string size = txt_tamanho.Text;
+            string phone = txt_telefone.Text;
+
+            // Lógica para salvar as informações da propriedade
+
+            // Fechar o modal após salvar
+            PropertyPopup.IsOpen = false;
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Animal tela = new Animal();
@@ -33,28 +56,35 @@ namespace RuralTech.Telas
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Medicamentos tela = new Medicamentos();
+            Equipamentos tela = new Equipamentos();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Pastos tela = new Pastos();
+            Medicamentos tela = new Medicamentos();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Propriedades tela = new Propriedades();
+            Pastos tela = new Pastos();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            Equipamentos tela = new Equipamentos();
+            Propriedades tela = new Propriedades();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            Vacinas tela = new Vacinas();
             this.Close();
             tela.ShowDialog();
         }

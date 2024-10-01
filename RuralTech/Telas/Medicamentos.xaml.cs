@@ -39,8 +39,6 @@ namespace RuralTech.Telas
             string ownerName = txt_proprietario.Text;
             string size = txt_tamanho.Text;
             string phone = txt_telefone.Text;
-            string zipCode = txt_cep.Text;
-            string address = txt_endereco.Text;
          
             // Lógica para salvar as informações da propriedade
 
