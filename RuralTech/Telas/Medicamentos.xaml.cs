@@ -61,5 +61,33 @@ namespace RuralTech.Telas
             this.Close();
             tela.ShowDialog();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Medicamentos tela = new Medicamentos();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Pastos tela = new Pastos();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Propriedades tela = new Propriedades();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            Vacinas tela = new Vacinas();
+            this.Close();
+            tela.ShowDialog();
+        }
     }
 }

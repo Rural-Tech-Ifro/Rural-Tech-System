@@ -51,5 +51,12 @@ namespace RuralTech.Telas
             this.Close();
             tela.ShowDialog();
         }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Equipamentos tela = new Equipamentos();
+            this.Close();
+            tela.ShowDialog();
+        }
     }
 }

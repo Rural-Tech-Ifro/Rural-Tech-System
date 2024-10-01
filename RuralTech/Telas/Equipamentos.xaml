@@ -43,11 +43,7 @@
                                 </WrapPanel>
                             </Button>
 
-                            <Button Background="#0ca13f" BorderBrush="white">
-                                <WrapPanel>
-                                    <TextBlock Text="Equipamento" Foreground="white" ></TextBlock>
-                                </WrapPanel>
-                            </Button>
+                           
 
                             <Button Background="#0ca13f" BorderBrush="white">
                                 <WrapPanel>

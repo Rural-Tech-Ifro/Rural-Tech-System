@@ -43,7 +43,7 @@
                                 </WrapPanel>
                             </Button>
 
-                            <Button Background="#0ca13f" BorderBrush="white">
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click_4">
                                 <WrapPanel>
                                     <TextBlock Text="Equipamento" Foreground="white" ></TextBlock>
                                 </WrapPanel>
@@ -114,11 +114,7 @@
                                     <TextBlock Text="Transporte" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
-                            <Button Background="#0ca13f" BorderBrush="white">
-                                <WrapPanel>
-                                    <TextBlock Text="Vacina" Foreground="white" ></TextBlock>
-                                </WrapPanel>
-                            </Button>
+
                             <TextBlock />
                         </StackPanel>
                     </Expander>
@@ -212,7 +208,7 @@
             <!-- Cards de Animais -->
             <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="800" Margin="0,200,0,20">
                 <!-- Card Repetido -->
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="0, 0, 30, 40">
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="57" Height="44" Margin="0, 0, 30, 40">
                     <StackPanel>
                         <Border CornerRadius="5,5,0,0" Height="80">
                             <Border.Background>

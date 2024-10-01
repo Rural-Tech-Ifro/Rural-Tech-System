@@ -89,11 +89,7 @@
                                     <TextBlock Text="Parto" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
-                            <Button Background="#0ca13f" BorderBrush="white">
-                                <WrapPanel>
-                                    <TextBlock Text="Pasto" Foreground="white" ></TextBlock>
-                                </WrapPanel>
-                            </Button>
+                           
                             <Button Background="#0ca13f" BorderBrush="white">
                                 <WrapPanel>
                                     <TextBlock Text="Patrimônio" Foreground="white" ></TextBlock>

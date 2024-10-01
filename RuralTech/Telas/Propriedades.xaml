@@ -104,11 +104,7 @@
                                     <TextBlock Text="Produto" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
-                            <Button Background="#0ca13f" BorderBrush="white">
-                                <WrapPanel>
-                                    <TextBlock Text="Propriedade" Foreground="white" ></TextBlock>
-                                </WrapPanel>
-                            </Button>
+                            
                             <Button Background="#0ca13f" BorderBrush="white">
                                 <WrapPanel>
                                     <TextBlock Text="Transporte" Foreground="white" ></TextBlock>

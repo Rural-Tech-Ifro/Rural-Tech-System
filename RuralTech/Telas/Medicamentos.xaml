@@ -80,7 +80,7 @@
                             </Button>
 
 
-                            <Button Background="#0ca13f" BorderBrush="white">
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click_2">
                                 <WrapPanel>
                                     <TextBlock Text="Medicamento" Foreground="white" ></TextBlock>
                                 </WrapPanel>
@@ -95,7 +95,7 @@
                                     <TextBlock Text="Parto" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
-                            <Button Background="#0ca13f" BorderBrush="white">
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click_3">
                                 <WrapPanel>
                                     <TextBlock Text="Pasto" Foreground="white" ></TextBlock>
                                 </WrapPanel>
@@ -110,7 +110,7 @@
                                     <TextBlock Text="Produto" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
-                            <Button Background="#0ca13f" BorderBrush="white">
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click_4">
                                 <WrapPanel>
                                     <TextBlock Text="Propriedade" Foreground="white" ></TextBlock>
                                 </WrapPanel>
@@ -120,7 +120,7 @@
                                     <TextBlock Text="Transporte" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
-                            <Button Background="#0ca13f" BorderBrush="white">
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click_5">
                                 <WrapPanel>
                                     <TextBlock Text="Vacina" Foreground="white" ></TextBlock>
                                 </WrapPanel>
@@ -179,8 +179,11 @@
                     <materialDesign:PackIcon Kind="BellOutline" Width="80" Height="30" VerticalAlignment="Center" Margin="0 15 200 0" HorizontalAlignment="Right"/>
                     <Image Source="/Recursos/ImagensGeral/RuralTech(Preto).png" Width="262" Height="108" Margin="0 -65 -30 9" HorizontalAlignment="Right"/>
                 </StackPanel>
+                
+                
             </StackPanel>
             <!-- Campo de Pesquisa -->
+            
             <materialDesign:AutoSuggestBox
                materialDesign:HintAssist.Hint="Procure um vermifugo aplicado"
                materialDesign:TextFieldAssist.HasClearButton="True"
@@ -203,7 +206,12 @@
                     </DataTemplate>
                 </materialDesign:AutoSuggestBox.ItemTemplate>
             </materialDesign:AutoSuggestBox>
+            
+            
+            
+            
             <!-- Cards de Animais -->
+            
             <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="800" Margin="0,200,0,20">
 
                 <Grid>
@@ -274,6 +282,7 @@ HorizontalAlignment="Right" VerticalAlignment="Top" Click="OpenModal">
                 </Grid>
                 <!-- Card Repetido -->
                 <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="0, 0, 30, 40">
+                    
                     <StackPanel>
                         <Border CornerRadius="5,5,0,0" Height="80">
                             <Border.Background>
@@ -357,7 +366,10 @@ HorizontalAlignment="Right" VerticalAlignment="Top" Click="OpenModal">
                         <TextBlock Text="Data aplicação: 24/11/2023" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
                     </StackPanel>
                 </Border>
-            </WrapPanel>
+                
+            </WrapPanel>                  
         </Grid>
+        
+        
     </Grid>
 </Window>

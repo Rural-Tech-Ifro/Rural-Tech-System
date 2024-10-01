@@ -78,6 +78,13 @@ namespace RuralTech.Telas
             this.Close();
             tela.ShowDialog();
         }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Vacinas tela = new Vacinas();
+            this.Close();
+            tela.ShowDialog();
+        }
     }
 
 }
