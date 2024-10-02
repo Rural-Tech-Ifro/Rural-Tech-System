@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
+
 
 namespace RuralTech.Telas
 {
@@ -36,8 +38,7 @@ namespace RuralTech.Telas
 
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
-            string propertyName = txt_propriedade.Text;
-            string ownerName = txt_proprietario.Text;
+            string propertyName = txt_brinco.Text;
             string size = txt_tamanho.Text;
             string phone = txt_telefone.Text;
             string zipCode = txt_cep.Text;
@@ -85,6 +86,12 @@ namespace RuralTech.Telas
             this.Close();
             tela.ShowDialog();
         }
+
+
+
+        private void ClearFilledComboBox_Click(object sender, System.Windows.RoutedEventArgs e)
+        => FilledComboBox.SelectedItem = null;
+
     }
 
 }
