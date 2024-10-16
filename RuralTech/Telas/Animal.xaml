@@ -243,10 +243,11 @@
                                 </Grid.ColumnDefinitions>
                             </Grid>
                             <ComboBox
-    x:Name="FilledComboBox"
+    x:Name="combo_raca"
     Width="300"
     Margin="0, 0, 0, 5"
     materialDesign:HintAssist.Hint="Selecione uma raça"
+                                
     IsEnabled="{Binding Path=IsChecked, ElementName=FilledComboBoxEnabledCheckBox}"
     Style="{StaticResource MaterialDesignFilledComboBox}">
 
@@ -273,11 +274,11 @@
                                 materialDesign:HintAssist.Hint="Classificação"
                                 MaxLength="40"
                                 Style="{StaticResource MaterialDesignFilledTextBox}"
-                                TextWrapping="Wrap" Name="txt_tamanho"
+                                TextWrapping="Wrap" Name="txt_classificacao"
                                 Margin="0,0,0,5"/>
 
                         <ComboBox
-    x:Name="SexComboBox"
+    x:Name="combo_sex"
     Width="300"
     Margin="0, 0, 0, 5"
     materialDesign:HintAssist.Hint="Selecione o sexo"

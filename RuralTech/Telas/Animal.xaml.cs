@@ -38,15 +38,15 @@ namespace RuralTech.Telas
 
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
-            string propertyName = txt_brinco.Text;
-            string size = txt_tamanho.Text;
-            string address = txt_endereco.Text;
-            string number = txt_numero.Text;
-            string neighborhood = txt_bairro.Text;
-            string complement = txt_complemento.Text;
-            // Lógica para salvar as informações da propriedade
-
-            // Fechar o modal após salvar
+            string brinco = txt_brinco.Text;
+            string raca = combo_raca.Text;
+            string classificacao = txt_classificacao.Text;
+            string sexo = combo_sex.Text;
+            string cep = txt_cep.Text;
+            string endereco = txt_endereco.Text;
+            string numero = txt_numero.Text;
+            string bairro = txt_bairro.Text;
+            string complemento = txt_complemento.Text;
             PropertyPopup.IsOpen = false;
         }
 
@@ -84,12 +84,5 @@ namespace RuralTech.Telas
             this.Close();
             tela.ShowDialog();
         }
-
-
-
-        private void ClearFilledComboBox_Click(object sender, System.Windows.RoutedEventArgs e)
-        => FilledComboBox.SelectedItem = null;
-
     }
-
 }

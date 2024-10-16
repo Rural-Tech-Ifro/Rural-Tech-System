@@ -108,6 +108,7 @@ TextWrapping="Wrap" Name="txt_email"
     materialDesign:HintAssist.HelperText="Insira a senha mencionada acima"
     materialDesign:HintAssist.Hint="Confirmar Senha"
     materialDesign:TextFieldAssist.HasClearButton="True"
+    Name="txt_confirmarSenha"
     Style="{StaticResource MaterialDesignFilledRevealPasswordBox}"
     />
                     </StackPanel>
