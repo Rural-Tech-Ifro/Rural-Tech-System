@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RuralTech.Integracoes;
 
 namespace RuralTech.Telas
 {
@@ -19,9 +21,16 @@ namespace RuralTech.Telas
     /// </summary>
     public partial class Vacinas : Window
     {
+        private Vacina _vacina = new Vacina();
         public Vacinas()
         {
             InitializeComponent();
+        }
+
+        public Vacinas(Vacina vacina)
+        {
+            InitializeComponent();
+            _vacina = vacina;
         }
 
         private void OpenModal(object sender, RoutedEventArgs e)
@@ -34,14 +43,67 @@ namespace RuralTech.Telas
             PropertyPopup.IsOpen = false;
         }
 
+
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
-            string propertyName = txt_propriedade.Text;
-            string ownerName = txt_proprietario.Text;
-            string size = txt_tamanho.Text;
-            string phone = txt_telefone.Text;
+            _vacina.Nome = txt_nome.Text;
+            // Inicializa uma variável para armazenar o número de dias
+            int diasCarencia = _vacina.DiasCarencia;
 
-            // Lógica para salvar as informações da propriedade
+            // Tenta converter o valor do TextBox para int
+            bool conversaoBemSucedida = int.TryParse(txt_dias.Text.Trim(), out diasCarencia);
+
+            if (!conversaoBemSucedida)
+            {
+                // Exibe uma mensagem de erro se a conversão falhar
+                MessageBox.Show("Por favor, insira um número válido para os dias de carência.");
+                return; // Interrompe a execução caso o valor não seja válido
+            }
+
+            // Agora você pode usar a variável 'diasCarencia' para inserir no banco de dados
+
+            _vacina.Estado = CBestado.Text;
+            _vacina.InscricaoEstadual = txt_inscricao.Text;
+            // Inicializa uma variável para armazenar a quantidade
+            int quantidade = _vacina.Quantidade;
+
+            // Tenta converter o valor do TextBox para int
+            bool conversaobemSucedida = int.TryParse(txt_quantidade.Text.Trim(), out quantidade);
+
+            if (!conversaobemSucedida)
+            {
+                // Exibe uma mensagem de erro se a conversão falhar
+                MessageBox.Show("Por favor, insira um número válido para a quantidade.");
+                return; // Interrompe a execução caso o valor não seja válido
+            }
+
+            // Agora você pode usar a variável 'quantidade' para inserir no banco de dados
+
+            _vacina.UnidadeEntrada = CBunidadeEntrada.Text;
+            _vacina.UnidadeSaida = CBunidadeSaida.Text;
+            _vacina.Observacao = txt_observacao.Text;
+
+            try
+            {
+                var dao = new VacinaDAO();
+
+                if (_vacina.Id <= 0)
+                {
+                    dao.Insert(_vacina);
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
+                else
+                {
+                    MessageBox.Show("Registro não cadastrado com sucesso.");
+                }
+
+                this.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             // Fechar o modal após salvar
             PropertyPopup.IsOpen = false;
@@ -88,5 +150,18 @@ namespace RuralTech.Telas
             this.Close();
             tela.ShowDialog();
         }
+
+        private void ImageDragOver(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effects = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effects = DragDropEffects.None;
+            }
+        }
+
     }
 }

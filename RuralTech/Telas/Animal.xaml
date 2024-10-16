@@ -287,17 +287,35 @@
                             <ComboBoxItem Content="Masculino" />
                             <ComboBoxItem Content="Feminino" />
                             <ComboBoxItem Content="Não Especificado" />
+                            
                         </ComboBox>
 
 
-                        <TextBox
-                                materialDesign:HintAssist.Hint="CEP"
-                                MaxLength="40"
-                                Style="{StaticResource MaterialDesignFilledTextBox}"
-                                TextWrapping="Wrap" Name="txt_cep"
-                                Margin="0,0,0,5"/>
+                        <ComboBox
+x:Name="OriComboBox"
+Width="300"
+Margin="0, 0, 0, 5"
+materialDesign:HintAssist.Hint="Selecione a origem do bovino"
+IsEnabled="{Binding Path=IsChecked, ElementName=SexComboBoxEnabledCheckBox}"
+Style="{StaticResource MaterialDesignFilledComboBox}">
+                            <ComboBoxItem Content="Europeia" />
+                            <ComboBoxItem Content="Brasileira" />
+                            <ComboBoxItem Content="Ásiatica" />
+                        </ComboBox>
 
-                                                        <TextBox
+                        <ComboBox
+x:Name="Lote"
+Width="300"
+Margin="0, 0, 0, 5"
+materialDesign:HintAssist.Hint="Selecione a origem do bovino"
+IsEnabled="{Binding Path=IsChecked, ElementName=SexComboBoxEnabledCheckBox}"
+Style="{StaticResource MaterialDesignFilledComboBox}">
+                            <ComboBoxItem Content="Europeia" />
+                            <ComboBoxItem Content="Brasileira" />
+                            <ComboBoxItem Content="Ásiatica" />
+                        </ComboBox>
+
+                        <TextBox
                                 materialDesign:HintAssist.Hint="Endereço"
                                 MaxLength="40"
                                 Style="{StaticResource MaterialDesignFilledTextBox}"

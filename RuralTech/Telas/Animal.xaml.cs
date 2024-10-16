@@ -40,8 +40,6 @@ namespace RuralTech.Telas
         {
             string propertyName = txt_brinco.Text;
             string size = txt_tamanho.Text;
-            string phone = txt_telefone.Text;
-            string zipCode = txt_cep.Text;
             string address = txt_endereco.Text;
             string number = txt_numero.Text;
             string neighborhood = txt_bairro.Text;

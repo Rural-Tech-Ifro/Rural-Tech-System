@@ -223,35 +223,127 @@
             <Popup Name="PropertyPopup" Placement="Mouse" StaysOpen="False">
                 <Border Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Padding="10">
                     <StackPanel Width="300" Margin="0 0 0 30">
-                        <TextBlock Text="Propriedade" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                        <TextBlock Text="Cadastrar Vacina"  FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+
+
 
                         <TextBox
     materialDesign:HintAssist.Hint="Nome:"
     MaxLength="40"
     Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_propriedade"
+    TextWrapping="Wrap" Name="txt_nome"
     Margin="0,0,0,5"/>
 
                         <TextBox
-    materialDesign:HintAssist.Hint="Tipo:"
+    materialDesign:HintAssist.Hint="Dias de Carência:"
     MaxLength="40"
     Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_proprietario"
+    TextWrapping="Wrap" Name="txt_dias"
+    Margin="0,0,0,5"/>
+
+                        <ComboBox
+x:Name="CBestado"
+Width="300"
+Margin="0, 0, 0, 5"
+materialDesign:HintAssist.Hint="Selecione o Estado"
+IsEnabled="{Binding Path=IsChecked, ElementName=SexComboBoxEnabledCheckBox}"
+Style="{StaticResource MaterialDesignFilledComboBox}">
+                            <ComboBoxItem Content="Acre" />
+                            <ComboBoxItem Content="Alagoas" />
+                            <ComboBoxItem Content="Amapá" />
+                            <ComboBoxItem Content="Amazonas" />
+                            <ComboBoxItem Content="Bahia" />
+                            <ComboBoxItem Content="Ceará" />
+                            <ComboBoxItem Content="Distrito Federal" />
+                            <ComboBoxItem Content="Espírito Santo" />
+                            <ComboBoxItem Content="Goiás" />
+                            <ComboBoxItem Content="Maranhão" />
+                            <ComboBoxItem Content="Mato Grosso" />
+                            <ComboBoxItem Content="Mato Grosso do Sul" />
+                            <ComboBoxItem Content="Minas Gerais" />
+                            <ComboBoxItem Content="Pará" />
+                            <ComboBoxItem Content="Paraíba" />
+                            <ComboBoxItem Content="Paraná" />
+                            <ComboBoxItem Content="Pernambuco" />
+                            <ComboBoxItem Content="Piauí" />
+                            <ComboBoxItem Content="Rio de Janeiro" />
+                            <ComboBoxItem Content="Rio Grande do Norte" />
+                            <ComboBoxItem Content="Rio Grande do Sul" />
+                            <ComboBoxItem Content="Rondônia" />
+                            <ComboBoxItem Content="Roraima" />
+                            <ComboBoxItem Content="Santa Catarina" />
+                            <ComboBoxItem Content="São Paulo" />
+                            <ComboBoxItem Content="Sergipe" />
+                            <ComboBoxItem Content="Tocantins" />
+                        </ComboBox>
+
+                        <TextBox
+    materialDesign:HintAssist.Hint="Inscrição Estadual:"
+    MaxLength="40"
+    Style="{StaticResource MaterialDesignFilledTextBox}"
+    TextWrapping="Wrap" Name="txt_inscricao"
     Margin="0,0,0,5"/>
 
                         <TextBox
-    materialDesign:HintAssist.Hint="Valor:"
+    materialDesign:HintAssist.Hint="Quantidade:"
     MaxLength="40"
     Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_tamanho"
+    TextWrapping="Wrap" Name="txt_quantidade"
     Margin="0,0,0,5"/>
 
+                        <ComboBox
+x:Name="CBunidadeEntrada"
+Width="300"
+Margin="0, 0, 0, 5"
+materialDesign:HintAssist.Hint="Selecione uma unidade de entrada:"
+IsEnabled="{Binding Path=IsChecked, ElementName=SexComboBoxEnabledCheckBox}"
+Style="{StaticResource MaterialDesignFilledComboBox}">
+                            <ComboBoxItem Content="Caixa" />
+                            <ComboBoxItem Content="Frasco" />
+                            <ComboBoxItem Content="Ampola" />
+                            <ComboBoxItem Content="Cartucho" />
+                            <ComboBoxItem Content="Palete" />
+                            <ComboBoxItem Content="Lote" />
+                            <ComboBoxItem Content="Galão" />
+                            <ComboBoxItem Content="Pacote" />
+                            <ComboBoxItem Content="Fardo" />
+                            <ComboBoxItem Content="Blister" />
+                        </ComboBox>
+
+                        <ComboBox
+x:Name="CBunidadeSaida"
+Width="300"
+Margin="0, 0, 0, 5"
+materialDesign:HintAssist.Hint="Selecione uma unidade de saída:"
+IsEnabled="{Binding Path=IsChecked, ElementName=SexComboBoxEnabledCheckBox}"
+Style="{StaticResource MaterialDesignFilledComboBox}">
+                            <ComboBoxItem Content="Dose" />
+                            <ComboBoxItem Content="Dose" />
+                            <ComboBoxItem Content="Frasco" />
+                            <ComboBoxItem Content="Ampola" />
+                            <ComboBoxItem Content="Comprimido" />
+                            <ComboBoxItem Content="Cápsula" />
+                            <ComboBoxItem Content="Gota" />
+                            <ComboBoxItem Content="Mililitro (ml)" />
+                            <ComboBoxItem Content="Grama (g)" />
+                            <ComboBoxItem Content="Unidade" />
+                            <ComboBoxItem Content="Aplicação" />
+                            <ComboBoxItem Content="Cartucho" />
+                        </ComboBox>
+
                         <TextBox
-    materialDesign:HintAssist.Hint="Propriedade:"
-    MaxLength="40"
-    Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_telefone"
-    Margin="0,0,0,5"/>
+    Height="100"
+    VerticalAlignment="Top"
+    materialDesign:HintAssist.Hint="Observações"
+    AcceptsReturn="True"
+    IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"
+    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+    TextWrapping="Wrap"
+    VerticalScrollBarVisibility="Auto"
+    x:Name="txt_observacao"
+    />
+
+
                         <Button Content="Salvar" Click="SaveProperty" Margin="0,10,0,0"/>
                         <Button Content="Fechar" Click="CloseModal" Margin="0,5,0,0"/>
                     </StackPanel>
