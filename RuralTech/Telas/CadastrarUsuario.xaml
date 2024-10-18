@@ -114,7 +114,7 @@ TextWrapping="Wrap" Name="txt_email"
                     </StackPanel>
 
                     <!-- Botão Entrar -->
-                    <Button Background="#39A048" BorderThickness="0" Padding="12" Margin="0 60 0 0" Width="356" Height="70">
+                    <Button Background="#39A048" BorderThickness="0" Padding="12" Margin="0 60 0 0" Width="356" Height="70" Click="Button_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}"

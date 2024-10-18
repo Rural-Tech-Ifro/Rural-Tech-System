@@ -1,4 +1,5 @@
 ﻿using RuralTech.Database;
+using RuralTech.Integracoes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace RuralTech.Telas
     /// </summary>
     public partial class CadastrarUsuario : Window
     {
+        private Usuario _usuario = new Usuario(); // Objeto vacina
+        private UsuarioDAO _usuarioDAO = new UsuarioDAO(); // Objeto responsável por acessar o banco de dados
         public CadastrarUsuario()
         {
             InitializeComponent();
@@ -32,6 +35,24 @@ namespace RuralTech.Telas
             Login tela = new Login();
             this.Close();
             tela.ShowDialog();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Atualiza o objeto _vacina com os valores do formulário
+                _usuario.Nome = txt_usuario.Text;
+                _usuario.Senha = txt_senha.Password;
+                _usuario.Email = txt_email.Text;
+
+                _usuarioDAO.Insert(_usuario); // Insere no banco
+                MessageBox.Show("Registro cadastrado com sucesso.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
+            }
         }
     }
 }
