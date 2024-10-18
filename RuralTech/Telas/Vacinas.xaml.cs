@@ -68,9 +68,9 @@ namespace RuralTech.Telas
 
                 if (_vacina.Id <= 0) // Se for um novo registro
                 {
-                    _vacinaDAO.Insert(_vacina); // Insere no banco
+                    _vacina.Id = _vacinaDAO.Insert(_vacina); // Pega o Id fornecido do Banco e insere no banco
                     VacinasList.Add(_vacina); // Adiciona na coleção para atualização instantânea
-                    MessageBox.Show("Registro cadastrado com sucesso.");
+                    MessageBox.Show("Registro cadastrado com sucesso. " + _vacina.Id);
                 }
                 else
                 {

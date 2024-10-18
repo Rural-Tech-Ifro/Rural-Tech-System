@@ -9,7 +9,7 @@ public class VacinaDAO
 {
     private static Conexao _conn = new Conexao();
 
-    public void Insert(Vacina obj)
+    public int Insert(Vacina obj)
     {
         try
         {
@@ -34,6 +34,8 @@ public class VacinaDAO
             {
                 throw new Exception("Ocorreram erros ao salvar as informações");
             }
+
+            return (int) comando.LastInsertedId;
 
         }
         catch (Exception ex)
