@@ -19,19 +19,32 @@ namespace RuralTech.Telas
     /// </summary>
     public partial class Login : Window
     {
+        private UsuarioDAO _usuarioDAO = new UsuarioDAO(); // Objeto responsável por acessar o banco de dados
         public Login()
         {
             InitializeComponent();
         }
-
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var usuario = txt_usuario.Text;
             var senha = txt_senha.Password;
 
-            Animal login = new Animal();
-            this.Close();
-            login.ShowDialog();
+            foreach(Usuario str in _usuarioDAO.GetUsuario())
+            {
+                if (str.Nome == usuario && str.Senha == senha)
+                {
+                    MessageBox.Show("Logado com sucesso!");
+                    Animal login = new Animal();
+                    this.Close();
+                    login.ShowDialog();
+                    break;
+
+                }
+               
+            }
+
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
