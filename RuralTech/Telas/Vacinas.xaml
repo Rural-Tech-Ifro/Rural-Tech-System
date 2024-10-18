@@ -352,97 +352,69 @@ Style="{StaticResource MaterialDesignFilledComboBox}">
 
 
             <!-- Cards de Animais -->
-            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="800" Margin="0,200,0,20">
-                <!-- Card Repetido -->
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="80">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vacina.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Combate: Aftose" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: Cattle Master" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Dose: 2 ml" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Marca: S19" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Data aplicação: 24/11/2023" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                    </StackPanel>
-                </Border>
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">
+                <ItemsControl ItemsSource="{Binding VacinasList}">
+                    <!-- Definindo o layout do ItemsControl como WrapPanel -->
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="80">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vacina.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Combate: Aftose" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: Cattle Master" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Dose: 2 ml" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Marca: S19" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Data aplicação: 24/11/2023" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                    </StackPanel>
-                </Border>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="52, 10, -30, 10">
+                                <StackPanel>
+                                    <Border CornerRadius="5,5,0,0" Height="80">
+                                        <Border.Background>
+                                            <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vacina.png"/>
+                                        </Border.Background>
+                                    </Border>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="80">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vacina.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Combate: Aftose" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: Cattle Master" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Dose: 2 ml" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Marca: S19" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Data aplicação: 24/11/2023" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                    </StackPanel>
-                </Border>
+                                    <TextBlock FontWeight="Bold" Margin="10,5,10,0">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="Nome: {0}">
+                                                <Binding Path="Nome" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="80">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vacina.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Combate: Aftose" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: Cattle Master" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Dose: 2 ml" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Marca: S19" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Data aplicação: 24/11/2023" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                    </StackPanel>
-                </Border>
+                                    <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="Estado: {0}">
+                                                <Binding Path="Estado" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="80">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vacina.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Combate: Aftose" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: Cattle Master" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Dose: 2 ml" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Marca: S19" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Data aplicação: 24/11/2023" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                    </StackPanel>
-                </Border>
+                                    <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="Quantidade: {0}">
+                                                <Binding Path="Quantidade" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="80">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vacina.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Combate: Aftose" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: Cattle Master" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Dose: 2 ml" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Marca: S19" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Data aplicação: 24/11/2023" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                    </StackPanel>
-                </Border>
+                                    <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="Unidade de Entrada: {0}">
+                                                <Binding Path="UnidadeEntrada" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+
+                                    <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="Observação: {0}">
+                                                <Binding Path="Observacao" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </WrapPanel>
         </Grid>
     </Grid>

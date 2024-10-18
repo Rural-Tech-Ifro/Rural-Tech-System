@@ -42,7 +42,6 @@ namespace RuralTech.Telas
             string raca = combo_raca.Text;
             string classificacao = txt_classificacao.Text;
             string sexo = combo_sex.Text;
-            string cep = txt_cep.Text;
             string endereco = txt_endereco.Text;
             string numero = txt_numero.Text;
             string bairro = txt_bairro.Text;

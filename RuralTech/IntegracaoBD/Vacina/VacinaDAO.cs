@@ -41,4 +41,43 @@ public class VacinaDAO
             throw ex;
         }
     }
+
+    public List<Vacina> GetVacinas()
+    {
+        List<Vacina> vacinas = new List<Vacina>();
+
+        try
+        {
+            var comando = _conn.Query();
+            comando.CommandText = "SELECT nome_vac_med, diasCarencia_vac_med, estado_vac_med, quantidade_vac_med, unidadeEntrada_vac_med, unidadeSaida_vac_med, observacao_vac_med FROM vacina_medicamento";
+
+            MySqlDataReader reader = comando.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Vacina vacina = new Vacina
+                {
+                    Nome = reader.GetString("nome_vac_med"),
+                    DiasCarencia = reader.GetInt32("diasCarencia_vac_med"),
+                    Estado = reader.GetString("estado_vac_med"),
+                    Quantidade = reader.GetInt32("quantidade_vac_med"),
+                    UnidadeEntrada = DAOHelper.GetString(reader, "unidadeEntrada_vac_med"),
+                    UnidadeSaida = reader.GetString("unidadeSaida_vac_med"),
+                    Observacao = reader.GetString("observacao_vac_med")
+                };
+
+                vacinas.Add(vacina);
+            }
+
+            reader.Close();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+        return vacinas;
+    }
+
+
 }
