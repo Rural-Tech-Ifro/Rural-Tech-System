@@ -138,11 +138,26 @@
     <Compile Include="Helpers\HashHelper.cs" />
     <Compile Include="IntegracaoBD\Vacina\Vacina.cs" />
     <Compile Include="IntegracaoBD\Vacina\VacinaDAO.cs" />
+    <Compile Include="Telas\FornecedorCliente.xaml.cs">
+      <DependentUpon>FornecedorCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Funcionario.xaml.cs">
+      <DependentUpon>Funcionario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Telas\Medicamentos.xaml.cs">
       <DependentUpon>Medicamentos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Telas\Ordenha.xaml.cs">
+      <DependentUpon>Ordenha.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Telas\Pastos.xaml.cs">
       <DependentUpon>Pastos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Patrimonio.xaml.cs">
+      <DependentUpon>Patrimonio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Produto.xaml.cs">
+      <DependentUpon>Produto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\Propriedades.xaml.cs">
       <DependentUpon>Propriedades.xaml</DependentUpon>
@@ -159,6 +174,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Telas\Equipamentos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\FornecedorCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\Funcionario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,7 +209,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Telas\Ordenha.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Telas\Pastos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\Patrimonio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\Produto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -308,7 +343,21 @@
   <ItemGroup>
     <Resource Include="Recursos\ImagensGeral\menu-tres-barras-destacadas.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Recursos\ImagensGeral\img_fornecedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\ImagensGeral\img_produto.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\ImagensGeral\img_funcionario.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\ImagensGeral\img_ordenha.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\ImagensGeral\img_patrimonio.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,0 +1,349 @@
+﻿<Window x:Class="RuralTech.Telas.Funcionario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RuralTech.Telas"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Title="Funcionario" 
+        Style="{StaticResource MaterialDesignWindow}"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Background="Transparent" 
+        Height="625" 
+        Width="1130">
+
+    <Grid Background="White">
+        <!-- Sidebar -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Background="#0ca13f" Width="200" Height="854" Margin="0,60,0,0" Name="appBar_Esquerdo" VerticalAlignment="Top">
+            <!-- Ícones da Barra Lateral -->
+            <materialDesign:Card>
+                <StackPanel>
+                    <Expander HorizontalAlignment="Stretch" Header="Consulta" Background="#0ca13f" Foreground="white">
+                        <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBlock/>
+
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Compra" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Despesa" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Estoque" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Equipamento" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Exame" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Fornecedor/Cliente" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Funcionário" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Inseminação" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Medicamento" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Ordenha" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Parto" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Pasto" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Patrimônio" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Produto" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Propriedade" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Transporte" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Vacina" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <TextBlock />
+                        </StackPanel>
+                    </Expander>
+                    <Border />
+                    <Expander HorizontalAlignment="Stretch" Header="Relatório" Background="#0ca13f"  Foreground="white">
+                        <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBlock Text="Your Content" />
+                            <TextBlock />
+                        </StackPanel>
+                    </Expander>
+                    <Border />
+                    <Expander HorizontalAlignment="Stretch" Header="Perfil" Background="#0ca13f"  Foreground="white">
+                        <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBlock Text="Your Content" />
+                            <TextBlock />
+                        </StackPanel>
+                    </Expander>
+                    <Border />
+                    <Expander HorizontalAlignment="Stretch" Header="Sair" Background="#0ca13f"  Foreground="white">
+                        <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBlock Text="Your Content" />
+                            <TextBlock />
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </materialDesign:Card>
+        </StackPanel>
+
+        <!-- Conteúdo Principal -->
+        <Grid Grid.ColumnSpan="2" Margin="59,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Barra Superior -->
+            <StackPanel Orientation="Horizontal" Background="White" Height="60" Width="auto" Margin="-59,0,0,0">
+                <StackPanel.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.5"/>
+                </StackPanel.Effect>
+                <Button Margin="10" x:Name="imagem_status" BorderBrush="White" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Recursos/ImagensGeral/menu-tres-barras-destacadas.png"/>
+                    </Button.Background>
+                </Button>
+                <materialDesign:PackIcon Kind="AccountCircle" Width="40" Height="40" Margin="10" Background="White" Foreground="Green" />
+
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Serjão dos Foguetes" FontFamily="/Recursos/Fonts/#Poppins Semibold" FontSize="13"/>
+                    <WrapPanel>
+                        <TextBlock Text="Fazendeiro" FontFamily="/Recursos/Fonts/#Poppins regular" FontSize="13"/>
+                        <materialDesign:PackIcon Kind="MenuDown" Width="20" Height="20" Foreground="Green" Background="White"/>
+                    </WrapPanel>
+                </StackPanel>
+
+                <!-- Adiciona um Spacer -->
+                <StackPanel Width="1100" Height="64">
+                    <materialDesign:PackIcon Kind="BellOutline" Width="90" Height="35" VerticalAlignment="Center" Margin="0 15 200 0" HorizontalAlignment="Right"/>
+                    <Image Source="/Recursos/ImagensGeral/RuralTech(Preto).png" Width="262" Height="108" Margin="0 -70 -30 9" HorizontalAlignment="Right"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Campo de Pesquisa -->
+            <!-- Campo de Pesquisa -->
+            <materialDesign:AutoSuggestBox
+    materialDesign:HintAssist.Hint="Pesquisar Funcionário"
+    materialDesign:TextFieldAssist.HasClearButton="True"
+    DropDownElevation="Dp0"
+    Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
+    Suggestions="{Binding AutoSuggestBox2Suggestions}"
+    Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+    ValueMember="Key" 
+    Margin="135,10,535,505" 
+    Grid.Row="1" 
+    Width="400" 
+    Height="50" 
+    RenderTransformOrigin="-0.875,-2.1">
+
+                <materialDesign:AutoSuggestBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Border Width="20" Height="20" Background="{Binding Value}" CornerRadius="10" />
+                            <TextBlock Margin="90" Text="{Binding Key}" />
+                        </DockPanel>
+                    </DataTemplate>
+                </materialDesign:AutoSuggestBox.ItemTemplate>
+            </materialDesign:AutoSuggestBox>
+
+            <Button Grid.Row="1"  Margin="225, 83" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
+            HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+        CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <TextBlock Text="+" FontSize="40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-10,0,0"/>
+            </Button>
+
+            <!-- Cards de Funcionario -->
+            <WrapPanel Grid.Row="2" HorizontalAlignment="Left" Width="830" Margin="185,200,0,10">
+                <!-- Card Repetido -->
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="130">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_funcionario.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Funcionário: José Silva" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="CPF: 111.111.111-11" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Data Nascimento: 01/01/1982" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Salário: R$ 2500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="130">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_funcionario.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Funcionário: José Silva" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="CPF: 111.111.111-11" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Data Nascimento: 01/01/1982" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Salário: R$ 2500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="130">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_funcionario.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Funcionário: José Silva" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="CPF: 111.111.111-11" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Data Nascimento: 01/01/1982" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Salário: R$ 2500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 0, 40">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="130">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_funcionario.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Funcionário: José Silva" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="CPF: 111.111.111-11" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Data Nascimento: 01/01/1982" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Salário: R$ 2500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                    </StackPanel>
+                </Border>
+
+
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30,0">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="130">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_funcionario.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Funcionário: José Silva" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="CPF: 111.111.111-11" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Data Nascimento: 01/01/1982" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Salário: R$ 2500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30,0">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="130">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_funcionario.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Funcionário: José Silva" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="CPF: 111.111.111-11" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Data Nascimento: 01/01/1982" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Salário: R$ 2500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30,0">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="130">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_funcionario.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Funcionário: José Silva" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="CPF: 111.111.111-11" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Data Nascimento: 01/01/1982" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Salário: R$ 2500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213">
+                    <StackPanel>
+                        <Border CornerRadius="5,5,0,0" Height="130">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_funcionario.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Funcionário: José Silva" FontWeight="Bold" Margin="10,5,10,0"/>
+                        <TextBlock Text="CPF: 111.111.111-11" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Data Nascimento: 01/01/1982" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                        <TextBlock Text="Salário: R$ 2500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
+                    </StackPanel>
+                </Border>
+            </WrapPanel>
+        </Grid>
+    </Grid>
+</Window>

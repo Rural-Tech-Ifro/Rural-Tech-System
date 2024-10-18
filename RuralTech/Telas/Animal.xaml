@@ -22,14 +22,14 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Background="#0ca13f" Width="200" Height="auto" Margin="0,60,0,-289" Name="appBar_Esquerdo">
+        <StackPanel Background="#0ca13f" Width="200" Height="854" Margin="0,60,0,0" Name="appBar_Esquerdo" VerticalAlignment="Top">
             <!-- Ícones da Barra Lateral -->
             <materialDesign:Card>
                 <StackPanel>
                     <Expander HorizontalAlignment="Stretch" Header="Consulta" Background="#0ca13f" Foreground="white">
                         <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
                             <TextBlock/>
-                           
+
 
                             <Button Background="#0ca13f" BorderBrush="white">
                                 <WrapPanel>
@@ -288,7 +288,7 @@
                             <ComboBoxItem Content="Masculino" />
                             <ComboBoxItem Content="Feminino" />
                             <ComboBoxItem Content="Não Especificado" />
-                            
+
                         </ComboBox>
 
 
@@ -323,21 +323,21 @@ Style="{StaticResource MaterialDesignFilledComboBox}">
                                 TextWrapping="Wrap" Name="txt_endereco"
                                 Margin="0,0,0,5"/>
 
-                                                        <TextBox
+                        <TextBox
                                 materialDesign:HintAssist.Hint="Número"
                                 MaxLength="10"
                                 Style="{StaticResource MaterialDesignFilledTextBox}"
                                 TextWrapping="Wrap" Name="txt_numero"
                                 Margin="0,0,0,5"/>
 
-                                                        <TextBox
+                        <TextBox
                                 materialDesign:HintAssist.Hint="Bairro"
                                 MaxLength="40"
                                 Style="{StaticResource MaterialDesignFilledTextBox}"
                                 TextWrapping="Wrap" Name="txt_bairro"
                                 Margin="0,0,0,5"/>
 
-                                                        <TextBox
+                        <TextBox
                                 materialDesign:HintAssist.Hint="Complemento"
                                 MaxLength="40"
                                 Style="{StaticResource MaterialDesignFilledTextBox}"
