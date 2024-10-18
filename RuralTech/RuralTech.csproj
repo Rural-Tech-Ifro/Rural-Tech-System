@@ -138,6 +138,8 @@
     <Compile Include="Helpers\HashHelper.cs" />
     <Compile Include="IntegracaoBD\Animal\Animal.cs" />
     <Compile Include="IntegracaoBD\Animal\AnimalDAO.cs" />
+    <Compile Include="IntegracaoBD\Equipamento\Equipamento.cs" />
+    <Compile Include="IntegracaoBD\Equipamento\EquipamentoDAO.cs" />
     <Compile Include="IntegracaoBD\Usuario\Usuario.cs" />
     <Compile Include="IntegracaoBD\Usuario\UsuarioDAO.cs" />
     <Compile Include="IntegracaoBD\Vacina\Vacina.cs" />
