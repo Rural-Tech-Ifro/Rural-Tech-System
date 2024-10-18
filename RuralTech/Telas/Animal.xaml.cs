@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
+using RuralTech.Integracoes;
+using System.Collections.ObjectModel;
 
 
 namespace RuralTech.Telas
@@ -21,11 +23,35 @@ namespace RuralTech.Telas
     /// </summary>
     public partial class Animal : Window
     {
+        private Animals _animal = new Animals();
+        private AnimalDAO _animalDAO = new AnimalDAO();
+        public ObservableCollection<Animals> AnimaisList { get; set; }
+
+
+
         public Animal()
         {
             InitializeComponent();
+            DataContext = this; // Define o DataContext para a própria janela
+            AnimaisList = new ObservableCollection<Animals>(); // Inicializa a lista como uma ObservableCollection
+            CarregarVacinas();
         }
-
+        private void CarregarVacinas()
+        {
+            try
+            {
+                var animais = _animalDAO.GetAnimal(); // Obtém a lista de vacinas do banco
+                AnimaisList.Clear(); // Limpa a coleção atual para evitar duplicatas
+                foreach (var animal in animais)
+                {
+                    AnimaisList.Add(animal); // Adiciona cada vacina à ObservableCollection
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar vacinas: {ex.Message}");
+            }
+        }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
             PropertyPopup.IsOpen = true;
@@ -38,14 +64,25 @@ namespace RuralTech.Telas
 
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
-            string brinco = txt_brinco.Text;
-            string raca = combo_raca.Text;
-            string classificacao = txt_classificacao.Text;
-            string sexo = combo_sex.Text;
-            string endereco = txt_endereco.Text;
-            string numero = txt_numero.Text;
-            string bairro = txt_bairro.Text;
-            string complemento = txt_complemento.Text;
+            try
+            {
+                // Atualiza o objeto _vacina com os valores do formulário
+                _animal.Brinco = txt_brinco.Text;
+                _animal.Raca = combo_raca.Text;
+                _animal.Classificacao = txt_classificacao.Text;
+                _animal.Sexo = combo_sex.Text;
+                _animal.Origem = combo_origem.Text;
+
+                _animalDAO.Insert(_animal); // Insere no banco
+                MessageBox.Show("Registro cadastrado com sucesso.");
+                Animal tela = new Animal();
+                this.Close();
+                tela.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
+            }
             PropertyPopup.IsOpen = false;
         }
 

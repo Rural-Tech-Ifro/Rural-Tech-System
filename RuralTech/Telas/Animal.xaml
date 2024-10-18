@@ -293,7 +293,7 @@
 
 
                         <ComboBox
-x:Name="OriComboBox"
+x:Name="combo_origem"
 Width="300"
 Margin="0, 0, 0, 5"
 materialDesign:HintAssist.Hint="Selecione a origem do bovino"
@@ -305,44 +305,17 @@ Style="{StaticResource MaterialDesignFilledComboBox}">
                         </ComboBox>
 
                         <ComboBox
-x:Name="Lote"
+x:Name="combo_propriedade"
 Width="300"
 Margin="0, 0, 0, 5"
-materialDesign:HintAssist.Hint="Selecione a origem do bovino"
+materialDesign:HintAssist.Hint="Selecione a propriedade que o animal se encontra"
 IsEnabled="{Binding Path=IsChecked, ElementName=SexComboBoxEnabledCheckBox}"
 Style="{StaticResource MaterialDesignFilledComboBox}">
-                            <ComboBoxItem Content="Europeia" />
-                            <ComboBoxItem Content="Brasileira" />
-                            <ComboBoxItem Content="Ásiatica" />
+                            
                         </ComboBox>
 
-                        <TextBox
-                                materialDesign:HintAssist.Hint="Endereço"
-                                MaxLength="40"
-                                Style="{StaticResource MaterialDesignFilledTextBox}"
-                                TextWrapping="Wrap" Name="txt_endereco"
-                                Margin="0,0,0,5"/>
 
-                        <TextBox
-                                materialDesign:HintAssist.Hint="Número"
-                                MaxLength="10"
-                                Style="{StaticResource MaterialDesignFilledTextBox}"
-                                TextWrapping="Wrap" Name="txt_numero"
-                                Margin="0,0,0,5"/>
 
-                        <TextBox
-                                materialDesign:HintAssist.Hint="Bairro"
-                                MaxLength="40"
-                                Style="{StaticResource MaterialDesignFilledTextBox}"
-                                TextWrapping="Wrap" Name="txt_bairro"
-                                Margin="0,0,0,5"/>
-
-                        <TextBox
-                                materialDesign:HintAssist.Hint="Complemento"
-                                MaxLength="40"
-                                Style="{StaticResource MaterialDesignFilledTextBox}"
-                                TextWrapping="Wrap" Name="txt_complemento"
-                                Margin="0,0,0,5"/>
 
                         <Button Content="Salvar" Click="SaveProperty" Margin="0,10,0,0"/>
                         <Button Content="Fechar" Click="CloseModal" Margin="0,5,0,0"/>
@@ -352,138 +325,84 @@ Style="{StaticResource MaterialDesignFilledComboBox}">
 
 
             <!-- Cards de Animais -->
-            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="830" Margin="35,200,0,10">
-                <Grid>
-                </Grid>
-                <!-- Card Repetido -->
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vaca.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Numeração: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Sexo: Macho" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Peso: 600kg" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Idade: 2 anos" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Raça: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Preço: R$ 65.000" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">
+                <ItemsControl ItemsSource="{Binding AnimaisList}">
+                    <!-- Definindo o layout do ItemsControl como WrapPanel -->
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vaca.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Numeração: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Sexo: Macho" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Peso: 600kg" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Idade: 2 anos" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Raça: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Preço: R$ 65.000" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="52, 10, -30, 10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="80"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vaca.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Numeração: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Sexo: Macho" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Peso: 600kg" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Idade: 2 anos" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Raça: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Preço: R$ 65.000" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 0, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vaca.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Numeração: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Sexo: Macho" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Peso: 600kg" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Idade: 2 anos" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Raça: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Preço: R$ 65.000" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                    <Border Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="5,5,0,0">
+                                        <Border.Background>
+                                            <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vacina.png"/>
+                                        </Border.Background>
+                                    </Border>
 
+                                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,0,0,0">
+                                        <TextBlock FontWeight="Bold" Margin="0,5,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Nome: {0}">
+                                                    <Binding Path="Brinco" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30,0">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vaca.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Numeração: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Sexo: Macho" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Peso: 600kg" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Idade: 2 anos" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Raça: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Preço: R$ 65.000" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Estado: {0}">
+                                                    <Binding Path="Raca" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30,0">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vaca.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Numeração: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Sexo: Macho" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Peso: 600kg" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Idade: 2 anos" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Raça: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Preço: R$ 65.000" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Quantidade: {0}">
+                                                    <Binding Path="Classificacao" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30,0">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vaca.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Numeração: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Sexo: Macho" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Peso: 600kg" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Idade: 2 anos" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Raça: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Preço: R$ 65.000" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Unidade de Entrada: {0}">
+                                                    <Binding Path="Sexo" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vaca.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Numeração: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Sexo: Macho" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Peso: 600kg" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Idade: 2 anos" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Raça: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Preço: R$ 65.000" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Observação: {0}">
+                                                    <Binding Path="Origem" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </StackPanel>
+
+                                    <!-- Ícone do lápis à direita -->
+                                    <materialDesign:PackIcon Kind="Pencil" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </WrapPanel>
         </Grid>
     </Grid>
