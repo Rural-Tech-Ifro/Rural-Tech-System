@@ -1,11 +1,11 @@
-﻿<Window x:Class="RuralTech.Telas.Equipamentos"
+﻿<Window x:Class="RuralTech.Telas.TelaPropriedade"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RuralTech.Telas" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Equipamentos"         WindowStyle="None"
+        Title="Propriedades"         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -184,15 +184,15 @@
 
             <!-- Campo de Pesquisa -->
             <materialDesign:AutoSuggestBox
-    materialDesign:HintAssist.Hint="Pesquisar Equipamento"
+    materialDesign:HintAssist.Hint="Pesquisar Propriedade"
     materialDesign:TextFieldAssist.HasClearButton="True"
     DropDownElevation="Dp0"
     Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
     Suggestions="{Binding AutoSuggestBox2Suggestions}"
     Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
     ValueMember="Key" 
-    Margin="135,10,530,505" 
-    Grid.Row="2" 
+    Margin="135,10,535,505" 
+    Grid.Row="1" 
     Width="400" 
     Height="50" 
     RenderTransformOrigin="-0.875,-2.1">
@@ -220,45 +220,74 @@
                 <TextBlock Text="+" FontSize="40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-10,0,0"/>
             </Button>
 
-            <Popup Name="PropertyPopup" Placement="Mouse" StaysOpen="False">
+            <Popup Name="PropertyPopup" HorizontalAlignment="Center" VerticalAlignment="Center" Placement="Mouse" StaysOpen="False">
                 <Border Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Padding="10">
                     <StackPanel Width="300" Margin="0 0 0 30">
                         <TextBlock Text="Propriedade" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
 
                         <TextBox
-    materialDesign:HintAssist.Hint="Propriedade:"
-    MaxLength="40"
-    Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_propriedade"
-    Margin="0,0,0,5"/>
-
-                        <TextBox
-    materialDesign:HintAssist.Hint="Nome Equipamento:"
-    MaxLength="40"
-    Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_nome"
-    Margin="0,0,0,5"/>
-
-                        <TextBox
-    materialDesign:HintAssist.Hint="Valor:"
-    MaxLength="40"
-    Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_valor"
-    Margin="0,0,0,5"/>
-
-                        <TextBox
-    materialDesign:HintAssist.Hint="Descrição:"
-    MaxLength="40"
-    Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_descricao"
-    Margin="0,0,0,5"/>
-
-                        <TextBox
-materialDesign:HintAssist.Hint="Tipo:"
+materialDesign:HintAssist.Hint="Nome da Propriedade"
 MaxLength="40"
 Style="{StaticResource MaterialDesignFilledTextBox}"
-TextWrapping="Wrap" Name="txt_tipo"
+TextWrapping="Wrap" Name="txt_propriedade"
 Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="Nome do Proprietário"
+MaxLength="40"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_proprietario"
+Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="Tamanho em Hectares"
+MaxLength="40"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_tamanho"
+Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="Telefone"
+MaxLength="40"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_telefone"
+Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="CEP"
+MaxLength="40"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_cep"
+Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="Endereço"
+MaxLength="40"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_endereco"
+Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="Número"
+MaxLength="10"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_numero"
+Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="Bairro"
+MaxLength="40"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_bairro"
+Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="Complemento"
+MaxLength="40"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_complemento"
+Margin="0,0,0,5"/>
+
                         <Button Content="Salvar" Click="SaveProperty" Margin="0,10,0,0"/>
                         <Button Content="Fechar" Click="CloseModal" Margin="0,5,0,0"/>
                     </StackPanel>
@@ -266,78 +295,76 @@ Margin="0,0,0,5"/>
             </Popup>
 
 
-            <!-- Cards de Equipamentos -->
-            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">
-                <ItemsControl ItemsSource="{Binding EquipamentosList}">
-                    <!-- Definindo o layout do ItemsControl como WrapPanel -->
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
+            <!-- Cards de Animais -->
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="860" Margin="65,200,0,20">
+                <!-- Card Repetido -->
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="10" Width="400" Height="185" Margin="0, 0, 30, 40">
+                    <StackPanel>
+                        <Border CornerRadius="10,10,0,0" Height="100">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/Sede fazenda.png"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Estância: Santa Rita de Cássia" FontWeight="Bold" Margin="10,5,10,3"/>
+                        <TextBlock Text="N° de lotes: 47" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
+                        <TextBlock Text="linha: 207" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
+                        <TextBlock Text="N° de Hectares: 1200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
+                        <TextBlock Text="Gleba: 77" Foreground="#7C9C81" FontWeight="SemiBold" VerticalAlignment="Top" Margin="10,-58,120,3" HorizontalAlignment="Right"/>
+                        <TextBlock Text="Reserva: 10%" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-58,96,3" HorizontalAlignment="Right" Height="18"/>
+                        <TextBlock Text="Relevo: plano" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-20,96,3" HorizontalAlignment="Right"/>
+                    </StackPanel>
+                </Border>
 
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="52, 10, -30, 10">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="80"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="10" Width="400" Height="185" Margin="0, 0, 30, 40">
+                    <StackPanel>
+                        <Border CornerRadius="10,10,0,0" Height="100">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/Sede fazenda.png"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Estância: Santa Rita de Cássia" FontWeight="Bold" Margin="10,5,10,3"/>
+                        <TextBlock Text="N° de lotes: 47" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
+                        <TextBlock Text="linha: 207" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
+                        <TextBlock Text="N° de Hectares: 1200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
+                        <TextBlock Text="Gleba: 77" Foreground="#7C9C81" FontWeight="SemiBold" VerticalAlignment="Top" Margin="10,-58,120,3" HorizontalAlignment="Right"/>
+                        <TextBlock Text="Reserva: 10%" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-58,96,3" HorizontalAlignment="Right" Height="18"/>
+                        <TextBlock Text="Relevo: plano" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-20,96,3" HorizontalAlignment="Right"/>
+                    </StackPanel>
+                </Border>
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="10" Width="400" Height="185" Margin="0, 0, 30, 40">
+                    <StackPanel>
+                        <Border CornerRadius="10,10,0,0" Height="100">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/Sede fazenda.png"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Estância: Santa Rita de Cássia" FontWeight="Bold" Margin="10,5,10,3"/>
+                        <TextBlock Text="N° de lotes: 47" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
+                        <TextBlock Text="linha: 207" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
+                        <TextBlock Text="N° de Hectares: 1200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
+                        <TextBlock Text="Gleba: 77" Foreground="#7C9C81" FontWeight="SemiBold" VerticalAlignment="Top" Margin="10,-58,120,3" HorizontalAlignment="Right"/>
+                        <TextBlock Text="Reserva: 10%" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-58,96,3" HorizontalAlignment="Right" Height="18"/>
+                        <TextBlock Text="Relevo: plano" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-20,96,3" HorizontalAlignment="Right"/>
+                    </StackPanel>
+                </Border>
 
-                                    <Border Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="5,5,0,0">
-                                        <Border.Background>
-                                            <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/gado 1.png"/>
-                                        </Border.Background>
-                                    </Border>
-
-                                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,0,0,0">
-                                        <TextBlock FontWeight="Bold" Margin="0,5,0,0">
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="Nome: {0}">
-                                                    <Binding Path="Nome" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
-
-                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="Estado: {0}">
-                                                    <Binding Path="Tipo" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
-
-                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="Valor: {0}">
-                                                    <Binding Path="Valor" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
-
-                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="Descrição: {0}">
-                                                    <Binding Path="Descrição" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
-
-                                    </StackPanel>
-
-                                    <!-- Ícone do lápis à direita -->
-                                    <materialDesign:PackIcon Kind="Pencil" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="10" Width="400" Height="185" Margin="0, 0, 30, 40">
+                    <StackPanel>
+                        <Border CornerRadius="10,10,0,0" Height="100">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/Sede fazenda.png"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Estância: Santa Rita de Cássia" FontWeight="Bold" Margin="10,5,10,3"/>
+                        <TextBlock Text="N° de lotes: 47" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
+                        <TextBlock Text="linha: 207" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
+                        <TextBlock Text="N° de Hectares: 1200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
+                        <TextBlock Text="Gleba: 77" Foreground="#7C9C81" FontWeight="SemiBold" VerticalAlignment="Top" Margin="10,-58,120,3" HorizontalAlignment="Right"/>
+                        <TextBlock Text="Reserva: 10%" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-58,96,3" HorizontalAlignment="Right" Height="18"/>
+                        <TextBlock Text="Relevo: plano" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-20,96,3" HorizontalAlignment="Right"/>
+                    </StackPanel>
+                </Border>
             </WrapPanel>
         </Grid>
     </Grid>

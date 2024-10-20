@@ -17,44 +17,44 @@ namespace RuralTech.Telas
     /// <summary>
     /// Lógica interna para Pastos.xaml
     /// </summary>
-    public partial class Pastos : Window
+    public partial class TelaPasto : Window
     {
-        public Pastos()
+        public TelaPasto()
         {
             InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Animal tela = new Animal();
+            TelaAnimal tela = new TelaAnimal();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Equipamentos tela = new Equipamentos();
+            TelaEquipamento tela = new TelaEquipamento();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Medicamentos tela = new Medicamentos();
+            TelaMedicamento tela = new TelaMedicamento();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Propriedades tela = new Propriedades();
+            TelaPropriedade tela = new TelaPropriedade();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            Vacinas tela = new Vacinas();
+            TelaVacina tela = new TelaVacina();
             this.Close();
             tela.ShowDialog();
         }

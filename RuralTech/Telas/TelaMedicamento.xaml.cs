@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace RuralTech.Telas
 {
     /// <summary>
-    /// Lógica interna para Propriedades.xaml
+    /// Lógica interna para Medicamentos.xaml
     /// </summary>
-    public partial class Propriedades : Window
+    public partial class TelaMedicamento : Window
     {
-        public Propriedades()
+        public TelaMedicamento()
         {
             InitializeComponent();
         }
@@ -39,11 +39,7 @@ namespace RuralTech.Telas
             string ownerName = txt_proprietario.Text;
             string size = txt_tamanho.Text;
             string phone = txt_telefone.Text;
-            string zipCode = txt_cep.Text;
-            string address = txt_endereco.Text;
-            string number = txt_numero.Text;
-            string neighborhood = txt_bairro.Text;
-            string complement = txt_complemento.Text;
+         
             // Lógica para salvar as informações da propriedade
 
             // Fechar o modal após salvar
@@ -52,35 +48,42 @@ namespace RuralTech.Telas
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Animal tela = new Animal();
+            TelaAnimal tela = new TelaAnimal();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Equipamentos tela = new Equipamentos();
+            TelaEquipamento tela = new TelaEquipamento();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Medicamentos tela = new Medicamentos();
+            TelaMedicamento tela = new TelaMedicamento();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Pastos tela = new Pastos();
+            TelaPasto tela = new TelaPasto();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            Vacinas tela = new Vacinas();
+            TelaPropriedade tela = new TelaPropriedade();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            TelaVacina tela = new TelaVacina();
             this.Close();
             tela.ShowDialog();
         }

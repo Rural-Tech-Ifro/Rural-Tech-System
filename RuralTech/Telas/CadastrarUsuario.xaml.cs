@@ -32,7 +32,7 @@ namespace RuralTech.Telas
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Login tela = new Login();
+            TelaLogin tela = new TelaLogin();
             this.Close();
             tela.ShowDialog();
         }

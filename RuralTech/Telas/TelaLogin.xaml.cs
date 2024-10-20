@@ -17,10 +17,10 @@ namespace RuralTech.Telas
     /// <summary>
     /// Lógica interna para Login.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class TelaLogin : Window
     {
         private UsuarioDAO _usuarioDAO = new UsuarioDAO(); // Objeto responsável por acessar o banco de dados
-        public Login()
+        public TelaLogin()
         {
             InitializeComponent();
         }
@@ -35,7 +35,7 @@ namespace RuralTech.Telas
                 if (str.Nome == usuario && str.Senha == senha)
                 {
                     MessageBox.Show("Logado com sucesso!");
-                    Animal login = new Animal();
+                    TelaAnimal login = new TelaAnimal();
                     this.Close();
                     login.ShowDialog();
                     break;

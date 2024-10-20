@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,40 +12,34 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Text.RegularExpressions;
-using RuralTech.Integracoes;
-using System.Collections.ObjectModel;
-
 
 namespace RuralTech.Telas
 {
     /// <summary>
-    /// Lógica interna para Animal.xaml
+    /// Lógica interna para Equipamentos.xaml
     /// </summary>
-    public partial class Animal : Window
+    public partial class TelaEquipamento : Window
     {
-        private Animals _animal = new Animals();
-        private AnimalDAO _animalDAO = new AnimalDAO();
-        public ObservableCollection<Animals> AnimaisList { get; set; }
-
-
-
-        public Animal()
+        private Equipamento _equipamento = new Equipamento();
+        private EquipamentoDAO _equipamentoDAO = new EquipamentoDAO();
+        public ObservableCollection<Equipamento> EquipamentosList { get; set; }
+        public TelaEquipamento()
         {
             InitializeComponent();
             DataContext = this; // Define o DataContext para a própria janela
-            AnimaisList = new ObservableCollection<Animals>(); // Inicializa a lista como uma ObservableCollection
-            CarregarVacinas();
+            EquipamentosList = new ObservableCollection<Equipamento>(); // Inicializa a lista como uma ObservableCollection
+            CarregarEquipamentos();
         }
-        private void CarregarVacinas()
+
+        private void CarregarEquipamentos()
         {
             try
             {
-                var animais = _animalDAO.GetAnimal(); // Obtém a lista de vacinas do banco
-                AnimaisList.Clear(); // Limpa a coleção atual para evitar duplicatas
-                foreach (var animal in animais)
+                var equipamentos = _equipamentoDAO.GetEquipamento(); // Obtém a lista de vacinas do banco
+                EquipamentosList.Clear(); // Limpa a coleção atual para evitar duplicatas
+                foreach (var equipamento in equipamentos)
                 {
-                    AnimaisList.Add(animal); // Adiciona cada vacina à ObservableCollection
+                    EquipamentosList.Add(equipamento); // Adiciona cada vacina à ObservableCollection
                 }
             }
             catch (Exception ex)
@@ -64,18 +59,19 @@ namespace RuralTech.Telas
 
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
+           
+
             try
             {
-                // Atualiza o objeto _vacina com os valores do formulário
-                _animal.Brinco = txt_brinco.Text;
-                _animal.Raca = combo_raca.Text;
-                _animal.Classificacao = txt_classificacao.Text;
-                _animal.Sexo = combo_sex.Text;
-                _animal.Origem = combo_origem.Text;
+                _equipamento.Nome = txt_nome.Text;
+                _equipamento.Propriedade = txt_propriedade.Text;
+                _equipamento.Valor = Convert.ToDouble(txt_valor.Text);
+                _equipamento.Descricao = txt_descricao.Text;
+                _equipamento.Tipo = txt_tipo.Text;
 
-                _animalDAO.Insert(_animal); // Insere no banco
+                _equipamentoDAO.Insert(_equipamento); // Insere no banco
                 MessageBox.Show("Registro cadastrado com sucesso.");
-                Animal tela = new Animal();
+                TelaEquipamento tela = new TelaEquipamento();
                 this.Close();
                 tela.ShowDialog();
             }
@@ -88,35 +84,35 @@ namespace RuralTech.Telas
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Equipamentos tela = new Equipamentos();
+            TelaAnimal tela = new TelaAnimal();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Medicamentos tela = new Medicamentos();
+            TelaMedicamento tela = new TelaMedicamento();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Propriedades tela = new Propriedades();
+            TelaPropriedade tela = new TelaPropriedade();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Pastos tela = new Pastos();
+            TelaPasto tela = new TelaPasto();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            Vacinas tela = new Vacinas();
+            TelaVacina tela = new TelaVacina();
             this.Close();
             tela.ShowDialog();
         }

@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace RuralTech.Telas
 {
     /// <summary>
-    /// Lógica interna para Funcionario.xaml
+    /// Lógica interna para Patrimonio.xaml
     /// </summary>
-    public partial class Funcionario : Window
+    public partial class TelaPatrimonio : Window
     {
-        public Funcionario()
+        public TelaPatrimonio()
         {
             InitializeComponent();
         }

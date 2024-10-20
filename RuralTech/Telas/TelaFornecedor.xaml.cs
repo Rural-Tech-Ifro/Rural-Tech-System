@@ -18,12 +18,12 @@ namespace RuralTech.Telas
     /// <summary>
     /// Lógica interna para FornecedorCliente.xaml
     /// </summary>
-    public partial class FornecedorCliente : Window
+    public partial class TelaFornecedor : Window
     {
         private Fornecedor _fornecedor = new Fornecedor();
         private FornecedorDAO _fornecedorDAO = new FornecedorDAO();
         public ObservableCollection<Fornecedor> FornecedoresList { get; set; }
-        public FornecedorCliente()
+        public TelaFornecedor()
         {
             InitializeComponent();
             DataContext = this; // Define o DataContext para a própria janela
@@ -74,7 +74,7 @@ namespace RuralTech.Telas
 
                 _fornecedorDAO.Insert(_fornecedor); // Insere no banco
                 MessageBox.Show("Registro cadastrado com sucesso.");
-                FornecedorCliente tela = new FornecedorCliente();
+                TelaFornecedor tela = new TelaFornecedor();
                 this.Close();
                 tela.ShowDialog();
             }

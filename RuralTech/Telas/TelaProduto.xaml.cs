@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace RuralTech.Telas
 {
     /// <summary>
-    /// Lógica interna para Ordenha.xaml
+    /// Lógica interna para Produtos.xaml
     /// </summary>
-    public partial class Ordenha : Window
+    public partial class TelaProduto : Window
     {
-        public Ordenha()
+        public TelaProduto()
         {
             InitializeComponent();
         }

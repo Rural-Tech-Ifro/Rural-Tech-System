@@ -7,13 +7,13 @@ using RuralTech.Integracoes;
 
 namespace RuralTech.Telas
 {
-    public partial class Vacinas : Window
+    public partial class TelaVacina : Window
     {
         private Vacina _vacina = new Vacina(); // Objeto vacina
         private VacinaDAO _vacinaDAO = new VacinaDAO(); // Objeto responsável por acessar o banco de dados
         public ObservableCollection<Vacina> VacinasList { get; set; } // Usamos ObservableCollection para ligar ao ItemsControl
 
-        public Vacinas()
+        public TelaVacina()
         {
             InitializeComponent();
             DataContext = this; // Define o DataContext para a própria janela
@@ -88,42 +88,42 @@ namespace RuralTech.Telas
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Animal tela = new Animal();
+            TelaAnimal tela = new TelaAnimal();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Equipamentos tela = new Equipamentos();
+            TelaEquipamento tela = new TelaEquipamento();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Medicamentos tela = new Medicamentos();
+            TelaMedicamento tela = new TelaMedicamento();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Pastos tela = new Pastos();
+            TelaPasto tela = new TelaPasto();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            Propriedades tela = new Propriedades();
+            TelaPropriedade tela = new TelaPropriedade();
             this.Close();
             tela.ShowDialog();
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            Vacinas tela = new Vacinas();
+            TelaVacina tela = new TelaVacina();
             this.Close();
             tela.ShowDialog();
         }

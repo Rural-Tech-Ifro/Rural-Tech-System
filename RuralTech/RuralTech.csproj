@@ -142,38 +142,39 @@
     <Compile Include="IntegracaoBD\Equipamento\EquipamentoDAO.cs" />
     <Compile Include="IntegracaoBD\Fornecedor-Cliente\Fornecedor.cs" />
     <Compile Include="IntegracaoBD\Fornecedor-Cliente\FornecedorDAO.cs" />
+    <Compile Include="IntegracaoBD\Propriedade\Propriedade.cs" />
     <Compile Include="IntegracaoBD\Usuario\Usuario.cs" />
     <Compile Include="IntegracaoBD\Usuario\UsuarioDAO.cs" />
     <Compile Include="IntegracaoBD\Vacina\Vacina.cs" />
     <Compile Include="IntegracaoBD\Vacina\VacinaDAO.cs" />
-    <Compile Include="Telas\FornecedorCliente.xaml.cs">
-      <DependentUpon>FornecedorCliente.xaml</DependentUpon>
+    <Compile Include="Telas\TelaFornecedor.xaml.cs">
+      <DependentUpon>TelaFornecedor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Telas\Funcionario.xaml.cs">
-      <DependentUpon>Funcionario.xaml</DependentUpon>
+    <Compile Include="Telas\TelaFuncionario.xaml.cs">
+      <DependentUpon>TelaFuncionario.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Telas\Medicamentos.xaml.cs">
-      <DependentUpon>Medicamentos.xaml</DependentUpon>
+    <Compile Include="Telas\TelaMedicamento.xaml.cs">
+      <DependentUpon>TelaMedicamento.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Telas\Ordenha.xaml.cs">
-      <DependentUpon>Ordenha.xaml</DependentUpon>
+    <Compile Include="Telas\TelaOrdenha.xaml.cs">
+      <DependentUpon>TelaOrdenha.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Telas\Pastos.xaml.cs">
-      <DependentUpon>Pastos.xaml</DependentUpon>
+    <Compile Include="Telas\TelaPasto.xaml.cs">
+      <DependentUpon>TelaPasto.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Telas\Patrimonio.xaml.cs">
-      <DependentUpon>Patrimonio.xaml</DependentUpon>
+    <Compile Include="Telas\TelaPatrimonio.xaml.cs">
+      <DependentUpon>TelaPatrimonio.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Telas\Produto.xaml.cs">
-      <DependentUpon>Produto.xaml</DependentUpon>
+    <Compile Include="Telas\TelaProduto.xaml.cs">
+      <DependentUpon>TelaProduto.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Telas\Propriedades.xaml.cs">
-      <DependentUpon>Propriedades.xaml</DependentUpon>
+    <Compile Include="Telas\TelaPropriedade.xaml.cs">
+      <DependentUpon>TelaPropriedade.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Telas\Vacinas.xaml.cs">
-      <DependentUpon>Vacinas.xaml</DependentUpon>
+    <Compile Include="Telas\TelaVacina.xaml.cs">
+      <DependentUpon>TelaVacina.xaml</DependentUpon>
     </Compile>
-    <Page Include="Telas\Animal.xaml">
+    <Page Include="Telas\TelaAnimal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -181,19 +182,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Telas\Equipamentos.xaml">
+    <Page Include="Telas\TelaEquipamento.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Telas\FornecedorCliente.xaml">
+    <Page Include="Telas\TelaFornecedor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Telas\Funcionario.xaml">
+    <Page Include="Telas\TelaFuncionario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Telas\Login.xaml">
+    <Page Include="Telas\TelaLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -201,43 +202,43 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Telas\Animal.xaml.cs">
-      <DependentUpon>Animal.xaml</DependentUpon>
+    <Compile Include="Telas\TelaAnimal.xaml.cs">
+      <DependentUpon>TelaAnimal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\CadastrarUsuario.xaml.cs">
       <DependentUpon>CadastrarUsuario.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Telas\Equipamentos.xaml.cs">
-      <DependentUpon>Equipamentos.xaml</DependentUpon>
+    <Compile Include="Telas\TelaEquipamento.xaml.cs">
+      <DependentUpon>TelaEquipamento.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Telas\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
+    <Compile Include="Telas\TelaLogin.xaml.cs">
+      <DependentUpon>TelaLogin.xaml</DependentUpon>
     </Compile>
-    <Page Include="Telas\Medicamentos.xaml">
+    <Page Include="Telas\TelaMedicamento.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Telas\Ordenha.xaml">
+    <Page Include="Telas\TelaOrdenha.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Telas\Pastos.xaml">
+    <Page Include="Telas\TelaPasto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Telas\Patrimonio.xaml">
+    <Page Include="Telas\TelaPatrimonio.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Telas\Produto.xaml">
+    <Page Include="Telas\TelaProduto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Telas\Propriedades.xaml">
+    <Page Include="Telas\TelaPropriedade.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Telas\Vacinas.xaml">
+    <Page Include="Telas\TelaVacina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
