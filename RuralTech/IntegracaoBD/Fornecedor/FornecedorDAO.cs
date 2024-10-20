@@ -17,12 +17,13 @@ public class FornecedorDAO
         {
             var comando = _conn.Query();
 
-            comando.CommandText = "INSERT INTO fornecedor (nome_for, celular_for, telefone_for, cnpjCpf_for, pais_for, estado_for, cidade_for, cep_for, numero_for, logradouro_for, email_for) VALUES (@nome, @celular, @telefone, @cnpjCpf, @pais, @estado, @cidade, @cep, @numero, @logradouro, @email);";
+            comando.CommandText = "INSERT INTO fornecedor (nome_for, celular_for, telefone_for, cnpjCpf_for, tipo_for, pais_for, estado_for, cidade_for, cep_for, numero_for, logradouro_for, email_for) VALUES (@nome, @celular, @telefone, @cnpjCpf, @tipo, @pais, @estado, @cidade, @cep, @numero, @logradouro, @email);";
 
             comando.Parameters.AddWithValue("@nome", obj.Nome);
             comando.Parameters.AddWithValue("@celular", obj.Celular);
             comando.Parameters.AddWithValue("@telefone", obj.Telefone);
             comando.Parameters.AddWithValue("@cnpjCpf", obj.CPFCNPJ);
+            comando.Parameters.AddWithValue("@tipo", obj.Tipo);
             comando.Parameters.AddWithValue("@pais", obj.Pais);
             comando.Parameters.AddWithValue("@estado", obj.Estado);
             comando.Parameters.AddWithValue("@cidade", obj.Cidade);
@@ -52,7 +53,7 @@ public class FornecedorDAO
         try
         {
             var comando = _conn.Query();
-            comando.CommandText = "SELECT id_for, nome_for, celular_for, telefone_for, cnpjCpf_for, pais_for, estado_for, cidade_for, cep_for, numero_for, logradouro_for, email_for FROM fornecedor";
+            comando.CommandText = "SELECT id_for, nome_for, celular_for, telefone_for, cnpjCpf_for, tipo_for pais_for, estado_for, cidade_for, cep_for, numero_for, logradouro_for, email_for FROM fornecedor";
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -65,6 +66,7 @@ public class FornecedorDAO
                     Celular = reader.GetString("celular_for"),
                     Telefone = reader.GetString("telefone_for"),
                     CPFCNPJ = reader.GetString("cnpjCpf_for"),
+                    Tipo = reader.GetString("tipo_for"),
                     Pais = reader.GetString("pais_for"),
                     Estado = reader.GetString("estado_for"),
                     Cidade = reader.GetString("cidade_for"),

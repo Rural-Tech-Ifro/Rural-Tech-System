@@ -266,6 +266,19 @@
                              TextWrapping="Wrap" Name="txt_cpfCnpj"
                              Margin="0,0,0,5"/>
 
+                        <ComboBox
+                            x:Name="combo_tipo"
+                            Width="300"
+                            Margin="0, 0, 0, 5"
+                            materialDesign:HintAssist.Hint="Selecione uma raça"
+                            
+                            IsEnabled="{Binding Path=IsChecked, ElementName=FilledComboBoxEnabledCheckBox}"
+                            Style="{StaticResource MaterialDesignFilledComboBox}">
+
+                            <ComboBoxItem Content="Cliente" />
+                            <ComboBoxItem Content="Fornecedor" />
+                        </ComboBox>
+
                         <TextBox
                             materialDesign:HintAssist.Hint="Logradouro"
                             MaxLength="40"
@@ -375,7 +388,15 @@
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
-                                        
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Tipo: {0}">
+                                                    <Binding Path="Tipo" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
                                         <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
                                             <TextBlock.Text>
                                                 <MultiBinding StringFormat="Pais: {0}">

@@ -7,6 +7,7 @@
     public string Celular { get; set; }
     public string Telefone { get; set; }
     public string CPFCNPJ { get; set; }
+    public string Tipo { get; set; }
     public string Logradouro { get; set; }
     public string Numero { get; set; }
     public string Estado { get; set; }
