@@ -226,32 +226,39 @@
                         <TextBlock Text="Propriedade" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
 
                         <TextBox
-    materialDesign:HintAssist.Hint="Nome:"
+    materialDesign:HintAssist.Hint="Propriedade:"
     MaxLength="40"
     Style="{StaticResource MaterialDesignFilledTextBox}"
     TextWrapping="Wrap" Name="txt_propriedade"
     Margin="0,0,0,5"/>
 
                         <TextBox
-    materialDesign:HintAssist.Hint="Tipo:"
+    materialDesign:HintAssist.Hint="Nome Equipamento:"
     MaxLength="40"
     Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_proprietario"
+    TextWrapping="Wrap" Name="txt_nome"
     Margin="0,0,0,5"/>
 
                         <TextBox
     materialDesign:HintAssist.Hint="Valor:"
     MaxLength="40"
     Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_tamanho"
+    TextWrapping="Wrap" Name="txt_valor"
     Margin="0,0,0,5"/>
 
                         <TextBox
-    materialDesign:HintAssist.Hint="Propriedade:"
+    materialDesign:HintAssist.Hint="Descrição:"
     MaxLength="40"
     Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap" Name="txt_telefone"
+    TextWrapping="Wrap" Name="txt_descricao"
     Margin="0,0,0,5"/>
+
+                        <TextBox
+materialDesign:HintAssist.Hint="Tipo:"
+MaxLength="40"
+Style="{StaticResource MaterialDesignFilledTextBox}"
+TextWrapping="Wrap" Name="txt_tipo"
+Margin="0,0,0,5"/>
                         <Button Content="Salvar" Click="SaveProperty" Margin="0,10,0,0"/>
                         <Button Content="Fechar" Click="CloseModal" Margin="0,5,0,0"/>
                     </StackPanel>
@@ -259,121 +266,78 @@
             </Popup>
 
 
-            <!-- Cards de Animais -->
-            <WrapPanel Grid.Row="2" HorizontalAlignment="Left" Width="830" Margin="255,200,0,10">
-                <!-- Card Repetido -->
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="180" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_equipamento.jpeg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Equipamento: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: Roçadeira de Grama " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Propriedade: São José" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Valor: R$ 1500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                    </StackPanel>
-                </Border>
+            <!-- Cards de Equipamentos -->
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">
+                <ItemsControl ItemsSource="{Binding EquipamentosList}">
+                    <!-- Definindo o layout do ItemsControl como WrapPanel -->
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="180" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_equipamento.jpeg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Equipamento: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: Roçadeira de Grama " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Propriedade: São José" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Valor: R$ 1500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                    </StackPanel>
-                </Border>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="52, 10, -30, 10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="80"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="180" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_equipamento.jpeg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Equipamento: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: Roçadeira de Grama " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Propriedade: São José" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Valor: R$ 1500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                    </StackPanel>
-                </Border>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="180" Margin="0, 0, 0, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_equipamento.jpeg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Equipamento: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: Roçadeira de Grama " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Propriedade: São José" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Valor: R$ 1500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                    </StackPanel>
-                </Border>
+                                    <Border Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="5,5,0,0">
+                                        <Border.Background>
+                                            <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/gado 1.png"/>
+                                        </Border.Background>
+                                    </Border>
 
+                                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,0,0,0">
+                                        <TextBlock FontWeight="Bold" Margin="0,5,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Nome: {0}">
+                                                    <Binding Path="Nome" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="180" Margin="0, 0, 30,0">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_equipamento.jpeg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Equipamento: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: Roçadeira de Grama " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Propriedade: São José" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Valor: R$ 1500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                    </StackPanel>
-                </Border>
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Estado: {0}">
+                                                    <Binding Path="Tipo" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="180" Margin="0, 0, 30,0">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_equipamento.jpeg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Equipamento: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: Roçadeira de Grama " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Propriedade: São José" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Valor: R$ 1500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                    </StackPanel>
-                </Border>
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Valor: {0}">
+                                                    <Binding Path="Valor" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="180" Margin="0, 0, 30,0">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_equipamento.jpeg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Equipamento: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: Roçaadeira de Grama " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Propriedade: São José" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Valor: R$ 1500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                    </StackPanel>
-                </Border>
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Descrição: {0}">
+                                                    <Binding Path="Descrição" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="180">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_equipamento.jpeg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Equipamento: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: Roçaadeira de Grama " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Propriedade: São José" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Valor: R$ 1500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                    </StackPanel>
-                </Border>
+                                    </StackPanel>
+
+                                    <!-- Ícone do lápis à direita -->
+                                    <materialDesign:PackIcon Kind="Pencil" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </WrapPanel>
         </Grid>
     </Grid>

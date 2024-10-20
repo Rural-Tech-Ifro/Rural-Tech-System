@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,32 @@ namespace RuralTech.Telas
     /// </summary>
     public partial class Equipamentos : Window
     {
+        private Equipamento _equipamento = new Equipamento();
+        private EquipamentoDAO _equipamentoDAO = new EquipamentoDAO();
+        public ObservableCollection<Equipamento> EquipamentosList { get; set; }
         public Equipamentos()
         {
             InitializeComponent();
+            DataContext = this; // Define o DataContext para a própria janela
+            EquipamentosList = new ObservableCollection<Equipamento>(); // Inicializa a lista como uma ObservableCollection
+            CarregarEquipamentos();
+        }
+
+        private void CarregarEquipamentos()
+        {
+            try
+            {
+                var equipamentos = _equipamentoDAO.GetEquipamento(); // Obtém a lista de vacinas do banco
+                EquipamentosList.Clear(); // Limpa a coleção atual para evitar duplicatas
+                foreach (var equipamento in equipamentos)
+                {
+                    EquipamentosList.Add(equipamento); // Adiciona cada vacina à ObservableCollection
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar vacinas: {ex.Message}");
+            }
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
@@ -35,14 +59,26 @@ namespace RuralTech.Telas
 
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
-            string propertyName = txt_propriedade.Text;
-            string ownerName = txt_proprietario.Text;
-            string size = txt_tamanho.Text;
-            string phone = txt_telefone.Text;
+           
 
-            // Lógica para salvar as informações da propriedade
+            try
+            {
+                _equipamento.Nome = txt_nome.Text;
+                _equipamento.Propriedade = txt_propriedade.Text;
+                _equipamento.Valor = Convert.ToDouble(txt_valor.Text);
+                _equipamento.Descricao = txt_descricao.Text;
+                _equipamento.Tipo = txt_tipo.Text;
 
-            // Fechar o modal após salvar
+                _equipamentoDAO.Insert(_equipamento); // Insere no banco
+                MessageBox.Show("Registro cadastrado com sucesso.");
+                Equipamentos tela = new Equipamentos();
+                this.Close();
+                tela.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
+            }
             PropertyPopup.IsOpen = false;
         }
 
