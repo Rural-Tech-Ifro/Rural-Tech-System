@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,10 +20,33 @@ namespace RuralTech.Telas
     /// </summary>
     public partial class TelaPropriedade : Window
     {
+        private Propriedade _propriedade = new Propriedade();
+        private PropriedadeDAO _propriedadeDAO = new PropriedadeDAO();
+        public ObservableCollection<Propriedade> PropriedadesList { get; set; }
         public TelaPropriedade()
         {
             InitializeComponent();
+            DataContext = this; // Define o DataContext para a própria janela
+            PropriedadesList = new ObservableCollection<Propriedade>(); // Inicializa a lista como uma ObservableCollection
+            CarregarPropriedades();
         }
+        private void CarregarPropriedades()
+        {
+            try
+            {
+                var propriedades = _propriedadeDAO.GetPropriedade(); // Obtém a lista de vacinas do banco
+                PropriedadesList.Clear(); // Limpa a coleção atual para evitar duplicatas
+                foreach (var propriedade in propriedades)
+                {
+                    PropriedadesList.Add(propriedade); // Adiciona cada vacina à ObservableCollection
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar vacinas: {ex.Message}");
+            }
+        }
+
         private void OpenModal(object sender, RoutedEventArgs e)
         {
             PropertyPopup.IsOpen = true;
@@ -35,18 +59,26 @@ namespace RuralTech.Telas
 
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
-            string propertyName = txt_propriedade.Text;
-            string ownerName = txt_proprietario.Text;
-            string size = txt_tamanho.Text;
-            string phone = txt_telefone.Text;
-            string zipCode = txt_cep.Text;
-            string address = txt_endereco.Text;
-            string number = txt_numero.Text;
-            string neighborhood = txt_bairro.Text;
-            string complement = txt_complemento.Text;
-            // Lógica para salvar as informações da propriedade
+            try
+            {
+                _propriedade.NomePropriedade = txt_propriedade.Text;
+                _propriedade.NomeProprietario = txt_proprietario.Text;
+                _propriedade.Tamanho = Convert.ToInt32(txt_tamanho.Text);
+                _propriedade.CEP = txt_cep.Text;
+                _propriedade.Logradouro = txt_logradouro.Text;
+                _propriedade.Bairro = txt_bairro.Text;
+                _propriedade.Complemento = txt_complemento.Text;
 
-            // Fechar o modal após salvar
+                _propriedadeDAO.Insert(_propriedade); // Insere no banco
+                MessageBox.Show("Registro cadastrado com sucesso.");
+                TelaPropriedade tela = new TelaPropriedade();
+                this.Close();
+                tela.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
+            }
             PropertyPopup.IsOpen = false;
         }
 

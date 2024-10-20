@@ -247,36 +247,22 @@ TextWrapping="Wrap" Name="txt_tamanho"
 Margin="0,0,0,5"/>
 
                         <TextBox
-materialDesign:HintAssist.Hint="Telefone"
-MaxLength="40"
-Style="{StaticResource MaterialDesignFilledTextBox}"
-TextWrapping="Wrap" Name="txt_telefone"
-Margin="0,0,0,5"/>
-
-                        <TextBox
-materialDesign:HintAssist.Hint="CEP"
+materialDesign:HintAssist.Hint="CEP:"
 MaxLength="40"
 Style="{StaticResource MaterialDesignFilledTextBox}"
 TextWrapping="Wrap" Name="txt_cep"
 Margin="0,0,0,5"/>
 
                         <TextBox
-materialDesign:HintAssist.Hint="Endereço"
+materialDesign:HintAssist.Hint="Logradouro"
 MaxLength="40"
 Style="{StaticResource MaterialDesignFilledTextBox}"
-TextWrapping="Wrap" Name="txt_endereco"
-Margin="0,0,0,5"/>
-
-                        <TextBox
-materialDesign:HintAssist.Hint="Número"
-MaxLength="10"
-Style="{StaticResource MaterialDesignFilledTextBox}"
-TextWrapping="Wrap" Name="txt_numero"
+TextWrapping="Wrap" Name="txt_logradouro"
 Margin="0,0,0,5"/>
 
                         <TextBox
 materialDesign:HintAssist.Hint="Bairro"
-MaxLength="40"
+MaxLength="10"
 Style="{StaticResource MaterialDesignFilledTextBox}"
 TextWrapping="Wrap" Name="txt_bairro"
 Margin="0,0,0,5"/>
@@ -295,76 +281,103 @@ Margin="0,0,0,5"/>
             </Popup>
 
 
-            <!-- Cards de Animais -->
-            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="860" Margin="65,200,0,20">
-                <!-- Card Repetido -->
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="10" Width="400" Height="185" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="10,10,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/Sede fazenda.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Estância: Santa Rita de Cássia" FontWeight="Bold" Margin="10,5,10,3"/>
-                        <TextBlock Text="N° de lotes: 47" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="linha: 207" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="N° de Hectares: 1200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="Gleba: 77" Foreground="#7C9C81" FontWeight="SemiBold" VerticalAlignment="Top" Margin="10,-58,120,3" HorizontalAlignment="Right"/>
-                        <TextBlock Text="Reserva: 10%" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-58,96,3" HorizontalAlignment="Right" Height="18"/>
-                        <TextBlock Text="Relevo: plano" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-20,96,3" HorizontalAlignment="Right"/>
-                    </StackPanel>
-                </Border>
+            <!-- Cards de Propriedades -->
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">
+                <ItemsControl ItemsSource="{Binding PropriedadesList}">
+                    <!-- Definindo o layout do ItemsControl como WrapPanel -->
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="10" Width="400" Height="185" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="10,10,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/Sede fazenda.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Estância: Santa Rita de Cássia" FontWeight="Bold" Margin="10,5,10,3"/>
-                        <TextBlock Text="N° de lotes: 47" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="linha: 207" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="N° de Hectares: 1200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="Gleba: 77" Foreground="#7C9C81" FontWeight="SemiBold" VerticalAlignment="Top" Margin="10,-58,120,3" HorizontalAlignment="Right"/>
-                        <TextBlock Text="Reserva: 10%" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-58,96,3" HorizontalAlignment="Right" Height="18"/>
-                        <TextBlock Text="Relevo: plano" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-20,96,3" HorizontalAlignment="Right"/>
-                    </StackPanel>
-                </Border>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="52, 10, -30, 10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="80"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="10" Width="400" Height="185" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="10,10,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/Sede fazenda.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Estância: Santa Rita de Cássia" FontWeight="Bold" Margin="10,5,10,3"/>
-                        <TextBlock Text="N° de lotes: 47" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="linha: 207" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="N° de Hectares: 1200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="Gleba: 77" Foreground="#7C9C81" FontWeight="SemiBold" VerticalAlignment="Top" Margin="10,-58,120,3" HorizontalAlignment="Right"/>
-                        <TextBlock Text="Reserva: 10%" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-58,96,3" HorizontalAlignment="Right" Height="18"/>
-                        <TextBlock Text="Relevo: plano" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-20,96,3" HorizontalAlignment="Right"/>
-                    </StackPanel>
-                </Border>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="10" Width="400" Height="185" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="10,10,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/Sede fazenda.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Estância: Santa Rita de Cássia" FontWeight="Bold" Margin="10,5,10,3"/>
-                        <TextBlock Text="N° de lotes: 47" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="linha: 207" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="N° de Hectares: 1200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,200,3"/>
-                        <TextBlock Text="Gleba: 77" Foreground="#7C9C81" FontWeight="SemiBold" VerticalAlignment="Top" Margin="10,-58,120,3" HorizontalAlignment="Right"/>
-                        <TextBlock Text="Reserva: 10%" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-58,96,3" HorizontalAlignment="Right" Height="18"/>
-                        <TextBlock Text="Relevo: plano" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,-20,96,3" HorizontalAlignment="Right"/>
-                    </StackPanel>
-                </Border>
+                                    <Border Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="5,5,0,0">
+                                        <Border.Background>
+                                            <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/gado 1.png"/>
+                                        </Border.Background>
+                                    </Border>
+
+                                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,0,0,0">
+                                        <TextBlock FontWeight="Bold" Margin="0,5,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Nome da Propriedade: {0}">
+                                                    <Binding Path="NomePropriedade" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Nome do Proprietario: {0}">
+                                                    <Binding Path="NomeProprietario" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Tamanho: {0}">
+                                                    <Binding Path="Tamanho" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="CEP: {0}">
+                                                    <Binding Path="CEP" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                        
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Logradouro: {0}">
+                                                    <Binding Path="Logradouro" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Bairro: {0}">
+                                                    <Binding Path="Bairro" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Complemento: {0}">
+                                                    <Binding Path="Complemento" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+
+                                    </StackPanel>
+
+                                    <!-- Ícone do lápis à direita -->
+                                    <materialDesign:PackIcon Kind="Pencil" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </WrapPanel>
         </Grid>
     </Grid>
