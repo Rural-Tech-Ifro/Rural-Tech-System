@@ -45,7 +45,7 @@ public class EquipamentoDAO
         try
         {
             var comando = _conn.Query();
-            comando.CommandText = "SELECT valor_equi, tipo_equi, nome_equi, descricao_equi FROM equipamento";
+            comando.CommandText = "SELECT id_equi, valor_equi, tipo_equi, nome_equi, descricao_equi FROM equipamento";
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -53,6 +53,7 @@ public class EquipamentoDAO
             {
                 Equipamento equipamento = new Equipamento
                 {
+                    Id = reader.GetInt32("id_equi"),
                     Valor = Convert.ToDouble(reader.GetDouble("valor_equi")),
                     Tipo = reader.GetString("tipo_equi"),
                     Nome = reader.GetString("nome_equi"),

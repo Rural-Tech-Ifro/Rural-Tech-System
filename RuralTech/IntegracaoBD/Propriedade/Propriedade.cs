@@ -1,5 +1,6 @@
 ﻿public class Propriedade
 {
+    public int Id { get; set; }
     public string NomePropriedade { get; set; }
     public string NomeProprietario { get; set; }
     public int Tamanho { get; set; }

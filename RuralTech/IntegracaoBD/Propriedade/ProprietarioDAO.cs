@@ -48,7 +48,7 @@ public class PropriedadeDAO
         try
         {
             var comando = _conn.Query();
-            comando.CommandText = "SELECT nome_pro, proprietario_pro, logradouro_pro, cep_pro, bairro_pro, complemento_pro, tamanho_pro FROM propriedade";
+            comando.CommandText = "SELECT id_pro, nome_pro, proprietario_pro, logradouro_pro, cep_pro, bairro_pro, complemento_pro, tamanho_pro FROM propriedade";
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -56,6 +56,7 @@ public class PropriedadeDAO
             {
                 Propriedade propriedade = new Propriedade
                 {
+                    Id = reader.GetInt32("id_pro"),
                     NomePropriedade = reader.GetString("nome_pro"),
                     NomeProprietario = reader.GetString("proprietario_pro"),
                     Logradouro = reader.GetString("logradouro_pro"),

@@ -51,7 +51,7 @@ public class VacinaDAO
         try
         {
             var comando = _conn.Query();
-            comando.CommandText = "SELECT nome_vac_med, diasCarencia_vac_med, estado_vac_med, quantidade_vac_med, unidadeEntrada_vac_med, unidadeSaida_vac_med, observacao_vac_med FROM vacina_medicamento";
+            comando.CommandText = "SELECT id_vac_mec, nome_vac_med, diasCarencia_vac_med, estado_vac_med, quantidade_vac_med, unidadeEntrada_vac_med, unidadeSaida_vac_med, observacao_vac_med FROM vacina_medicamento";
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -59,6 +59,7 @@ public class VacinaDAO
             {
                 Vacina vacina = new Vacina
                 {
+                    Id = reader.GetInt32("id_vac_med"),
                     Nome = reader.GetString("nome_vac_med"),
                     DiasCarencia = reader.GetInt32("diasCarencia_vac_med"),
                     Estado = reader.GetString("estado_vac_med"),

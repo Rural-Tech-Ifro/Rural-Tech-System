@@ -29,6 +29,14 @@ namespace RuralTech.Telas
             DataContext = this; // Define o DataContext para a própria janela
             EquipamentosList = new ObservableCollection<Equipamento>(); // Inicializa a lista como uma ObservableCollection
             CarregarEquipamentos();
+
+            //COMBO BOX PROPRIEDADE
+            PropriedadeDAO propriedade = new PropriedadeDAO();
+
+            foreach (Propriedade str in propriedade.GetPropriedade())
+            {
+                combo_propriedade.Items.Add(str.NomePropriedade);
+            }
         }
 
         private void CarregarEquipamentos()
@@ -64,7 +72,7 @@ namespace RuralTech.Telas
             try
             {
                 _equipamento.Nome = txt_nome.Text;
-                _equipamento.Propriedade = txt_propriedade.Text;
+                _equipamento.Propriedade = combo_propriedade.Text;
                 _equipamento.Valor = Convert.ToDouble(txt_valor.Text);
                 _equipamento.Descricao = txt_descricao.Text;
                 _equipamento.Tipo = txt_tipo.Text;

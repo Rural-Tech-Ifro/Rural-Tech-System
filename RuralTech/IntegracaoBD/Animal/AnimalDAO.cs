@@ -45,7 +45,7 @@ public class AnimalDAO
         try
         {
             var comando = _conn.Query();
-            comando.CommandText = "SELECT brinco_ani, sexo_ani, raca_ani, classificacao_ani, origem_ani FROM animal";
+            comando.CommandText = "SELECT id_ani, brinco_ani, sexo_ani, raca_ani, classificacao_ani, origem_ani FROM animal";
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -53,6 +53,7 @@ public class AnimalDAO
             {
                 Animals animal = new Animals
                 {
+                    Id = reader.GetInt32("id_ani"),
                     Brinco = reader.GetString("brinco_ani"),
                     Sexo = reader.GetString("sexo_ani"),
                     Raca = reader.GetString("raca_ani"),
