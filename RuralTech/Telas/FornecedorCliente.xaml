@@ -192,18 +192,18 @@
             <!-- Campo de Pesquisa -->
             <!-- Campo de Pesquisa -->
             <materialDesign:AutoSuggestBox
-    materialDesign:HintAssist.Hint="Pesquisar Fornecedor/Cliente"
-    materialDesign:TextFieldAssist.HasClearButton="True"
-    DropDownElevation="Dp0"
-    Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
-    Suggestions="{Binding AutoSuggestBox2Suggestions}"
-    Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-    ValueMember="Key" 
-    Margin="135,10,535,505" 
-    Grid.Row="1" 
-    Width="400" 
-    Height="50" 
-    RenderTransformOrigin="-0.875,-2.1">
+                materialDesign:HintAssist.Hint="Pesquisar Fornecedor/Cliente"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                DropDownElevation="Dp0"
+                Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
+                Suggestions="{Binding AutoSuggestBox2Suggestions}"
+                Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                ValueMember="Key" 
+                Margin="135,10,535,505" 
+                Grid.Row="1" 
+                Width="400" 
+                Height="50" 
+                RenderTransformOrigin="-0.875,-2.1">
 
                 <materialDesign:AutoSuggestBox.ItemTemplate>
                     <DataTemplate>
@@ -215,150 +215,232 @@
                 </materialDesign:AutoSuggestBox.ItemTemplate>
             </materialDesign:AutoSuggestBox>
 
-            <Button Grid.Row="1"  Margin="225, 83" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
-            HorizontalAlignment="Right" VerticalAlignment="Top">
+            <!-- Botão Cadastrar -->
+            <Button Grid.Row="1"  Margin="225, 83" Width="50" Height="50" Background="Green" BorderBrush="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top" Click="OpenModal">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
-        CornerRadius="10">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
                 <TextBlock Text="+" FontSize="40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-10,0,0"/>
             </Button>
+            <Popup Name="PropertyPopup" HorizontalAlignment="Center" VerticalAlignment="Center" Placement="Mouse" StaysOpen="False">
+                <Border Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Padding="10">
+                    <StackPanel Width="300" Margin="0 0 0 30">
+                        <TextBlock Text="Fornecedor" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+
+                        <TextBox
+                                materialDesign:HintAssist.Hint="Nome"
+                                MaxLength="40"
+                                Style="{StaticResource MaterialDesignFilledTextBox}"
+                                TextWrapping="Wrap" Name="txt_nome"
+                                Margin="0,0,0,5"/>
+
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Email"
+                            MaxLength="40"
+                            Style="{StaticResource MaterialDesignFilledTextBox}"
+                            TextWrapping="Wrap" Name="txt_email"
+                            Margin="0,0,0,5"/>
+
+                        <TextBox
+                             materialDesign:HintAssist.Hint="Celular"
+                             MaxLength="40"
+                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                             TextWrapping="Wrap" Name="txt_celular"
+                             Margin="0,0,0,5"/>
+
+                        <TextBox
+                             materialDesign:HintAssist.Hint="Telefone"
+                             MaxLength="40"
+                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                             TextWrapping="Wrap" Name="txt_telefone"
+                             Margin="0,0,0,5"/>
+
+                        <TextBox
+                             materialDesign:HintAssist.Hint="CPF/CNPJ"
+                             MaxLength="40"
+                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                             TextWrapping="Wrap" Name="txt_cpfCnpj"
+                             Margin="0,0,0,5"/>
+
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Logradouro"
+                            MaxLength="40"
+                            Style="{StaticResource MaterialDesignFilledTextBox}"
+                            TextWrapping="Wrap" Name="txt_logradouro"
+                            Margin="0,0,0,5"/>
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Numero"
+                            MaxLength="40"
+                            Style="{StaticResource MaterialDesignFilledTextBox}"
+                            TextWrapping="Wrap" Name="txt_numero"
+                            Margin="0,0,0,5"/>
+
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Estado"
+                            MaxLength="40"
+                            Style="{StaticResource MaterialDesignFilledTextBox}"
+                            TextWrapping="Wrap" Name="txt_estado"
+                            Margin="0,0,0,5"/>
+
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Cidade"
+                            MaxLength="40"
+                            Style="{StaticResource MaterialDesignFilledTextBox}"
+                            TextWrapping="Wrap" Name="txt_cidade"
+                            Margin="0,0,0,5"/>
+
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Pais"
+                            MaxLength="40"
+                            Style="{StaticResource MaterialDesignFilledTextBox}"
+                            TextWrapping="Wrap" Name="txt_pais"
+                            Margin="0,0,0,5"/>
+
+                        <TextBox
+                            materialDesign:HintAssist.Hint="CEP"
+                            MaxLength="40"
+                            Style="{StaticResource MaterialDesignFilledTextBox}"
+                            TextWrapping="Wrap" Name="txt_cep"
+                            Margin="0,0,0,5"/>
+
+                        <Button Content="Salvar" Click="SaveProperty" Margin="0,10,0,0"/>
+                        <Button Content="Fechar" Click="CloseModal" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
 
             <!-- Cards de Fornecedor -->
-            <WrapPanel Grid.Row="2" HorizontalAlignment="Left" Width="830" Margin="185,200,0,10">
-                <!-- Card Repetido -->
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_fornecedor.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Fornecedor/Cliente: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: AdmNutriçãoAnimal " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Tipo: Fornecedor" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="E-mail :adm@gmail.com " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Telefone: 3456-8921" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Endereço: Jardim Rosa,123" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">
+                <ItemsControl ItemsSource="{Binding FornecedoresList}">
+                    <!-- Definindo o layout do ItemsControl como WrapPanel -->
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_fornecedor.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Fornecedor/Cliente: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: AdmNutriçãoAnimal " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Tipo: Fornecedor" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="E-mail :adm@gmail.com " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Telefone: 3456-8921" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Endereço: Jardim Rosa,123" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="52, 10, -30, 10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="80"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_fornecedor.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Fornecedor/Cliente: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: AdmNutriçãoAnimal " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Tipo: Fornecedor" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="E-mail :adm@gmail.com " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Telefone: 3456-8921" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Endereço: Jardim Rosa,123" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 0, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_fornecedor.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Fornecedor/Cliente: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: AdmNutriçãoAnimal " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Tipo: Fornecedor" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="E-mail :adm@gmail.com " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Telefone: 3456-8921" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Endereço: Jardim Rosa,123" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                    <Border Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="5,5,0,0">
+                                        <Border.Background>
+                                            <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/gado 1.png"/>
+                                        </Border.Background>
+                                    </Border>
 
+                                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,0,0,0">
+                                        <TextBlock FontWeight="Bold" Margin="0,5,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Nome: {0}">
+                                                    <Binding Path="Nome" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30,0">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_fornecedor.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Fornecedor/Cliente: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: AdmNutriçãoAnimal " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Tipo: Fornecedor" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="E-mail :adm@gmail.com " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Telefone: 3456-8921" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Endereço: Jardim Rosa,123" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Celular: {0}">
+                                                    <Binding Path="Celular" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30,0">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_fornecedor.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Fornecedor/Cliente: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: AdmNutriçãoAnimal " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Tipo: Fornecedor" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="E-mail :adm@gmail.com " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Telefone: 3456-8921" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Endereço: Jardim Rosa,123" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Telefone: {0}">
+                                                    <Binding Path="Telefone" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30,0">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_fornecedor.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Fornecedor/Cliente: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: AdmNutriçãoAnimal " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Tipo: Fornecedor" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="E-mail :adm@gmail.com " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Telefone: 3456-8921" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Endereço: Jardim Rosa,123" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="CPF/CNPJ: {0}">
+                                                    <Binding Path="CPFCNPJ" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                        
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Pais: {0}">
+                                                    <Binding Path="Pais" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_fornecedor.png"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Fornecedor/Cliente: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Nome: AdmNutriçãoAnimal " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Tipo: Fornecedor" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="E-mail :adm@gmail.com " Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Telefone: 3456-8921" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Endereço: Jardim Rosa,123" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Estado: {0}">
+                                                    <Binding Path="Estado" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Cidade: {0}">
+                                                    <Binding Path="Cidade" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="CEP: {0}">
+                                                    <Binding Path="CEP" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Numero: {0}">
+                                                    <Binding Path="Numero" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Logradouro: {0}">
+                                                    <Binding Path="Logradouro" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Email: {0}">
+                                                    <Binding Path="Email" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                    </StackPanel>
+
+                                    <!-- Ícone do lápis à direita -->
+                                    <materialDesign:PackIcon Kind="Pencil" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </WrapPanel>
         </Grid>
     </Grid>

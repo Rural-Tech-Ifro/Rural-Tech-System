@@ -209,6 +209,8 @@
                 </materialDesign:AutoSuggestBox.ItemTemplate>
             </materialDesign:AutoSuggestBox>
 
+
+            <!-- Botão Cadastrar -->
             <Button Grid.Row="1"  Margin="225, 83" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
             HorizontalAlignment="Right" VerticalAlignment="Top" Click="OpenModal">
                 <Button.Template>
