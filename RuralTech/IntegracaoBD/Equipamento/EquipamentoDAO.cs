@@ -17,12 +17,14 @@ public class EquipamentoDAO
         {
             var comando = _conn.Query();
 
-            comando.CommandText = "INSERT INTO equipamento (valor_equi, tipo_equi, nome_equi, descricao_equi) VALUES (@valor, @tipo, @nome, @descricao);";
+            comando.CommandText = "INSERT INTO equipamento (valor_equi, tipo_equi, nome_equi, descricao_equi, id_pro_fk) VALUES (@valor, @tipo, @nome, @descricao, @idPropriedade);";
 
             comando.Parameters.AddWithValue("@nome", obj.Nome);
             comando.Parameters.AddWithValue("@tipo", obj.Tipo);
             comando.Parameters.AddWithValue("@valor", obj.Valor);
             comando.Parameters.AddWithValue("@descricao", obj.Descricao);
+            comando.Parameters.AddWithValue("@idPropriedade", obj.Propriedade);
+
 
             var resultado = comando.ExecuteNonQuery();
 

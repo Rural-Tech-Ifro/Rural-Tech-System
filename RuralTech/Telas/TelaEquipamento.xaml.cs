@@ -20,6 +20,8 @@ namespace RuralTech.Telas
     /// </summary>
     public partial class TelaEquipamento : Window
     {
+        PropriedadeDAO propriedade = new PropriedadeDAO();
+
         private Equipamento _equipamento = new Equipamento();
         private EquipamentoDAO _equipamentoDAO = new EquipamentoDAO();
         public ObservableCollection<Equipamento> EquipamentosList { get; set; }
@@ -31,7 +33,6 @@ namespace RuralTech.Telas
             CarregarEquipamentos();
 
             //COMBO BOX PROPRIEDADE
-            PropriedadeDAO propriedade = new PropriedadeDAO();
 
             foreach (Propriedade str in propriedade.GetPropriedade())
             {
@@ -71,8 +72,15 @@ namespace RuralTech.Telas
 
             try
             {
+                foreach (Propriedade str in propriedade.GetPropriedade())
+                {
+                    if (str.NomePropriedade == combo_propriedade.Text)
+                    {
+                        _equipamento.Propriedade = str.Id.ToString();
+
+                    }
+                }
                 _equipamento.Nome = txt_nome.Text;
-                _equipamento.Propriedade = combo_propriedade.Text;
                 _equipamento.Valor = Convert.ToDouble(txt_valor.Text);
                 _equipamento.Descricao = txt_descricao.Text;
                 _equipamento.Tipo = txt_tipo.Text;
