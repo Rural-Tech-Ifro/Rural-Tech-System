@@ -42,8 +42,8 @@ nome_equi varchar(200),
 id_pro_fk int,
 foreign key(id_pro_fk) references propriedade(id_pro)
 );
-
-select * from equipamento;
+select * from Equipamento;
+SELECT Propriedade.nome_pro, Equipamento.id_equi, Equipamento.valor_equi, Equipamento.tipo_equi, Equipamento.nome_equi, Equipamento.descricao_equi FROM Propriedade inner join Equipamento on (Equipamento.id_pro_fk = Propriedade.id_pro);
 
 create table pasto(
 id_pas int primary key auto_increment,

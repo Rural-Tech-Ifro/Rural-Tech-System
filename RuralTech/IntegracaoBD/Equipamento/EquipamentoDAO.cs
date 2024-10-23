@@ -47,7 +47,7 @@ public class EquipamentoDAO
         try
         {
             var comando = _conn.Query();
-            comando.CommandText = "SELECT id_equi, valor_equi, tipo_equi, nome_equi, descricao_equi FROM equipamento";
+            comando.CommandText = "SELECT Propriedade.nome_pro, Equipamento.id_equi, Equipamento.valor_equi, Equipamento.tipo_equi, Equipamento.nome_equi, Equipamento.descricao_equi FROM Propriedade inner join Equipamento on (Equipamento.id_pro_fk = Propriedade.id_pro);";
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -60,6 +60,7 @@ public class EquipamentoDAO
                     Tipo = reader.GetString("tipo_equi"),
                     Nome = reader.GetString("nome_equi"),
                     Descricao = reader.GetString("descricao_equi"),
+                    Propriedade = reader.GetString("nome_pro"),
 
                 };
                 equipamentos.Add(equipamento);
@@ -72,7 +73,7 @@ public class EquipamentoDAO
             throw ex;
         }
 
-       
+
         return equipamentos;
-    }
+    }   
 }
