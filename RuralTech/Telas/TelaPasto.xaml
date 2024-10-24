@@ -88,7 +88,7 @@
                                     <TextBlock Text="Ordenha" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
-                            <Button Background="#0ca13f" BorderBrush="white">
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Click_5">
                                 <WrapPanel>
                                     <TextBlock Text="Parto" Foreground="white" ></TextBlock>
                                 </WrapPanel>
@@ -206,8 +206,10 @@
                 </materialDesign:AutoSuggestBox.ItemTemplate>
             </materialDesign:AutoSuggestBox>
 
-            <Button Grid.Row="1"  Margin="326, 83" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
-                HorizontalAlignment="Right" VerticalAlignment="Top">
+            <!-- CADASTRAR PASTO -->
+
+            <Button Grid.Row="1"  Margin="225, 83" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
+            HorizontalAlignment="Right" VerticalAlignment="Top" Click="OpenModal">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" 
@@ -219,74 +221,138 @@
                 <TextBlock Text="+" FontSize="40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-10,0,0"/>
             </Button>
 
+            <Popup Name="PropertyPopup" HorizontalAlignment="Center" VerticalAlignment="Center" Placement="Mouse" StaysOpen="False">
+                <Border Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Padding="10">
+                    <StackPanel Width="300" Margin="0 0 0 30">
+                        <TextBlock Text="Pasto" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+
+                        <ComboBox
+                            x:Name="combo_propriedade"
+                            Width="300"
+                            Margin="0, 0, 0, 5"
+                            materialDesign:HintAssist.Hint="Selecione uma propriedade"
+                            
+                            IsEnabled="{Binding Path=IsChecked, ElementName=FilledComboBoxEnabledCheckBox}"
+                            Style="{StaticResource MaterialDesignFilledComboBox}">
+                        </ComboBox>
+
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Tamanho:"
+                            MaxLength="40"
+                            Style="{StaticResource MaterialDesignFilledTextBox}"
+                            TextWrapping="Wrap" Name="txt_tamanho"
+                            Margin="0,0,0,5"/>
+
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Limite:"
+                            MaxLength="40"
+                            Style="{StaticResource MaterialDesignFilledTextBox}"
+                            TextWrapping="Wrap" Name="txt_limite"
+                            Margin="0,0,0,5"/>
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Descrição:"
+                            MaxLength="40"
+                            Style="{StaticResource MaterialDesignFilledTextBox}"
+                            TextWrapping="Wrap" Name="txt_descricao"
+                            Margin="0,0,0,5"/>
+
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Tipo Pastagem:"
+                            MaxLength="40"
+                            Style="{StaticResource MaterialDesignFilledTextBox}"
+                            TextWrapping="Wrap" Name="txt_tipoPastagem"
+                            Margin="0,0,0,5"/>
+
+
+
+
+                        <Button Content="Salvar" Click="SaveProperty" Margin="0,10,0,0"/>
+                        <Button Content="Fechar" Click="CloseModal" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
+
 
             <!-- Cards de Animais -->
-            <WrapPanel Grid.Row="2" HorizontalAlignment="Left" Width="900" Margin="249,194,0,16">
-                <!-- Card Repetido -->
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="300" Height="213" Margin="0, 0, 125, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_pasto.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Pasto: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Propriedade: Fazenda São José" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Tamanho: 2 hectares" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Descrição: Tem mato" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Tipo de Pastagem: Mato" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Limite de Animais: 200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">
+                <ItemsControl ItemsSource="{Binding PastosList}">
+                    <!-- Definindo o layout do ItemsControl como WrapPanel -->
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="300" Height="213" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_pasto.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Pasto: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Propriedade: Fazenda São José" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Tamanho: 2 hectares" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Descrição: Tem mato" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Tipo de Pastagem: Mato" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Limite de Animais: 200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="52, 10, -30, 10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="80"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
 
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="300" Height="213" Margin="0, 0, 125,0">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_pasto.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Pasto: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Propriedade: Fazenda São José" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Tamanho: 2 hectares" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Descrição: Tem mato" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Tipo de Pastagem: Mato" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Limite de Animais: 200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                    <Border Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="5,5,0,0">
+                                        <Border.Background>
+                                            <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/gado 1.png"/>
+                                        </Border.Background>
+                                    </Border>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="300" Height="213" Margin="0, 0, 30,0">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_pasto.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Pasto: 1" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Propriedade: Fazenda São José" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Tamanho: 2 hectares" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Descrição: Tem mato" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Tipo de Pastagem: Mato" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Limite de Animais: 200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,0,0,0">
+                                        <TextBlock FontWeight="Bold" Margin="0,5,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Propriedade: {0}">
+                                                    <Binding Path="Propriedade" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Tamanho: {0}">
+                                                    <Binding Path="Tamanho" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Limite: {0}">
+                                                    <Binding Path="Limite" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Descrição: {0}">
+                                                    <Binding Path="Descricao" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Tipo: {0}">
+                                                    <Binding Path="TipoPastagem" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                    </StackPanel>
+
+                                    <!-- Ícone do lápis à direita -->
+                                    <materialDesign:PackIcon Kind="Pencil" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </WrapPanel>
         </Grid>
     </Grid>
