@@ -144,6 +144,8 @@
     <Compile Include="IntegracaoBD\Fornecedor\FornecedorDAO.cs" />
     <Compile Include="IntegracaoBD\Pasto\Pasto.cs" />
     <Compile Include="IntegracaoBD\Pasto\PastoDAO.cs" />
+    <Compile Include="IntegracaoBD\Patrimonio\Patrimonio.cs" />
+    <Compile Include="IntegracaoBD\Patrimonio\PatrimonioDAO.cs" />
     <Compile Include="IntegracaoBD\Propriedade\Propriedade.cs" />
     <Compile Include="IntegracaoBD\Propriedade\ProprietarioDAO.cs" />
     <Compile Include="IntegracaoBD\Usuario\Usuario.cs" />

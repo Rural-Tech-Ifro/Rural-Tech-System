@@ -15,7 +15,7 @@ public class PastoDAO
         {
             var comando = _conn.Query();
 
-            comando.CommandText = "INSERT INTO Pasto (limete_pas, descricao_pas, tipo_pas, tamanho_pas, id_pro_fk) VALUES (@limite, @descricao, @tipo, @tamanho, @diPropriedade);";
+            comando.CommandText = "INSERT INTO Pasto (limete_pas, descricao_pas, tipo_pas, tamanho_pas, id_pro_fk) VALUES (@limite, @descricao, @tipo, @tamanho, @idPropriedade);";
 
             comando.Parameters.AddWithValue("@limite", obj.Limite);
             comando.Parameters.AddWithValue("@descricao", obj.Descricao);
