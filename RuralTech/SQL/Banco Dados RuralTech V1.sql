@@ -11,10 +11,12 @@ senha_usu varchar(10)
 create table patrimonio(
 id_pat int primary key auto_increment,
 nome_pat varchar(200),
-valor_par double,
-tipo_par varchar(100),
-imagrem_par blob,
-descricao_par varchar(500)
+valor_pat double,
+tipo_pat varchar(100),
+imagrem_pat blob,
+descricao_pat varchar(500),
+id_pro_fk int,
+foreign key(id_pro_fk) references propriedade(id_pro)
 );
 
 create table propriedade(
@@ -29,8 +31,7 @@ tamanho_pro int,
 imagem_pro blob,
 id_usu_fk int,
 foreign key(id_usu_fk) references usuario(id_usu),
-id_pat_fk int,
-foreign key(id_pat_fk) references patrimonio(id_pat)
+
 );
 
 create table equipamento(
