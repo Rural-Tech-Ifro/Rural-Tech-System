@@ -152,17 +152,38 @@
     <Compile Include="IntegracaoBD\Usuario\UsuarioDAO.cs" />
     <Compile Include="IntegracaoBD\Vacina\Vacina.cs" />
     <Compile Include="IntegracaoBD\Vacina\VacinaDAO.cs" />
+    <Compile Include="TelaApartacao.xaml.cs">
+      <DependentUpon>TelaApartacao.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\TelaApartacao.xaml.cs">
+      <DependentUpon>TelaApartacao.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\TelaCompra.xaml.cs">
+      <DependentUpon>TelaCompra.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\TelaDespesa.xaml.cs">
+      <DependentUpon>TelaDespesa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\TelaExame.xaml.cs">
+      <DependentUpon>TelaExame.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Telas\TelaFornecedor.xaml.cs">
       <DependentUpon>TelaFornecedor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\TelaFuncionario.xaml.cs">
       <DependentUpon>TelaFuncionario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Telas\TelaInseminacao.xaml.cs">
+      <DependentUpon>TelaInseminacao.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Telas\TelaMedicamento.xaml.cs">
       <DependentUpon>TelaMedicamento.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\TelaOrdenha.xaml.cs">
       <DependentUpon>TelaOrdenha.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\TelaParicao.xaml.cs">
+      <DependentUpon>TelaParicao.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\TelaPasto.xaml.cs">
       <DependentUpon>TelaPasto.xaml</DependentUpon>
@@ -176,9 +197,16 @@
     <Compile Include="Telas\TelaPropriedade.xaml.cs">
       <DependentUpon>TelaPropriedade.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Telas\TelaTransportador.xaml.cs">
+      <DependentUpon>TelaTransportador.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Telas\TelaVacina.xaml.cs">
       <DependentUpon>TelaVacina.xaml</DependentUpon>
     </Compile>
+    <Page Include="TelaApartacao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Telas\TelaAnimal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -187,7 +215,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Telas\TelaApartacao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\TelaCompra.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\TelaDespesa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Telas\TelaEquipamento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\TelaExame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Telas\TelaFuncionario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\TelaInseminacao.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,6 +275,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Telas\TelaParicao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Telas\TelaPasto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -240,6 +292,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Telas\TelaPropriedade.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\TelaTransportador.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -371,6 +427,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\ImagensGeral\img_patrimonio.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\ImagensGeral\img_transportador.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\ImagensGeral\img_miniboi.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets')" />

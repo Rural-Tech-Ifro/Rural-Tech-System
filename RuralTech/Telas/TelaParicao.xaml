@@ -1,4 +1,4 @@
-﻿<Window x:Class="RuralTech.Telas.TelaFuncionario"
+﻿<Window x:Class="RuralTech.Telas.TelaParicao"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,7 +10,7 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-        Title="Funcionario" 
+        Title="FornecedorCliente" 
         Style="{StaticResource MaterialDesignWindow}"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Background="Transparent" 
@@ -154,7 +154,6 @@
                 </StackPanel>
             </materialDesign:Card>
         </StackPanel>
-
         <!-- Conteúdo Principal -->
         <Grid Grid.ColumnSpan="2" Margin="59,0,0,0">
             <Grid.RowDefinitions>
@@ -190,9 +189,8 @@
             </StackPanel>
 
             <!-- Campo de Pesquisa -->
-            <!-- Campo de Pesquisa -->
             <materialDesign:AutoSuggestBox
-    materialDesign:HintAssist.Hint="Pesquisar Funcionário"
+    materialDesign:HintAssist.Hint="Pesquisar Parição"
     materialDesign:TextFieldAssist.HasClearButton="True"
     DropDownElevation="Dp0"
     Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
@@ -229,7 +227,7 @@
             </Button>
 
             <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">
-                <ItemsControl ItemsSource="{Binding FuncionariosList}">
+                <ItemsControl ItemsSource="{Binding ParicoesList}">
                     <!-- Definindo o layout do ItemsControl como WrapPanel -->
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -260,40 +258,64 @@
                                     <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,0,0,0">
                                         <TextBlock FontWeight="Bold" Margin="0,5,0,0">
                                             <TextBlock.Text>
-                                                <MultiBinding StringFormat="Nome: {0}">
-                                                    <Binding Path="Nome" />
+                                                <MultiBinding StringFormat="Animal: {0}">
+                                                    <Binding Path="Animal" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
 
                                         <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
                                             <TextBlock.Text>
-                                                <MultiBinding StringFormat="CPF: {0}">
-                                                    <Binding Path="CPF" />
+                                                <MultiBinding StringFormat="Data: {0}">
+                                                    <Binding Path="Data" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
 
                                         <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
                                             <TextBlock.Text>
-                                                <MultiBinding StringFormat="Data Nascimento: {0}">
-                                                    <Binding Path="DataNascimento" />
+                                                <MultiBinding StringFormat="Transferencia de Lote: {0}">
+                                                    <Binding Path="TransferenciaLote" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
 
                                         <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
                                             <TextBlock.Text>
-                                                <MultiBinding StringFormat="Salário: {0}">
-                                                    <Binding Path="Salario" />
+                                                <MultiBinding StringFormat="Tipo: {0}">
+                                                    <Binding Path="Tipo" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
 
                                         <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
                                             <TextBlock.Text>
-                                                <MultiBinding StringFormat="Telefone: {0}">
-                                                    <Binding Path="Telefone" />
+                                                <MultiBinding StringFormat="Sexo: {0}">
+                                                    <Binding Path="Sexo" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Observação: {0}">
+                                                    <Binding Path="Observacao" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Situação: {0}">
+                                                    <Binding Path="Situacao" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Detalhamento: {0}">
+                                                    <Binding Path="Detalhamento" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>

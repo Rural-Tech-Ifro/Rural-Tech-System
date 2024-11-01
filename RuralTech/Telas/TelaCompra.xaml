@@ -1,4 +1,4 @@
-﻿<Window x:Class="RuralTech.Telas.TelaFuncionario"
+﻿<Window x:Class="RuralTech.Telas.TelaCompra"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,7 +10,7 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-        Title="Funcionario" 
+        Title="FornecedorCliente" 
         Style="{StaticResource MaterialDesignWindow}"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Background="Transparent" 
@@ -154,7 +154,6 @@
                 </StackPanel>
             </materialDesign:Card>
         </StackPanel>
-
         <!-- Conteúdo Principal -->
         <Grid Grid.ColumnSpan="2" Margin="59,0,0,0">
             <Grid.RowDefinitions>
@@ -190,9 +189,8 @@
             </StackPanel>
 
             <!-- Campo de Pesquisa -->
-            <!-- Campo de Pesquisa -->
             <materialDesign:AutoSuggestBox
-    materialDesign:HintAssist.Hint="Pesquisar Funcionário"
+    materialDesign:HintAssist.Hint="Pesquisar Compra"
     materialDesign:TextFieldAssist.HasClearButton="True"
     DropDownElevation="Dp0"
     Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
@@ -203,7 +201,7 @@
     Grid.Row="1" 
     Width="400" 
     Height="50" 
-    RenderTransformOrigin="-0.875,-2.1">
+    RenderTransformOrigin="-0.875,-2.1" TextChanged="AutoSuggestBox_TextChanged">
 
                 <materialDesign:AutoSuggestBox.ItemTemplate>
                     <DataTemplate>
@@ -229,7 +227,7 @@
             </Button>
 
             <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">
-                <ItemsControl ItemsSource="{Binding FuncionariosList}">
+                <ItemsControl ItemsSource="{Binding ComprasList}">
                     <!-- Definindo o layout do ItemsControl como WrapPanel -->
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -257,43 +255,27 @@
                                         </Border.Background>
                                     </Border>
 
+                                    <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="Descrição: {0}">
+                                                <Binding Path="Descricao" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+
                                     <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,0,0,0">
                                         <TextBlock FontWeight="Bold" Margin="0,5,0,0">
                                             <TextBlock.Text>
-                                                <MultiBinding StringFormat="Nome: {0}">
-                                                    <Binding Path="Nome" />
+                                                <MultiBinding StringFormat="Preço: {0}">
+                                                    <Binding Path="Preco" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
 
                                         <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
                                             <TextBlock.Text>
-                                                <MultiBinding StringFormat="CPF: {0}">
-                                                    <Binding Path="CPF" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
-
-                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="Data Nascimento: {0}">
-                                                    <Binding Path="DataNascimento" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
-
-                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="Salário: {0}">
-                                                    <Binding Path="Salario" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
-
-                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="Telefone: {0}">
-                                                    <Binding Path="Telefone" />
+                                                <MultiBinding StringFormat="Categoria: {0}">
+                                                    <Binding Path="Categoria" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
