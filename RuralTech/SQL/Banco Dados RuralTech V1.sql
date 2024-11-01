@@ -8,16 +8,7 @@ email_usu varchar(200),
 senha_usu varchar(10)
 );
 
-create table patrimonio(
-id_pat int primary key auto_increment,
-nome_pat varchar(200),
-valor_pat double,
-tipo_pat varchar(100),
-imagrem_pat blob,
-descricao_pat varchar(500),
-id_pro_fk int,
-foreign key(id_pro_fk) references propriedade(id_pro)
-);
+
 
 create table propriedade(
 id_pro int primary key auto_increment,
@@ -30,8 +21,30 @@ complemento_pro varchar(200),
 tamanho_pro int,
 imagem_pro blob,
 id_usu_fk int,
-foreign key(id_usu_fk) references usuario(id_usu),
+foreign key(id_usu_fk) references usuario(id_usu)
+);
+INSERT INTO propriedade (nome_pro, proprietario_pro, logradouro_pro, cep_pro, bairro_pro, complemento_pro, tamanho_pro)
+VALUES 
+('Casa Verde', 'João Silva', 'Rua das Flores, 123', '12345-678', 'Jardim das Rosas', 'Apto 101', 150),
 
+('Chácara do Sol', 'Maria Oliveira', 'Estrada do Sol, km 10', '98765-432', 'Zona Rural', 'Casa de madeira', 500),
+
+('Apartamento Azul', 'Carlos Pereira', 'Avenida Central, 456', '23456-789', 'Centro', 'Último andar', 90),
+
+('Sobrado Dourado', 'Ana Costa', 'Rua do Comércio, 78', '34567-890', 'Vila Nova', 'Fundos', 200),
+
+('Terreno Verde', 'Felipe Mendes', 'Estrada das Palmeiras, s/n', '45678-901', 'São Jorge', 'Próximo ao lago', 1000);
+
+select * from propriedade;
+create table patrimonio(
+id_pat int primary key auto_increment,
+nome_pat varchar(200),
+valor_pat double,
+tipo_pat varchar(100),
+imagrem_pat blob,
+descricao_pat varchar(500),
+id_pro_fk int,
+foreign key(id_pro_fk) references propriedade(id_pro)
 );
 
 create table equipamento(
@@ -43,8 +56,6 @@ nome_equi varchar(200),
 id_pro_fk int,
 foreign key(id_pro_fk) references propriedade(id_pro)
 );
-select * from Equipamento;
-SELECT Propriedade.nome_pro, Equipamento.id_equi, Equipamento.valor_equi, Equipamento.tipo_equi, Equipamento.nome_equi, Equipamento.descricao_equi FROM Propriedade inner join Equipamento on (Equipamento.id_pro_fk = Propriedade.id_pro);
 
 create table pasto(
 id_pas int primary key auto_increment,
