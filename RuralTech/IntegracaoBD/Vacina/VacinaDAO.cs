@@ -51,7 +51,7 @@ public class VacinaDAO
         try
         {
             var comando = _conn.Query();
-            comando.CommandText = "SELECT id_vac_mec, nome_vac_med, diasCarencia_vac_med, estado_vac_med, quantidade_vac_med, unidadeEntrada_vac_med, unidadeSaida_vac_med, observacao_vac_med FROM vacina_medicamento";
+            comando.CommandText = "SELECT id_vac_med, nome_vac_med, diasCarencia_vac_med, estado_vac_med, quantidade_vac_med, unidadeEntrada_vac_med, unidadeSaida_vac_med, observacao_vac_med FROM vacina_medicamento";
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -59,14 +59,14 @@ public class VacinaDAO
             {
                 Vacina vacina = new Vacina
                 {
-                    Id = reader.GetInt32("id_vac_med"),
                     Nome = reader.GetString("nome_vac_med"),
                     DiasCarencia = reader.GetInt32("diasCarencia_vac_med"),
                     Estado = reader.GetString("estado_vac_med"),
                     Quantidade = reader.GetInt32("quantidade_vac_med"),
                     UnidadeEntrada = DAOHelper.GetString(reader, "unidadeEntrada_vac_med"),
                     UnidadeSaida = reader.GetString("unidadeSaida_vac_med"),
-                    Observacao = reader.GetString("observacao_vac_med")
+                    Observacao = reader.GetString("observacao_vac_med"),
+                    Id = reader.GetInt32("id_vac_med"),
                 };
 
                 vacinas.Add(vacina);
@@ -82,5 +82,69 @@ public class VacinaDAO
         return vacinas;
     }
 
+    public void Update(Vacina obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "UPDATE vacina_medicamento SET nome_vac_med = @nome, diasCarencia_vac_med = @dias, estado_vac_med = @estado, inscricaoEstadual_vac_med = @inscricao, quantidade_vac_med = @quantidade, unidadeEntrada_vac_med = @unidadeEntrada, unidadeSaida_vac_med = @unidadeSaida, observacao_vac_med = @observacao WHERE id_vac_med = @id;";
+
+            // Define os parâmetros para a atualização
+            comando.Parameters.AddWithValue("@nome", obj.Nome);
+            comando.Parameters.AddWithValue("@dias", obj.DiasCarencia);
+            comando.Parameters.AddWithValue("@estado", obj.Estado);
+            comando.Parameters.AddWithValue("@inscricao", obj.InscricaoEstadual);
+            comando.Parameters.AddWithValue("@quantidade", obj.Quantidade);
+            comando.Parameters.AddWithValue("@unidadeEntrada", obj.UnidadeEntrada);
+            comando.Parameters.AddWithValue("@unidadeSaida", obj.UnidadeSaida);
+            comando.Parameters.AddWithValue("@observacao", obj.Observacao);
+
+            foreach (Vacina str in GetVacinas())
+            {
+                if (str.Id == obj.Id)
+                {
+                    comando.Parameters.AddWithValue("@id", str.Id);
+                }
+            }
+
+
+            // Executa o comando e verifica o resultado
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao atualizar as informações");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Erro ao atualizar a vacina: " + ex.Message, ex);
+        }
+    }
+
+    public void Delete(Vacina obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "delete from vacina_medicamento where id_vac_med = @id;";
+
+            comando.Parameters.AddWithValue("@id", obj.Id);
+
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao salvar as informações.");
+            }
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
 }
