@@ -1,4 +1,4 @@
-﻿<Window x:Class="RuralTech.Telas.TelaFuncionario"
+﻿<Window x:Class="RuralTech.Telas.TelaDespesa"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,7 +10,7 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-        Title="Funcionario" 
+        Title="FornecedorCliente" 
         Style="{StaticResource MaterialDesignWindow}"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Background="Transparent" 
@@ -154,7 +154,6 @@
                 </StackPanel>
             </materialDesign:Card>
         </StackPanel>
-
         <!-- Conteúdo Principal -->
         <Grid Grid.ColumnSpan="2" Margin="59,0,0,0">
             <Grid.RowDefinitions>
@@ -190,12 +189,11 @@
             </StackPanel>
 
             <!-- Campo de Pesquisa -->
-            <!-- Campo de Pesquisa -->
             <materialDesign:AutoSuggestBox
-    materialDesign:HintAssist.Hint="Pesquisar Funcionário"
+    materialDesign:HintAssist.Hint="Pesquisar Vacina"
     materialDesign:TextFieldAssist.HasClearButton="True"
     DropDownElevation="Dp0"
-    Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
+    Style="{StaticResource MaterialDesignAutoSuggestBox}"
     Suggestions="{Binding AutoSuggestBox2Suggestions}"
     Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
     ValueMember="Key" 
@@ -229,7 +227,7 @@
             </Button>
 
             <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">
-                <ItemsControl ItemsSource="{Binding FuncionariosList}">
+                <ItemsControl ItemsSource="{Binding DespesasList}">
                     <!-- Definindo o layout do ItemsControl como WrapPanel -->
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -257,46 +255,103 @@
                                         </Border.Background>
                                     </Border>
 
+                                    <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="Descrição: {0}">
+                                                <Binding Path="Descricao" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+
                                     <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,0,0,0">
                                         <TextBlock FontWeight="Bold" Margin="0,5,0,0">
                                             <TextBlock.Text>
-                                                <MultiBinding StringFormat="Nome: {0}">
-                                                    <Binding Path="Nome" />
+                                                <MultiBinding StringFormat="Número do Documento: {0}">
+                                                    <Binding Path="NumeroDocumento" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
 
                                         <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
                                             <TextBlock.Text>
-                                                <MultiBinding StringFormat="CPF: {0}">
-                                                    <Binding Path="CPF" />
+                                                <MultiBinding StringFormat="Data de Emissão: {0}">
+                                                    <Binding Path="DataEmissao" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
 
                                         <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
                                             <TextBlock.Text>
-                                                <MultiBinding StringFormat="Data Nascimento: {0}">
-                                                    <Binding Path="DataNascimento" />
+                                                <MultiBinding StringFormat="Categoria: {0}">
+                                                    <Binding Path="Categoria" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
 
                                         <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
                                             <TextBlock.Text>
-                                                <MultiBinding StringFormat="Salário: {0}">
-                                                    <Binding Path="Salario" />
+                                                <MultiBinding StringFormat="Cliente/Fornecedor: {0}">
+                                                    <Binding Path="ClienteFornecedor" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
 
                                         <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
                                             <TextBlock.Text>
-                                                <MultiBinding StringFormat="Telefone: {0}">
-                                                    <Binding Path="Telefone" />
+                                                <MultiBinding StringFormat="Data Vencimento: {0}">
+                                                    <Binding Path="DataVencimento" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Forma de Pagamento: {0}">
+                                                    <Binding Path="FormaPagamento" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Observação: {0}">
+                                                    <Binding Path="Observacao" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Plano de Contas {0}">
+                                                    <Binding Path="PlanoContas" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Centro de Custo: {0}">
+                                                    <Binding Path="CentroCusto" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Valor Total: {0}">
+                                                    <Binding Path="ValorTotal" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Lançamento Parcelado: {0}">
+                                                    <Binding Path="LancamentoParcelado" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
 
                                     </StackPanel>
 

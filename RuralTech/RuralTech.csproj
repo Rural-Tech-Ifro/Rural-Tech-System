@@ -55,6 +55,9 @@
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>packages\BouncyCastle.Cryptography.2.3.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
+    <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
+      <HintPath>packages\ControlzEx.4.3.0\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Protobuf, Version=3.26.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>packages\Google.Protobuf.3.26.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
@@ -67,8 +70,14 @@
     <Reference Include="K4os.Hash.xxHash, Version=1.0.8.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
       <HintPath>packages\K4os.Hash.xxHash.1.0.8\lib\net462\K4os.Hash.xxHash.dll</HintPath>
     </Reference>
+    <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
+      <HintPath>packages\MahApps.Metro.2.0.0\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=3.1.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>packages\MaterialDesignColors.3.1.0\lib\net462\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.MahApps, Version=3.1.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignThemes.MahApps.3.1.0\lib\net462\MaterialDesignThemes.MahApps.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignThemes.Wpf, Version=5.1.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>packages\MaterialDesignThemes.5.1.0\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
@@ -86,6 +95,7 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.ConfigurationManager, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Configuration.ConfigurationManager.8.0.0\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
@@ -112,6 +122,8 @@
       <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -152,17 +164,38 @@
     <Compile Include="IntegracaoBD\Usuario\UsuarioDAO.cs" />
     <Compile Include="IntegracaoBD\Vacina\Vacina.cs" />
     <Compile Include="IntegracaoBD\Vacina\VacinaDAO.cs" />
+    <Compile Include="TelaApartacao.xaml.cs">
+      <DependentUpon>TelaApartacao.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\TelaApartacao.xaml.cs">
+      <DependentUpon>TelaApartacao.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\TelaCompra.xaml.cs">
+      <DependentUpon>TelaCompra.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\TelaDespesa.xaml.cs">
+      <DependentUpon>TelaDespesa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\TelaExame.xaml.cs">
+      <DependentUpon>TelaExame.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Telas\TelaFornecedor.xaml.cs">
       <DependentUpon>TelaFornecedor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\TelaFuncionario.xaml.cs">
       <DependentUpon>TelaFuncionario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Telas\TelaInseminacao.xaml.cs">
+      <DependentUpon>TelaInseminacao.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Telas\TelaMedicamento.xaml.cs">
       <DependentUpon>TelaMedicamento.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\TelaOrdenha.xaml.cs">
       <DependentUpon>TelaOrdenha.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\TelaParicao.xaml.cs">
+      <DependentUpon>TelaParicao.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\TelaPasto.xaml.cs">
       <DependentUpon>TelaPasto.xaml</DependentUpon>
@@ -176,9 +209,16 @@
     <Compile Include="Telas\TelaPropriedade.xaml.cs">
       <DependentUpon>TelaPropriedade.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Telas\TelaTransportador.xaml.cs">
+      <DependentUpon>TelaTransportador.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Telas\TelaVacina.xaml.cs">
       <DependentUpon>TelaVacina.xaml</DependentUpon>
     </Compile>
+    <Page Include="TelaApartacao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Telas\TelaAnimal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -187,7 +227,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Telas\TelaApartacao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\TelaCompra.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\TelaDespesa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Telas\TelaEquipamento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\TelaExame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Telas\TelaFuncionario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\TelaInseminacao.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,6 +287,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Telas\TelaParicao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Telas\TelaPasto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -240,6 +304,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Telas\TelaPropriedade.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\TelaTransportador.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -371,6 +439,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\ImagensGeral\img_patrimonio.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\ImagensGeral\img_transportador.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\ImagensGeral\img_miniboi.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets')" />
