@@ -121,6 +121,7 @@ nome_fun varchar(200),
 email_fun varchar(200),
 telefone_fun varchar(200),
 numero_fun varchar(200),
+salario_fun double,
 celular_fun varchar(200),
 logradouro_fun varchar(200),
 pais_fun varchar(200),
@@ -128,7 +129,7 @@ estado_fun varchar(200),
 cidade_fun varchar(200),
 cep_fun varchar(50),
 cpf_fun varchar(50),
-dataNacimento_fun date,
+dataNascimento_fun date,
 dataPagamento_fun date,
 dataAdmissao_fun date
 );
@@ -330,21 +331,33 @@ id_fun_fk int,
 foreign key(id_fun_fk) references funcionario(id_fun)
 );
 
-create table vacina_medicamento(
-id_vac_med int primary key auto_increment,
-nome_vac_med varchar(300),
-diasCarencia_vac_med int,
-estado_vac_med varchar(300),
-inscricaoEstadual_vac_med varchar(300),
-quantidade_vac_med int,
-unidadeEntrada_vac_med varchar(400),
-unidadeSaida_vac_med varchar(400),
-observacao_vac_med varchar(500)
+create table vacina(
+id_vac int primary key auto_increment,
+nome_vac varchar(300),
+diasCarencia_vac int,
+estado_vac varchar(300),
+inscricaoEstadual_vac varchar(300),
+quantidade_vac int,
+unidadeEntrada_vac varchar(400),
+unidadeSaida_vac varchar(400),
+observacao_vac varchar(500)
 );
 
-select * from Vacina_Medicamento;
-update Vacina_Medicamento set unidadeEntrada_vac_med = null WHERE id_vac_med = 5;
+create table medicamento(
+id_med int primary key auto_increment,
+nome_med varchar(300),
+diasCarencia_med int,
+estado_med varchar(300),
+inscricaoEstadual_med varchar(300),
+quantidade_med int,
+unidadeEntrada_med varchar(400),
+unidadeSaida_med varchar(400),
+observacao_med varchar(500)
+);
 
+select * from Vacina;
+select * from medicamento;
+update Vacina_Medicamento set unidadeEntrada_vac_med = null WHERE id_vac_med = 5;
 
 
 create table aplicacao_medicamento(
