@@ -15,7 +15,7 @@ public class VacinaDAO
         {
             var comando = _conn.Query();
 
-            comando.CommandText = "INSERT INTO vacina_medicamento VALUES " +
+            comando.CommandText = "INSERT INTO vacina VALUES " +
             "(null, @nome, @diasCarencia, @estado, @inscricaoEstadual, @quantidade, @unidadeEntrada, @unidadeSaida, @observacao)";
 
 
@@ -51,7 +51,7 @@ public class VacinaDAO
         try
         {
             var comando = _conn.Query();
-            comando.CommandText = "SELECT id_vac_med, nome_vac_med, diasCarencia_vac_med, estado_vac_med, quantidade_vac_med, unidadeEntrada_vac_med, unidadeSaida_vac_med, observacao_vac_med FROM vacina_medicamento";
+            comando.CommandText = "SELECT id_vac, nome_vac, diasCarencia_vac, estado_vac, quantidade_vac, unidadeEntrada_vac, unidadeSaida_vac, observacao_vac FROM vacina";
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -59,14 +59,14 @@ public class VacinaDAO
             {
                 Vacina vacina = new Vacina
                 {
-                    Nome = reader.GetString("nome_vac_med"),
-                    DiasCarencia = reader.GetInt32("diasCarencia_vac_med"),
-                    Estado = reader.GetString("estado_vac_med"),
-                    Quantidade = reader.GetInt32("quantidade_vac_med"),
-                    UnidadeEntrada = DAOHelper.GetString(reader, "unidadeEntrada_vac_med"),
-                    UnidadeSaida = reader.GetString("unidadeSaida_vac_med"),
-                    Observacao = reader.GetString("observacao_vac_med"),
-                    Id = reader.GetInt32("id_vac_med"),
+                    Nome = reader.GetString("nome_vac"),
+                    DiasCarencia = reader.GetInt32("diasCarencia_vac"),
+                    Estado = reader.GetString("estado_vac"),
+                    Quantidade = reader.GetInt32("quantidade_vac"),
+                    UnidadeEntrada = DAOHelper.GetString(reader, "unidadeEntrada_vac"),
+                    UnidadeSaida = reader.GetString("unidadeSaida_vac"),
+                    Observacao = reader.GetString("observacao_vac"),
+                    Id = reader.GetInt32("id_vac"),
                 };
 
                 vacinas.Add(vacina);
@@ -88,7 +88,7 @@ public class VacinaDAO
         {
             var comando = _conn.Query();
 
-            comando.CommandText = "UPDATE vacina_medicamento SET nome_vac_med = @nome, diasCarencia_vac_med = @dias, estado_vac_med = @estado, inscricaoEstadual_vac_med = @inscricao, quantidade_vac_med = @quantidade, unidadeEntrada_vac_med = @unidadeEntrada, unidadeSaida_vac_med = @unidadeSaida, observacao_vac_med = @observacao WHERE id_vac_med = @id;";
+            comando.CommandText = "UPDATE vacina SET nome_vac = @nome, diasCarencia_vac = @dias, estado_vac = @estado, inscricaoEstadual_vac = @inscricao, quantidade_vac = @quantidade, unidadeEntrada_vac = @unidadeEntrada, unidadeSaida_vac = @unidadeSaida, observacao_vac = @observacao WHERE id_vac = @id;";
 
             // Define os parâmetros para a atualização
             comando.Parameters.AddWithValue("@nome", obj.Nome);
@@ -129,7 +129,7 @@ public class VacinaDAO
         {
             var comando = _conn.Query();
 
-            comando.CommandText = "delete from vacina_medicamento where id_vac_med = @id;";
+            comando.CommandText = "delete from vacina where id_vac = @id;";
 
             comando.Parameters.AddWithValue("@id", obj.Id);
 
