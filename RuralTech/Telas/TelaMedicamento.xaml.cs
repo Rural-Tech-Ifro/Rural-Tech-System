@@ -1,51 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using RuralTech.Integracoes;
 
 namespace RuralTech.Telas
 {
-    /// <summary>
-    /// Lógica interna para Medicamentos.xaml
-    /// </summary>
     public partial class TelaMedicamento : Window
     {
+        public bool Editar = false;
+        private bool isEditMode = false;
+        private int editingMedicamentoId; // ID da medicamento sendo editada
+        private Medicamento _medicamento = new Medicamento(); // Objeto medicamento
+        private MedicamentoDAO _medicamentoDAO = new MedicamentoDAO(); // Objeto responsável por acessar o banco de dados
+        public ObservableCollection<Medicamento> MedicamentosList { get; set; }
+
         public TelaMedicamento()
         {
             InitializeComponent();
+            DataContext = this;
+            MedicamentosList = new ObservableCollection<Medicamento>();
+            CarregarMedicamentos();
         }
-        private void OpenModal(object sender, RoutedEventArgs e)
-        {
-            PropertyPopup.IsOpen = true;
-        }
-
-        private void CloseModal(object sender, RoutedEventArgs e)
-        {
-            PropertyPopup.IsOpen = false;
-        }
-
-        private void SaveProperty(object sender, RoutedEventArgs e)
-        {
-            string propertyName = txt_propriedade.Text;
-            string ownerName = txt_proprietario.Text;
-            string size = txt_tamanho.Text;
-            string phone = txt_telefone.Text;
-         
-            // Lógica para salvar as informações da propriedade
-
-            // Fechar o modal após salvar
-            PropertyPopup.IsOpen = false;
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TelaAnimal tela = new TelaAnimal();
@@ -83,9 +60,162 @@ namespace RuralTech.Telas
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            TelaVacina tela = new TelaVacina();
+            TelaMedicamento tela = new TelaMedicamento();
             this.Close();
             tela.ShowDialog();
         }
+
+        private void CarregarMedicamentos()
+        {
+            try
+            {
+                var medicamentos = _medicamentoDAO.GetMedicamentos();
+                MedicamentosList.Clear();
+                foreach (var medicamento in medicamentos)
+                {
+                    MedicamentosList.Add(medicamento);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar os Medicamentes: {ex.Message}");
+            }
+        }
+
+        private void OpenModal(object sender, RoutedEventArgs e)
+        {
+            // Se não for uma Medicamento selecionada, inicializa para novo cadastro
+            if (_medicamento.Id == 0)
+            {
+                _medicamento = new Medicamento();
+            }
+
+            PreencherCamposComDados(_medicamento);
+            PropertyPopup.IsOpen = true;
+        }
+
+        // Evento para salvar ou atualizar a medicamento
+        private void SaveProperty(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Preenche o objeto _medicamento com os valores do formulário
+                _medicamento.Nome = txt_nome.Text;
+
+                if (!int.TryParse(txt_dias.Text.Trim(), out int diasCarencia))
+                {
+                    MessageBox.Show("Por favor, insira um número válido para os dias de carência.");
+                    return;
+                }
+                _medicamento.DiasCarencia = diasCarencia;
+                _medicamento.Estado = CBestado.Text;
+                _medicamento.InscricaoEstadual = txt_inscricao.Text;
+
+                if (!int.TryParse(txt_quantidade.Text.Trim(), out int quantidade))
+                {
+                    MessageBox.Show("Por favor, insira um número válido para a quantidade.");
+                    return;
+                }
+                _medicamento.Quantidade = quantidade;
+                _medicamento.UnidadeEntrada = CBunidadeEntrada.Text;
+                _medicamento.UnidadeSaida = CBunidadeSaida.Text;
+                _medicamento.Observacao = txt_observacao.Text;
+
+                // Verifica se é uma atualização (Id > 0) ou um novo registro
+                if (Editar == true)
+                {
+                    _medicamentoDAO.Update(_medicamento);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    Editar = false;
+                }
+                else
+                {
+                    _medicamento.Id = _medicamentoDAO.Insert(_medicamento);
+                    MedicamentosList.Add(_medicamento);
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
+
+                CarregarMedicamentos();
+                PropertyPopup.IsOpen = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
+            }
+        }
+
+        // Método para abrir o modal para edição
+
+
+
+
+        private void CloseModal(object sender, RoutedEventArgs e)
+        {
+            PropertyPopup.IsOpen = false;
+        }
+
+        private void PackIcon_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Medicamento medicamentoSelecionado)
+            {
+                _medicamento = medicamentoSelecionado;
+                PreencherCamposComDados(_medicamento); // Preenche o formulário com os dados para edição
+                Editar = true;
+                PropertyPopup.IsOpen = true;
+            }
+        }
+
+
+
+        private void PreencherCamposComDados(Medicamento medicamento)
+        {
+            txt_nome.Text = medicamento.Nome;
+            txt_dias.Text = medicamento.DiasCarencia.ToString();
+            CBestado.Text = medicamento.Estado;
+            txt_inscricao.Text = medicamento.InscricaoEstadual;
+            txt_quantidade.Text = medicamento.Quantidade.ToString();
+            CBunidadeEntrada.Text = medicamento .UnidadeEntrada;
+            CBunidadeSaida.Text = medicamento.UnidadeSaida;
+            txt_observacao.Text = medicamento.Observacao;
+        }
+
+        private void DeleteMedicamento(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Medicamento medicamentoSelecionado)
+            {
+                // Verifica se a medicamento selecionada é válida para exclusão
+                if (medicamentoSelecionado == null)
+                {
+                    MessageBox.Show("Nenhum medicamento selecionada para exclusão.");
+                    return;
+                }
+
+                // Exibir uma mensagem de confirmação antes de excluir
+                var resultado = MessageBox.Show("Tem certeza de que deseja excluir este registro?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        // Exclui a medicamento do banco de dados passando o objeto medicamento
+                        _medicamentoDAO.Delete(medicamentoSelecionado);
+
+                        // Remove a medicamento da lista em exibição
+                        MedicamentosList.Remove(medicamentoSelecionado);
+                        MessageBox.Show("Registro deletado com sucesso.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao deletar registro: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhum medicamento selecionado.");
+            }
+        }
+
+
     }
 }

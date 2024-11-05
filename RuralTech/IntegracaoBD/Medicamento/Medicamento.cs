@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RuralTech.IntegracaoBD.Medicamento
+﻿namespace RuralTech.Integracoes
 {
-    internal class Medicamento
+    public class Medicamento
     {
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public int DiasCarencia { get; set; }
+        public string Estado { get; set; }
+        public string InscricaoEstadual { get; set; }
+        public int Quantidade { get; set; }
+        public string UnidadeEntrada { get; set; }
+        public string UnidadeSaida { get; set; }
+        public string Observacao { get; set; }
     }
 }
+
