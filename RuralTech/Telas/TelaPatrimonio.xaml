@@ -282,7 +282,6 @@
             <!-- Cards Patrimonio -->
             <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">
                 <ItemsControl ItemsSource="{Binding PatrimoniosList}">
-                    <!-- Definindo o layout do ItemsControl como WrapPanel -->
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel />

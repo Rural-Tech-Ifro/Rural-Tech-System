@@ -352,7 +352,7 @@ Style="{StaticResource MaterialDesignFilledComboBox}">
             </Popup>
 
 
-            <!-- Cards de Animais -->
+            <!-- Cards de Medicamentos -->
             <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">
                 <ItemsControl ItemsSource="{Binding MedicamentosList}">
                     <!-- Definindo o layout do ItemsControl como WrapPanel -->

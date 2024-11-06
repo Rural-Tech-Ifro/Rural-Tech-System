@@ -154,6 +154,8 @@
     <Compile Include="IntegracaoBD\Equipamento\EquipamentoDAO.cs" />
     <Compile Include="IntegracaoBD\Fornecedor\Fornecedor.cs" />
     <Compile Include="IntegracaoBD\Fornecedor\FornecedorDAO.cs" />
+    <Compile Include="IntegracaoBD\Funcionario\Funcionario.cs" />
+    <Compile Include="IntegracaoBD\Funcionario\FuncionarioDAO.cs" />
     <Compile Include="IntegracaoBD\Medicamento\Medicamento.cs" />
     <Compile Include="IntegracaoBD\Medicamento\MedicamentoDAO.cs" />
     <Compile Include="IntegracaoBD\Pasto\Pasto.cs" />
