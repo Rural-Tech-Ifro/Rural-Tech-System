@@ -27,8 +27,6 @@ namespace RuralTech.Telas
         private AnimalDAO _animalDAO = new AnimalDAO();
         public ObservableCollection<Animals> AnimaisList { get; set; }
 
-
-
         public TelaAnimal()
         {
             InitializeComponent();
