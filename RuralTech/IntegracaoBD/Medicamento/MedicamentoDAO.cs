@@ -59,14 +59,14 @@ public class MedicamentoDAO
             {
                 Medicamento medicamento = new Medicamento
                 {
-                    Nome = reader.GetString("nome_med"),
-                    DiasCarencia = reader.GetInt32("diasCarencia_med"),
-                    Estado = reader.GetString("estado_med"),
-                    Quantidade = reader.GetInt32("quantidade_med"),
+                    Nome = DAOHelper.GetString(reader, "nome_med"),
+                    DiasCarencia = DAOHelper.GetInt32(reader, "diasCarencia_med"),
+                    Estado = DAOHelper.GetString(reader, "estado_med"),
+                    Quantidade = DAOHelper.GetInt32(reader, "quantidade_med"),
                     UnidadeEntrada = DAOHelper.GetString(reader, "unidadeEntrada_med"),
-                    UnidadeSaida = reader.GetString("unidadeSaida_med"),
-                    Observacao = reader.GetString("observacao_med"),
-                    Id = reader.GetInt32("id_med"), 
+                    UnidadeSaida = DAOHelper.GetString(reader, "unidadeSaida_med"),
+                    Observacao = DAOHelper.GetString(reader, "observacao_med"),
+                    Id = DAOHelper.GetInt32(reader, "id_med"), 
                 };
 
                 medicamentos.Add(medicamento);

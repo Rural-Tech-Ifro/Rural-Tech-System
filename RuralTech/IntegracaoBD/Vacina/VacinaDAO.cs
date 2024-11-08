@@ -59,14 +59,14 @@ public class VacinaDAO
             {
                 Vacina vacina = new Vacina
                 {
-                    Nome = reader.GetString("nome_vac"),
-                    DiasCarencia = reader.GetInt32("diasCarencia_vac"),
-                    Estado = reader.GetString("estado_vac"),
-                    Quantidade = reader.GetInt32("quantidade_vac"),
+                    Nome = DAOHelper.GetString(reader, "nome_vac"),
+                    DiasCarencia = DAOHelper.GetInt32(reader, "diasCarencia_vac"),
+                    Estado = DAOHelper.GetString(reader, "estado_vac"),
+                    Quantidade = DAOHelper.GetInt32(reader, "quantidade_vac"),
                     UnidadeEntrada = DAOHelper.GetString(reader, "unidadeEntrada_vac"),
-                    UnidadeSaida = reader.GetString("unidadeSaida_vac"),
-                    Observacao = reader.GetString("observacao_vac"),
-                    Id = reader.GetInt32("id_vac"),
+                    UnidadeSaida = DAOHelper.GetString(reader, "unidadeSaida_vac"),
+                    Observacao = DAOHelper.GetString(reader, "observacao_vac"),
+                    Id = DAOHelper.GetInt32(reader, "id_vac"),
                 };
 
                 vacinas.Add(vacina);

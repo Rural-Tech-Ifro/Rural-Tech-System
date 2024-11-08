@@ -13,17 +13,27 @@ namespace RuralTech.Helpers
         {
             string text = string.Empty;
 
-            if (!reader.IsDBNull(reader.GetOrdinal(column_name)))
+            if (!IsNull(reader, column_name))
                 text = reader.GetString(column_name);
 
             return text;
         }
 
+        public static int GetInt32(MySqlDataReader reader, string column_name)
+        {
+            int value = 0;
+
+            if (!IsNull(reader, column_name))
+                value = reader.GetInt32(column_name);
+
+            return value;
+        }
+        
         public static double GetDouble(MySqlDataReader reader, string column_name)
         {
             double value = 0.0;
 
-            if (!reader.IsDBNull(reader.GetOrdinal(column_name)))
+            if (!IsNull(reader, column_name))
                 value = reader.GetDouble(column_name);
 
             return value;
@@ -33,7 +43,7 @@ namespace RuralTech.Helpers
         {
             DateTime? value = null;
 
-            if (!reader.IsDBNull(reader.GetOrdinal(column_name)))
+            if (!IsNull(reader, column_name))
                 value = reader.GetDateTime(column_name);
 
             return value;
