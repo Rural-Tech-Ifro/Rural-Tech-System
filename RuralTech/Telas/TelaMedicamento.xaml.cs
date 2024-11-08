@@ -11,8 +11,6 @@ namespace RuralTech.Telas
     public partial class TelaMedicamento : Window, INotifyPropertyChanged
     {
         public bool Editar = false;
-        private bool isEditMode = false;
-        private int editingMedicamentoId; // ID da medicamento sendo editada
         private Medicamento _medicamento = new Medicamento(); // Objeto medicamento
         private MedicamentoDAO _medicamentoDAO = new MedicamentoDAO(); // Objeto responsável por acessar o banco de dados
         public ObservableCollection<Medicamento> MedicamentosList { get; set; }
@@ -37,17 +35,16 @@ namespace RuralTech.Telas
             MedicamentosList = new ObservableCollection<Medicamento>();
             CarregarMedicamentos();
         }
+
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
         private void FiltrarMedicamentos()
         {
             if (string.IsNullOrWhiteSpace(SearchText))
             {
-
                 CarregarMedicamentos();
             }
             else
@@ -68,6 +65,7 @@ namespace RuralTech.Telas
         {
             FiltrarMedicamentos();
         }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TelaAnimal tela = new TelaAnimal();
@@ -123,23 +121,19 @@ namespace RuralTech.Telas
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao carregar os Medicamentes: {ex.Message}");
+                MessageBox.Show($"Erro ao carregar os Medicamentos: {ex.Message}");
             }
         }
 
         private void OpenModal(object sender, RoutedEventArgs e)
         {
-            // Se não for uma Medicamento selecionada, inicializa para novo cadastro
-            if (_medicamento.Id == 0)
-            {
-                _medicamento = new Medicamento();
-            }
-
-            PreencherCamposComDados(_medicamento);
+            // Limpa o objeto e os campos quando adicionando um novo registro
+            _medicamento = new Medicamento();
+            Editar = false; // Indica que é um novo registro
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
-        // Evento para salvar ou atualizar a medicamento
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
             try
@@ -166,12 +160,11 @@ namespace RuralTech.Telas
                 _medicamento.UnidadeSaida = CBunidadeSaida.Text;
                 _medicamento.Observacao = txt_observacao.Text;
 
-                // Verifica se é uma atualização (Id > 0) ou um novo registro
-                if (Editar == true)
+                if (Editar)
                 {
                     _medicamentoDAO.Update(_medicamento);
                     MessageBox.Show("Registro atualizado com sucesso.");
-                    Editar = false;
+                    Editar = false; // Volta o estado para novo registro
                 }
                 else
                 {
@@ -189,17 +182,12 @@ namespace RuralTech.Telas
             }
         }
 
-        // Método para abrir o modal para edição
-
-
-
-
         private void CloseModal(object sender, RoutedEventArgs e)
         {
             PropertyPopup.IsOpen = false;
         }
 
-        private void PackIcon_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void PackIcon_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is Medicamento medicamentoSelecionado)
             {
@@ -211,6 +199,17 @@ namespace RuralTech.Telas
         }
 
 
+        private void LimparCampos()
+        {
+            txt_nome.Text = "";
+            txt_dias.Text = "";
+            CBestado.Text = "";
+            txt_inscricao.Text = "";
+            txt_quantidade.Text = "";
+            CBunidadeEntrada.Text = "";
+            CBunidadeSaida.Text = "";
+            txt_observacao.Text = "";
+        }
 
         private void PreencherCamposComDados(Medicamento medicamento)
         {
@@ -219,7 +218,7 @@ namespace RuralTech.Telas
             CBestado.Text = medicamento.Estado;
             txt_inscricao.Text = medicamento.InscricaoEstadual;
             txt_quantidade.Text = medicamento.Quantidade.ToString();
-            CBunidadeEntrada.Text = medicamento .UnidadeEntrada;
+            CBunidadeEntrada.Text = medicamento.UnidadeEntrada;
             CBunidadeSaida.Text = medicamento.UnidadeSaida;
             txt_observacao.Text = medicamento.Observacao;
         }
@@ -228,24 +227,19 @@ namespace RuralTech.Telas
         {
             if (sender is FrameworkElement element && element.DataContext is Medicamento medicamentoSelecionado)
             {
-                // Verifica se a medicamento selecionada é válida para exclusão
                 if (medicamentoSelecionado == null)
                 {
-                    MessageBox.Show("Nenhum medicamento selecionada para exclusão.");
+                    MessageBox.Show("Nenhum medicamento selecionado para exclusão.");
                     return;
                 }
 
-                // Exibir uma mensagem de confirmação antes de excluir
                 var resultado = MessageBox.Show("Tem certeza de que deseja excluir este registro?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (resultado == MessageBoxResult.Yes)
                 {
                     try
                     {
-                        // Exclui a medicamento do banco de dados passando o objeto medicamento
                         _medicamentoDAO.Delete(medicamentoSelecionado);
-
-                        // Remove a medicamento da lista em exibição
                         MedicamentosList.Remove(medicamentoSelecionado);
                         MessageBox.Show("Registro deletado com sucesso.");
                     }
@@ -260,7 +254,5 @@ namespace RuralTech.Telas
                 MessageBox.Show("Nenhum medicamento selecionado.");
             }
         }
-
-
     }
 }
