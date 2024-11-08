@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient; 
 
 namespace RuralTech.Database
 {
@@ -12,7 +12,7 @@ namespace RuralTech.Database
     {
         private static string host = "localhost";
 
-        private static string port = "3306";
+        private static string port = "3360";
 
         private static string user = "root";
 
