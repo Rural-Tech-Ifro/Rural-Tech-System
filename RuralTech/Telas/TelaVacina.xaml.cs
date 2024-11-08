@@ -10,13 +10,12 @@ namespace RuralTech.Telas
 {
     public partial class TelaVacina : Window, INotifyPropertyChanged
     {
-        public bool Editar = false;
-        private bool isEditMode = false;
-        private int editingVacinaId;
+        private bool Editar = false;
         private Vacina _vacina = new Vacina();
         private VacinaDAO _vacinaDAO = new VacinaDAO();
-        public ObservableCollection<Vacina> VacinasList { get; set; }
+        public ObservableCollection<Vacina> VacinasList { get; set; } = new ObservableCollection<Vacina>();
         private string _searchText;
+
         public string SearchText
         {
             get => _searchText;
@@ -34,7 +33,6 @@ namespace RuralTech.Telas
         {
             InitializeComponent();
             DataContext = this;
-            VacinasList = new ObservableCollection<Vacina>();
             CarregarVacinas();
         }
 
@@ -43,20 +41,17 @@ namespace RuralTech.Telas
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
         private void FiltrarVacinas()
         {
             if (string.IsNullOrWhiteSpace(SearchText))
             {
-  
                 CarregarVacinas();
             }
             else
             {
                 var vacinasFiltradas = _vacinaDAO.GetVacinas()
-                .Where(v => v.Nome != null && v.Nome.ToLower().Contains(SearchText.ToLower()))
-                .ToList();
-
+                    .Where(v => v.Nome != null && v.Nome.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
 
                 VacinasList.Clear();
                 foreach (var vacina in vacinasFiltradas)
@@ -70,6 +65,7 @@ namespace RuralTech.Telas
         {
             FiltrarVacinas();
         }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TelaAnimal tela = new TelaAnimal();
@@ -131,22 +127,16 @@ namespace RuralTech.Telas
 
         private void OpenModal(object sender, RoutedEventArgs e)
         {
-            // Se não for uma vacina selecionada, inicializa para novo cadastro
-            if (_vacina.Id == 0)
-            {
-                _vacina = new Vacina();
-            }
-
-            PreencherCamposComDados(_vacina);
+            _vacina = new Vacina();
+            Editar = false;
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
-        // Evento para salvar ou atualizar a vacina
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
             try
             {
-                // Preenche o objeto _vacina com os valores do formulário
                 _vacina.Nome = txt_nome.Text;
 
                 if (!int.TryParse(txt_dias.Text.Trim(), out int diasCarencia))
@@ -168,12 +158,10 @@ namespace RuralTech.Telas
                 _vacina.UnidadeSaida = CBunidadeSaida.Text;
                 _vacina.Observacao = txt_observacao.Text;
 
-                // Verifica se é uma atualização (Id > 0) ou um novo registro
-                if (Editar == true)
+                if (Editar)
                 {
                     _vacinaDAO.Update(_vacina);
                     MessageBox.Show("Registro atualizado com sucesso.");
-                    Editar = false;
                 }
                 else
                 {
@@ -191,17 +179,12 @@ namespace RuralTech.Telas
             }
         }
 
-        // Método para abrir o modal para edição
-
-
-
-
         private void CloseModal(object sender, RoutedEventArgs e)
         {
             PropertyPopup.IsOpen = false;
         }
 
-        private void PackIcon_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void PackIcon_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is Vacina vacinaSelecionada)
             {
@@ -211,7 +194,6 @@ namespace RuralTech.Telas
                 PropertyPopup.IsOpen = true;
             }
         }
-
 
 
         private void PreencherCamposComDados(Vacina vacina)
@@ -226,28 +208,29 @@ namespace RuralTech.Telas
             txt_observacao.Text = vacina.Observacao;
         }
 
+        private void LimparCampos()
+        {
+            txt_nome.Clear();
+            txt_dias.Clear();
+            CBestado.SelectedIndex = -1;
+            txt_inscricao.Clear();
+            txt_quantidade.Clear();
+            CBunidadeEntrada.SelectedIndex = -1;
+            CBunidadeSaida.SelectedIndex = -1;
+            txt_observacao.Clear();
+        }
+
         private void DeleteVacina(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is Vacina vacinaSelecionada)
             {
-                // Verifica se a vacina selecionada é válida para exclusão
-                if (vacinaSelecionada == null)
-                {
-                    MessageBox.Show("Nenhuma vacina selecionada para exclusão.");
-                    return;
-                }
-
-                // Exibir uma mensagem de confirmação antes de excluir
                 var resultado = MessageBox.Show("Tem certeza de que deseja excluir este registro?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (resultado == MessageBoxResult.Yes)
                 {
                     try
                     {
-                        // Exclui a vacina do banco de dados passando o objeto vacina
                         _vacinaDAO.Delete(vacinaSelecionada);
-
-                        // Remove a vacina da lista em exibição
                         VacinasList.Remove(vacinaSelecionada);
                         MessageBox.Show("Registro deletado com sucesso.");
                     }
@@ -262,7 +245,5 @@ namespace RuralTech.Telas
                 MessageBox.Show("Nenhuma vacina selecionada.");
             }
         }
-
-
     }
 }

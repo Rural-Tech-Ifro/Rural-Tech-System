@@ -3,7 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:RuralTech"
               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+<<<<<<< HEAD
              StartupUri="Telas/TelaVacina.xaml">
+=======
+             StartupUri="Telas/TelaMedicamento.xaml">
+>>>>>>> 9f2e564a11147a2f40805d1100a2c8831b76a63b
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

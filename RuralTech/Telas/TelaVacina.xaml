@@ -221,7 +221,7 @@
                 <TextBlock Text="+" FontSize="40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-10,0,0"/>
             </Button>
 
-            <Popup Name="PropertyPopup" Placement="Mouse" StaysOpen="False">
+            <Popup Name="PropertyPopup" Placement="Center" StaysOpen="False">
                 <Border Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Padding="10">
                     <StackPanel Width="300" Margin="0 0 0 30">
                         <TextBlock Text="Cadastrar Vacina"  FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
@@ -426,7 +426,7 @@ Style="{StaticResource MaterialDesignFilledComboBox}">
 
                                     <!-- Ícone do lápis à direita -->
                                     <!-- Botão com ícone de lápis para abrir o modal -->
-                                    <materialDesign:PackIcon MouseDoubleClick="PackIcon_MouseDoubleClick" Kind="Pencil" Cursor="Hand" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
+                                    <materialDesign:PackIcon MouseLeftButtonDown="PackIcon_MouseLeftButtonDown" Kind="Pencil" Cursor="Hand" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
                                     <materialDesign:PackIcon MouseDoubleClick="DeleteVacina" Kind="Delete" Grid.Row="1" Grid.Column="1" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,5" />
                                 </Grid>
                             </Border>
