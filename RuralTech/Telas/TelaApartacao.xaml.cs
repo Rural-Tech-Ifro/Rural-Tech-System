@@ -98,11 +98,10 @@ namespace RuralTech.Telas
         }
 
 
-        private void PackIcon_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void PackIcon_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is Apartacao apartacaoSelecionado)
             {
-                _apartacao = apartacaoSelecionado;
                 PreencherCamposComDados(_apartacao); // Preenche o formulário com os dados para edição
                 Editar = true;
                 PropertyPopup.IsOpen = true;
@@ -120,7 +119,7 @@ namespace RuralTech.Telas
             txt_observacao.Text = apartacao.Observacao;
         }
 
-        private void DeleteMedicamento(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Delete(object sender, MouseButtonEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is Apartacao apartacaoSelecionado)
             {
