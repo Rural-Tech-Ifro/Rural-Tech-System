@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
+using System.Linq;
+using System.ComponentModel;
 using RuralTech.Integracoes;
+using System.Windows.Controls;
 
 namespace RuralTech.Telas
 {
-    public partial class TelaVacina : Window
+    public partial class TelaVacina : Window, INotifyPropertyChanged
     {
         public bool Editar = false;
         private bool isEditMode = false;
@@ -15,6 +16,19 @@ namespace RuralTech.Telas
         private Vacina _vacina = new Vacina(); // Objeto vacina
         private VacinaDAO _vacinaDAO = new VacinaDAO(); // Objeto responsável por acessar o banco de dados
         public ObservableCollection<Vacina> VacinasList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                FiltrarVacinas(); // Chama o método para filtrar a lista
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public TelaVacina()
         {
@@ -22,6 +36,40 @@ namespace RuralTech.Telas
             DataContext = this;
             VacinasList = new ObservableCollection<Vacina>();
             CarregarVacinas();
+        }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        // Método para filtrar a lista de vacinas
+        private void FiltrarVacinas()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                // Mostra todas as vacinas se o campo de pesquisa estiver vazio
+                CarregarVacinas();
+            }
+            else
+            {
+                var vacinasFiltradas = _vacinaDAO.GetVacinas()
+                .Where(v => v.Nome != null && v.Nome.ToLower().Contains(SearchText.ToLower()))
+                .ToList();
+
+
+                // Atualiza a coleção VacinasList
+                VacinasList.Clear();
+                foreach (var vacina in vacinasFiltradas)
+                {
+                    VacinasList.Add(vacina);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            FiltrarVacinas();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

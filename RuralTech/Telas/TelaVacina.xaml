@@ -185,12 +185,12 @@
 
             <!-- Campo de Pesquisa -->
             <materialDesign:AutoSuggestBox
-    materialDesign:HintAssist.Hint="Pesquisar Vacina"
+    materialDesign:HintAssist.Hint="Pesquisar Vacina"   
     materialDesign:TextFieldAssist.HasClearButton="True"
     DropDownElevation="Dp0"
-    Style="{StaticResource MaterialDesignAutoSuggestBox}"
-    Suggestions="{Binding AutoSuggestBox2Suggestions}"
-    Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+    Style="{StaticResource MaterialDesignAutoSuggestBox}"   
+    Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+    TextChanged="AutoSuggestBox_TextChanged"
     ValueMember="Key" 
     Margin="135,10,535,505" 
     Grid.Row="1" 
