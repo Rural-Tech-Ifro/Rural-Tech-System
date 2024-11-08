@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
+using System.Linq;
+using System.ComponentModel;
 using RuralTech.Integracoes;
+using System.Windows.Controls;
 
 namespace RuralTech.Telas
 {
-    public partial class TelaMedicamento : Window
+    public partial class TelaMedicamento : Window, INotifyPropertyChanged
     {
         public bool Editar = false;
         private bool isEditMode = false;
@@ -15,6 +16,19 @@ namespace RuralTech.Telas
         private Medicamento _medicamento = new Medicamento(); // Objeto medicamento
         private MedicamentoDAO _medicamentoDAO = new MedicamentoDAO(); // Objeto responsável por acessar o banco de dados
         public ObservableCollection<Medicamento> MedicamentosList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                FiltrarMedicamentos();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public TelaMedicamento()
         {
@@ -22,6 +36,37 @@ namespace RuralTech.Telas
             DataContext = this;
             MedicamentosList = new ObservableCollection<Medicamento>();
             CarregarMedicamentos();
+        }
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+        private void FiltrarMedicamentos()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+
+                CarregarMedicamentos();
+            }
+            else
+            {
+                var medicamentosFiltrados = _medicamentoDAO.GetMedicamentos()
+                    .Where(v => v.Nome != null && v.Nome.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                MedicamentosList.Clear();
+                foreach (var medicamento in medicamentosFiltrados)
+                {
+                    MedicamentosList.Add(medicamento);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            FiltrarMedicamentos();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -53,9 +98,9 @@ namespace RuralTech.Telas
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            TelaPropriedade tela = new TelaPropriedade();
+            TelaVacina tela = new TelaVacina();
+            tela.Show();
             this.Close();
-            tela.ShowDialog();
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)

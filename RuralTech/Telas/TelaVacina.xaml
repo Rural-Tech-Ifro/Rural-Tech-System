@@ -188,7 +188,7 @@
     materialDesign:HintAssist.Hint="Pesquisar Vacina"   
     materialDesign:TextFieldAssist.HasClearButton="True"
     DropDownElevation="Dp0"
-    Style="{StaticResource MaterialDesignAutoSuggestBox}"   
+    Style="{StaticResource MaterialDesignAutoSuggestBox}"  
     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
     TextChanged="AutoSuggestBox_TextChanged"
     ValueMember="Key" 

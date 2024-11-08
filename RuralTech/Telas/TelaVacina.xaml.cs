@@ -12,9 +12,9 @@ namespace RuralTech.Telas
     {
         public bool Editar = false;
         private bool isEditMode = false;
-        private int editingVacinaId; // ID da vacina sendo editada
-        private Vacina _vacina = new Vacina(); // Objeto vacina
-        private VacinaDAO _vacinaDAO = new VacinaDAO(); // Objeto responsável por acessar o banco de dados
+        private int editingVacinaId;
+        private Vacina _vacina = new Vacina();
+        private VacinaDAO _vacinaDAO = new VacinaDAO();
         public ObservableCollection<Vacina> VacinasList { get; set; }
         private string _searchText;
         public string SearchText
@@ -24,7 +24,7 @@ namespace RuralTech.Telas
             {
                 _searchText = value;
                 OnPropertyChanged(nameof(SearchText));
-                FiltrarVacinas(); // Chama o método para filtrar a lista
+                FiltrarVacinas();
             }
         }
 
@@ -43,12 +43,12 @@ namespace RuralTech.Telas
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        // Método para filtrar a lista de vacinas
+
         private void FiltrarVacinas()
         {
             if (string.IsNullOrWhiteSpace(SearchText))
             {
-                // Mostra todas as vacinas se o campo de pesquisa estiver vazio
+  
                 CarregarVacinas();
             }
             else
@@ -58,7 +58,6 @@ namespace RuralTech.Telas
                 .ToList();
 
 
-                // Atualiza a coleção VacinasList
                 VacinasList.Clear();
                 foreach (var vacina in vacinasFiltradas)
                 {
@@ -80,9 +79,9 @@ namespace RuralTech.Telas
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            TelaEquipamento tela = new TelaEquipamento();
+            TelaMedicamento tela = new TelaMedicamento();
+            tela.Show();
             this.Close();
-            tela.ShowDialog();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

@@ -185,18 +185,18 @@
 
             <!-- Campo de Pesquisa -->
             <materialDesign:AutoSuggestBox
-    materialDesign:HintAssist.Hint="Pesquisar Medicamento"
-    materialDesign:TextFieldAssist.HasClearButton="True"
-    DropDownElevation="Dp0"
-    Style="{StaticResource MaterialDesignAutoSuggestBox}"
-    Suggestions="{Binding AutoSuggestBox2Suggestions}"
-    Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-    ValueMember="Key" 
-    Margin="135,10,535,505" 
-    Grid.Row="1" 
-    Width="400" 
-    Height="50" 
-    RenderTransformOrigin="-0.875,-2.1">
+            materialDesign:HintAssist.Hint="Pesquisar Medicamento"   
+            materialDesign:TextFieldAssist.HasClearButton="True"
+            DropDownElevation="Dp0"
+            Style="{StaticResource MaterialDesignAutoSuggestBox}"  
+            Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+            TextChanged="AutoSuggestBox_TextChanged"
+            ValueMember="Key" 
+            Margin="135,10,535,505" 
+            Grid.Row="1" 
+            Width="400" 
+            Height="50" 
+            RenderTransformOrigin="-0.875,-2.1">
 
                 <materialDesign:AutoSuggestBox.ItemTemplate>
                     <DataTemplate>
