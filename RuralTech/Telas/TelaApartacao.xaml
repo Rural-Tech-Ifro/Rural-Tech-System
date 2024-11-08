@@ -213,7 +213,71 @@
                 </materialDesign:AutoSuggestBox.ItemTemplate>
             </materialDesign:AutoSuggestBox>
             
-            <!-- Botão Cadastrar -->
+           
+
+            <!-- Modal Cadastrar Apartacao -->
+            <Button Grid.Row="1"  Margin="225, 83" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
+            HorizontalAlignment="Right" VerticalAlignment="Top" Click="OpenModal">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+        CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <TextBlock Text="+" FontSize="40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-10,0,0"/>
+            </Button>
+
+            <Popup Name="PropertyPopup" Placement="Mouse" StaysOpen="False">
+                <Border Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Padding="10">
+                    <StackPanel Width="300" Margin="0 0 0 30">
+                        <TextBlock Text="Propriedade" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+
+                        <ComboBox
+                            x:Name="combo_animal"
+                            Width="300"
+                            Margin="0, 0, 0, 5"
+                            materialDesign:HintAssist.Hint="Selecione um animal"
+                            Style="{StaticResource MaterialDesignFilledComboBox}">
+                        </ComboBox>
+
+                        <ComboBox
+                             x:Name="combo_situacao"
+                             Width="300"
+                             Margin="0, 0, 0, 5"
+                             materialDesign:HintAssist.Hint="Selecione uma situação"
+                             Style="{StaticResource MaterialDesignFilledComboBox}">
+                        </ComboBox>
+
+                        <ComboBox
+                             x:Name="combo_lote"
+                             Width="300"
+                             Margin="0, 0, 0, 5"
+                             materialDesign:HintAssist.Hint="Selecione um lote"
+                             Style="{StaticResource MaterialDesignFilledComboBox}">
+                        </ComboBox>
+
+
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Data transferencia de lote:"
+                            MaxLength="40"
+                            Style="{StaticResource MaterialDesignFilledTextBox}"
+                            TextWrapping="Wrap" Name="txt_dataTransferencia"
+                            Margin="0,0,0,5"/>
+
+                        <TextBox
+                             materialDesign:HintAssist.Hint="Observação:"
+                             MaxLength="40"
+                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                             TextWrapping="Wrap" Name="txt_observacao"
+                             Margin="0,0,0,5"/>
+
+                        <Button Content="Salvar" Click="SaveProperty" Margin="0,10,0,0"/>
+                        <Button Content="Fechar" Click="CloseModal" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
 
 
             <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">
@@ -256,24 +320,16 @@
 
                                         <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
                                             <TextBlock.Text>
-                                                <MultiBinding StringFormat="Data: {0}">
-                                                    <Binding Path="Data" />
+                                                <MultiBinding StringFormat="Data Transferencia: {0}">
+                                                    <Binding Path="DataTransferencia" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
 
                                         <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
                                             <TextBlock.Text>
-                                                <MultiBinding StringFormat="Transferencia de Lote: {0}">
-                                                    <Binding Path="TransferenciaLote" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
-
-                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="Valor: {0}">
-                                                    <Binding Path="Valor" />
+                                                <MultiBinding StringFormat="Lote: {0}">
+                                                    <Binding Path="Lote" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
@@ -289,7 +345,16 @@
                                     </StackPanel>
 
                                     <!-- Ícone do lápis à direita -->
-                                    <materialDesign:PackIcon Kind="Pencil" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
+                                    <!-- Botão com ícone de lápis para abrir o modal -->
+                                    <materialDesign:PackIcon MouseDoubleClick="PackIcon_MouseDoubleClick" 
+                         Kind="Pencil" 
+                         Cursor="Hand" 
+                         Grid.Row="1" 
+                         Grid.Column="1" 
+                         HorizontalAlignment="Right" 
+                         VerticalAlignment="Top" 
+                         Margin="0,5,10,0"/>
+                                    <materialDesign:PackIcon MouseDoubleClick="PackIcon_MouseDoubleClick" Kind="Delete" Grid.Row="1" Grid.Column="1" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,5" />
                                 </Grid>
                             </Border>
                         </DataTemplate>

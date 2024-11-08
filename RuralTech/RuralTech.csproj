@@ -150,6 +150,8 @@
     <Compile Include="Helpers\HashHelper.cs" />
     <Compile Include="IntegracaoBD\Animal\Animal.cs" />
     <Compile Include="IntegracaoBD\Animal\AnimalDAO.cs" />
+    <Compile Include="IntegracaoBD\Apartação\Apartacao.cs" />
+    <Compile Include="IntegracaoBD\Apartação\ApartacaoDAO.cs" />
     <Compile Include="IntegracaoBD\Equipamento\Equipamento.cs" />
     <Compile Include="IntegracaoBD\Equipamento\EquipamentoDAO.cs" />
     <Compile Include="IntegracaoBD\Fornecedor\Fornecedor.cs" />
@@ -168,9 +170,6 @@
     <Compile Include="IntegracaoBD\Usuario\UsuarioDAO.cs" />
     <Compile Include="IntegracaoBD\Vacina\Vacina.cs" />
     <Compile Include="IntegracaoBD\Vacina\VacinaDAO.cs" />
-    <Compile Include="TelaApartacao.xaml.cs">
-      <DependentUpon>TelaApartacao.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Telas\TelaApartacao.xaml.cs">
       <DependentUpon>TelaApartacao.xaml</DependentUpon>
     </Compile>
@@ -219,10 +218,6 @@
     <Compile Include="Telas\TelaVacina.xaml.cs">
       <DependentUpon>TelaVacina.xaml</DependentUpon>
     </Compile>
-    <Page Include="TelaApartacao.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Telas\TelaAnimal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -283,6 +283,18 @@ raca_ani varchar(100),
 classificacao_ani varchar(500),
 origem_ani varchar(100)
 );
+INSERT INTO animal (brinco_ani, sexo_ani, raca_ani, classificacao_ani, origem_ani)
+VALUES
+('BR12345', 'M', 'Nelore', 'Bovino de corte, boa adaptação ao clima tropical', 'Brasil'),
+('BR67890', 'F', 'Jersey', 'Leiteiro, alta produção de leite', 'Reino Unido'),
+('BR11223', 'M', 'Pardo Suíço', 'Raça mista, boa para leite e carne', 'Suíça'),
+('BR44556', 'F', 'Holandês', 'Raça de leite de alta produtividade', 'Holanda'),
+('BR78901', 'M', 'Charolês', 'Raça bovina de corte, carne de qualidade superior', 'França'),
+('BR22334', 'F', 'Angus', 'Raça de corte, carne marmoreada, excelente para churrasco', 'Escócia'),
+('BR55667', 'M', 'Brahman', 'Raça adaptada a climas quentes, boa resistência a doenças', 'Índia'),
+('BR99887', 'F', 'Zebu', 'Raça rústica, muito resistente, boa para áreas de clima quente', 'África'),
+('BR33445', 'M', 'Simental', 'Raça mista, boa para carne e leite, alta produtividade', 'Suíça'),
+('BR66789', 'F', 'Gir', 'Raça de leite, adaptada a altas temperaturas, produção de leite de qualidade', 'Brasil');
 
 create table ordenha(
 id_ord int primary key auto_increment,
@@ -355,11 +367,6 @@ unidadeSaida_med varchar(400),
 observacao_med varchar(500)
 );
 
-select * from Vacina;
-select * from medicamento;
-update Vacina_Medicamento set unidadeEntrada_vac_med = null WHERE id_vac_med = 5;
-
-
 create table aplicacao_medicamento(
 id_apli_med int primary key auto_increment,
 dataAplicacao_apli_med date,
@@ -368,9 +375,7 @@ aplicada_apli_med boolean,
 dosagem_apli_med varchar(100),
 aplicador_apli_med varchar(200),
 id_ani_fk int,
-foreign key(id_ani_fk) references animal(id_ani),
-id_vac_med_fk int,
-foreign key(id_vac_med_fk) references vacina_medicamento(id_vac_med)
+foreign key(id_ani_fk) references animal(id_ani)
 );
 
 create table tarefa(
