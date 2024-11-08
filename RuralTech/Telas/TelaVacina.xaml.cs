@@ -131,49 +131,28 @@ namespace RuralTech.Telas
 
         private void OpenModal(object sender, RoutedEventArgs e)
         {
-            // Se não for uma vacina selecionada, inicializa para novo cadastro
-            if (_vacina.Id == 0)
+            if (!Editar) // Se não for edição, limpa o formulário para novo cadastro
             {
                 _vacina = new Vacina();
             }
 
-            PreencherCamposComDados(_vacina);
+            PreencherCamposComDados(_vacina); // Carrega os dados no formulário
             PropertyPopup.IsOpen = true;
         }
+
 
         // Evento para salvar ou atualizar a vacina
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
             try
             {
-                // Preenche o objeto _vacina com os valores do formulário
-                _vacina.Nome = txt_nome.Text;
+                // ... código para salvar os dados ...
 
-                if (!int.TryParse(txt_dias.Text.Trim(), out int diasCarencia))
-                {
-                    MessageBox.Show("Por favor, insira um número válido para os dias de carência.");
-                    return;
-                }
-                _vacina.DiasCarencia = diasCarencia;
-                _vacina.Estado = CBestado.Text;
-                _vacina.InscricaoEstadual = txt_inscricao.Text;
-
-                if (!int.TryParse(txt_quantidade.Text.Trim(), out int quantidade))
-                {
-                    MessageBox.Show("Por favor, insira um número válido para a quantidade.");
-                    return;
-                }
-                _vacina.Quantidade = quantidade;
-                _vacina.UnidadeEntrada = CBunidadeEntrada.Text;
-                _vacina.UnidadeSaida = CBunidadeSaida.Text;
-                _vacina.Observacao = txt_observacao.Text;
-
-                // Verifica se é uma atualização (Id > 0) ou um novo registro
-                if (Editar == true)
+                if (Editar)
                 {
                     _vacinaDAO.Update(_vacina);
                     MessageBox.Show("Registro atualizado com sucesso.");
-                    Editar = false;
+                    Editar = false; // Reseta o modo de edição após atualizar
                 }
                 else
                 {
@@ -191,6 +170,7 @@ namespace RuralTech.Telas
             }
         }
 
+
         // Método para abrir o modal para edição
 
 
@@ -207,24 +187,40 @@ namespace RuralTech.Telas
             {
                 _vacina = vacinaSelecionada;
                 PreencherCamposComDados(_vacina); // Preenche o formulário com os dados para edição
-                Editar = true;
+                Editar = true; // Define o modo de edição
                 PropertyPopup.IsOpen = true;
             }
         }
 
 
 
+
         private void PreencherCamposComDados(Vacina vacina)
         {
-            txt_nome.Text = vacina.Nome;
-            txt_dias.Text = vacina.DiasCarencia.ToString();
-            CBestado.Text = vacina.Estado;
-            txt_inscricao.Text = vacina.InscricaoEstadual;
-            txt_quantidade.Text = vacina.Quantidade.ToString();
-            CBunidadeEntrada.Text = vacina.UnidadeEntrada;
-            CBunidadeSaida.Text = vacina.UnidadeSaida;
-            txt_observacao.Text = vacina.Observacao;
+            if (vacina.Id == 0) // Verifica se é uma nova vacina
+            {
+                txt_nome.Text = string.Empty;
+                txt_dias.Text = string.Empty;
+                CBestado.Text = string.Empty;
+                txt_inscricao.Text = string.Empty;
+                txt_quantidade.Text = string.Empty;
+                CBunidadeEntrada.Text = string.Empty;
+                CBunidadeSaida.Text = string.Empty;
+                txt_observacao.Text = string.Empty;
+            }
+            else // Caso contrário, preenche os dados da vacina para edição
+            {
+                txt_nome.Text = vacina.Nome;
+                txt_dias.Text = vacina.DiasCarencia.ToString();
+                CBestado.Text = vacina.Estado;
+                txt_inscricao.Text = vacina.InscricaoEstadual;
+                txt_quantidade.Text = vacina.Quantidade.ToString();
+                CBunidadeEntrada.Text = vacina.UnidadeEntrada;
+                CBunidadeSaida.Text = vacina.UnidadeSaida;
+                txt_observacao.Text = vacina.Observacao;
+            }
         }
+
 
         private void DeleteVacina(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
