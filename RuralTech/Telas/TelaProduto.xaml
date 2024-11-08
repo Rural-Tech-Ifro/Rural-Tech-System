@@ -214,140 +214,186 @@
             </materialDesign:AutoSuggestBox>
 
             <!-- Botão Cadastrar -->
-
-
-            <!-- Cards de Produtos -->
-            <WrapPanel Grid.Row="2" HorizontalAlignment="Left" Width="830" Margin="185,200,0,10">
-                <!-- Card Repetido -->
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_produto.jpg"/>
-                            </Border.Background>
+            <!-- Modal Cadastrar {Produto} -->
+            <Button Grid.Row="1"  Margin="225, 83" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
+    HorizontalAlignment="Right" VerticalAlignment="Top" Click="OpenModal">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
-                        <TextBlock Text="Produto: Milho" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Quantidade: 500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Unidade de Entrada: 200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Unidade de Saida: 100" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Preço: R$5,00: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Data Vencimento: 10/10/2025" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
+                    </ControlTemplate>
+                </Button.Template>
+                <TextBlock Text="+" FontSize="40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-10,0,0"/>
+            </Button>
+
+            <Popup Name="PropertyPopup" Placement="Mouse" StaysOpen="False">
+                <Border Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Padding="10">
+                    <StackPanel Width="300" Margin="0 0 0 30">
+                        <TextBlock Text="Produto" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+
+
+                        <TextBox
+                    materialDesign:HintAssist.Hint="Nome:"
+                    MaxLength="40"
+                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                    TextWrapping="Wrap" Name="txt_nome"
+                    Margin="0,0,0,5"/>
+
+                        <TextBox
+                     materialDesign:HintAssist.Hint="Preço de Custo:"
+                     MaxLength="40"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap" Name="txt_preco_custo"
+                     Margin="0,0,0,5"/>
+
+
+                        <TextBox
+                     materialDesign:HintAssist.Hint="Quantidade:"
+                     MaxLength="40"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap" Name="txt_quantidade"
+                     Margin="0,0,0,5"/>
+
+
+                        <TextBox
+                     materialDesign:HintAssist.Hint="Data Vencimento:"
+                     MaxLength="40"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap" Name="txt_data_vencimento"
+                     Margin="0,0,0,5"/>
+
+
+                        <TextBox
+                     materialDesign:HintAssist.Hint="Unidade de Entrada:"
+                     MaxLength="40"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap" Name="txt_unidade_entrada"
+                     Margin="0,0,0,5"/>
+
+                        <TextBox
+                     materialDesign:HintAssist.Hint="Unidade de Saída:"
+                     MaxLength="40"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap" Name="txt_unidade_saida"
+                     Margin="0,0,0,5"/>
+
+                        <TextBox
+                     materialDesign:HintAssist.Hint="Preço Venda:"
+                     MaxLength="40"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap" Name="txt_preco_venda"
+                     Margin="0,0,0,5"/>
+
+                        <Button Content="Salvar" Click="SaveProperty" Margin="0,10,0,0"/>
+                        <Button Content="Fechar" Click="CloseModal" Margin="0,5,0,0"/>
                     </StackPanel>
                 </Border>
+            </Popup>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_produto.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Produto: Milho" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Quantidade: 500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Unidade de Entrada: 200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Unidade de Saida: 100" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Preço: R$5,00: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Data Vencimento: 10/10/2025" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+            <!-- Cards Produto -->
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">
+                <ItemsControl ItemsSource="{Binding PatrimoniosList}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_produto.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Produto: Milho" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Quantidade: 500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Unidade de Entrada: 200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Unidade de Saida: 100" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Preço: R$5,00: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Data Vencimento: 10/10/2025" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="230" Margin="52, 10, -30, 10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="80"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 0, 40">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_produto.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Produto: Milho" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Quantidade: 500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Unidade de Entrada: 200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Unidade de Saida: 100" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Preço: R$5,00: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Data Vencimento: 10/10/2025" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
+                                    <Border Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="5,5,0,0">
+                                        <Border.Background>
+                                            <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/gado 1.png"/>
+                                        </Border.Background>
+                                    </Border>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30,0">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_produto.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Produto: Milho" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Quantidade: 500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Unidade de Entrada: 200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Unidade de Saida: 100" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Preço: R$5,00: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Data Vencimento: 10/10/2025" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,0,0,0">
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,5,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Nome: {0}">
+                                                    <Binding Path="Nome" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30,0">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_produto.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Produto: Milho" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Quantidade: 500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Unidade de Entrada: 200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Unidade de Saida: 100" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Preço: R$5,00: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Data Vencimento: 10/10/2025" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Descrição: {0}">
+                                                    <Binding Path="Descricao" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213" Margin="0, 0, 30,0">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_produto.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Produto: Milho" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Quantidade: 500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Unidade de Entrada: 200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Unidade de Saida: 100" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Preço: R$5,00: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Data Vencimento: 10/10/2025" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Preço Custo: {0}">
+                                                    <Binding Path="PrecoCusto" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
 
-                <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="185" Height="213">
-                    <StackPanel>
-                        <Border CornerRadius="5,5,0,0" Height="100">
-                            <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/img_produto.jpg"/>
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="Produto: Milho" FontWeight="Bold" Margin="10,5,10,0"/>
-                        <TextBlock Text="Quantidade: 500" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Unidade de Entrada: 200" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Unidade de Saida: 100" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Preço: R$5,00: Nelore" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,0"/>
-                        <TextBlock Text="Data Vencimento: 10/10/2025" Foreground="#7C9C81" FontWeight="SemiBold" Margin="10,0,10,10"/>
-                    </StackPanel>
-                </Border>
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Preço Venda: {0}">
+                                                    <Binding Path="PrecoVenda" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Data Vencimento: {0}">
+                                                    <Binding Path="DataVencimento" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Unidade de Entrada: {0}">
+                                                    <Binding Path="UnidadeEntrada" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Unidade de Saída: {0}">
+                                                    <Binding Path="UnidadeSaida" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Quantidade: {0}">
+                                                    <Binding Path="Quantidade" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </StackPanel>
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </WrapPanel>
+
         </Grid>
     </Grid>
 </Window>

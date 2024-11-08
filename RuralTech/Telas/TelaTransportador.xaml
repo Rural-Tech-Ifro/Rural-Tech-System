@@ -214,6 +214,114 @@
             </materialDesign:AutoSuggestBox>
 
             <!-- Botão Cadastrar -->
+            <!-- Modal Cadastrar {Transportador} -->
+            <Button Grid.Row="1"  Margin="225, 83" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
+    HorizontalAlignment="Right" VerticalAlignment="Top" Click="OpenModal">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <TextBlock Text="+" FontSize="40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-10,0,0"/>
+            </Button>
+
+            <Popup Name="PropertyPopup" Placement="Mouse" StaysOpen="False">
+                <Border Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Padding="10">
+                    <StackPanel Width="300" Margin="0 0 0 30">
+                        <TextBlock Text="Transportador" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+
+                        <TextBox
+                    materialDesign:HintAssist.Hint="Nome:"
+                    MaxLength="40"
+                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                    TextWrapping="Wrap" Name="txt_nome"
+                    Margin="0,0,0,5"/>
+
+                        <TextBox
+                    materialDesign:HintAssist.Hint="CPF/CNPJ:"
+                    MaxLength="40"
+                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                    TextWrapping="Wrap" Name="txt_cpf_cnpj"
+                    Margin="0,0,0,5"/>
+
+                        <TextBox
+                    materialDesign:HintAssist.Hint="Inscrição Estadual:"
+                    MaxLength="40"
+                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                    TextWrapping="Wrap" Name="txt_inscricao_estadual"
+                    Margin="0,0,0,5"/>
+
+                        <ComboBox
+                    x:Name="combo_estadol"
+                    Width="300"
+                    Margin="0, 0, 0, 5"
+                    materialDesign:HintAssist.Hint="Selecione o estado"
+                    Style="{StaticResource MaterialDesignFilledComboBox}">
+                            <ComboBoxItem Content="Acre" />
+                            <ComboBoxItem Content="Alagoas" />
+                            <ComboBoxItem Content="Amapá" />
+                            <ComboBoxItem Content="Amazonas" />
+                            <ComboBoxItem Content="Bahia" />
+                            <ComboBoxItem Content="Ceará" />
+                            <ComboBoxItem Content="Distrito Federal" />
+                            <ComboBoxItem Content="Espírito Santo" />
+                            <ComboBoxItem Content="Goiás" />
+                            <ComboBoxItem Content="Maranhão" />
+                            <ComboBoxItem Content="Mato Grosso" />
+                            <ComboBoxItem Content="Mato Grosso do Sul" />
+                            <ComboBoxItem Content="Minas Gerais" />
+                            <ComboBoxItem Content="Pará" />
+                            <ComboBoxItem Content="Paraíba" />
+                            <ComboBoxItem Content="Paraná" />
+                            <ComboBoxItem Content="Pernambuco" />
+                            <ComboBoxItem Content="Piauí" />
+                            <ComboBoxItem Content="Rio de Janeiro" />
+                            <ComboBoxItem Content="Rio Grande do Norte" />
+                            <ComboBoxItem Content="Rio Grande do Sul" />
+                            <ComboBoxItem Content="Rondônia" />
+                            <ComboBoxItem Content="Roraima" />
+                            <ComboBoxItem Content="Santa Catarina" />
+                            <ComboBoxItem Content="São Paulo" />
+                            <ComboBoxItem Content="Sergipe" />
+                            <ComboBoxItem Content="Tocantins" />
+                        </ComboBox>
+
+                        <TextBox
+                    materialDesign:HintAssist.Hint="Cidade:"
+                    MaxLength="40"
+                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                    TextWrapping="Wrap" Name="txt_cidade"
+                    Margin="0,0,0,5"/>
+
+                        <TextBox
+                    materialDesign:HintAssist.Hint="Bairro:"
+                    MaxLength="40"
+                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                    TextWrapping="Wrap" Name="txt_bairro"
+                    Margin="0,0,0,5"/>
+
+                        <TextBox
+                    materialDesign:HintAssist.Hint="Rua:"
+                    MaxLength="40"
+                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                    TextWrapping="Wrap" Name="txt_rua"
+                    Margin="0,0,0,5"/>
+
+                        <TextBox
+                    materialDesign:HintAssist.Hint="Nímero:"
+                    MaxLength="40"
+                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                    TextWrapping="Wrap" Name="txt_numero"
+                    Margin="0,0,0,5"/>
+
+                        <Button Content="Salvar" Click="SaveProperty" Margin="0,10,0,0"/>
+                        <Button Content="Fechar" Click="CloseModal" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
 
 
             <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">

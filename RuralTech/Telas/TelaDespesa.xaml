@@ -214,6 +214,152 @@
             </materialDesign:AutoSuggestBox>
 
             <!-- Botão Cadastrar -->
+            <!-- Modal Cadastrar Despesas -->
+            <Button Grid.Row="1"  Margin="225, 83" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
+    HorizontalAlignment="Right" VerticalAlignment="Top" Click="OpenModal">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <TextBlock Text="+" FontSize="40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-10,0,0"/>
+            </Button>
+
+            <Popup Name="PropertyPopup" Placement="Mouse" StaysOpen="False">
+                <Border Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Padding="10">
+                    <StackPanel Width="300" Margin="0 0 0 30">
+                        <TextBlock Text="Despesa" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+
+                        <TextBox
+                    materialDesign:HintAssist.Hint="Descrição:"
+                    MaxLength="40"
+                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                    TextWrapping="Wrap" Name="txt_descrição"
+                    Margin="0,0,0,5"/>
+
+                        <TextBox
+                     materialDesign:HintAssist.Hint="Número do Documento:"
+                     MaxLength="40"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap" Name="txt_numero_documento"
+                     Margin="0,0,0,5"/>
+
+
+                        <TextBox
+                     materialDesign:HintAssist.Hint="Data Emissão:"
+                     MaxLength="40"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap" Name="txt_data_emissao"
+                     Margin="0,0,0,5"/>
+                        
+                        <TextBox
+                     materialDesign:HintAssist.Hint="Data Vencimento:"
+                     MaxLength="40"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap" Name="txt_data_vencimento"
+                     Margin="0,0,0,5"/>
+
+
+                        <TextBox
+                     materialDesign:HintAssist.Hint="Observação:"
+                     MaxLength="40"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap" Name="txt_observacao"
+                     Margin="0,0,0,5"/>
+
+                        <TextBox
+                     materialDesign:HintAssist.Hint="Plano de Contas:"
+                     MaxLength="40"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap" Name="txt_plano_contas"
+                     Margin="0,0,0,5"/>
+
+                        <TextBox
+                     materialDesign:HintAssist.Hint="Centro de Custo:"
+                     MaxLength="40"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap" Name="txt_centro_custo"
+                     Margin="0,0,0,5"/>
+
+                        <TextBox
+                     materialDesign:HintAssist.Hint="Lançamento Parcelado:"
+                     MaxLength="40"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap" Name="txt_lancamento_parcelado"
+                     Margin="0,0,0,5"/>
+
+                        <TextBox
+                     materialDesign:HintAssist.Hint="Valor Total:"
+                     MaxLength="40"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap" Name="txt_valor_total"
+                     Margin="0,0,0,5"/>
+
+
+                        <ComboBox
+                    x:Name="combo_cliente_fornecedor"
+                    Width="300"
+                    Margin="0, 0, 0, 5"
+                    materialDesign:HintAssist.Hint="Selecione Cliente/Fornecedor"
+                    Style="{StaticResource MaterialDesignFilledComboBox}">
+                        </ComboBox>
+
+
+                        <ComboBox
+                    x:Name="combo_tipo_despesa"
+                    Width="300"
+                    Margin="0, 0, 0, 5"
+                    materialDesign:HintAssist.Hint="Selecione o tipo de despesa"
+                    Style="{StaticResource MaterialDesignFilledComboBox}">
+                            <ComboBoxItem Content="Despesa Fixa" />
+                            <ComboBoxItem Content="Despesa Variável" />
+                            <ComboBoxItem Content="Despesa Operacional" />
+                            <ComboBoxItem Content="Despesa de Capital" />
+                            <ComboBoxItem Content="Despesa Administrativa" />
+                            <ComboBoxItem Content="Despesa Financeira" />
+                        </ComboBox>
+
+                        <ComboBox
+                     x:Name="combo_forma_pagamento"
+                     Width="300"
+                     Margin="0, 0, 0, 5"
+                     materialDesign:HintAssist.Hint="Selecione a forma de pagamento"
+                     Style="{StaticResource MaterialDesignFilledComboBox}">
+                            <ComboBoxItem Content="Dinheiro" />
+                            <ComboBoxItem Content="Cartão de Crédito" />
+                            <ComboBoxItem Content="Cartão de Débito" />
+                            <ComboBoxItem Content="Transferência Bancária" />
+                            <ComboBoxItem Content="Pix" />
+                            <ComboBoxItem Content="Boleto Bancário" />
+                            <ComboBoxItem Content="Cheque" />
+                        </ComboBox>
+
+                        <ComboBox
+                     x:Name="combo_categoria"
+                     Width="300"
+                     Margin="0, 0, 0, 5"
+                     materialDesign:HintAssist.Hint="Selecione a categoria da despesa"
+                     Style="{StaticResource MaterialDesignFilledComboBox}">
+                            <ComboBoxItem Content="Alimentação Animal" />
+                            <ComboBoxItem Content="Medicamentos Veterinários" />
+                            <ComboBoxItem Content="Ferramentas e Equipamentos" />
+                            <ComboBoxItem Content="Manutenção de Máquinas" />
+                            <ComboBoxItem Content="Mão de Obra" />
+                            <ComboBoxItem Content="Combustível" />
+                            <ComboBoxItem Content="Insumos Agrícolas" />
+                            <ComboBoxItem Content="Contas de Água e Energia" />
+                            <ComboBoxItem Content="Impostos e Taxas" />
+                            <ComboBoxItem Content="Despesas Administrativas" />
+                        </ComboBox>
+
+                        <Button Content="Salvar" Click="SaveProperty" Margin="0,10,0,0"/>
+                        <Button Content="Fechar" Click="CloseModal" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
 
 
             <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">

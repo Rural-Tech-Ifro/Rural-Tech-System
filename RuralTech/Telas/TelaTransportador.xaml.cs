@@ -23,5 +23,20 @@ namespace RuralTech.Telas
         {
             InitializeComponent();
         }
+
+        private void OpenModal(object sender, RoutedEventArgs e)
+        {
+            PropertyPopup.IsOpen = true;
+        }
+
+        private void CloseModal(object sender, RoutedEventArgs e)
+        {
+            PropertyPopup.IsOpen = false;
+        }
+
+        private void SaveProperty(object sender, RoutedEventArgs e)
+        {
+            PropertyPopup.IsOpen = false;
+        }
     }
 }
