@@ -187,7 +187,7 @@ namespace RuralTech.Telas
             PropertyPopup.IsOpen = false;
         }
 
-        private void PackIcon_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is Medicamento medicamentoSelecionado)
             {
@@ -223,7 +223,7 @@ namespace RuralTech.Telas
             txt_observacao.Text = medicamento.Observacao;
         }
 
-        private void DeleteMedicamento(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void DeleteMedicamento(object sender, RoutedEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is Medicamento medicamentoSelecionado)
             {
