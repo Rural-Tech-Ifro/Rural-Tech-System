@@ -51,7 +51,7 @@ public class MedicamentoDAO
         try
         {
             var comando = _conn.Query();
-            comando.CommandText = "SELECT id_med, nome_med, diasCarencia_med, estado_med, quantidade_med, unidadeEntrada_med, unidadeSaida_med, observacao_med FROM medicamento";
+            comando.CommandText = "SELECT id_med, nome_med, diasCarencia_med, estado_med, inscricaoEstadual_med, quantidade_med, unidadeEntrada_med, unidadeSaida_med, observacao_med FROM medicamento";
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -62,6 +62,7 @@ public class MedicamentoDAO
                     Nome = DAOHelper.GetString(reader, "nome_med"),
                     DiasCarencia = DAOHelper.GetInt32(reader, "diasCarencia_med"),
                     Estado = DAOHelper.GetString(reader, "estado_med"),
+                    InscricaoEstadual = DAOHelper.GetString(reader, "inscricaoEstadual_med"),
                     Quantidade = DAOHelper.GetInt32(reader, "quantidade_med"),
                     UnidadeEntrada = DAOHelper.GetString(reader, "unidadeEntrada_med"),
                     UnidadeSaida = DAOHelper.GetString(reader, "unidadeSaida_med"),
