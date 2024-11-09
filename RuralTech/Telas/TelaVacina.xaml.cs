@@ -183,8 +183,7 @@ namespace RuralTech.Telas
         {
             PropertyPopup.IsOpen = false;
         }
-
-        private void PackIcon_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is Vacina vacinaSelecionada)
             {
@@ -194,6 +193,7 @@ namespace RuralTech.Telas
                 PropertyPopup.IsOpen = true;
             }
         }
+
 
 
         private void PreencherCamposComDados(Vacina vacina)
@@ -220,7 +220,7 @@ namespace RuralTech.Telas
             txt_observacao.Clear();
         }
 
-        private void DeleteVacina(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void DeleteVacina(object sender, RoutedEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is Vacina vacinaSelecionada)
             {
