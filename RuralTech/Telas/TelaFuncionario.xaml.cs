@@ -92,6 +92,7 @@ namespace RuralTech.Telas
             PropertyPopup.IsOpen = false;
         }
 
+<<<<<<< HEAD
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
             TelaCompra tela = new TelaCompra();
@@ -211,6 +212,8 @@ namespace RuralTech.Telas
             this.Close();
         }
 
+=======
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         /*private void PackIcon_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is Funcionario funcionarioSelecionado)

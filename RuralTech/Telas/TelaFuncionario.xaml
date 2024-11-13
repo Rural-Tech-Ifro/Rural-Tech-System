@@ -32,6 +32,7 @@
                         <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
                             <TextBlock/>
 
+<<<<<<< HEAD
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Animal">
                                 <WrapPanel>
                                     <TextBlock Text="Animal" Foreground="white" ></TextBlock>
@@ -39,53 +40,92 @@
                             </Button>
 
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Compra">
+=======
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                                 <WrapPanel>
                                     <TextBlock Text="Compra" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
 
+<<<<<<< HEAD
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Despesa">
+=======
+                            <Button Background="#0ca13f" BorderBrush="white">
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                                 <WrapPanel>
                                     <TextBlock Text="Despesa" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
 
+<<<<<<< HEAD
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Equipamento">
+=======
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Estoque" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white">
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                                 <WrapPanel>
                                     <TextBlock Text="Equipamento" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
 
+<<<<<<< HEAD
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Exame">
+=======
+                            <Button Background="#0ca13f" BorderBrush="white">
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                                 <WrapPanel>
                                     <TextBlock Text="Exame" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
 
+<<<<<<< HEAD
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Fornecedor">
+=======
+                            <Button Background="#0ca13f" BorderBrush="white">
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                                 <WrapPanel>
                                     <TextBlock Text="Fornecedor/Cliente" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
 
+<<<<<<< HEAD
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Funcionario">
+=======
+                            <Button Background="#0ca13f" BorderBrush="white">
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                                 <WrapPanel>
                                     <TextBlock Text="Funcionário" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
 
+<<<<<<< HEAD
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Inseminacao">
+=======
+                            <Button Background="#0ca13f" BorderBrush="white">
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                                 <WrapPanel>
                                     <TextBlock Text="Inseminação" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
 
 
+<<<<<<< HEAD
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Medicamento">
+=======
+                            <Button Background="#0ca13f" BorderBrush="white">
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                                 <WrapPanel>
                                     <TextBlock Text="Medicamento" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
+<<<<<<< HEAD
 
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Ordenha">
                                 <WrapPanel>
@@ -94,42 +134,74 @@
 
                             </Button>
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Parto">
+=======
+                            <Button Background="#0ca13f" BorderBrush="white">
+                                <WrapPanel>
+                                    <TextBlock Text="Ordenha" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white">
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                                 <WrapPanel>
                                     <TextBlock Text="Parto" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
+<<<<<<< HEAD
 
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Pasto">
+=======
+                            <Button Background="#0ca13f" BorderBrush="white">
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                                 <WrapPanel>
                                     <TextBlock Text="Pasto" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
+<<<<<<< HEAD
 
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Patrimonio">
+=======
+                            <Button Background="#0ca13f" BorderBrush="white">
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                                 <WrapPanel>
                                     <TextBlock Text="Patrimônio" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
+<<<<<<< HEAD
 
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Produto">
+=======
+                            <Button Background="#0ca13f" BorderBrush="white">
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                                 <WrapPanel>
                                     <TextBlock Text="Produto" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
+<<<<<<< HEAD
 
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Propriedade">
+=======
+                            <Button Background="#0ca13f" BorderBrush="white">
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                                 <WrapPanel>
                                     <TextBlock Text="Propriedade" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
+<<<<<<< HEAD
 
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Transporte">
+=======
+                            <Button Background="#0ca13f" BorderBrush="white">
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                                 <WrapPanel>
                                     <TextBlock Text="Transporte" Foreground="white" ></TextBlock>
                                 </WrapPanel>
                             </Button>
+<<<<<<< HEAD
 
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Vacina">
+=======
+                            <Button Background="#0ca13f" BorderBrush="white">
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                                 <WrapPanel>
                                     <TextBlock Text="Vacina" Foreground="white" ></TextBlock>
                                 </WrapPanel>

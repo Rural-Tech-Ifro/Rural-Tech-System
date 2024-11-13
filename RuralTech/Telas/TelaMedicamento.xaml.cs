@@ -11,8 +11,11 @@ namespace RuralTech.Telas
     public partial class TelaMedicamento : Window, INotifyPropertyChanged
     {
         public bool Editar = false;
+<<<<<<< HEAD
         private bool isEditMode = false;
         private int editingMedicamentoId; // ID da medicamento sendo editada
+=======
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         private Medicamento _medicamento = new Medicamento(); // Objeto medicamento
         private MedicamentoDAO _medicamentoDAO = new MedicamentoDAO(); // Objeto responsável por acessar o banco de dados
         public ObservableCollection<Medicamento> MedicamentosList { get; set; }
@@ -37,17 +40,27 @@ namespace RuralTech.Telas
             MedicamentosList = new ObservableCollection<Medicamento>();
             CarregarMedicamentos();
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         private void FiltrarMedicamentos()
         {
             if (string.IsNullOrWhiteSpace(SearchText))
             {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                 CarregarMedicamentos();
             }
             else
@@ -68,6 +81,10 @@ namespace RuralTech.Telas
         {
             FiltrarMedicamentos();
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TelaAnimal tela = new TelaAnimal();
@@ -123,12 +140,17 @@ namespace RuralTech.Telas
             }
             catch (Exception ex)
             {
+<<<<<<< HEAD
                 MessageBox.Show($"Erro ao carregar os Medicamentes: {ex.Message}");
+=======
+                MessageBox.Show($"Erro ao carregar os Medicamentos: {ex.Message}");
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
             }
         }
 
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
             // Se não for uma Medicamento selecionada, inicializa para novo cadastro
             if (_medicamento.Id == 0)
             {
@@ -140,6 +162,15 @@ namespace RuralTech.Telas
         }
 
         // Evento para salvar ou atualizar a medicamento
+=======
+            // Limpa o objeto e os campos quando adicionando um novo registro
+            _medicamento = new Medicamento();
+            Editar = false; // Indica que é um novo registro
+            LimparCampos();
+            PropertyPopup.IsOpen = true;
+        }
+
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
             try
@@ -166,12 +197,20 @@ namespace RuralTech.Telas
                 _medicamento.UnidadeSaida = CBunidadeSaida.Text;
                 _medicamento.Observacao = txt_observacao.Text;
 
+<<<<<<< HEAD
                 // Verifica se é uma atualização (Id > 0) ou um novo registro
                 if (Editar == true)
                 {
                     _medicamentoDAO.Update(_medicamento);
                     MessageBox.Show("Registro atualizado com sucesso.");
                     Editar = false;
+=======
+                if (Editar)
+                {
+                    _medicamentoDAO.Update(_medicamento);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    Editar = false; // Volta o estado para novo registro
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                 }
                 else
                 {
@@ -189,17 +228,24 @@ namespace RuralTech.Telas
             }
         }
 
+<<<<<<< HEAD
         // Método para abrir o modal para edição
 
 
 
 
+=======
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         private void CloseModal(object sender, RoutedEventArgs e)
         {
             PropertyPopup.IsOpen = false;
         }
 
+<<<<<<< HEAD
         private void PackIcon_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+=======
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         {
             if (sender is FrameworkElement element && element.DataContext is Medicamento medicamentoSelecionado)
             {
@@ -211,6 +257,20 @@ namespace RuralTech.Telas
         }
 
 
+<<<<<<< HEAD
+=======
+        private void LimparCampos()
+        {
+            txt_nome.Text = "";
+            txt_dias.Text = "";
+            CBestado.Text = "";
+            txt_inscricao.Text = "";
+            txt_quantidade.Text = "";
+            CBunidadeEntrada.Text = "";
+            CBunidadeSaida.Text = "";
+            txt_observacao.Text = "";
+        }
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
 
         private void PreencherCamposComDados(Medicamento medicamento)
         {
@@ -219,11 +279,16 @@ namespace RuralTech.Telas
             CBestado.Text = medicamento.Estado;
             txt_inscricao.Text = medicamento.InscricaoEstadual;
             txt_quantidade.Text = medicamento.Quantidade.ToString();
+<<<<<<< HEAD
             CBunidadeEntrada.Text = medicamento .UnidadeEntrada;
+=======
+            CBunidadeEntrada.Text = medicamento.UnidadeEntrada;
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
             CBunidadeSaida.Text = medicamento.UnidadeSaida;
             txt_observacao.Text = medicamento.Observacao;
         }
 
+<<<<<<< HEAD
         private void DeleteMedicamento(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is Medicamento medicamentoSelecionado)
@@ -236,16 +301,32 @@ namespace RuralTech.Telas
                 }
 
                 // Exibir uma mensagem de confirmação antes de excluir
+=======
+        private void DeleteMedicamento(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Medicamento medicamentoSelecionado)
+            {
+                if (medicamentoSelecionado == null)
+                {
+                    MessageBox.Show("Nenhum medicamento selecionado para exclusão.");
+                    return;
+                }
+
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                 var resultado = MessageBox.Show("Tem certeza de que deseja excluir este registro?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (resultado == MessageBoxResult.Yes)
                 {
                     try
                     {
+<<<<<<< HEAD
                         // Exclui a medicamento do banco de dados passando o objeto medicamento
                         _medicamentoDAO.Delete(medicamentoSelecionado);
 
                         // Remove a medicamento da lista em exibição
+=======
+                        _medicamentoDAO.Delete(medicamentoSelecionado);
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                         MedicamentosList.Remove(medicamentoSelecionado);
                         MessageBox.Show("Registro deletado com sucesso.");
                     }
@@ -260,6 +341,7 @@ namespace RuralTech.Telas
                 MessageBox.Show("Nenhum medicamento selecionado.");
             }
         }
+<<<<<<< HEAD
 
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
@@ -381,3 +463,7 @@ namespace RuralTech.Telas
         }
     }
 }
+=======
+    }
+}
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28

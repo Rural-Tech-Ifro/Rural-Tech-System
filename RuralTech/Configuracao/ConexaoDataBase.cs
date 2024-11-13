@@ -16,7 +16,11 @@ namespace RuralTech.Database
 
         private static string user = "root";
 
+<<<<<<< HEAD
         private static string password = "root";
+=======
+        private static string password = "Anjo 123";
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
 
         private static string dbname = "RuralTech";
 

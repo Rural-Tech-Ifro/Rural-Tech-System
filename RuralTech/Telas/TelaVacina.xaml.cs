@@ -10,6 +10,7 @@ namespace RuralTech.Telas
 {
     public partial class TelaVacina : Window, INotifyPropertyChanged
     {
+<<<<<<< HEAD
         public bool Editar = false;
         private bool isEditMode = false;
         private int editingVacinaId;
@@ -17,6 +18,14 @@ namespace RuralTech.Telas
         private VacinaDAO _vacinaDAO = new VacinaDAO();
         public ObservableCollection<Vacina> VacinasList { get; set; }
         private string _searchText;
+=======
+        private bool Editar = false;
+        private Vacina _vacina = new Vacina();
+        private VacinaDAO _vacinaDAO = new VacinaDAO();
+        public ObservableCollection<Vacina> VacinasList { get; set; } = new ObservableCollection<Vacina>();
+        private string _searchText;
+
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         public string SearchText
         {
             get => _searchText;
@@ -34,7 +43,10 @@ namespace RuralTech.Telas
         {
             InitializeComponent();
             DataContext = this;
+<<<<<<< HEAD
             VacinasList = new ObservableCollection<Vacina>();
+=======
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
             CarregarVacinas();
         }
 
@@ -43,20 +55,31 @@ namespace RuralTech.Telas
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         private void FiltrarVacinas()
         {
             if (string.IsNullOrWhiteSpace(SearchText))
             {
+<<<<<<< HEAD
   
+=======
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                 CarregarVacinas();
             }
             else
             {
                 var vacinasFiltradas = _vacinaDAO.GetVacinas()
+<<<<<<< HEAD
                 .Where(v => v.Nome != null && v.Nome.ToLower().Contains(SearchText.ToLower()))
                 .ToList();
 
+=======
+                    .Where(v => v.Nome != null && v.Nome.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
 
                 VacinasList.Clear();
                 foreach (var vacina in vacinasFiltradas)
@@ -70,6 +93,10 @@ namespace RuralTech.Telas
         {
             FiltrarVacinas();
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TelaAnimal tela = new TelaAnimal();
@@ -131,6 +158,7 @@ namespace RuralTech.Telas
 
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
             // Se não for uma vacina selecionada, inicializa para novo cadastro
             if (_vacina.Id == 0)
             {
@@ -142,11 +170,22 @@ namespace RuralTech.Telas
         }
 
         // Evento para salvar ou atualizar a vacina
+=======
+            _vacina = new Vacina();
+            Editar = false;
+            LimparCampos();
+            PropertyPopup.IsOpen = true;
+        }
+
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
             try
             {
+<<<<<<< HEAD
                 // Preenche o objeto _vacina com os valores do formulário
+=======
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                 _vacina.Nome = txt_nome.Text;
 
                 if (!int.TryParse(txt_dias.Text.Trim(), out int diasCarencia))
@@ -168,12 +207,19 @@ namespace RuralTech.Telas
                 _vacina.UnidadeSaida = CBunidadeSaida.Text;
                 _vacina.Observacao = txt_observacao.Text;
 
+<<<<<<< HEAD
                 // Verifica se é uma atualização (Id > 0) ou um novo registro
                 if (Editar == true)
                 {
                     _vacinaDAO.Update(_vacina);
                     MessageBox.Show("Registro atualizado com sucesso.");
                     Editar = false;
+=======
+                if (Editar)
+                {
+                    _vacinaDAO.Update(_vacina);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                 }
                 else
                 {
@@ -191,17 +237,24 @@ namespace RuralTech.Telas
             }
         }
 
+<<<<<<< HEAD
         // Método para abrir o modal para edição
 
 
 
 
+=======
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         private void CloseModal(object sender, RoutedEventArgs e)
         {
             PropertyPopup.IsOpen = false;
         }
+<<<<<<< HEAD
 
         private void PackIcon_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+=======
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         {
             if (sender is FrameworkElement element && element.DataContext is Vacina vacinaSelecionada)
             {
@@ -226,6 +279,7 @@ namespace RuralTech.Telas
             txt_observacao.Text = vacina.Observacao;
         }
 
+<<<<<<< HEAD
         private void DeleteVacina(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is Vacina vacinaSelecionada)
@@ -238,16 +292,38 @@ namespace RuralTech.Telas
                 }
 
                 // Exibir uma mensagem de confirmação antes de excluir
+=======
+        private void LimparCampos()
+        {
+            txt_nome.Clear();
+            txt_dias.Clear();
+            CBestado.SelectedIndex = -1;
+            txt_inscricao.Clear();
+            txt_quantidade.Clear();
+            CBunidadeEntrada.SelectedIndex = -1;
+            CBunidadeSaida.SelectedIndex = -1;
+            txt_observacao.Clear();
+        }
+
+        private void DeleteVacina(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Vacina vacinaSelecionada)
+            {
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                 var resultado = MessageBox.Show("Tem certeza de que deseja excluir este registro?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (resultado == MessageBoxResult.Yes)
                 {
                     try
                     {
+<<<<<<< HEAD
                         // Exclui a vacina do banco de dados passando o objeto vacina
                         _vacinaDAO.Delete(vacinaSelecionada);
 
                         // Remove a vacina da lista em exibição
+=======
+                        _vacinaDAO.Delete(vacinaSelecionada);
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                         VacinasList.Remove(vacinaSelecionada);
                         MessageBox.Show("Registro deletado com sucesso.");
                     }
@@ -262,6 +338,7 @@ namespace RuralTech.Telas
                 MessageBox.Show("Nenhuma vacina selecionada.");
             }
         }
+<<<<<<< HEAD
 
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
@@ -383,3 +460,7 @@ namespace RuralTech.Telas
         }
     }
 }
+=======
+    }
+}
+>>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
