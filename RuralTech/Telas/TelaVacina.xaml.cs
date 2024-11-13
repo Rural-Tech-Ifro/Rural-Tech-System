@@ -10,22 +10,12 @@ namespace RuralTech.Telas
 {
     public partial class TelaVacina : Window, INotifyPropertyChanged
     {
-<<<<<<< HEAD
-        public bool Editar = false;
-        private bool isEditMode = false;
-        private int editingVacinaId;
-        private Vacina _vacina = new Vacina();
-        private VacinaDAO _vacinaDAO = new VacinaDAO();
-        public ObservableCollection<Vacina> VacinasList { get; set; }
-        private string _searchText;
-=======
         private bool Editar = false;
         private Vacina _vacina = new Vacina();
         private VacinaDAO _vacinaDAO = new VacinaDAO();
         public ObservableCollection<Vacina> VacinasList { get; set; } = new ObservableCollection<Vacina>();
         private string _searchText;
 
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         public string SearchText
         {
             get => _searchText;
@@ -43,10 +33,6 @@ namespace RuralTech.Telas
         {
             InitializeComponent();
             DataContext = this;
-<<<<<<< HEAD
-            VacinasList = new ObservableCollection<Vacina>();
-=======
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
             CarregarVacinas();
         }
 
@@ -55,31 +41,17 @@ namespace RuralTech.Telas
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         private void FiltrarVacinas()
         {
             if (string.IsNullOrWhiteSpace(SearchText))
             {
-<<<<<<< HEAD
-  
-=======
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                 CarregarVacinas();
             }
             else
             {
                 var vacinasFiltradas = _vacinaDAO.GetVacinas()
-<<<<<<< HEAD
-                .Where(v => v.Nome != null && v.Nome.ToLower().Contains(SearchText.ToLower()))
-                .ToList();
-
-=======
                     .Where(v => v.Nome != null && v.Nome.ToLower().Contains(SearchText.ToLower()))
                     .ToList();
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
 
                 VacinasList.Clear();
                 foreach (var vacina in vacinasFiltradas)
@@ -93,252 +65,6 @@ namespace RuralTech.Telas
         {
             FiltrarVacinas();
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            TelaAnimal tela = new TelaAnimal();
-            this.Close();
-            tela.ShowDialog();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            TelaMedicamento tela = new TelaMedicamento();
-            tela.Show();
-            this.Close();
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            TelaMedicamento tela = new TelaMedicamento();
-            this.Close();
-            tela.ShowDialog();
-        }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            TelaPasto tela = new TelaPasto();
-            this.Close();
-            tela.ShowDialog();
-        }
-
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-            TelaPropriedade tela = new TelaPropriedade();
-            this.Close();
-            tela.ShowDialog();
-        }
-
-        private void Button_Click_5(object sender, RoutedEventArgs e)
-        {
-            TelaVacina tela = new TelaVacina();
-            this.Close();
-            tela.ShowDialog();
-        }
-
-        private void CarregarVacinas()
-        {
-            try
-            {
-                var vacinas = _vacinaDAO.GetVacinas();
-                VacinasList.Clear();
-                foreach (var vacina in vacinas)
-                {
-                    VacinasList.Add(vacina);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao carregar vacinas: {ex.Message}");
-            }
-        }
-
-        private void OpenModal(object sender, RoutedEventArgs e)
-        {
-<<<<<<< HEAD
-            // Se não for uma vacina selecionada, inicializa para novo cadastro
-            if (_vacina.Id == 0)
-            {
-                _vacina = new Vacina();
-            }
-
-            PreencherCamposComDados(_vacina);
-            PropertyPopup.IsOpen = true;
-        }
-
-        // Evento para salvar ou atualizar a vacina
-=======
-            _vacina = new Vacina();
-            Editar = false;
-            LimparCampos();
-            PropertyPopup.IsOpen = true;
-        }
-
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
-        private void SaveProperty(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-<<<<<<< HEAD
-                // Preenche o objeto _vacina com os valores do formulário
-=======
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
-                _vacina.Nome = txt_nome.Text;
-
-                if (!int.TryParse(txt_dias.Text.Trim(), out int diasCarencia))
-                {
-                    MessageBox.Show("Por favor, insira um número válido para os dias de carência.");
-                    return;
-                }
-                _vacina.DiasCarencia = diasCarencia;
-                _vacina.Estado = CBestado.Text;
-                _vacina.InscricaoEstadual = txt_inscricao.Text;
-
-                if (!int.TryParse(txt_quantidade.Text.Trim(), out int quantidade))
-                {
-                    MessageBox.Show("Por favor, insira um número válido para a quantidade.");
-                    return;
-                }
-                _vacina.Quantidade = quantidade;
-                _vacina.UnidadeEntrada = CBunidadeEntrada.Text;
-                _vacina.UnidadeSaida = CBunidadeSaida.Text;
-                _vacina.Observacao = txt_observacao.Text;
-
-<<<<<<< HEAD
-                // Verifica se é uma atualização (Id > 0) ou um novo registro
-                if (Editar == true)
-                {
-                    _vacinaDAO.Update(_vacina);
-                    MessageBox.Show("Registro atualizado com sucesso.");
-                    Editar = false;
-=======
-                if (Editar)
-                {
-                    _vacinaDAO.Update(_vacina);
-                    MessageBox.Show("Registro atualizado com sucesso.");
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
-                }
-                else
-                {
-                    _vacina.Id = _vacinaDAO.Insert(_vacina);
-                    VacinasList.Add(_vacina);
-                    MessageBox.Show("Registro cadastrado com sucesso.");
-                }
-
-                CarregarVacinas();
-                PropertyPopup.IsOpen = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
-            }
-        }
-
-<<<<<<< HEAD
-        // Método para abrir o modal para edição
-
-
-
-
-=======
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
-        private void CloseModal(object sender, RoutedEventArgs e)
-        {
-            PropertyPopup.IsOpen = false;
-        }
-<<<<<<< HEAD
-
-        private void PackIcon_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-=======
-        private void OpenModalEdit(object sender, RoutedEventArgs e)
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
-        {
-            if (sender is FrameworkElement element && element.DataContext is Vacina vacinaSelecionada)
-            {
-                _vacina = vacinaSelecionada;
-                PreencherCamposComDados(_vacina); // Preenche o formulário com os dados para edição
-                Editar = true;
-                PropertyPopup.IsOpen = true;
-            }
-        }
-
-
-
-        private void PreencherCamposComDados(Vacina vacina)
-        {
-            txt_nome.Text = vacina.Nome;
-            txt_dias.Text = vacina.DiasCarencia.ToString();
-            CBestado.Text = vacina.Estado;
-            txt_inscricao.Text = vacina.InscricaoEstadual;
-            txt_quantidade.Text = vacina.Quantidade.ToString();
-            CBunidadeEntrada.Text = vacina.UnidadeEntrada;
-            CBunidadeSaida.Text = vacina.UnidadeSaida;
-            txt_observacao.Text = vacina.Observacao;
-        }
-
-<<<<<<< HEAD
-        private void DeleteVacina(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (sender is FrameworkElement element && element.DataContext is Vacina vacinaSelecionada)
-            {
-                // Verifica se a vacina selecionada é válida para exclusão
-                if (vacinaSelecionada == null)
-                {
-                    MessageBox.Show("Nenhuma vacina selecionada para exclusão.");
-                    return;
-                }
-
-                // Exibir uma mensagem de confirmação antes de excluir
-=======
-        private void LimparCampos()
-        {
-            txt_nome.Clear();
-            txt_dias.Clear();
-            CBestado.SelectedIndex = -1;
-            txt_inscricao.Clear();
-            txt_quantidade.Clear();
-            CBunidadeEntrada.SelectedIndex = -1;
-            CBunidadeSaida.SelectedIndex = -1;
-            txt_observacao.Clear();
-        }
-
-        private void DeleteVacina(object sender, RoutedEventArgs e)
-        {
-            if (sender is FrameworkElement element && element.DataContext is Vacina vacinaSelecionada)
-            {
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
-                var resultado = MessageBox.Show("Tem certeza de que deseja excluir este registro?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-                if (resultado == MessageBoxResult.Yes)
-                {
-                    try
-                    {
-<<<<<<< HEAD
-                        // Exclui a vacina do banco de dados passando o objeto vacina
-                        _vacinaDAO.Delete(vacinaSelecionada);
-
-                        // Remove a vacina da lista em exibição
-=======
-                        _vacinaDAO.Delete(vacinaSelecionada);
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
-                        VacinasList.Remove(vacinaSelecionada);
-                        MessageBox.Show("Registro deletado com sucesso.");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Erro ao deletar registro: {ex.Message}");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Nenhuma vacina selecionada.");
-            }
-        }
-<<<<<<< HEAD
 
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
@@ -458,9 +184,143 @@ namespace RuralTech.Telas
             tela.Show();
             this.Close();
         }
+
+        private void CarregarVacinas()
+        {
+            try
+            {
+                var vacinas = _vacinaDAO.GetVacinas();
+                VacinasList.Clear();
+                foreach (var vacina in vacinas)
+                {
+                    VacinasList.Add(vacina);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar vacinas: {ex.Message}");
+            }
+        }
+
+        private void OpenModal(object sender, RoutedEventArgs e)
+        {
+            _vacina = new Vacina();
+            Editar = false;
+            LimparCampos();
+            PropertyPopup.IsOpen = true;
+        }
+
+        private void SaveProperty(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _vacina.Nome = txt_nome.Text;
+
+                if (!int.TryParse(txt_dias.Text.Trim(), out int diasCarencia))
+                {
+                    MessageBox.Show("Por favor, insira um número válido para os dias de carência.");
+                    return;
+                }
+                _vacina.DiasCarencia = diasCarencia;
+                _vacina.Estado = CBestado.Text;
+                _vacina.InscricaoEstadual = txt_inscricao.Text;
+
+                if (!int.TryParse(txt_quantidade.Text.Trim(), out int quantidade))
+                {
+                    MessageBox.Show("Por favor, insira um número válido para a quantidade.");
+                    return;
+                }
+                _vacina.Quantidade = quantidade;
+                _vacina.UnidadeEntrada = CBunidadeEntrada.Text;
+                _vacina.UnidadeSaida = CBunidadeSaida.Text;
+                _vacina.Observacao = txt_observacao.Text;
+
+                if (Editar)
+                {
+                    _vacinaDAO.Update(_vacina);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                }
+                else
+                {
+                    _vacina.Id = _vacinaDAO.Insert(_vacina);
+                    VacinasList.Add(_vacina);
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
+
+                CarregarVacinas();
+                PropertyPopup.IsOpen = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
+            }
+        }
+
+        private void CloseModal(object sender, RoutedEventArgs e)
+        {
+            PropertyPopup.IsOpen = false;
+        }
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Vacina vacinaSelecionada)
+            {
+                _vacina = vacinaSelecionada;
+                PreencherCamposComDados(_vacina); // Preenche o formulário com os dados para edição
+                Editar = true;
+                PropertyPopup.IsOpen = true;
+            }
+        }
+
+
+
+        private void PreencherCamposComDados(Vacina vacina)
+        {
+            txt_nome.Text = vacina.Nome;
+            txt_dias.Text = vacina.DiasCarencia.ToString();
+            CBestado.Text = vacina.Estado;
+            txt_inscricao.Text = vacina.InscricaoEstadual;
+            txt_quantidade.Text = vacina.Quantidade.ToString();
+            CBunidadeEntrada.Text = vacina.UnidadeEntrada;
+            CBunidadeSaida.Text = vacina.UnidadeSaida;
+            txt_observacao.Text = vacina.Observacao;
+        }
+
+        private void LimparCampos()
+        {
+            txt_nome.Clear();
+            txt_dias.Clear();
+            CBestado.SelectedIndex = -1;
+            txt_inscricao.Clear();
+            txt_quantidade.Clear();
+            CBunidadeEntrada.SelectedIndex = -1;
+            CBunidadeSaida.SelectedIndex = -1;
+            txt_observacao.Clear();
+        }
+
+        private void DeleteVacina(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Vacina vacinaSelecionada)
+            {
+                var resultado = MessageBox.Show("Tem certeza de que deseja excluir este registro?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        _vacinaDAO.Delete(vacinaSelecionada);
+                        VacinasList.Remove(vacinaSelecionada);
+                        MessageBox.Show("Registro deletado com sucesso.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao deletar registro: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhuma vacina selecionada.");
+            }
+        }
     }
 }
-=======
-    }
-}
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28

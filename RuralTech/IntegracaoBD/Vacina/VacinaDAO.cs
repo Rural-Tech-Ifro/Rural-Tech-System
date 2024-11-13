@@ -35,7 +35,7 @@ public class VacinaDAO
                 throw new Exception("Ocorreram erros ao salvar as informações");
             }
 
-            return (int) comando.LastInsertedId;
+            return (int)comando.LastInsertedId;
 
         }
         catch (Exception ex)
@@ -51,11 +51,7 @@ public class VacinaDAO
         try
         {
             var comando = _conn.Query();
-<<<<<<< HEAD
-            comando.CommandText = "SELECT id_vac, nome_vac, diasCarencia_vac, estado_vac, quantidade_vac, unidadeEntrada_vac, unidadeSaida_vac, observacao_vac FROM vacina";
-=======
             comando.CommandText = "SELECT id_vac, nome_vac, diasCarencia_vac, estado_vac, inscricaoEstadual_vac, quantidade_vac, unidadeEntrada_vac, unidadeSaida_vac, observacao_vac FROM vacina";
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -66,10 +62,7 @@ public class VacinaDAO
                     Nome = DAOHelper.GetString(reader, "nome_vac"),
                     DiasCarencia = DAOHelper.GetInt32(reader, "diasCarencia_vac"),
                     Estado = DAOHelper.GetString(reader, "estado_vac"),
-<<<<<<< HEAD
-=======
                     InscricaoEstadual = DAOHelper.GetString(reader, "inscricaoEstadual_vac"),
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                     Quantidade = DAOHelper.GetInt32(reader, "quantidade_vac"),
                     UnidadeEntrada = DAOHelper.GetString(reader, "unidadeEntrada_vac"),
                     UnidadeSaida = DAOHelper.GetString(reader, "unidadeSaida_vac"),

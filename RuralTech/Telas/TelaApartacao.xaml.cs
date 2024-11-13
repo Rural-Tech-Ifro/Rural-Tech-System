@@ -25,8 +25,8 @@ namespace RuralTech.Telas
 
         private Apartacao _apartacao = new Apartacao();
         private ApartacaoDAO _apartacaoDAO = new ApartacaoDAO();
-        public bool Editar =false;
-        public ObservableCollection<Apartacao>ApartacoesList { get; set; }
+        public bool Editar = false;
+        public ObservableCollection<Apartacao> ApartacoesList { get; set; }
         public TelaApartacao()
         {
             InitializeComponent();
@@ -98,18 +98,10 @@ namespace RuralTech.Telas
         }
 
 
-<<<<<<< HEAD
-        private void PackIcon_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (sender is FrameworkElement element && element.DataContext is Apartacao apartacaoSelecionado)
-            {
-                _apartacao = apartacaoSelecionado;
-=======
         private void PackIcon_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is Apartacao apartacaoSelecionado)
             {
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
                 PreencherCamposComDados(_apartacao); // Preenche o formulário com os dados para edição
                 Editar = true;
                 PropertyPopup.IsOpen = true;
@@ -127,11 +119,7 @@ namespace RuralTech.Telas
             txt_observacao.Text = apartacao.Observacao;
         }
 
-<<<<<<< HEAD
-        private void DeleteMedicamento(object sender, System.Windows.Input.MouseButtonEventArgs e)
-=======
         private void Delete(object sender, MouseButtonEventArgs e)
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
         {
             if (sender is FrameworkElement element && element.DataContext is Apartacao apartacaoSelecionado)
             {
@@ -167,7 +155,6 @@ namespace RuralTech.Telas
                 MessageBox.Show("Nenhum medicamento selecionado.");
             }
         }
-<<<<<<< HEAD
 
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
@@ -287,7 +274,5 @@ namespace RuralTech.Telas
             tela.Show();
             this.Close();
         }
-=======
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
     }
 }

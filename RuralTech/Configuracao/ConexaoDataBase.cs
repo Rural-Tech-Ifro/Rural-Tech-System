@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient; 
+using MySql.Data.MySqlClient;
 
 namespace RuralTech.Database
 {
@@ -16,11 +16,7 @@ namespace RuralTech.Database
 
         private static string user = "root";
 
-<<<<<<< HEAD
-        private static string password = "root";
-=======
-        private static string password = "Anjo 123";
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
+        private static string password = "200254";
 
         private static string dbname = "RuralTech";
 

@@ -37,7 +37,6 @@ namespace RuralTech.Telas
         {
             PropertyPopup.IsOpen = false;
         }
-<<<<<<< HEAD
 
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
@@ -157,7 +156,5 @@ namespace RuralTech.Telas
             tela.Show();
             this.Close();
         }
-=======
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
     }
 }

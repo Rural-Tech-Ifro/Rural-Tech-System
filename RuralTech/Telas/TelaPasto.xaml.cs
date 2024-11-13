@@ -95,47 +95,6 @@ namespace RuralTech.Telas
             PropertyPopup.IsOpen = false;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            TelaAnimal tela = new TelaAnimal();
-            this.Close();
-            tela.ShowDialog();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            TelaEquipamento tela = new TelaEquipamento();
-            this.Close();
-            tela.ShowDialog();
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            TelaMedicamento tela = new TelaMedicamento();
-            this.Close();
-            tela.ShowDialog();
-        }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            TelaPropriedade tela = new TelaPropriedade();
-            this.Close();
-            tela.ShowDialog();
-        }
-
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-            TelaVacina tela = new TelaVacina();
-            this.Close();
-            tela.ShowDialog();
-        }
-
-        private void Button_Click_5(object sender, RoutedEventArgs e)
-        {
-
-        }
-<<<<<<< HEAD
-
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
             TelaCompra tela = new TelaCompra();
@@ -254,7 +213,5 @@ namespace RuralTech.Telas
             tela.Show();
             this.Close();
         }
-=======
->>>>>>> 54a4911379da197c93a63187fd6cf7741cd01d28
     }
 }
