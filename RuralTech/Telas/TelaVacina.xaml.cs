@@ -1,0 +1,385 @@
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Linq;
+using System.ComponentModel;
+using RuralTech.Integracoes;
+using System.Windows.Controls;
+
+namespace RuralTech.Telas
+{
+    public partial class TelaVacina : Window, INotifyPropertyChanged
+    {
+        public bool Editar = false;
+        private bool isEditMode = false;
+        private int editingVacinaId;
+        private Vacina _vacina = new Vacina();
+        private VacinaDAO _vacinaDAO = new VacinaDAO();
+        public ObservableCollection<Vacina> VacinasList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                FiltrarVacinas();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public TelaVacina()
+        {
+            InitializeComponent();
+            DataContext = this;
+            VacinasList = new ObservableCollection<Vacina>();
+            CarregarVacinas();
+        }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+        private void FiltrarVacinas()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+  
+                CarregarVacinas();
+            }
+            else
+            {
+                var vacinasFiltradas = _vacinaDAO.GetVacinas()
+                .Where(v => v.Nome != null && v.Nome.ToLower().Contains(SearchText.ToLower()))
+                .ToList();
+
+
+                VacinasList.Clear();
+                foreach (var vacina in vacinasFiltradas)
+                {
+                    VacinasList.Add(vacina);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            FiltrarVacinas();
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TelaAnimal tela = new TelaAnimal();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            TelaMedicamento tela = new TelaMedicamento();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            TelaMedicamento tela = new TelaMedicamento();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            TelaPasto tela = new TelaPasto();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            TelaPropriedade tela = new TelaPropriedade();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            TelaVacina tela = new TelaVacina();
+            this.Close();
+            tela.ShowDialog();
+        }
+
+        private void CarregarVacinas()
+        {
+            try
+            {
+                var vacinas = _vacinaDAO.GetVacinas();
+                VacinasList.Clear();
+                foreach (var vacina in vacinas)
+                {
+                    VacinasList.Add(vacina);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar vacinas: {ex.Message}");
+            }
+        }
+
+        private void OpenModal(object sender, RoutedEventArgs e)
+        {
+            // Se não for uma vacina selecionada, inicializa para novo cadastro
+            if (_vacina.Id == 0)
+            {
+                _vacina = new Vacina();
+            }
+
+            PreencherCamposComDados(_vacina);
+            PropertyPopup.IsOpen = true;
+        }
+
+        // Evento para salvar ou atualizar a vacina
+        private void SaveProperty(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Preenche o objeto _vacina com os valores do formulário
+                _vacina.Nome = txt_nome.Text;
+
+                if (!int.TryParse(txt_dias.Text.Trim(), out int diasCarencia))
+                {
+                    MessageBox.Show("Por favor, insira um número válido para os dias de carência.");
+                    return;
+                }
+                _vacina.DiasCarencia = diasCarencia;
+                _vacina.Estado = CBestado.Text;
+                _vacina.InscricaoEstadual = txt_inscricao.Text;
+
+                if (!int.TryParse(txt_quantidade.Text.Trim(), out int quantidade))
+                {
+                    MessageBox.Show("Por favor, insira um número válido para a quantidade.");
+                    return;
+                }
+                _vacina.Quantidade = quantidade;
+                _vacina.UnidadeEntrada = CBunidadeEntrada.Text;
+                _vacina.UnidadeSaida = CBunidadeSaida.Text;
+                _vacina.Observacao = txt_observacao.Text;
+
+                // Verifica se é uma atualização (Id > 0) ou um novo registro
+                if (Editar == true)
+                {
+                    _vacinaDAO.Update(_vacina);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    Editar = false;
+                }
+                else
+                {
+                    _vacina.Id = _vacinaDAO.Insert(_vacina);
+                    VacinasList.Add(_vacina);
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
+
+                CarregarVacinas();
+                PropertyPopup.IsOpen = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
+            }
+        }
+
+        // Método para abrir o modal para edição
+
+
+
+
+        private void CloseModal(object sender, RoutedEventArgs e)
+        {
+            PropertyPopup.IsOpen = false;
+        }
+
+        private void PackIcon_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Vacina vacinaSelecionada)
+            {
+                _vacina = vacinaSelecionada;
+                PreencherCamposComDados(_vacina); // Preenche o formulário com os dados para edição
+                Editar = true;
+                PropertyPopup.IsOpen = true;
+            }
+        }
+
+
+
+        private void PreencherCamposComDados(Vacina vacina)
+        {
+            txt_nome.Text = vacina.Nome;
+            txt_dias.Text = vacina.DiasCarencia.ToString();
+            CBestado.Text = vacina.Estado;
+            txt_inscricao.Text = vacina.InscricaoEstadual;
+            txt_quantidade.Text = vacina.Quantidade.ToString();
+            CBunidadeEntrada.Text = vacina.UnidadeEntrada;
+            CBunidadeSaida.Text = vacina.UnidadeSaida;
+            txt_observacao.Text = vacina.Observacao;
+        }
+
+        private void DeleteVacina(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Vacina vacinaSelecionada)
+            {
+                // Verifica se a vacina selecionada é válida para exclusão
+                if (vacinaSelecionada == null)
+                {
+                    MessageBox.Show("Nenhuma vacina selecionada para exclusão.");
+                    return;
+                }
+
+                // Exibir uma mensagem de confirmação antes de excluir
+                var resultado = MessageBox.Show("Tem certeza de que deseja excluir este registro?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        // Exclui a vacina do banco de dados passando o objeto vacina
+                        _vacinaDAO.Delete(vacinaSelecionada);
+
+                        // Remove a vacina da lista em exibição
+                        VacinasList.Remove(vacinaSelecionada);
+                        MessageBox.Show("Registro deletado com sucesso.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao deletar registro: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhuma vacina selecionada.");
+            }
+        }
+
+        private void Button_Compra(object sender, RoutedEventArgs e)
+        {
+            TelaCompra tela = new TelaCompra();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Despesa(object sender, RoutedEventArgs e)
+        {
+            TelaDespesa tela = new TelaDespesa();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Equipamento(object sender, RoutedEventArgs e)
+        {
+            TelaEquipamento tela = new TelaEquipamento();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Exame(object sender, RoutedEventArgs e)
+        {
+            TelaExame tela = new TelaExame();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Fornecedor(object sender, RoutedEventArgs e)
+        {
+            TelaFornecedor tela = new TelaFornecedor();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Funcionario(object sender, RoutedEventArgs e)
+        {
+            TelaFuncionario tela = new TelaFuncionario();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Inseminacao(object sender, RoutedEventArgs e)
+        {
+            TelaInseminacao tela = new TelaInseminacao();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Medicamento(object sender, RoutedEventArgs e)
+        {
+            TelaMedicamento tela = new TelaMedicamento();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Ordenha(object sender, RoutedEventArgs e)
+        {
+            TelaOrdenha tela = new TelaOrdenha();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Parto(object sender, RoutedEventArgs e)
+        {
+            TelaParicao tela = new TelaParicao();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Pasto(object sender, RoutedEventArgs e)
+        {
+            TelaPasto tela = new TelaPasto();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Patrimonio(object sender, RoutedEventArgs e)
+        {
+            TelaPatrimonio tela = new TelaPatrimonio();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Produto(object sender, RoutedEventArgs e)
+        {
+            TelaProduto tela = new TelaProduto();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Propriedade(object sender, RoutedEventArgs e)
+        {
+            TelaPropriedade tela = new TelaPropriedade();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Transporte(object sender, RoutedEventArgs e)
+        {
+            TelaTransportador tela = new TelaTransportador();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Vacina(object sender, RoutedEventArgs e)
+        {
+            TelaVacina tela = new TelaVacina();
+            tela.Show();
+            this.Close();
+        }
+
+        private void Button_Animal(object sender, RoutedEventArgs e)
+        {
+            TelaAnimal tela = new TelaAnimal();
+            tela.Show();
+            this.Close();
+        }
+    }
+}

@@ -1,0 +1,122 @@
+﻿    <Window x:Class="RuralTech.Telas.TelaLogin"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:local="clr-namespace:RuralTech.Telas"
+            mc:Ignorable="d"
+            WindowStyle="None"
+            AllowsTransparency="True"
+            ResizeMode="NoResize"
+            WindowStartupLocation="CenterScreen"
+            WindowState="Maximized"
+            Title="Login" 
+            Style="{StaticResource MaterialDesignWindow}"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
+            Background="Transparent" Height="625" Width="1130">
+
+        <Border BorderThickness="0" Background="White" SnapsToDevicePixels="True" Padding="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Lado esquerdo da tela -->
+                <Border Grid.Column="0"  BorderThickness="0" SnapsToDevicePixels="True" Padding="0">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF39A048" Offset="0.32"/>
+                            <GradientStop Color="#FF60F794" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="20 0">
+                        <Image Source="/Recursos/ImagensGeral/RuralTECH.png" Width="140"  Margin="0 0 0 60" VerticalAlignment="Top"/>
+
+                        <TextBlock Text="Bem-vindo" VerticalAlignment="Center" TextAlignment="Center" FontFamily="/Recursos/Fonts/#Poppins Bold" FontSize="45" Foreground="White"/>
+                        <TextBlock Text="de volta!" VerticalAlignment="Center" TextAlignment="Center" FontFamily="/Recursos/Fonts/#Poppins Bold" FontSize="45"  Foreground="White" Margin="0 0 0 60"/>
+
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock Text="Acesse sua conta agora" VerticalAlignment="Center" TextAlignment="Left" FontFamily="/Recursos/Fonts/#Poppins Bold" FontSize="20"  Foreground="White"/>
+                            <TextBlock Text="mesmo!" VerticalAlignment="Center" TextAlignment="Left" FontFamily="/Recursos/Fonts/#Poppins Bold" FontSize="20" Foreground="White" Margin="0 0 0 50"/>
+                        </StackPanel>
+
+                        <Button Background="#39A048" BorderBrush="White" BorderThickness="3" Padding="12" Width="356" Height="70" Click="Button_Click_1">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="35">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <TextBlock Text="Cadastrar" FontFamily="/Recursos/Fonts/#Poppins Bold" FontSize="25" Foreground="White" TextAlignment="Center" VerticalAlignment="Center"/>
+                        </Button>
+                    </StackPanel>
+                </Border>
+
+                <!-- Lado direito da tela - Tela de Login -->
+                <Border Grid.Column="1" Background="White">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="600" Margin="0,0,0,0">
+                        <TextBlock Text="Entre na sua conta" VerticalAlignment="Center" TextAlignment="Center" FontFamily="/Recursos/Fonts/#Poppins Bold" FontSize="30" Foreground="#39A048" Margin="0,0,0,18"/>
+                        <TextBlock Text="Insira seus dados" VerticalAlignment="Center" TextAlignment="Center" FontFamily="/Recursos/Fonts/#Poppins Regular" FontSize="16" Foreground="Black" Margin="0,0,0,40"/>
+
+                        <!-- Campo Usuário -->
+                    <StackPanel Margin="0 0 0 30">
+                        <TextBox
+    VerticalAlignment="Top"
+    materialDesign:HintAssist.Hint="Usuário"
+    materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
+    MaxLength="40"
+    Style="{StaticResource MaterialDesignFilledTextBox}"
+    TextWrapping="Wrap" Name="txt_usuario"
+    />
+                    </StackPanel>
+
+                    <!-- Campo Senha -->
+                    <StackPanel>
+                        <PasswordBox
+    materialDesign:HintAssist.HelperText="Not bound password"
+    materialDesign:HintAssist.Hint="Senha"
+    materialDesign:TextFieldAssist.HasClearButton="True"
+    
+    Style="{StaticResource MaterialDesignFilledRevealPasswordBox}" Name="txt_senha"
+    />
+                    </StackPanel>
+
+                    <!-- Link "Esqueceu sua senha?" -->
+                        <TextBlock VerticalAlignment="Center"
+                                   TextAlignment="Right"
+                                   FontFamily="/Recursos/Fonts/#Poppins Regular"
+                                   FontSize="25"
+                                   Foreground="Black"
+                                   Margin="0,15,0,40">
+                            <Run Text="Esqueceu" TextDecorations="Underline"/>
+                            <Run Text=" sua senha?"/>
+                        </TextBlock>
+
+                        <!-- Botão Entrar -->
+                        <Button Background="#39A048" BorderThickness="0" Padding="12" Width="356" Height="70" Click="Button_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="20">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <TextBlock Text="Entrar" FontFamily="/Recursos/Fonts/#Poppins Bold" FontSize="25" Foreground="White" TextAlignment="Center" VerticalAlignment="Center"/>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+    </Window>

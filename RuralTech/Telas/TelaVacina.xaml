@@ -1,0 +1,445 @@
+﻿<Window x:Class="RuralTech.Telas.TelaVacina"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RuralTech.Telas" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Vacinas"         WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Background="Transparent" 
+        Height="625" 
+        Width="1130">
+    <Grid Background="White">
+        <!-- Sidebar -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Background="#0ca13f" Width="200" Height="auto" Margin="0,60,0,-289" Name="appBar_Esquerdo">
+            <!-- Ícones da Barra Lateral -->
+            <materialDesign:Card>
+                <StackPanel>
+                    <Expander HorizontalAlignment="Stretch" Header="Consulta" Background="#0ca13f" Foreground="white">
+                        <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBlock/>
+
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Compra">
+                                <WrapPanel>
+                                    <TextBlock Text="Compra" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Despesa">
+                                <WrapPanel>
+                                    <TextBlock Text="Despesa" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Equipamento">
+                                <WrapPanel>
+                                    <TextBlock Text="Equipamento" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Exame">
+                                <WrapPanel>
+                                    <TextBlock Text="Exame" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Fornecedor">
+                                <WrapPanel>
+                                    <TextBlock Text="Fornecedor/Cliente" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Funcionario">
+                                <WrapPanel>
+                                    <TextBlock Text="Funcionário" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Inseminacao">
+                                <WrapPanel>
+                                    <TextBlock Text="Inseminação" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Medicamento">
+                                <WrapPanel>
+                                    <TextBlock Text="Medicamento" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Ordenha">
+                                <WrapPanel>
+                                    <TextBlock Text="Ordenha" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+
+                            </Button>
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Parto">
+                                <WrapPanel>
+                                    <TextBlock Text="Parto" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Pasto">
+                                <WrapPanel>
+                                    <TextBlock Text="Pasto" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Patrimonio">
+                                <WrapPanel>
+                                    <TextBlock Text="Patrimônio" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Produto">
+                                <WrapPanel>
+                                    <TextBlock Text="Produto" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Propriedade">
+                                <WrapPanel>
+                                    <TextBlock Text="Propriedade" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Transporte">
+                                <WrapPanel>
+                                    <TextBlock Text="Transporte" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Vacina">
+                                <WrapPanel>
+                                    <TextBlock Text="Vacina" Foreground="white" ></TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <TextBlock />
+                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Animal">
+                                <WrapPanel>
+                                    <TextBlock Text="Animal" Foreground="white" />
+                                </WrapPanel>
+                            </Button>
+                        </StackPanel>
+                    </Expander>
+                    <Border />
+                    <Expander HorizontalAlignment="Stretch" Header="Relatório" Background="#0ca13f"  Foreground="white">
+                        <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBlock Text="Your Content" />
+                            <TextBlock />
+                        </StackPanel>
+                    </Expander>
+                    <Border />
+                    <Expander HorizontalAlignment="Stretch" Header="Perfil" Background="#0ca13f"  Foreground="white">
+                        <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBlock Text="Your Content" />
+                            <TextBlock />
+                        </StackPanel>
+                    </Expander>
+                    <Border />
+                    <Expander HorizontalAlignment="Stretch" Header="Sair" Background="#0ca13f"  Foreground="white">
+                        <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBlock Text="Your Content" />
+                            <TextBlock />
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </materialDesign:Card>
+
+
+        </StackPanel>
+
+        <!-- Conteúdo Principal -->
+        <Grid Grid.ColumnSpan="2" Margin="59,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Barra Superior -->
+            <StackPanel Orientation="Horizontal" Background="White" Height="60" Width="auto" Margin="-65,0,0,0">
+                <StackPanel.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.5"/>
+                </StackPanel.Effect>
+                <materialDesign:PackIcon Kind="AccountCircle" Width="40" Height="40" Margin="10" Background="White" Foreground="Green" />
+
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Serjão dos Foguetes" FontFamily="/Recursos/Fonts/#Poppins Semibold" FontSize="13"/>
+                    <WrapPanel>
+                        <TextBlock Text="Fazendeiro" FontFamily="/Recursos/Fonts/#Poppins regular" FontSize="13"/>
+                        <materialDesign:PackIcon Kind="MenuDown" Width="20" Height="20" Foreground="Green" Background="White"/>
+                    </WrapPanel>
+                </StackPanel>
+
+                <!-- Adiciona um Spacer -->
+                <StackPanel Width="1150" Height="64">
+                    <materialDesign:PackIcon Kind="BellOutline" Width="80" Height="30" VerticalAlignment="Center" Margin="0 15 190 0" HorizontalAlignment="Right"/>
+                    <Image Source="/Recursos/ImagensGeral/RuralTech(Preto).png" Width="262" Height="108" Margin="0 -60 -40 9" HorizontalAlignment="Right"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Campo de Pesquisa -->
+            <materialDesign:AutoSuggestBox
+    materialDesign:HintAssist.Hint="Pesquisar Vacina"   
+    materialDesign:TextFieldAssist.HasClearButton="True"
+    DropDownElevation="Dp0"
+    Style="{StaticResource MaterialDesignAutoSuggestBox}"  
+    Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+    TextChanged="AutoSuggestBox_TextChanged"
+    ValueMember="Key" 
+    Margin="135,10,535,505" 
+    Grid.Row="1" 
+    Width="400" 
+    Height="50" 
+    RenderTransformOrigin="-0.875,-2.1">
+
+                <materialDesign:AutoSuggestBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Border Width="20" Height="20" Background="{Binding Value}" CornerRadius="10" />
+                            <TextBlock Margin="90" Text="{Binding Key}" />
+                        </DockPanel>
+                    </DataTemplate>
+                </materialDesign:AutoSuggestBox.ItemTemplate>
+            </materialDesign:AutoSuggestBox>
+
+            <Button Grid.Row="1"  Margin="300, 83" Width="50" Height="50" Background="Green" BorderBrush="Transparent" 
+    HorizontalAlignment="Right" VerticalAlignment="Top" Click="OpenModal">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+        CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <TextBlock Text="+" FontSize="40" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-10,0,0"/>
+            </Button>
+
+            <Popup Name="PropertyPopup" Placement="Mouse" StaysOpen="False">
+                <Border Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Padding="10">
+                    <StackPanel Width="300" Margin="0 0 0 30">
+                        <TextBlock Text="Cadastrar Vacina"  FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+
+
+
+                        <TextBox
+    materialDesign:HintAssist.Hint="Nome:"
+    MaxLength="40"
+    Style="{StaticResource MaterialDesignFilledTextBox}"
+    TextWrapping="Wrap" Name="txt_nome"
+    Margin="0,0,0,5"/>
+
+                        <TextBox
+    materialDesign:HintAssist.Hint="Dias de Carência:"
+    MaxLength="40"
+    Style="{StaticResource MaterialDesignFilledTextBox}"
+    TextWrapping="Wrap" Name="txt_dias"
+    Margin="0,0,0,5"/>
+
+                        <ComboBox
+x:Name="CBestado"
+Width="300"
+Margin="0, 0, 0, 5"
+materialDesign:HintAssist.Hint="Selecione o Estado"
+IsEnabled="{Binding Path=IsChecked, ElementName=SexComboBoxEnabledCheckBox}"
+Style="{StaticResource MaterialDesignFilledComboBox}">
+                            <ComboBoxItem Content="Acre" />
+                            <ComboBoxItem Content="Alagoas" />
+                            <ComboBoxItem Content="Amapá" />
+                            <ComboBoxItem Content="Amazonas" />
+                            <ComboBoxItem Content="Bahia" />
+                            <ComboBoxItem Content="Ceará" />
+                            <ComboBoxItem Content="Distrito Federal" />
+                            <ComboBoxItem Content="Espírito Santo" />
+                            <ComboBoxItem Content="Goiás" />
+                            <ComboBoxItem Content="Maranhão" />
+                            <ComboBoxItem Content="Mato Grosso" />
+                            <ComboBoxItem Content="Mato Grosso do Sul" />
+                            <ComboBoxItem Content="Minas Gerais" />
+                            <ComboBoxItem Content="Pará" />
+                            <ComboBoxItem Content="Paraíba" />
+                            <ComboBoxItem Content="Paraná" />
+                            <ComboBoxItem Content="Pernambuco" />
+                            <ComboBoxItem Content="Piauí" />
+                            <ComboBoxItem Content="Rio de Janeiro" />
+                            <ComboBoxItem Content="Rio Grande do Norte" />
+                            <ComboBoxItem Content="Rio Grande do Sul" />
+                            <ComboBoxItem Content="Rondônia" />
+                            <ComboBoxItem Content="Roraima" />
+                            <ComboBoxItem Content="Santa Catarina" />
+                            <ComboBoxItem Content="São Paulo" />
+                            <ComboBoxItem Content="Sergipe" />
+                            <ComboBoxItem Content="Tocantins" />
+                        </ComboBox>
+
+                        <TextBox
+    materialDesign:HintAssist.Hint="Inscrição Estadual:"
+    MaxLength="40"
+    Style="{StaticResource MaterialDesignFilledTextBox}"
+    TextWrapping="Wrap" Name="txt_inscricao"
+    Margin="0,0,0,5"/>
+
+                        <TextBox
+    materialDesign:HintAssist.Hint="Quantidade:"
+    MaxLength="40"
+    Style="{StaticResource MaterialDesignFilledTextBox}"
+    TextWrapping="Wrap" Name="txt_quantidade"
+    Margin="0,0,0,5"/>
+
+                        <ComboBox
+x:Name="CBunidadeEntrada"
+Width="300"
+Margin="0, 0, 0, 5"
+materialDesign:HintAssist.Hint="Selecione uma unidade de entrada:"
+IsEnabled="{Binding Path=IsChecked, ElementName=SexComboBoxEnabledCheckBox}"
+Style="{StaticResource MaterialDesignFilledComboBox}">
+                            <ComboBoxItem Content="Caixa" />
+                            <ComboBoxItem Content="Frasco" />
+                            <ComboBoxItem Content="Ampola" />
+                            <ComboBoxItem Content="Cartucho" />
+                            <ComboBoxItem Content="Palete" />
+                            <ComboBoxItem Content="Lote" />
+                            <ComboBoxItem Content="Galão" />
+                            <ComboBoxItem Content="Pacote" />
+                            <ComboBoxItem Content="Fardo" />
+                            <ComboBoxItem Content="Blister" />
+                        </ComboBox>
+
+                        <ComboBox
+                            x:Name="CBunidadeSaida"
+                            Width="300"
+                            Margin="0, 0, 0, 5"
+                            materialDesign:HintAssist.Hint="Selecione uma unidade de saída:"
+                            IsEnabled="{Binding Path=IsChecked, ElementName=SexComboBoxEnabledCheckBox}"
+                            Style="{StaticResource MaterialDesignFilledComboBox}">
+                            <ComboBoxItem Content="Dose" />
+                            <ComboBoxItem Content="Dose" />
+                            <ComboBoxItem Content="Frasco" />
+                            <ComboBoxItem Content="Ampola" />
+                            <ComboBoxItem Content="Comprimido" />
+                            <ComboBoxItem Content="Cápsula" />
+                            <ComboBoxItem Content="Gota" />
+                            <ComboBoxItem Content="Mililitro (ml)" />
+                            <ComboBoxItem Content="Grama (g)" />
+                            <ComboBoxItem Content="Unidade" />
+                            <ComboBoxItem Content="Aplicação" />
+                            <ComboBoxItem Content="Cartucho" />
+                        </ComboBox>
+
+                        <TextBox
+                                Height="100"
+                                VerticalAlignment="Top"
+                                materialDesign:HintAssist.Hint="Observações"
+                                AcceptsReturn="True"
+                                IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                TextWrapping="Wrap"
+                                VerticalScrollBarVisibility="Auto"
+                                x:Name="txt_observacao"
+                                />
+
+
+                        <Button Content="Salvar" Click="SaveProperty" Margin="0,10,0,0"/>
+                        <Button Content="Fechar" Click="CloseModal" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
+
+
+            <!-- Cards de Animais -->
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">
+                <ItemsControl ItemsSource="{Binding VacinasList}">
+                    <!-- Definindo o layout do ItemsControl como WrapPanel -->
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#7C9C81" BorderThickness="1" CornerRadius="5" Width="230" Height="170" Margin="52, 10, -30, 10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="80"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="5,5,0,0">
+                                        <Border.Background>
+                                            <ImageBrush Stretch="Fill" ImageSource="/Recursos/ImagensGeral/vacina.png"/>
+                                        </Border.Background>
+                                    </Border>
+
+                                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,0,0,0">
+                                        <TextBlock FontWeight="Bold" Margin="0,5,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Nome: {0}">
+                                                    <Binding Path="Nome" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Estado: {0}">
+                                                    <Binding Path="Estado" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Quantidade: {0}">
+                                                    <Binding Path="Quantidade" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Unidade de Entrada: {0}">
+                                                    <Binding Path="UnidadeEntrada" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Observação: {0}">
+                                                    <Binding Path="Observacao" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </StackPanel>
+
+                                    <!-- Ícone do lápis à direita -->
+                                    <!-- Botão com ícone de lápis para abrir o modal -->
+                                    <materialDesign:PackIcon MouseDoubleClick="PackIcon_MouseDoubleClick" Kind="Pencil" Cursor="Hand" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
+                                    <materialDesign:PackIcon MouseDoubleClick="DeleteVacina" Kind="Delete" Grid.Row="1" Grid.Column="1" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,5" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </WrapPanel>
+        </Grid>
+    </Grid>
+</Window>
