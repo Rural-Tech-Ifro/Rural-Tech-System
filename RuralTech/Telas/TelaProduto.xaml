@@ -302,7 +302,7 @@ CornerRadius="10">
 
             <!-- Cards Produto -->
             <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Width="900" Margin="0,200,0,20">
-                <ItemsControl ItemsSource="{Binding PatrimoniosList}">
+                <ItemsControl ItemsSource="{Binding ProdutosList}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel />

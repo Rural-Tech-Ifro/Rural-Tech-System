@@ -47,7 +47,11 @@ namespace RuralTech.Telas
                 _usuario.Email = txt_email.Text;
 
                 _usuarioDAO.Insert(_usuario); // Insere no banco
-                MessageBox.Show("Registro cadastrado com sucesso.");
+                MessageBox.Show("Usuario cadastrado com sucesso.");
+
+                TelaLogin tela = new TelaLogin();
+                this.Close();
+                tela.ShowDialog();
             }
             catch (Exception ex)
             {

@@ -8,8 +8,6 @@ email_usu varchar(200),
 senha_usu varchar(10)
 );
 
-
-
 create table propriedade(
 id_pro int primary key auto_increment,
 nome_pro varchar(200),
@@ -23,19 +21,7 @@ imagem_pro blob,
 id_usu_fk int,
 foreign key(id_usu_fk) references usuario(id_usu)
 );
-INSERT INTO propriedade (nome_pro, proprietario_pro, logradouro_pro, cep_pro, bairro_pro, complemento_pro, tamanho_pro)
-VALUES 
-('Casa Verde', 'João Silva', 'Rua das Flores, 123', '12345-678', 'Jardim das Rosas', 'Apto 101', 150),
 
-('Chácara do Sol', 'Maria Oliveira', 'Estrada do Sol, km 10', '98765-432', 'Zona Rural', 'Casa de madeira', 500),
-
-('Apartamento Azul', 'Carlos Pereira', 'Avenida Central, 456', '23456-789', 'Centro', 'Último andar', 90),
-
-('Sobrado Dourado', 'Ana Costa', 'Rua do Comércio, 78', '34567-890', 'Vila Nova', 'Fundos', 200),
-
-('Terreno Verde', 'Felipe Mendes', 'Estrada das Palmeiras, s/n', '45678-901', 'São Jorge', 'Próximo ao lago', 1000);
-
-select * from propriedade;
 create table patrimonio(
 id_pat int primary key auto_increment,
 nome_pat varchar(200),
@@ -283,18 +269,6 @@ raca_ani varchar(100),
 classificacao_ani varchar(500),
 origem_ani varchar(100)
 );
-INSERT INTO animal (brinco_ani, sexo_ani, raca_ani, classificacao_ani, origem_ani)
-VALUES
-('BR12345', 'M', 'Nelore', 'Bovino de corte, boa adaptação ao clima tropical', 'Brasil'),
-('BR67890', 'F', 'Jersey', 'Leiteiro, alta produção de leite', 'Reino Unido'),
-('BR11223', 'M', 'Pardo Suíço', 'Raça mista, boa para leite e carne', 'Suíça'),
-('BR44556', 'F', 'Holandês', 'Raça de leite de alta produtividade', 'Holanda'),
-('BR78901', 'M', 'Charolês', 'Raça bovina de corte, carne de qualidade superior', 'França'),
-('BR22334', 'F', 'Angus', 'Raça de corte, carne marmoreada, excelente para churrasco', 'Escócia'),
-('BR55667', 'M', 'Brahman', 'Raça adaptada a climas quentes, boa resistência a doenças', 'Índia'),
-('BR99887', 'F', 'Zebu', 'Raça rústica, muito resistente, boa para áreas de clima quente', 'África'),
-('BR33445', 'M', 'Simental', 'Raça mista, boa para carne e leite, alta produtividade', 'Suíça'),
-('BR66789', 'F', 'Gir', 'Raça de leite, adaptada a altas temperaturas, produção de leite de qualidade', 'Brasil');
 
 create table ordenha(
 id_ord int primary key auto_increment,

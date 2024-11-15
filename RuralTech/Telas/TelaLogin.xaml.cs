@@ -27,6 +27,7 @@ namespace RuralTech.Telas
         
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            bool validacao = false;
             var usuario = txt_usuario.Text;
             var senha = txt_senha.Password;
 
@@ -35,16 +36,19 @@ namespace RuralTech.Telas
                 if (str.Nome == usuario && str.Senha == senha)
                 {
                     MessageBox.Show("Logado com sucesso!");
+                    validacao = true;
                     TelaAnimal login = new TelaAnimal();
                     this.Close();
                     login.ShowDialog();
                     break;
-
                 }
-               
             }
 
-            
+            if (validacao == false)
+            {
+                MessageBox.Show("Usuario não cadastrado!");
+
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
