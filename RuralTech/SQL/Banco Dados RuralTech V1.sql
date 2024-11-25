@@ -190,41 +190,6 @@ id_des_fk int,
 foreign key(id_des_fk) references despesa(id_des)
 );
 
-create table estoque(
-id_est int primary key auto_increment,
-categoria_est varchar(200),
-dataVencimento_est date,
-preco_est double,
-subTotal_est double,
-centroCusto_est varchar(200),
-valorTotal_est double,
-quantidade_est int,
-dataPagamento_est date,
-pagamentoParcelado_est boolean,
-paga_est boolean,
-unidadeMedida_est varchar(200),
-valorFrete_est double,
-formaPagamento_est varchar(200),
-dataEntrada_est date,
-modalidadeFrete_est varchar(200),
-repetir_est varchar(200),
-numeroDocumento_est varchar(200),
-observacao_est varchar(200),
-dataEmisao_est varchar(200),
-jurosParcela_est varchar(200),
-desconto_est double,
-id_pro_fk int,
-foreign key(id_pro_fk) references propriedade(id_pro)
-);
-
-create table fornecedor_estoque(
-id_for_est int primary key auto_increment,
-id_for_fk int,
-foreign key(id_for_fk) references fornecedor(id_for),
-id_est_fk int,
-foreign key(id_est_fk) references estoque(id_est)
-);
-
 create table produto(
 id_prod int primary key auto_increment,
 precoCusto_prod double,
@@ -275,9 +240,7 @@ estado_tra varchar(200),
 cidade_tra varchar(200),
 bairro_tra varchar(200),
 rua_tra varchar(200),
-cep_tra varchar(50),
-id_est_fk int,
-foreign key(id_est_fk) references estoque(id_est)
+cep_tra varchar(50)
 );
 select * from produto_compra;
 
@@ -294,7 +257,9 @@ create table ordenha(
 id_ord int primary key auto_increment,
 totalLitros_ord varchar(100),
 id_ani_fk int,
-foreign key(id_ani_fk) references animal(id_ani)
+foreign key(id_ani_fk) references animal(id_ani),
+id_fun_fk int,
+foreign key (id_fun_fk) references Funcionario(id_fun)
 );
 
 create table apartacao(
