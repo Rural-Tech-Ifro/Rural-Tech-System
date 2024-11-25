@@ -22,16 +22,16 @@ namespace RuralTech.Telas
     public partial class TelaApartacao : Window
     {
         AnimalDAO animal = new AnimalDAO();
-
         private Apartacao _apartacao = new Apartacao();
         private ApartacaoDAO _apartacaoDAO = new ApartacaoDAO();
         public bool Editar = false;
         public ObservableCollection<Apartacao> ApartacoesList { get; set; }
+
         public TelaApartacao()
         {
             InitializeComponent();
-            DataContext = this; // Define o DataContext para a própria janela
-            ApartacoesList = new ObservableCollection<Apartacao>(); // Inicializa a lista como uma ObservableCollection
+            DataContext = this; 
+            ApartacoesList = new ObservableCollection<Apartacao>();
             CarregarApartacoes();
 
             //COMBO BOX animal
@@ -54,11 +54,14 @@ namespace RuralTech.Telas
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao carregar vacinas: {ex.Message}");
+                MessageBox.Show($"Erro ao carregar apartações: {ex.Message}");
             }
         }
+
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+            Editar = false;
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
@@ -84,11 +87,22 @@ namespace RuralTech.Telas
                 _apartacao.DataTransferencia = Convert.ToDateTime(txt_dataTransferencia.Text);
                 _apartacao.Observacao = txt_observacao.Text;
 
-                _apartacaoDAO.Insert(_apartacao); // Insere no banco
-                MessageBox.Show("Registro cadastrado com sucesso.");
-                TelaApartacao tela = new TelaApartacao();
-                this.Close();
-                tela.ShowDialog();
+                if (Editar)
+                {
+                    _apartacaoDAO.Update(_apartacao);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    TelaApartacao tela = new TelaApartacao();
+                    this.Close();
+                    tela.ShowDialog();
+                }
+                else
+                {
+                    _apartacaoDAO.Insert(_apartacao); // Insere no banco
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                    TelaApartacao tela = new TelaApartacao();
+                    this.Close();
+                    tela.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
@@ -98,50 +112,33 @@ namespace RuralTech.Telas
         }
 
 
-        private void PackIcon_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
         {
-            if (sender is FrameworkElement element && element.DataContext is Apartacao apartacaoSelecionado)
+            if (sender is FrameworkElement element && element.DataContext is Apartacao apartacaoSelecionada)
             {
-                PreencherCamposComDados(_apartacao); // Preenche o formulário com os dados para edição
+                _apartacao = apartacaoSelecionada;
+                combo_animal.Text = _apartacao.Animal;
+                combo_situacao.Text = _apartacao.Situacao;
+                combo_lote.Text = _apartacao.Lote;
+                txt_dataTransferencia.Text = _apartacao.DataTransferencia.ToString();
+                txt_observacao.Text = _apartacao.Observacao; 
                 Editar = true;
                 PropertyPopup.IsOpen = true;
             }
         }
 
-
-
-        private void PreencherCamposComDados(Apartacao apartacao)
+        private void DeleteVacina(object sender, RoutedEventArgs e)
         {
-            combo_animal.Text = apartacao.Animal;
-            combo_situacao.Text = apartacao.Situacao;
-            combo_lote.Text = apartacao.Lote;
-            txt_dataTransferencia.Text = apartacao.DataTransferencia.ToString();
-            txt_observacao.Text = apartacao.Observacao;
-        }
-
-        private void Delete(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is FrameworkElement element && element.DataContext is Apartacao apartacaoSelecionado)
+            if (sender is FrameworkElement element && element.DataContext is Apartacao apartacaoSelecionada)
             {
-                // Verifica se a medicamento selecionada é válida para exclusão
-                if (apartacaoSelecionado == null)
-                {
-                    MessageBox.Show("Nenhum medicamento selecionada para exclusão.");
-                    return;
-                }
-
-                // Exibir uma mensagem de confirmação antes de excluir
                 var resultado = MessageBox.Show("Tem certeza de que deseja excluir este registro?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (resultado == MessageBoxResult.Yes)
                 {
                     try
                     {
-                        // Exclui a medicamento do banco de dados passando o objeto medicamento
-                        _apartacaoDAO.Delete(apartacaoSelecionado);
-
-                        // Remove a medicamento da lista em exibição
-                        ApartacoesList.Remove(apartacaoSelecionado);
+                        _apartacaoDAO.Delete(apartacaoSelecionada);
+                        ApartacoesList.Remove(apartacaoSelecionada);
                         MessageBox.Show("Registro deletado com sucesso.");
                     }
                     catch (Exception ex)
@@ -152,8 +149,16 @@ namespace RuralTech.Telas
             }
             else
             {
-                MessageBox.Show("Nenhum medicamento selecionado.");
+                MessageBox.Show("Nenhuma vacina selecionada.");
             }
+        }
+        private void LimparCampos()
+        {
+            combo_animal.Text = null;
+            combo_situacao.Text = null;
+            combo_lote.Text = null;
+            txt_dataTransferencia.Clear();
+            txt_observacao.Clear();
         }
 
         private void Button_Compra(object sender, RoutedEventArgs e)

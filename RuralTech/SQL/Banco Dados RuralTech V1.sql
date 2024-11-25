@@ -97,9 +97,18 @@ cep_for varchar(100),
 numero_for varchar(100),
 logradouro_for varchar(100),
 tipo_for varchar(100),
-email_for varchar(300),
-ativado_for boolean
+email_for varchar(300)
 );
+INSERT INTO fornecedor (
+    nome_for, celular_for, telefone_for, cnpjCpf_for, pais_for, estado_for, cidade_for, 
+    cep_for, numero_for, logradouro_for, tipo_for, email_for
+) 
+VALUES
+('Distribuidora São Paulo', '(11) 91234-5678', '(11) 3456-7890', '12.345.678/0001-90', 'Brasil', 'São Paulo', 'São Paulo', 
+'01010-100', '100', 'Rua das Indústrias', 'Atacado', 'contato@distribuidorasampa.com.br'),
+
+('Loja Rio Comercial', '(21) 92345-6789', '(21) 2233-4455', '23.456.789/0001-10', 'Brasil', 'Rio de Janeiro', 'Rio de Janeiro', 
+'20030-150', '202', 'Avenida Central', 'Varejo', 'suporte@lojario.com.br');
 
 create table funcionario(
 id_fun int primary key auto_increment,
@@ -120,19 +129,29 @@ dataPagamento_fun date,
 dataAdmissao_fun date
 );
 
+INSERT INTO funcionario (
+    nome_fun, email_fun, telefone_fun, numero_fun, salario_fun, celular_fun, logradouro_fun, 
+    pais_fun, estado_fun, cidade_fun, cep_fun, cpf_fun, dataNascimento_fun, dataPagamento_fun, dataAdmissao_fun
+) 
+VALUES
+('João Silva', 'joao.silva@email.com', '(11) 2345-6789', '123', 2500.00, '(11) 98765-4321', 'Rua das Flores, 123', 
+'Brasil', 'São Paulo', 'São Paulo', '01000-000', '123.456.789-00', '1985-03-15', '2024-11-20', '2020-08-01'),
+
+('Maria Oliveira', 'maria.oliveira@email.com', '(21) 98765-4321', '456', 3000.00, '(21) 99123-4567', 'Avenida Brasil, 456', 
+'Brasil', 'Rio de Janeiro', 'Rio de Janeiro', '20000-000', '987.654.321-00', '1990-07-22', '2024-11-25', '2021-02-10');
+
+
 create table compra(
 id_com int primary key auto_increment,
 dataPagamento_com date,
 codigo_com varchar(100),
-parcelada_com boolean,
 formaPagamento_com varchar(100),
 dataCompra_com date,
 quantidadeParcela int,
-paga_com boolean,
 id_fun_fk int,
 foreign key(id_fun_fk) references funcionario(id_fun)
 );
-
+select * from Compra;
 create table fornecedor_compra(
 id_for_com int primary key auto_increment,
 id_for_fk int,
@@ -140,6 +159,7 @@ foreign key(id_for_fk) references fornecedor(id_for),
 id_com_fk int,
 foreign key(id_com_fk) references compra(id_com)
 );
+select * from Fornecedor_Compra;
 
 create table despesa(
 id_des int primary key auto_increment,
@@ -208,16 +228,17 @@ foreign key(id_est_fk) references estoque(id_est)
 create table produto(
 id_prod int primary key auto_increment,
 precoCusto_prod double,
-unidadeSaida_prod int,
-unidadeEntrada_prod int,
-precoVenda_prod int,
+unidadeSaida_prod varchar(200),
+unidadeEntrada_prod varchar(200),
+precoVenda_prod double,
 quantidade_prod int,
 observacao_prod varchar(200),
 nome_prod varchar(200),
-dataVencimento_prod date,
-id_est_fk int,
-foreign key(id_est_fk) references estoque(id_est)
+dataVencimento_prod date
 );
+INSERT INTO produto (precoCusto_prod, unidadeSaida_prod, unidadeEntrada_prod, precoVenda_prod, quantidade_prod, observacao_prod, nome_prod, dataVencimento_prod) VALUES (10.50, 'unidade', 'caixa', 15.75, 50, 'Produto perecível', 'Arroz Integral', '2024-12-31');
+INSERT INTO produto (precoCusto_prod, unidadeSaida_prod, unidadeEntrada_prod, precoVenda_prod, quantidade_prod, observacao_prod, nome_prod, dataVencimento_prod) VALUES (7.25, 'unidade', 'caixa', 12.00, 100, 'Produto não perecível', 'Feijão Preto', '2025-06-30');
+
 
 create table venda(
 id_ven int primary key auto_increment,
@@ -225,9 +246,7 @@ formaRecebimento varchar(100),
 dataVenda_ven date,
 preco_ven double,
 valorTotal_ven double,
-valorDesconto double,
-id_fun_fk int,
-foreign key(id_fun_fk) references funcionario(id_fun)
+valorDesconto double
 );
 
 create table produto_venda(
@@ -260,6 +279,7 @@ cep_tra varchar(50),
 id_est_fk int,
 foreign key(id_est_fk) references estoque(id_est)
 );
+select * from produto_compra;
 
 create table animal(
 id_ani int primary key auto_increment,

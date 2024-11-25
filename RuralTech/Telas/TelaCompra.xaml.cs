@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,13 +20,60 @@ namespace RuralTech.Telas
     /// </summary>
     public partial class TelaCompra : Window
     {
+        FuncionarioDAO funcionario = new FuncionarioDAO();
+        FornecedorDAO fornecedor = new FornecedorDAO();
+        ProdutoDAO produto = new ProdutoDAO();
+
+        private Compra _compra = new Compra();
+        private CompraDAO _compraDAO = new CompraDAO();
+        public bool Editar = false;
+        public ObservableCollection<Compra> ComprasList { get; set; }
+
         public TelaCompra()
         {
             InitializeComponent();
+            DataContext = this;
+            ComprasList = new ObservableCollection<Compra>();
+            CarregarCompras();
+
+            //COMBO BOX animal
+
+            foreach (Funcionario str in funcionario.GetFuncionario())
+            {
+                combo_funcionario.Items.Add(str.Nome);
+            }
+            foreach (Fornecedor str in fornecedor.GetFornecedor())
+            {
+                combo_fornecedor.Items.Add(str.Nome);
+            }
+            foreach (Produto str in produto.GetProduto())
+            {
+                combo_produto.Items.Add(str.Nome);
+            }
         }
+
+        private void CarregarCompras()
+        {
+            try
+            {
+                var compras = _compraDAO.GetCompras(); // Obtém a lista de vacinas do banco
+                ComprasList.Clear(); // Limpa a coleção atual para evitar duplicatas
+                foreach (var compra in compras)
+                {
+                    ComprasList.Add(compra); // Adiciona cada vacina à ObservableCollection
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar apartações: {ex.Message}");
+            }
+        }
+
 
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+            Editar = false;
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
@@ -36,7 +84,119 @@ namespace RuralTech.Telas
 
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                foreach (Funcionario str in funcionario.GetFuncionario())
+                {
+                    if (str.Nome == combo_funcionario.Text)
+                    {
+                        _compra.Funcionario = str.Id.ToString();
+
+                    }
+                }
+                foreach (Fornecedor str in fornecedor.GetFornecedor())
+                {
+                    if (str.Nome == combo_fornecedor.Text)
+                    {
+                        _compra.Fornecedor = str.Id.ToString();
+
+                    }
+                }
+               foreach (Produto str in produto.GetProduto())
+                {
+                    if (str.Nome == combo_produto.Text)
+                    {
+                        _compra.Produto = str.Id.ToString();
+
+                    }
+                }
+
+                _compra.Codigo = txt_codigo.Text;
+                _compra.QuantidadeParcelas = Convert.ToInt32(txt_quantidadeParcela.Text);
+                _compra.DataCompra = Convert.ToDateTime(txt_dataCompra.Text);
+                _compra.DataPagamento = Convert.ToDateTime(txt_dataPagamento.Text);
+
+                _compra.FormaPagamento = combo_formaPagamento.Text;
+
+                if (Editar)
+                {
+                    _compraDAO.Update(_compra);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    TelaCompra tela = new TelaCompra();
+                    this.Close();
+                    tela.ShowDialog();
+                }
+                else
+                {
+                    _compraDAO.Insert(_compra); // Insere no banco
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                    TelaCompra tela = new TelaCompra();
+                    this.Close();
+                    tela.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
+            }
             PropertyPopup.IsOpen = false;
+        }
+
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Compra compraSelecionada)
+            {
+                _compra = compraSelecionada;
+
+                combo_funcionario.Text = _compra.Funcionario;
+                combo_fornecedor.Text = _compra.Fornecedor;
+                combo_produto.Text = _compra.Produto;
+                combo_formaPagamento.Text = _compra.FormaPagamento;
+                txt_codigo.Text = _compra.Codigo;
+                txt_dataCompra.Text = _compra.DataCompra.ToString();
+                txt_dataPagamento.Text = _compra.DataPagamento.ToString();
+                txt_quantidadeParcela.Text = _compra.QuantidadeParcelas.ToString();
+                
+                Editar = true;
+                PropertyPopup.IsOpen = true;
+            }
+        }
+
+        private void DeleteCompra(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Compra compraSelecionada)
+            {
+                var resultado = MessageBox.Show("Tem certeza de que deseja excluir este registro?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        _compraDAO.Delete(compraSelecionada);
+                        ComprasList.Remove(compraSelecionada);
+                        MessageBox.Show("Registro deletado com sucesso.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao deletar registro: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhuma vacina selecionada.");
+            }
+        }
+        private void LimparCampos()
+        {
+            combo_funcionario.Text = null;
+            combo_fornecedor.Text = null;
+            combo_produto.Text = null;
+            combo_formaPagamento.Text = null;
+            txt_codigo.Clear();
+            txt_dataCompra.Clear();
+            txt_dataPagamento.Clear();
+            txt_quantidadeParcela.Clear();
         }
 
         private void Button_Compra(object sender, RoutedEventArgs e)

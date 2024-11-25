@@ -340,14 +340,6 @@ CornerRadius="10">
 
                                         <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
                                             <TextBlock.Text>
-                                                <MultiBinding StringFormat="Descrição: {0}">
-                                                    <Binding Path="Descricao" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
-
-                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
-                                            <TextBlock.Text>
                                                 <MultiBinding StringFormat="Preço Custo: {0}">
                                                     <Binding Path="PrecoCusto" />
                                                 </MultiBinding>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,33 @@ namespace RuralTech.Telas
     /// </summary>
     public partial class TelaProduto : Window
     {
+        private Produto _produto = new Produto();
+        private ProdutoDAO _produtoDAO = new ProdutoDAO();
+        public bool Editar = false;
+        public ObservableCollection<Produto> ProdutosList { get; set; }
         public TelaProduto()
         {
             InitializeComponent();
+            DataContext = this;
+            ProdutosList = new ObservableCollection<Produto>();
+            CarregarProdutos();
+        }
+
+        private void CarregarProdutos()
+        {
+            try
+            {
+                var produtos = _produtoDAO.GetProduto(); // Obtém a lista de vacinas do banco
+                ProdutosList.Clear(); // Limpa a coleção atual para evitar duplicatas
+                foreach (var produto in produtos)
+                {
+                    ProdutosList.Add(produto); // Adiciona cada vacina à ObservableCollection
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar apartações: {ex.Message}");
+            }
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
@@ -35,8 +60,32 @@ namespace RuralTech.Telas
 
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                _produto.Nome = txt_nome.Text;
+                _produto.PrecoCusto = Convert.ToDouble(txt_preco_custo.Text);
+                _produto.Quantidade = Convert.ToInt32(txt_quantidade.Text);
+                _produto.DataVencimento = Convert.ToDateTime(txt_data_vencimento.Text);
+                _produto.UnidadeEntrada = txt_unidade_entrada.Text;
+                _produto.PrecoVenda = Convert.ToDouble(txt_preco_venda.Text);
+
+
+
+
+                _produtoDAO.Insert(_produto); // Insere no banco
+                MessageBox.Show("Registro cadastrado com sucesso.");
+
+                TelaProduto tela = new TelaProduto();
+                this.Close();
+                tela.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
+            }
             PropertyPopup.IsOpen = false;
         }
+
 
         private void Button_Compra(object sender, RoutedEventArgs e)
         {

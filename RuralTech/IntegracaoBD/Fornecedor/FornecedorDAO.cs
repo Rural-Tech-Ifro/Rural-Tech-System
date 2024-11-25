@@ -53,7 +53,7 @@ public class FornecedorDAO
         try
         {
             var comando = _conn.Query();
-            comando.CommandText = "SELECT id_for, nome_for, celular_for, telefone_for, cnpjCpf_for, tipo_for pais_for, estado_for, cidade_for, cep_for, numero_for, logradouro_for, email_for FROM fornecedor";
+            comando.CommandText = "SELECT id_for, nome_for, celular_for, telefone_for, cnpjCpf_for, tipo_for, pais_for, estado_for, cidade_for, cep_for, numero_for, logradouro_for, email_for FROM fornecedor";
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -66,7 +66,7 @@ public class FornecedorDAO
                     Celular = reader.GetString("celular_for"),
                     Telefone = reader.GetString("telefone_for"),
                     CPFCNPJ = reader.GetString("cnpjCpf_for"),
-                    Tipo = reader.GetString("tipo_for"),
+                    Tipo = DAOHelper.GetString(reader, "tipo_for"),
                     Pais = reader.GetString("pais_for"),
                     Estado = reader.GetString("estado_for"),
                     Cidade = reader.GetString("cidade_for"),

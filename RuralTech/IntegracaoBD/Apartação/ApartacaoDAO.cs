@@ -31,7 +31,6 @@ public class ApartacaoDAO
             {
                 throw new Exception("Ocorreram erros ao salvar as informações");
             }
-
         }
         catch (Exception ex)
         {
@@ -54,13 +53,12 @@ public class ApartacaoDAO
             {
                 Apartacao apartacao = new Apartacao
                 {
-                    Id = reader.GetInt32("id_apa"),
-                    Situacao = reader.GetString("situacao_apa"),
-                    Lote = reader.GetString("lote_apa"),
-                    DataTransferencia = reader.GetDateTime("dataTransferencia_apa"),
-                    Observacao = reader.GetString("observacao_apa"),
-                    Animal = reader.GetString("brinco_ani"),
-
+                    Id = DAOHelper.GetInt32(reader, "id_apa"),
+                    Situacao = DAOHelper.GetString(reader, "situacao_apa"),
+                    Lote = DAOHelper.GetString(reader, "lote_apa"),
+                    DataTransferencia = Convert.ToDateTime(DAOHelper.GetDateTime(reader, "dataTransferencia_apa")),
+                    Observacao = DAOHelper.GetString(reader, "observacao_apa"),
+                    Animal = DAOHelper.GetString(reader, "brinco_ani"),
                 };
                 apartacoes.Add(apartacao);
             }
@@ -82,7 +80,7 @@ public class ApartacaoDAO
         {
             var comando = _conn.Query();
 
-            comando.CommandText = "UPDATE apartacao SET lote_apa = @lote, observacao_apa = @observacao, situacao_apa = @situacao, dataTransferencia_apa = @dataTransferencia, id_ani_fk = @animal WHERE id_apa = @id;";
+            comando.CommandText = "UPDATE apartacao SET lote_apa = @lote, observacao_apa = @observacao, situacao_apa = @situacao, dataTransferencia_apa = @dataTransferencia, id_ani_fk = @IdAnimal WHERE id_apa = @id;";
 
             // Define os parâmetros para a atualização
             comando.Parameters.AddWithValue("@situacao", obj.Situacao);
@@ -111,7 +109,7 @@ public class ApartacaoDAO
         }
         catch (Exception ex)
         {
-            throw new Exception("Erro ao atualizar a Medicamento: " + ex.Message, ex);
+            throw new Exception("Erro ao atualizar a Apartacao: " + ex.Message, ex);
         }
     }
 
@@ -131,7 +129,6 @@ public class ApartacaoDAO
             {
                 throw new Exception("Ocorreram erros ao salvar as informações.");
             }
-
         }
         catch (Exception ex)
         {
