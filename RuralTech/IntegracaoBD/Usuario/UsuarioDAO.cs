@@ -67,6 +67,26 @@ public class UsuarioDAO
         }
         return usuarios;
     }
+    public void Delete(Usuario obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
 
+            comando.CommandText = "delete from usuario where id_usu = @id;";
 
+            comando.Parameters.AddWithValue("@id", obj.Id);
+
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao salvar as informações.");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 }

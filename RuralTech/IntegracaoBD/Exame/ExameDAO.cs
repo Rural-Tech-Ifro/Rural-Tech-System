@@ -31,4 +31,26 @@ public class ExameDAO
             throw ex;
         }
     }
+    public void Delete(Exame obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "delete from exame where id_exa = @id;";
+
+            comando.Parameters.AddWithValue("@id", obj.Id);
+
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao salvar as informações.");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 }

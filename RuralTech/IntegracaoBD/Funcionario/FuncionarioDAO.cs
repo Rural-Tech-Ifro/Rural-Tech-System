@@ -94,4 +94,26 @@ public class FuncionarioDAO
 
         return funcionarios;
     }
+    public void Delete(Funcionario obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "delete from nomeTabela where id_fun = @id;";
+
+            comando.Parameters.AddWithValue("@id", obj.Id);
+
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao salvar as informações.");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 }

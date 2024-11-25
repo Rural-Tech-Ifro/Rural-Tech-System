@@ -71,4 +71,26 @@ public class PatrimonioDAO
         }
         return patrimonios;
     }
+    public void Delete(Patrimonio obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "delete from patrimonio where id_pat = @id;";
+
+            comando.Parameters.AddWithValue("@id", obj.Id);
+
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao salvar as informações.");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 }

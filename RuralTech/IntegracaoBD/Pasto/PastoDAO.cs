@@ -71,4 +71,26 @@ public class PastoDAO
         }
         return pastos;
     }
+    public void Delete(Pasto obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "delete from pasto where id_pas = @id;";
+
+            comando.Parameters.AddWithValue("@id", obj.Id);
+
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao salvar as informações.");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 }
