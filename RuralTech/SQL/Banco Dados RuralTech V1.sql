@@ -284,7 +284,6 @@ foreign key(id_ani_fk) references animal(id_ani)
 create table exame(
 id_exa int primary key auto_increment,
 tipo_exa varchar(300),
-realizado_exa boolean,
 resultado_exa varchar(1000),
 data_exa date,
 id_ani_fk int,
