@@ -78,6 +78,47 @@ public class PropriedadeDAO
 
         return propriedades;
     }
+    public void Update(Propriedade obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "UPDATE propriedade SET nome_pro = @nome, proprietario_pro = @proprietario, logradouro_pro = @logradouro, cep_pro = @cep, bairro_pro = @bairro, complemento_pro = @complemento, tamanho_pro = @tamanho, null, id_usu_fk = @usuario WHERE id_pro = @id;";
+
+            // Define os parâmetros para a atualização
+            comando.Parameters.AddWithValue("@nome", obj.NomePropriedade);
+            comando.Parameters.AddWithValue("@proprietario", obj.NomeProprietario);
+            comando.Parameters.AddWithValue("@logradouro", obj.Logradouro);
+            comando.Parameters.AddWithValue("@cep", obj.CEP);
+            comando.Parameters.AddWithValue("@bairro", obj.Bairro);
+            comando.Parameters.AddWithValue("@complemento", obj.Complemento);
+            comando.Parameters.AddWithValue("@tamanho", obj.Tamanho);
+            comando.Parameters.AddWithValue("@usuario", obj.Usuario);
+
+
+
+            foreach (Propriedade str in GetPropriedade())
+            {
+                if (str.Id == obj.Id)
+                {
+                    comando.Parameters.AddWithValue("@id", str.Id);
+                }
+            }
+
+            // Executa o comando e verifica o resultado
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao atualizar as informações");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Erro ao atualizar a propriedade: " + ex.Message, ex);
+        }
+    }
     public void Delete(Propriedade obj)
     {
         try

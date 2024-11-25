@@ -1,4 +1,6 @@
-﻿public class Propriedade
+﻿using System.Diagnostics;
+
+public class Propriedade
 {
     public int Id { get; set; }
     public string NomePropriedade { get; set; }
@@ -8,5 +10,6 @@
     public string Logradouro { get; set; }
     public string Bairro { get; set; }
     public string Complemento { get; set; }
+    public string Usuario { get; set; }
        
 }

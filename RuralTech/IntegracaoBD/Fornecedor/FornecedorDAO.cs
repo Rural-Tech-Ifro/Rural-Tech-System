@@ -89,6 +89,51 @@ public class FornecedorDAO
 
         return fornecedores;
     }
+    public void Update(Fornecedor obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "UPDATE fornecedor SET nome_for = @nome, celular_for = @celular, telefone_for = @telefone, cnpjCpf_for = @cpfCnpj, pais_for = @pais, estado_for = @estado, cidade_for = @cidade, cep_for = @cep, numero_for = @numero, logradouro_for = @logradouro, tipo_for = @tipo, email_for = @email WHERE id_for = @id;";
+
+            // Define os parâmetros para a atualização
+            comando.Parameters.AddWithValue("@nome", obj.Nome);
+            comando.Parameters.AddWithValue("@celular", obj.Celular);
+            comando.Parameters.AddWithValue("@telefone", obj.Telefone);
+            comando.Parameters.AddWithValue("@CPFCNPJ", obj.CPFCNPJ);
+            comando.Parameters.AddWithValue("@pais", obj.Pais);
+            comando.Parameters.AddWithValue("@estado", obj.Estado);
+            comando.Parameters.AddWithValue("@cidade", obj.Cidade);
+            comando.Parameters.AddWithValue("@cep", obj.CEP);
+            comando.Parameters.AddWithValue("@numero", obj.Numero);
+            comando.Parameters.AddWithValue("@logradouro", obj.Logradouro);
+            comando.Parameters.AddWithValue("@tipo", obj.Tipo);
+            comando.Parameters.AddWithValue("@email", obj.Email);
+
+
+
+            foreach (Fornecedor str in GetFornecedor())
+            {
+                if (str.Id == obj.Id)
+                {
+                    comando.Parameters.AddWithValue("@id", str.Id);
+                }
+            }
+
+            // Executa o comando e verifica o resultado
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao atualizar as informações");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Erro ao atualizar o Fornecedor: " + ex.Message, ex);
+        }
+    }
     public void Delete(Fornecedor obj)
     {
         try

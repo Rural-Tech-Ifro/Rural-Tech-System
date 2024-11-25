@@ -76,6 +76,47 @@ public class ProdutoDAO
         }
         return produtos;
     }
+    public void Update(Produto obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "UPDATE produto SET precoCusto_prod = @preco, unidadeSaida_prod = @unidadeSaida, unidadeEntrada_prod = @unidadeEntrada, precoVenda_prod = @precoVenda, quantidade_prod = @quantidade, observacao_prod = @observacao, nome_prod = @nome, dataVencimento_prod = @dataVencimento WHERE id_prod = @id;";
+
+            // Define os parâmetros para a atualização
+            comando.Parameters.AddWithValue("@preco", obj.PrecoCusto);
+            comando.Parameters.AddWithValue("@unidadeSaida", obj.UnidadeSaida);
+            comando.Parameters.AddWithValue("@unidadeEntrada", obj.UnidadeEntrada);
+            comando.Parameters.AddWithValue("@precoVenda", obj.PrecoVenda);
+            comando.Parameters.AddWithValue("@quantidade", obj.Quantidade);
+            comando.Parameters.AddWithValue("@observacao", obj.Observacao);
+            comando.Parameters.AddWithValue("@nome", obj.Nome);
+            comando.Parameters.AddWithValue("@dataVencimento", obj.DataVencimento);
+
+
+
+            foreach (Produto str in GetProduto())
+            {
+                if (str.Id == obj.Id)
+                {
+                    comando.Parameters.AddWithValue("@id", str.Id);
+                }
+            }
+
+            // Executa o comando e verifica o resultado
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao atualizar as informações");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Erro ao atualizar o produto: " + ex.Message, ex);
+        }
+    }
     public void Delete(Produto obj)
     {
         try

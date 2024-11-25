@@ -71,6 +71,44 @@ public class PatrimonioDAO
         }
         return patrimonios;
     }
+    public void Update(Patrimonio obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "UPDATE patrimonio SET nome_pat = @nome, valor_pat = @valor, tipo_pat = @tipo, descricao_pat = @descricao, id_pro_fk = @propriedade WHERE id_pat = @id;";
+
+            // Define os parâmetros para a atualização
+            comando.Parameters.AddWithValue("@nome", obj.Nome);
+            comando.Parameters.AddWithValue("@valor", obj.Valor);
+            comando.Parameters.AddWithValue("@tipo", obj.Tipo);
+            comando.Parameters.AddWithValue("@descricao", obj.Descricao);
+            comando.Parameters.AddWithValue("@propriedade", obj.Propriedade);
+
+
+
+            foreach (Patrimonio str in GetPatrimonio())
+            {
+                if (str.Id == obj.Id)
+                {
+                    comando.Parameters.AddWithValue("@id", str.Id);
+                }
+            }
+
+            // Executa o comando e verifica o resultado
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao atualizar as informações");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Erro ao atualizar o patrimonio: " + ex.Message, ex);
+        }
+    }
     public void Delete(Patrimonio obj)
     {
         try

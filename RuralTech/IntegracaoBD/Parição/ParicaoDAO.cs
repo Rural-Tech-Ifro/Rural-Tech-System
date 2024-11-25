@@ -33,6 +33,40 @@ public class ParicaoDAO
             throw ex;
         }
     }
+    public void Update(Paricao obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "UPDATE paricao SET dataParto_par = @dataParto, sexo_par = @sexo, tipo_par = @tipo, lote_par = @lote, detalhamento_par = @detalhamento, situacao_par = @situacao WHERE id_par = @id;";
+
+            // Define os parâmetros para a atualização
+            comando.Parameters.AddWithValue("@apelido1", obj.NomeAtributo);
+
+
+
+            foreach (Paricao str in GetParicao())
+            {
+                if (str.Id == obj.Id)
+                {
+                    comando.Parameters.AddWithValue("@id", str.Id);
+                }
+            }
+
+            // Executa o comando e verifica o resultado
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao atualizar as informações");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Erro ao atualizar a paricao: " + ex.Message, ex);
+        }
+    }
     public void Delete(Paricao obj)
     {
         try

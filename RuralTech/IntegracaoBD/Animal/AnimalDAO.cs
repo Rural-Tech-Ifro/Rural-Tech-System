@@ -71,6 +71,44 @@ public class AnimalDAO
         }
         return animais;
     }
+    public void Update(Animals obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "UPDATE animal SET brinco_ani = @brinco, sexo_ani = @sexo, raca_ani = @raca, classificacao_ani = @classificacao, origem_ani = @origem WHERE id_ani = @id;";
+
+            // Define os parâmetros para a atualização
+            comando.Parameters.AddWithValue("@brinco", obj.Brinco);
+            comando.Parameters.AddWithValue("@sexo", obj.Sexo);
+            comando.Parameters.AddWithValue("@raca", obj.Raca);
+            comando.Parameters.AddWithValue("@classificacao", obj.Classificacao);
+            comando.Parameters.AddWithValue("@origem", obj.Origem);
+
+
+
+            foreach (Animals str in GetAnimal())
+            {
+                if (str.Id == obj.Id)
+                {
+                    comando.Parameters.AddWithValue("@id", str.Id);
+                }
+            }
+
+            // Executa o comando e verifica o resultado
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao atualizar as informações");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Erro ao atualizar a Animal: " + ex.Message, ex);
+        }
+    }
     public void Delete(Animals obj)
     {
         try

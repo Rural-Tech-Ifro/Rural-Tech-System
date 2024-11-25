@@ -94,6 +94,54 @@ public class FuncionarioDAO
 
         return funcionarios;
     }
+    public void Update(Funcionario obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "UPDATE funcionario SET nome_fun = @nome, email_fun = @email, telefone_fun = @telefone, numero_fun = @numero, salario_fun = @salario, celular_fun = @celular, logradouro_fun = @logradouro, pais_fun = @pais, estado_fun = @estado, cidade_fun = @cidade, cep_fun = @cep, cpf_fun = @cpf, dataNascimento_fun = @dataNascimento, dataPagamento_fun = @dataPagamento, dataAdmissao_fun = @dataAdmissao WHERE id_fun = @id;";
+
+            // Define os parâmetros para a atualização
+            comando.Parameters.AddWithValue("@nome", obj.Nome);
+            comando.Parameters.AddWithValue("@email", obj.Email);
+            comando.Parameters.AddWithValue("@telefone", obj.Telefone);
+            comando.Parameters.AddWithValue("@numero", obj.Numero);
+            comando.Parameters.AddWithValue("@salario", obj.Salario);
+            comando.Parameters.AddWithValue("@celular", obj.Celular);
+            comando.Parameters.AddWithValue("@logradouro", obj.Logradouro);
+            comando.Parameters.AddWithValue("@pais", obj.Pais);
+            comando.Parameters.AddWithValue("@estado", obj.Estado);
+            comando.Parameters.AddWithValue("@cidade", obj.Cidade);
+            comando.Parameters.AddWithValue("@cep", obj.CEP);
+            comando.Parameters.AddWithValue("@cpf", obj.CPF);
+            comando.Parameters.AddWithValue("@dataNascimento", obj.DataNascimento);
+            comando.Parameters.AddWithValue("@dataPagamento", obj.DataPagamento);
+            comando.Parameters.AddWithValue("@dataAdmissao", obj.DataAdmissao);
+
+
+
+            foreach (Funcionario str in GetFuncionario())
+            {
+                if (str.Id == obj.Id)
+                {
+                    comando.Parameters.AddWithValue("@id", str.Id);
+                }
+            }
+
+            // Executa o comando e verifica o resultado
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao atualizar as informações");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Erro ao atualizar o Funcionario: " + ex.Message, ex);
+        }
+    }
     public void Delete(Funcionario obj)
     {
         try

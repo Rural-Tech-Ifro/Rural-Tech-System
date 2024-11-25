@@ -32,6 +32,44 @@ public class InseminacaoDAO
             throw ex;
         }
     }
+    public void Update(Inseminacao obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "UPDATE inseminacao SET tipo_ins = @tipo, observacao = @observacao, data_ins = @data, id_ani_fk = @animal, id_fun_fk = @funcionario WHERE id_ins = @id;";
+
+            // Define os parâmetros para a atualização
+            comando.Parameters.AddWithValue("@tipo", obj.Tipo);
+            comando.Parameters.AddWithValue("@observacao", obj.Observacao);
+            comando.Parameters.AddWithValue("@data", obj.Data);
+            comando.Parameters.AddWithValue("@Animal", obj.Animal);
+            comando.Parameters.AddWithValue("@funcionario", obj.Funcionario);
+
+
+
+            foreach (Inseminacao str in GetInseminacao())
+            {
+                if (str.Id == obj.Id)
+                {
+                    comando.Parameters.AddWithValue("@id", str.Id);
+                }
+            }
+
+            // Executa o comando e verifica o resultado
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao atualizar as informações");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Erro ao atualizar a inseminacao: " + ex.Message, ex);
+        }
+    }
     public void Delete(Inseminacao obj)
     {
         try
