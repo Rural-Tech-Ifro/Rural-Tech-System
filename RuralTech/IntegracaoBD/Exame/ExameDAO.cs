@@ -1,5 +1,8 @@
 ﻿using System;
+using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 using RuralTech.Database;
+using RuralTech.Helpers;
 
 public class ExameDAO
 {
@@ -31,6 +34,40 @@ public class ExameDAO
             throw ex;
         }
     }
+    public List<Exame> GetExames()
+    {
+        List<Exame> exames = new List<Exame>();
+
+        try
+        {
+            var comando = _conn.Query();
+            comando.CommandText = "SELECT id_exa, tipo_exa, resultado_exa, data_exa, id_ani_fk FROM exame;";
+
+            MySqlDataReader reader = comando.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Exame exame = new Exame
+                { 
+                    Id = DAOHelper.GetInt32(reader, "id_exa"),
+                    Tipo = DAOHelper.GetString(reader, "tipo_exa"),
+                    Resultado = DAOHelper.GetString(reader, "resultado_exa"),
+                    Data = Convert.ToDateTime(DAOHelper.GetDateTime(reader, "data_exa")),
+                    Animal = DAOHelper.GetString(reader, "id_ani_fk"),
+
+
+                };
+                exames.Add(exame);
+            }
+
+            reader.Close();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return exames;
+    }
     public void Update(Exame obj)
     {
         try
@@ -47,7 +84,7 @@ public class ExameDAO
 
 
 
-            foreach (Exame str in GetExame())
+            foreach (Exame str in GetExames())
             {
                 if (str.Id == obj.Id)
                 {

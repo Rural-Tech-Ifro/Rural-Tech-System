@@ -1,5 +1,8 @@
 ﻿using System;
+using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 using RuralTech.Database;
+using RuralTech.Helpers;
 
 public class TransporteDAO
 {
@@ -36,6 +39,44 @@ public class TransporteDAO
             throw ex;
         }
     }
+    public List<Transporte> GetTransportes()
+    {
+        List<Transporte> transportes = new List<Transporte>();
+
+        try
+        {
+            var comando = _conn.Query();
+            comando.CommandText = "SELECT id_tra, cpf_tra, cnpj_tra, nome_tra, inscricaoEstadual_tra, estado_tra, cidade_tra, bairro_tra, rua_tra, cep_tra FROM trsnaporte;";
+
+            MySqlDataReader reader = comando.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Transporte transporte = new Transporte
+                {
+                    Id = DAOHelper.GetInt32(reader, "id_tra"),
+                    Cpf = DAOHelper.GetString(reader, "cpf_tra"),
+                    Cnpj = DAOHelper.GetString(reader, "cnpj_tra"),
+                    Nome = DAOHelper.GetString(reader, "nome_tra"),
+                    InscricaoEstadual = DAOHelper.GetString(reader, "inscricaoEstadual_tra"),
+                    Estado = DAOHelper.GetString(reader, "estado_tra"),
+                    Cidade = DAOHelper.GetString(reader, "cidade_tra"),
+                    Bairro = DAOHelper.GetString(reader, "bairro_tra"),
+                    Rua = DAOHelper.GetString(reader, "rua_tra"),
+                    Cep = DAOHelper.GetString(reader, "cep_tra"),
+
+                };
+                transportes.Add(transporte);
+            }
+
+            reader.Close();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return transportes;
+    }
     public void Update(Transporte obj)
     {
         try
@@ -57,7 +98,7 @@ public class TransporteDAO
 
 
 
-            foreach (Transporte str in GetTransporte())
+            foreach (Transporte str in GetTransportes())
             {
                 if (str.Id == obj.Id)
                 {

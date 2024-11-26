@@ -1,5 +1,8 @@
 ﻿using System;
+using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 using RuralTech.Database;
+using RuralTech.Helpers;
 
 public class InseminacaoDAO
 {
@@ -32,6 +35,41 @@ public class InseminacaoDAO
             throw ex;
         }
     }
+    public List<Inseminacao> GetInseminacoes()
+    {
+        List<Inseminacao> inseminacoes = new List<Inseminacao>();
+
+        try
+        {
+            var comando = _conn.Query();
+            comando.CommandText = "SELECT id_ins, tipo_ins, observacao_ins, data_ins, id_ani_fk, id_fun_fk FROM inseminacao;";
+
+            MySqlDataReader reader = comando.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Inseminacao inseminacao = new Inseminacao
+                {
+                    Id = DAOHelper.GetInt32(reader, "id_ins"),
+                    Tipo = DAOHelper.GetString(reader, "tipo_ins"),
+                    Observacao = DAOHelper.GetString(reader, "observacao_ins"),
+                    Data = Convert.ToDateTime(DAOHelper.GetDateTime(reader, "data_ins")),
+                    Animal = DAOHelper.GetString(reader, "id_ani_fk"),
+                    Funcionario = DAOHelper.GetString(reader, "id_fun_fk"),
+
+
+                };
+                inseminacoes.Add(inseminacao);
+            }
+
+            reader.Close();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return inseminacoes;
+    }
     public void Update(Inseminacao obj)
     {
         try
@@ -49,7 +87,7 @@ public class InseminacaoDAO
 
 
 
-            foreach (Inseminacao str in GetInseminacao())
+            foreach (Inseminacao str in GetInseminacoes())
             {
                 if (str.Id == obj.Id)
                 {
