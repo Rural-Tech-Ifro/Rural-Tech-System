@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,33 @@ namespace RuralTech.Telas
     /// </summary>
     public partial class TelaExame : Window
     {
+        AnimalDAO animal = new AnimalDAO();
+        private Exame _exame = new Exame();
+        private ExameDAO _exameDAO = new ExameDAO();
+        public ObservableCollection<Exame> ExamesList { get; set; }
+
         public TelaExame()
         {
             InitializeComponent();
+            DataContext = this; // Define o DataContext para a própria janela
+            ExamesList = new ObservableCollection<Exame>(); // Inicializa a lista como uma ObservableCollection
+            CarregarExames();
+        }
+        private void CarregarExames()
+        {
+            try
+            {
+                var exames = _exameDAO.GetExames(); // Obtém a lista de vacinas do banco
+                ExamesList.Clear(); // Limpa a coleção atual para evitar duplicatas
+                foreach (var exame in exames)
+                {
+                    ExamesList.Add(exame); // Adiciona cada vacina à ObservableCollection
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar vacinas: {ex.Message}");
+            }
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
@@ -35,6 +60,31 @@ namespace RuralTech.Telas
 
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                foreach (Animals str in animal.GetAnimal())
+                {
+                    if (str.Brinco == combo_animal.Text)
+                    {
+                        _exame.Animal = str.Id.ToString();
+
+                    }
+                }
+                // Atualiza o objeto _vacina com os valores do formulário
+                _exame.Tipo = combo_exame.Text;
+                _exame.Resultado = txt_resultado.Text;
+                _exame.Data = Convert.ToDateTime(txt_data_exame.Text);
+
+                _exameDAO.Insert(_exame); // Insere no banco
+                MessageBox.Show("Registro cadastrado com sucesso.");
+                TelaExame tela = new TelaExame();
+                this.Close();
+                tela.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
+            }
             PropertyPopup.IsOpen = false;
         }
 

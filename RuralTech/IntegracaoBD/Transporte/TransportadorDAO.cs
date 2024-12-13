@@ -4,17 +4,17 @@ using System.Collections.Generic;
 using RuralTech.Database;
 using RuralTech.Helpers;
 
-public class TransporteDAO
+public class TransportadorDAO
 {
     private static Conexao _conn = new Conexao();
 
-    public void Insert(Transporte obj)
+    public void Insert(Transportador obj)
     {
         try
         {
             var comando = _conn.Query();
 
-            comando.CommandText = "INSERT INTO transporte (cpf_tra, cnpj_tra, nome_tra, inscricaoEstadual_tra, estado_tra, cidade_tra, bairro_tra, rua_tra, cep_tra) VALUES (@Cpf, @Cnpj, @Nome, @InscricaoEstadual, @Estado, @Cidade, @Bairro, @Rua, @Cep);";
+            comando.CommandText = "INSERT INTO transportador (cpf_tra, cnpj_tra, nome_tra, inscricaoEstadual_tra, estado_tra, cidade_tra, bairro_tra, rua_tra, numero_tra) VALUES (@Cpf, @Cnpj, @Nome, @InscricaoEstadual, @Estado, @Cidade, @Bairro, @Rua, @Numero);";
 
             comando.Parameters.AddWithValue("@Cpf", obj.Cpf);
             comando.Parameters.AddWithValue("@Cnpj", obj.Cnpj);
@@ -24,7 +24,7 @@ public class TransporteDAO
             comando.Parameters.AddWithValue("@Cidade", obj.Cidade);
             comando.Parameters.AddWithValue("@Bairro", obj.Bairro);
             comando.Parameters.AddWithValue("@Rua", obj.Rua);
-            comando.Parameters.AddWithValue("@Cep", obj.Cep);
+            comando.Parameters.AddWithValue("@Numero", obj.Numero);
 
 
             var resultado = comando.ExecuteNonQuery();
@@ -39,20 +39,20 @@ public class TransporteDAO
             throw ex;
         }
     }
-    public List<Transporte> GetTransportes()
+    public List<Transportador> GetTransportadores()
     {
-        List<Transporte> transportes = new List<Transporte>();
+        List<Transportador> transportadores = new List<Transportador>();
 
         try
         {
             var comando = _conn.Query();
-            comando.CommandText = "SELECT id_tra, cpf_tra, cnpj_tra, nome_tra, inscricaoEstadual_tra, estado_tra, cidade_tra, bairro_tra, rua_tra, cep_tra FROM trsnaporte;";
+            comando.CommandText = "SELECT id_tra, cpf_tra, cnpj_tra, nome_tra, inscricaoEstadual_tra, estado_tra, cidade_tra, bairro_tra, rua_tra, numero_tra FROM transportador;";
 
             MySqlDataReader reader = comando.ExecuteReader();
 
             while (reader.Read())
             {
-                Transporte transporte = new Transporte
+                Transportador transportador = new Transportador
                 {
                     Id = DAOHelper.GetInt32(reader, "id_tra"),
                     Cpf = DAOHelper.GetString(reader, "cpf_tra"),
@@ -63,10 +63,10 @@ public class TransporteDAO
                     Cidade = DAOHelper.GetString(reader, "cidade_tra"),
                     Bairro = DAOHelper.GetString(reader, "bairro_tra"),
                     Rua = DAOHelper.GetString(reader, "rua_tra"),
-                    Cep = DAOHelper.GetString(reader, "cep_tra"),
+                    Numero = DAOHelper.GetString(reader, "numero_tra"),
 
                 };
-                transportes.Add(transporte);
+                transportadores.Add(transportador);
             }
 
             reader.Close();
@@ -75,15 +75,15 @@ public class TransporteDAO
         {
             throw ex;
         }
-        return transportes;
+        return transportadores;
     }
-    public void Update(Transporte obj)
+    public void Update(Transportador obj)
     {
         try
         {
             var comando = _conn.Query();
 
-            comando.CommandText = "UPDATE transporte SET cpf_tra = @cpf, cnpj_tra = @cnpj, nome_tra = @nome, inscricaoEstadual_tra = @inscricao, estado_tra = @estado, cidade_tra = @cidade, bairro_tra = @bairro, rua_tra = @rua, cep_tra = @cep WHERE id_tra = @id;";
+            comando.CommandText = "UPDATE transporte SET cpf_tra = @cpf, cnpj_tra = @cnpj, nome_tra = @nome, inscricaoEstadual_tra = @inscricao, estado_tra = @estado, cidade_tra = @cidade, bairro_tra = @bairro, rua_tra = @rua, numero_tra = @numero WHERE id_tra = @id;";
 
             // Define os parâmetros para a atualização
             comando.Parameters.AddWithValue("@cpf", obj.Cpf);
@@ -94,11 +94,11 @@ public class TransporteDAO
             comando.Parameters.AddWithValue("@cidade", obj.Cidade);
             comando.Parameters.AddWithValue("@bairro", obj.Bairro);
             comando.Parameters.AddWithValue("@rua", obj.Rua);
-            comando.Parameters.AddWithValue("@cep", obj.Cep);
+            comando.Parameters.AddWithValue("@numero", obj.Numero);
 
 
 
-            foreach (Transporte str in GetTransportes())
+            foreach (Transportador str in GetTransportadores())
             {
                 if (str.Id == obj.Id)
                 {
@@ -119,7 +119,7 @@ public class TransporteDAO
             throw new Exception("Erro ao atualizar o transporte: " + ex.Message, ex);
         }
     }
-    public void Delete(Transporte obj)
+    public void Delete(Transportador obj)
     {
         try
         {

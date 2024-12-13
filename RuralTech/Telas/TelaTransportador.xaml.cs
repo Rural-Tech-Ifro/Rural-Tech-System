@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,11 +20,33 @@ namespace RuralTech.Telas
     /// </summary>
     public partial class TelaTransportador : Window
     {
+        private Transportador _transportador = new Transportador();
+        private TransportadorDAO _transportadorDAO = new TransportadorDAO();
+        public ObservableCollection<Transportador> TransportadoresList { get; set; }
+
         public TelaTransportador()
         {
             InitializeComponent();
+            DataContext = this; // Define o DataContext para a própria janela
+            TransportadoresList = new ObservableCollection<Transportador>(); // Inicializa a lista como uma ObservableCollection
+            CarregarExames();
         }
-
+        private void CarregarExames()
+        {
+            try
+            {
+                var transportadores = _transportadorDAO.GetTransportadores(); // Obtém a lista de vacinas do banco
+                TransportadoresList.Clear(); // Limpa a coleção atual para evitar duplicatas
+                foreach (var transportador in transportadores)
+                {
+                    TransportadoresList.Add(transportador); // Adiciona cada vacina à ObservableCollection
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar vacinas: {ex.Message}");
+            }
+        }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
             PropertyPopup.IsOpen = true;
@@ -36,6 +59,31 @@ namespace RuralTech.Telas
 
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                
+                // Atualiza o objeto _vacina com os valores do formulário
+                _transportador.Cpf = txt_cpf.Text;
+                _transportador.Cnpj = txt_cnpj.Text;
+                _transportador.Nome = txt_nome.Text;
+                _transportador.InscricaoEstadual = txt_inscricao_estadual.Text;
+                _transportador.Estado = combo_estadol.Text;
+                _transportador.Cidade = txt_cidade.Text;
+                _transportador.Bairro = txt_bairro.Text;
+                _transportador.Rua = txt_rua.Text;
+                _transportador.Numero = txt_numero.Text;
+               
+
+                _transportadorDAO.Insert(_transportador); // Insere no banco
+                MessageBox.Show("Registro cadastrado com sucesso.");
+                TelaTransportador tela = new TelaTransportador();
+                this.Close();
+                tela.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
+            }
             PropertyPopup.IsOpen = false;
         }
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Transporte
+public class Transportador
 {
     public int Id { get; set; }
     public string Cpf { get; set; }
@@ -11,5 +11,5 @@ public class Transporte
     public string Cidade { get; set; }
     public string Bairro { get; set; }
     public string Rua {  get; set; }
-    public string Cep { get; set; }
+    public string Numero { get; set; }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,34 @@ namespace RuralTech.Telas
     /// </summary>
     public partial class TelaOrdenha : Window
     {
+        AnimalDAO animal = new AnimalDAO();
+        FuncionarioDAO funcionario = new FuncionarioDAO();
+        private Ordenha _ordenha = new Ordenha();
+        private OrdenhaDAO _ordenhaDAO = new OrdenhaDAO();
+        public ObservableCollection<Ordenha> OrdenhasList { get; set; }
+
         public TelaOrdenha()
         {
             InitializeComponent();
+            DataContext = this; // Define o DataContext para a própria janela
+            OrdenhasList = new ObservableCollection<Ordenha>(); // Inicializa a lista como uma ObservableCollection
+            CarregarOrdenhas();
+        }
+        private void CarregarOrdenhas()
+        {
+            try
+            {
+                var ordenhas = _ordenhaDAO.GetOrdenhas(); // Obtém a lista de vacinas do banco
+                OrdenhasList.Clear(); // Limpa a coleção atual para evitar duplicatas
+                foreach (var ordenha in ordenhas)
+                {
+                    OrdenhasList.Add(ordenha); // Adiciona cada vacina à ObservableCollection
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar vacinas: {ex.Message}");
+            }
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
@@ -35,6 +61,40 @@ namespace RuralTech.Telas
 
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                foreach (Animals str in animal.GetAnimal())
+                {
+                    if (str.Brinco == combo_animal.Text)
+                    {
+                        _ordenha.Animal = str.Id.ToString();
+
+                    }
+                }
+                
+                
+                foreach (Funcionario str in funcionario.GetFuncionario())
+                {
+                    if (str.Nome == combo_funcionario.Text)
+                    {
+                        _ordenha.Animal = str.Id.ToString();
+
+                    }
+                }
+                // Atualiza o objeto _vacina com os valores do formulário
+                _ordenha.TotalLitros = txt_total_litros.Text;
+                
+
+                _ordenhaDAO.Insert(_ordenha); // Insere no banco
+                MessageBox.Show("Registro cadastrado com sucesso.");
+                TelaOrdenha tela = new TelaOrdenha();
+                this.Close();
+                tela.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
+            }
             PropertyPopup.IsOpen = false;
         }
 

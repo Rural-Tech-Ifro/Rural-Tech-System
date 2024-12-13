@@ -250,10 +250,17 @@ CornerRadius="10">
                     Margin="0,0,0,5"/>
 
                         <TextBox
-                    materialDesign:HintAssist.Hint="CPF/CNPJ:"
+                    materialDesign:HintAssist.Hint="CPF:"
                     MaxLength="40"
                     Style="{StaticResource MaterialDesignFilledTextBox}"
-                    TextWrapping="Wrap" Name="txt_cpf_cnpj"
+                    TextWrapping="Wrap" Name="txt_cpf"
+                    Margin="0,0,0,5"/>
+                        
+                        <TextBox
+                    materialDesign:HintAssist.Hint="CNPJ:"
+                    MaxLength="40"
+                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                    TextWrapping="Wrap" Name="txt_cnpj"
                     Margin="0,0,0,5"/>
 
                         <TextBox

@@ -270,6 +270,13 @@ CornerRadius="10">
                     Style="{StaticResource MaterialDesignFilledTextBox}"
                     TextWrapping="Wrap" Name="txt_sexo"
                     Margin="0,0,0,5"/>
+                        
+                        <TextBox
+                    materialDesign:HintAssist.Hint="Lote:"
+                    MaxLength="40"
+                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                    TextWrapping="Wrap" Name="txt_lote"
+                    Margin="0,0,0,5"/>
 
                         <TextBox
                     materialDesign:HintAssist.Hint="Tipo:"

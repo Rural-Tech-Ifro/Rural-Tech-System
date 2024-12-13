@@ -178,8 +178,8 @@
     <Compile Include="IntegracaoBD\Produto\ProdutoDAO.cs" />
     <Compile Include="IntegracaoBD\Propriedade\Propriedade.cs" />
     <Compile Include="IntegracaoBD\Propriedade\ProprietarioDAO.cs" />
-    <Compile Include="IntegracaoBD\Transporte\Transporte.cs" />
-    <Compile Include="IntegracaoBD\Transporte\TransporteDAO.cs" />
+    <Compile Include="IntegracaoBD\Transporte\Transportador.cs" />
+    <Compile Include="IntegracaoBD\Transporte\TransportadorDAO.cs" />
     <Compile Include="IntegracaoBD\Usuario\Usuario.cs" />
     <Compile Include="IntegracaoBD\Usuario\UsuarioDAO.cs" />
     <Compile Include="IntegracaoBD\Vacina\Vacina.cs" />
