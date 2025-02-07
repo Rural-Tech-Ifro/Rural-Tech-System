@@ -25,6 +25,8 @@ namespace RuralTech.Telas
     {
         private Animals _animal = new Animals();
         private AnimalDAO _animalDAO = new AnimalDAO();
+        public bool Editar = false;
+
         public ObservableCollection<Animals> AnimaisList { get; set; }
 
         public TelaAnimal()
@@ -52,6 +54,10 @@ namespace RuralTech.Telas
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+            // Limpa o objeto e os campos quando adicionando um novo registro
+            _animal = new Animals();
+            Editar = false; // Indica que é um novo registro
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
@@ -70,9 +76,18 @@ namespace RuralTech.Telas
                 _animal.Classificacao = txt_classificacao.Text;
                 _animal.Sexo = combo_sex.Text;
                 _animal.Origem = combo_origem.Text;
-
-                _animalDAO.Insert(_animal); // Insere no banco
-                MessageBox.Show("Registro cadastrado com sucesso.");
+                if (Editar)
+                {
+                    _animalDAO.Update(_animal);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    Editar = false; // Volta o estado para novo registro
+                }
+                else
+                {
+                    _animalDAO.Insert(_animal); // Insere no banco
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
+               
                 TelaAnimal tela = new TelaAnimal();
                 this.Close();
                 tela.ShowDialog();
@@ -82,6 +97,36 @@ namespace RuralTech.Telas
                 MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
             }
             PropertyPopup.IsOpen = false;
+        }
+
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Animals animalSelecionado)
+            {
+                _animal = animalSelecionado;
+                PreencherCamposComDados(_animal); // Preenche o formulário com os dados para edição
+                Editar = true;
+                PropertyPopup.IsOpen = true;
+            }
+        }
+
+
+        private void PreencherCamposComDados(Animals animal)
+        {
+            txt_brinco.Text = animal.Brinco;
+            combo_sex.Text = animal.Sexo;
+            combo_raca.Text = animal.Raca;
+            txt_classificacao.Text = animal.Classificacao;
+            combo_origem.Text = animal.Origem;
+           
+        }
+        private void LimparCampos()
+        {
+            txt_brinco.Text = "";
+            combo_sex.Text = "";
+            combo_raca.Text = "";
+            txt_classificacao.Text = "";
+            combo_origem.Text = "";
         }
 
         private void Button_Compra(object sender, RoutedEventArgs e)
