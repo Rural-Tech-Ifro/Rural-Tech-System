@@ -76,6 +76,44 @@ public class EquipamentoDAO
 
         return equipamentos;
     }
+    public void Update(Equipamento obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "UPDATE equipamento SET valor_equi = @valor, descricao_equi = @descricao, tipo_equi = @tipo, nome_equi = @nome, id_pro_fk = @propriedade WHERE id_equi = @id;";
+
+            // Define os parâmetros para a atualização
+            comando.Parameters.AddWithValue("@valor", obj.Valor);
+            comando.Parameters.AddWithValue("@descricao", obj.Descricao);
+            comando.Parameters.AddWithValue("@tipo", obj.Tipo);
+            comando.Parameters.AddWithValue("@nome", obj.Nome);
+            comando.Parameters.AddWithValue("@propriedade", obj.Propriedade);
+
+
+
+            foreach (Equipamento str in GetEquipamento())
+            {
+                if (str.Id == obj.Id)
+                {
+                    comando.Parameters.AddWithValue("@id", str.Id);
+                }
+            }
+
+            // Executa o comando e verifica o resultado
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao atualizar as informações");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Erro ao atualizar o Equipamento: " + ex.Message, ex);
+        }
+    }
     public void Delete(Equipamento obj)
     {
         try

@@ -1,5 +1,8 @@
 ﻿using System;
+using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 using RuralTech.Database;
+using RuralTech.Helpers;
 
 public class InseminacaoDAO
 {
@@ -30,6 +33,79 @@ public class InseminacaoDAO
         catch (Exception ex)
         {
             throw ex;
+        }
+    }
+    public List<Inseminacao> GetInseminacoes()
+    {
+        List<Inseminacao> inseminacoes = new List<Inseminacao>();
+
+        try
+        {
+            var comando = _conn.Query();
+            comando.CommandText = "SELECT id_ins, tipo_ins, observacao_ins, data_ins, id_ani_fk, id_fun_fk FROM inseminacao;";
+
+            MySqlDataReader reader = comando.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Inseminacao inseminacao = new Inseminacao
+                {
+                    Id = DAOHelper.GetInt32(reader, "id_ins"),
+                    Tipo = DAOHelper.GetString(reader, "tipo_ins"),
+                    Observacao = DAOHelper.GetString(reader, "observacao_ins"),
+                    Data = Convert.ToDateTime(DAOHelper.GetDateTime(reader, "data_ins")),
+                    Animal = DAOHelper.GetString(reader, "id_ani_fk"),
+                    Funcionario = DAOHelper.GetString(reader, "id_fun_fk"),
+
+
+                };
+                inseminacoes.Add(inseminacao);
+            }
+
+            reader.Close();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return inseminacoes;
+    }
+    public void Update(Inseminacao obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "UPDATE inseminacao SET tipo_ins = @tipo, observacao = @observacao, data_ins = @data, id_ani_fk = @animal, id_fun_fk = @funcionario WHERE id_ins = @id;";
+
+            // Define os parâmetros para a atualização
+            comando.Parameters.AddWithValue("@tipo", obj.Tipo);
+            comando.Parameters.AddWithValue("@observacao", obj.Observacao);
+            comando.Parameters.AddWithValue("@data", obj.Data);
+            comando.Parameters.AddWithValue("@Animal", obj.Animal);
+            comando.Parameters.AddWithValue("@funcionario", obj.Funcionario);
+
+
+
+            foreach (Inseminacao str in GetInseminacoes())
+            {
+                if (str.Id == obj.Id)
+                {
+                    comando.Parameters.AddWithValue("@id", str.Id);
+                }
+            }
+
+            // Executa o comando e verifica o resultado
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao atualizar as informações");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Erro ao atualizar a inseminacao: " + ex.Message, ex);
         }
     }
     public void Delete(Inseminacao obj)

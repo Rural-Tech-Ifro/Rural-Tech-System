@@ -230,7 +230,7 @@ id_com_fk int,
 foreign key(id_com_fk) references compra(id_com)
 );
 
-create table transporte(
+create table transportador(
 id_tra int primary key auto_increment,
 cpf_tra varchar(50),
 cnpj_tra varchar(50),
@@ -240,7 +240,7 @@ estado_tra varchar(200),
 cidade_tra varchar(200),
 bairro_tra varchar(200),
 rua_tra varchar(200),
-cep_tra varchar(50)
+numero_tra varchar(50)
 );
 select * from produto_compra;
 

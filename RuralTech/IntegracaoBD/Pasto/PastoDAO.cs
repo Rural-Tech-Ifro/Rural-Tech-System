@@ -71,6 +71,44 @@ public class PastoDAO
         }
         return pastos;
     }
+    public void Update(Pasto obj)
+    {
+        try
+        {
+            var comando = _conn.Query();
+
+            comando.CommandText = "UPDATE pasto SET limete_pas = @limite, descricao_pas = @descricao, tipo_pas = @tipo, tamanho_pas = @tamanho, null, id_pro_fk = @proproedade WHERE id_pas = @id;";
+
+            // Define os parâmetros para a atualização
+            comando.Parameters.AddWithValue("@limite", obj.Limite);
+            comando.Parameters.AddWithValue("@descricao", obj.Descricao);
+            comando.Parameters.AddWithValue("@tipo", obj.TipoPastagem);
+            comando.Parameters.AddWithValue("@tamanho", obj.Tamanho);
+            comando.Parameters.AddWithValue("@propriedade", obj.Propriedade);
+
+
+
+            foreach (Pasto str in GetPasto())
+            {
+                if (str.Id == obj.Id)
+                {
+                    comando.Parameters.AddWithValue("@id", str.Id);
+                }
+            }
+
+            // Executa o comando e verifica o resultado
+            var resultado = comando.ExecuteNonQuery();
+
+            if (resultado == 0)
+            {
+                throw new Exception("Ocorreram erros ao atualizar as informações");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Erro ao atualizar o pasto: " + ex.Message, ex);
+        }
+    }
     public void Delete(Pasto obj)
     {
         try

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,32 @@ namespace RuralTech.Telas
     /// </summary>
     public partial class TelaParicao : Window
     {
+        private Paricao _paricao = new Paricao();
+        private ParicaoDAO _paricaoDAO = new ParicaoDAO();
+        public ObservableCollection<Paricao> ParicoesList { get; set; }
+
         public TelaParicao()
         {
             InitializeComponent();
+            DataContext = this; // Define o DataContext para a própria janela
+            ParicoesList = new ObservableCollection<Paricao>(); // Inicializa a lista como uma ObservableCollection
+            CarregarExames();
+        }
+        private void CarregarExames()
+        {
+            try
+            {
+                var paricoes = _paricaoDAO.GetParicoes(); // Obtém a lista de vacinas do banco
+                ParicoesList.Clear(); // Limpa a coleção atual para evitar duplicatas
+                foreach (var paricao in paricoes)
+                {
+                    ParicoesList.Add(paricao); // Adiciona cada vacina à ObservableCollection
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar vacinas: {ex.Message}");
+            }
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
@@ -35,6 +59,29 @@ namespace RuralTech.Telas
 
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                
+                // Atualiza o objeto _vacina com os valores do formulário
+                _paricao.DataParto = Convert.ToDateTime(txt_data.Text);
+                _paricao.Sexo = txt_sexo.Text;
+                _paricao.Tipo = txt_tipo.Text;
+                _paricao.Lote = txt_lote.Text;
+                _paricao.Lote = txt_lote.Text;
+                _paricao.Detalhamento = txt_detalhamento.Text;
+                _paricao.Situacao = txt_situacao.Text;
+                
+
+                _paricaoDAO.Insert(_paricao); // Insere no banco
+                MessageBox.Show("Registro cadastrado com sucesso.");
+                TelaParicao tela = new TelaParicao();
+                this.Close();
+                tela.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
+            }
             PropertyPopup.IsOpen = false;
         }
 
