@@ -24,6 +24,8 @@ namespace RuralTech.Telas
 
         private Equipamento _equipamento = new Equipamento();
         private EquipamentoDAO _equipamentoDAO = new EquipamentoDAO();
+        public bool Editar = false;
+
         public ObservableCollection<Equipamento> EquipamentosList { get; set; }
         public TelaEquipamento()
         {
@@ -101,13 +103,6 @@ namespace RuralTech.Telas
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
             TelaCompra tela = new TelaCompra();
-            tela.Show();
-            this.Close();
-        }
-
-        private void Button_Despesa(object sender, RoutedEventArgs e)
-        {
-            TelaDespesa tela = new TelaDespesa();
             tela.Show();
             this.Close();
         }

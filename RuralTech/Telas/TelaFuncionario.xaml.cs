@@ -23,6 +23,8 @@ namespace RuralTech.Telas
     {
         private Funcionario _funcionario = new Funcionario();
         private FuncionarioDAO _funcionarioDAO = new FuncionarioDAO();
+        public bool Editar = false;
+
         public ObservableCollection<Funcionario> FuncionariosList { get; set; }
         public TelaFuncionario()
         {
@@ -161,12 +163,7 @@ namespace RuralTech.Telas
             this.Close();
         }
 
-        private void Button_Despesa(object sender, RoutedEventArgs e)
-        {
-            TelaDespesa tela = new TelaDespesa();
-            tela.Show();
-            this.Close();
-        }
+      
 
         private void Button_Equipamento(object sender, RoutedEventArgs e)
         {

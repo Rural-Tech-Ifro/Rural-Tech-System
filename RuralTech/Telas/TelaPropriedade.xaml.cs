@@ -22,6 +22,8 @@ namespace RuralTech.Telas
     {
         private Propriedade _propriedade = new Propriedade();
         private PropriedadeDAO _propriedadeDAO = new PropriedadeDAO();
+        public bool Editar = false;
+
         public ObservableCollection<Propriedade> PropriedadesList { get; set; }
         public TelaPropriedade()
         {
@@ -89,12 +91,7 @@ namespace RuralTech.Telas
             this.Close();
         }
 
-        private void Button_Despesa(object sender, RoutedEventArgs e)
-        {
-            TelaDespesa tela = new TelaDespesa();
-            tela.Show();
-            this.Close();
-        }
+      
 
         private void Button_Equipamento(object sender, RoutedEventArgs e)
         {

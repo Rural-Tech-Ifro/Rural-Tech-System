@@ -23,6 +23,8 @@ namespace RuralTech.Telas
         AnimalDAO animal = new AnimalDAO();
         private Exame _exame = new Exame();
         private ExameDAO _exameDAO = new ExameDAO();
+        public bool Editar = false;
+
         public ObservableCollection<Exame> ExamesList { get; set; }
 
         public TelaExame()
@@ -95,12 +97,7 @@ namespace RuralTech.Telas
             this.Close();
         }
 
-        private void Button_Despesa(object sender, RoutedEventArgs e)
-        {
-            TelaDespesa tela = new TelaDespesa();
-            tela.Show();
-            this.Close();
-        }
+        
 
         private void Button_Equipamento(object sender, RoutedEventArgs e)
         {

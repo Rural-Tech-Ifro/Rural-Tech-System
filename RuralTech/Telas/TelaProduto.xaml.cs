@@ -94,12 +94,7 @@ namespace RuralTech.Telas
             this.Close();
         }
 
-        private void Button_Despesa(object sender, RoutedEventArgs e)
-        {
-            TelaDespesa tela = new TelaDespesa();
-            tela.Show();
-            this.Close();
-        }
+       
 
         private void Button_Equipamento(object sender, RoutedEventArgs e)
         {

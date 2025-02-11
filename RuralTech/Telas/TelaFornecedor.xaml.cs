@@ -22,6 +22,7 @@ namespace RuralTech.Telas
     {
         private Fornecedor _fornecedor = new Fornecedor();
         private FornecedorDAO _fornecedorDAO = new FornecedorDAO();
+        public bool Editar = false;
         public ObservableCollection<Fornecedor> FornecedoresList { get; set; }
         public TelaFornecedor()
         {
@@ -48,6 +49,10 @@ namespace RuralTech.Telas
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+            // Limpa o objeto e os campos quando adicionando um novo registro
+            _fornecedor = new Fornecedor();
+            Editar = false; // Indica que é um novo registro
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
@@ -72,8 +77,17 @@ namespace RuralTech.Telas
                 _fornecedor.Logradouro = txt_logradouro.Text;
                 _fornecedor.Email = txt_email.Text;
 
-                _fornecedorDAO.Insert(_fornecedor); // Insere no banco
-                MessageBox.Show("Registro cadastrado com sucesso.");
+                if (Editar)
+                {
+                    _fornecedorDAO.Update(_fornecedor);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    Editar = false; // Volta o estado para novo registro
+                }
+                else
+                {
+                    _fornecedorDAO.Insert(_fornecedor); // Insere no banco
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
                 TelaFornecedor tela = new TelaFornecedor();
                 this.Close();
                 tela.ShowDialog();
@@ -84,6 +98,49 @@ namespace RuralTech.Telas
             }
             PropertyPopup.IsOpen = false;
         }
+
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Fornecedor fornecedorSelecionado)
+            {
+                _fornecedor = fornecedorSelecionado;
+                PreencherCamposComDados(_fornecedor); // Preenche o formulário com os dados para edição
+                Editar = true;
+                PropertyPopup.IsOpen = true;
+            }
+        }
+
+
+        private void PreencherCamposComDados(Fornecedor fornecedor)
+        {
+            txt_nome.Text = fornecedor.Nome;
+            txt_celular.Text = fornecedor.Celular;
+            txt_telefone.Text = fornecedor.Telefone;
+            txt_cpfCnpj.Text = fornecedor.CPFCNPJ;
+            txt_pais.Text = fornecedor.Pais;
+            txt_estado.Text = fornecedor.Estado;
+            txt_cidade.Text = fornecedor.Cidade;
+            txt_cep.Text = fornecedor.CEP;
+            txt_numero.Text = fornecedor.Numero;
+            txt_logradouro.Text = fornecedor.Logradouro;
+            txt_email.Text = fornecedor.Email;
+
+        }
+        private void LimparCampos()
+        {
+            txt_nome.Text = "";
+            txt_celular.Text = "";
+            txt_telefone.Text = "";
+            txt_cpfCnpj.Text = "";
+            txt_pais.Text = "";
+            txt_estado.Text = "";
+            txt_cidade.Text = "";
+            txt_cep.Text = "";
+            txt_numero.Text = "";
+            txt_logradouro.Text = "";
+            txt_email.Text = "";
+        }
+
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
             TelaCompra tela = new TelaCompra();
@@ -91,12 +148,7 @@ namespace RuralTech.Telas
             this.Close();
         }
 
-        private void Button_Despesa(object sender, RoutedEventArgs e)
-        {
-            TelaDespesa tela = new TelaDespesa();
-            tela.Show();
-            this.Close();
-        }
+       
 
         private void Button_Equipamento(object sender, RoutedEventArgs e)
         {

@@ -22,6 +22,8 @@ namespace RuralTech.Telas
     {
         private Transportador _transportador = new Transportador();
         private TransportadorDAO _transportadorDAO = new TransportadorDAO();
+        public bool Editar = false;
+
         public ObservableCollection<Transportador> TransportadoresList { get; set; }
 
         public TelaTransportador()
@@ -94,12 +96,7 @@ namespace RuralTech.Telas
             this.Close();
         }
 
-        private void Button_Despesa(object sender, RoutedEventArgs e)
-        {
-            TelaDespesa tela = new TelaDespesa();
-            tela.Show();
-            this.Close();
-        }
+       
 
         private void Button_Equipamento(object sender, RoutedEventArgs e)
         {

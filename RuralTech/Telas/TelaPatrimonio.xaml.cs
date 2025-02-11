@@ -24,6 +24,8 @@ namespace RuralTech.Telas
 
         private Patrimonio _patrimonio = new Patrimonio();
         private PatrimonioDAO _patrimonioDAO = new PatrimonioDAO();
+        public bool Editar = false;
+
         public ObservableCollection<Patrimonio> PatrimoniosList { get; set; }
         public TelaPatrimonio()
         {
@@ -102,12 +104,7 @@ namespace RuralTech.Telas
             this.Close();
         }
 
-        private void Button_Despesa(object sender, RoutedEventArgs e)
-        {
-            TelaDespesa tela = new TelaDespesa();
-            tela.Show();
-            this.Close();
-        }
+      
 
         private void Button_Equipamento(object sender, RoutedEventArgs e)
         {

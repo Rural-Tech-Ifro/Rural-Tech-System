@@ -24,6 +24,8 @@ namespace RuralTech.Telas
 
         private Pasto _pasto = new Pasto();
         private PastoDAO _pastoDAO = new PastoDAO();
+        public bool Editar = false;
+
         public ObservableCollection<Pasto> PastosList { get; set; }
         public TelaPasto()
         {
@@ -102,12 +104,7 @@ namespace RuralTech.Telas
             this.Close();
         }
 
-        private void Button_Despesa(object sender, RoutedEventArgs e)
-        {
-            TelaDespesa tela = new TelaDespesa();
-            tela.Show();
-            this.Close();
-        }
+     
 
         private void Button_Equipamento(object sender, RoutedEventArgs e)
         {

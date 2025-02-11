@@ -24,6 +24,8 @@ namespace RuralTech.Telas
         FuncionarioDAO funcionario = new FuncionarioDAO();
         private Ordenha _ordenha = new Ordenha();
         private OrdenhaDAO _ordenhaDAO = new OrdenhaDAO();
+        public bool Editar = false;
+
         public ObservableCollection<Ordenha> OrdenhasList { get; set; }
 
         public TelaOrdenha()
@@ -105,12 +107,7 @@ namespace RuralTech.Telas
             this.Close();
         }
 
-        private void Button_Despesa(object sender, RoutedEventArgs e)
-        {
-            TelaDespesa tela = new TelaDespesa();
-            tela.Show();
-            this.Close();
-        }
+     
 
         private void Button_Equipamento(object sender, RoutedEventArgs e)
         {

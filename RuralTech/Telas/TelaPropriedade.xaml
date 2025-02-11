@@ -40,12 +40,7 @@
                                 </WrapPanel>
                             </Button>
 
-                            <Button Background="#0ca13f" BorderBrush="white" Click="Button_Despesa">
-                                <WrapPanel>
-                                    <TextBlock Text="Despesa" Foreground="white" ></TextBlock>
-                                </WrapPanel>
-                            </Button>
-
+                           
                             <Button Background="#0ca13f" BorderBrush="white" Click="Button_Equipamento">
                                 <WrapPanel>
                                     <TextBlock Text="Equipamento" Foreground="white" ></TextBlock>

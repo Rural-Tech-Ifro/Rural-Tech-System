@@ -22,6 +22,8 @@ namespace RuralTech.Telas
     {
         private Paricao _paricao = new Paricao();
         private ParicaoDAO _paricaoDAO = new ParicaoDAO();
+        public bool Editar = false;
+
         public ObservableCollection<Paricao> ParicoesList { get; set; }
 
         public TelaParicao()
@@ -92,12 +94,7 @@ namespace RuralTech.Telas
             this.Close();
         }
 
-        private void Button_Despesa(object sender, RoutedEventArgs e)
-        {
-            TelaDespesa tela = new TelaDespesa();
-            tela.Show();
-            this.Close();
-        }
+       
 
         private void Button_Equipamento(object sender, RoutedEventArgs e)
         {

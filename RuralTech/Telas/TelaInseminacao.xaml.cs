@@ -24,6 +24,8 @@ namespace RuralTech.Telas
         FuncionarioDAO funcionario = new FuncionarioDAO();
         private Inseminacao _inseminacao = new Inseminacao();
         private InseminacaoDAO _inseminacaoDAO = new InseminacaoDAO();
+        public bool Editar = false;
+
         public ObservableCollection<Inseminacao> InseminacoesList { get; set; }
 
         public TelaInseminacao()
@@ -32,6 +34,18 @@ namespace RuralTech.Telas
             DataContext = this; // Define o DataContext para a própria janela
             InseminacoesList = new ObservableCollection<Inseminacao>(); // Inicializa a lista como uma ObservableCollection
             CarregarExames();
+
+           
+
+            //COMBO BOX
+            foreach (Funcionario str in funcionario.GetFuncionario())
+            {
+                combo_funcionario.Items.Add(str.Nome);
+            }
+            foreach (Animals str in animal.GetAnimal())
+            {
+                combo_animal.Items.Add(str.Brinco);
+            }
         }
         private void CarregarExames()
         {
@@ -51,6 +65,10 @@ namespace RuralTech.Telas
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+            // Limpa o objeto e os campos quando adicionando um novo registro
+            _inseminacao = new Inseminacao();
+            Editar = false; // Indica que é um novo registro
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
@@ -74,9 +92,9 @@ namespace RuralTech.Telas
                 
                 foreach (Funcionario str in funcionario.GetFuncionario())
                 {
-                    if (str.Nome == txt_funcionario.Text)
+                    if (str.Nome == combo_funcionario.Text)
                     {
-                        _inseminacao.Animal = str.Id.ToString();
+                        _inseminacao.Funcionario = str.Id.ToString();
 
                     }
                 }
@@ -84,10 +102,20 @@ namespace RuralTech.Telas
                 _inseminacao.Tipo = txt_tipo.Text;
                 _inseminacao.Observacao = txt_observacao.Text;
                 _inseminacao.Data = Convert.ToDateTime(txt_data_inseminacao.Text);
-                
 
-                _inseminacaoDAO.Insert(_inseminacao); // Insere no banco
-                MessageBox.Show("Registro cadastrado com sucesso.");
+
+                if (Editar)
+                {
+                    _inseminacaoDAO.Update(_inseminacao);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    Editar = false; // Volta o estado para novo registro
+                }
+                else
+                {
+                    _inseminacaoDAO.Insert(_inseminacao); // Insere no banco
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
+
                 TelaInseminacao tela = new TelaInseminacao();
                 this.Close();
                 tela.ShowDialog();
@@ -99,11 +127,40 @@ namespace RuralTech.Telas
             PropertyPopup.IsOpen = false;
         }
 
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Inseminacao inseminacaoSelecionado)
+            {
+                _inseminacao = inseminacaoSelecionado;
+                PreencherCamposComDados(_inseminacao); // Preenche o formulário com os dados para edição
+                Editar = true;
+                PropertyPopup.IsOpen = true;
+            }
+        }
+
+
+        private void PreencherCamposComDados(Inseminacao inseminacao)
+        {
+            txt_tipo.Text = inseminacao.Tipo;
+            txt_observacao.Text = inseminacao.Observacao;
+            txt_data_inseminacao.Text = inseminacao.Data.ToString();
+            combo_animal.Text = inseminacao.Animal;
+            combo_funcionario.Text = inseminacao.Funcionario;
+
+
+        }
+        private void LimparCampos()
+        {
+            txt_tipo.Text = "";
+            txt_observacao.Text = "";
+            txt_data_inseminacao.Text = "";
+            combo_animal.Text = "";
+            combo_funcionario.Text = "";
+        }
         private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
-
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
             TelaCompra tela = new TelaCompra();
@@ -111,12 +168,7 @@ namespace RuralTech.Telas
             this.Close();
         }
 
-        private void Button_Despesa(object sender, RoutedEventArgs e)
-        {
-            TelaDespesa tela = new TelaDespesa();
-            tela.Show();
-            this.Close();
-        }
+      
 
         private void Button_Equipamento(object sender, RoutedEventArgs e)
         {

@@ -190,9 +190,6 @@
     <Compile Include="Telas\TelaCompra.xaml.cs">
       <DependentUpon>TelaCompra.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Telas\TelaDespesa.xaml.cs">
-      <DependentUpon>TelaDespesa.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Telas\TelaExame.xaml.cs">
       <DependentUpon>TelaExame.xaml</DependentUpon>
     </Compile>
@@ -245,10 +242,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Telas\TelaCompra.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Telas\TelaDespesa.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

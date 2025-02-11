@@ -42,7 +42,7 @@ public class InseminacaoDAO
         try
         {
             var comando = _conn.Query();
-            comando.CommandText = "SELECT id_ins, tipo_ins, observacao_ins, data_ins, id_ani_fk, id_fun_fk FROM inseminacao;";
+            comando.CommandText = "SELECT inseminacao.id_ins, inseminacao.tipo_ins, inseminacao.observacao_ins, inseminacao.data_ins, animal.brinco_ani, funcionario.nome_fun from inseminacao inner JOIN Animal ON (inseminacao.id_ani_fk = animal.id_ani) inner JOIN Funcionario ON (inseminacao.id_fun_fk = funcionario.id_fun);";
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -54,8 +54,8 @@ public class InseminacaoDAO
                     Tipo = DAOHelper.GetString(reader, "tipo_ins"),
                     Observacao = DAOHelper.GetString(reader, "observacao_ins"),
                     Data = Convert.ToDateTime(DAOHelper.GetDateTime(reader, "data_ins")),
-                    Animal = DAOHelper.GetString(reader, "id_ani_fk"),
-                    Funcionario = DAOHelper.GetString(reader, "id_fun_fk"),
+                    Animal = DAOHelper.GetString(reader, "brinco_ani"),
+                    Funcionario = DAOHelper.GetString(reader, "nome_fun"),
 
 
                 };
@@ -76,7 +76,7 @@ public class InseminacaoDAO
         {
             var comando = _conn.Query();
 
-            comando.CommandText = "UPDATE inseminacao SET tipo_ins = @tipo, observacao = @observacao, data_ins = @data, id_ani_fk = @animal, id_fun_fk = @funcionario WHERE id_ins = @id;";
+            comando.CommandText = "UPDATE inseminacao SET tipo_ins = @tipo, observacao_ins = @observacao, data_ins = @data, id_ani_fk = @animal, id_fun_fk = @funcionario WHERE id_ins = @id;";
 
             // Define os parâmetros para a atualização
             comando.Parameters.AddWithValue("@tipo", obj.Tipo);

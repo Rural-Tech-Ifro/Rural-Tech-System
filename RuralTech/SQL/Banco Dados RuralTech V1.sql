@@ -141,7 +141,7 @@ VALUES
 ('Maria Oliveira', 'maria.oliveira@email.com', '(21) 98765-4321', '456', 3000.00, '(21) 99123-4567', 'Avenida Brasil, 456', 
 'Brasil', 'Rio de Janeiro', 'Rio de Janeiro', '20000-000', '987.654.321-00', '1990-07-22', '2024-11-25', '2021-02-10');
 
-
+select * from Funcionario;
 create table compra(
 id_com int primary key auto_increment,
 dataPagamento_com date,
@@ -162,34 +162,6 @@ foreign key(id_com_fk) references compra(id_com)
 );
 select * from Fornecedor_Compra;
 
-create table despesa(
-id_des int primary key auto_increment,
-numeroDocumento_des varchar(100),
-dataVencimento_des date,
-valorTotal_des double,
-centroCusto varchar(100),
-jurosParcelas varchar(100),
-paga_des varchar(100),
-repetir_des varchar(100),
-formaPagamento_des varchar(100),
-dataEmissao_des date,
-categoria_des varchar(100),
-desconto_des varchar(100),
-observacao_des varchar(500),
-descricao_des varchar(500),
-dataPagamento_des varchar(100),
-lancamentoParcelado_des boolean,
-conta_des varchar(100),
-periodo_des varchar(100)
-);
-
-create table fornecedor_despesa(
-id_for_des int primary key auto_increment,
-id_for_fk int,
-foreign key(id_for_fk) references fornecedor(id_for),
-id_des_fk int,
-foreign key(id_des_fk) references despesa(id_des)
-);
 
 create table produto(
 id_prod int primary key auto_increment,
@@ -254,6 +226,11 @@ raca_ani varchar(100),
 classificacao_ani varchar(500),
 origem_ani varchar(100)
 );
+INSERT INTO animal (brinco_ani, sexo_ani, raca_ani, classificacao_ani, origem_ani)  
+VALUES  
+('BR12345', 'Macho', 'Nelore', 'Gado de corte', 'Fazenda Boa Esperança'),  
+('BR67890', 'Fêmea', 'Holandesa', 'Gado leiteiro', 'Fazenda Santa Rita');
+
 
 create table ordenha(
 id_ord int primary key auto_increment,
@@ -302,7 +279,7 @@ foreign key(id_ani_fk) references animal(id_ani),
 id_fun_fk int,
 foreign key(id_fun_fk) references funcionario(id_fun)
 );
-
+select * from inseminacao;
 create table vacina(
 id_vac int primary key auto_increment,
 nome_vac varchar(300),
