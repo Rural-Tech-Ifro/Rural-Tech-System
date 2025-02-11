@@ -109,6 +109,7 @@ VALUES
 
 ('Loja Rio Comercial', '(21) 92345-6789', '(21) 2233-4455', '23.456.789/0001-10', 'Brasil', 'Rio de Janeiro', 'Rio de Janeiro', 
 '20030-150', '202', 'Avenida Central', 'Varejo', 'suporte@lojario.com.br');
+select * from Fornecedor;
 
 create table funcionario(
 id_fun int primary key auto_increment,
@@ -229,6 +230,7 @@ foreign key(id_prod_fk) references produto(id_prod),
 id_com_fk int,
 foreign key(id_com_fk) references compra(id_com)
 );
+select * from produto_compra;
 
 create table transportador(
 id_tra int primary key auto_increment,

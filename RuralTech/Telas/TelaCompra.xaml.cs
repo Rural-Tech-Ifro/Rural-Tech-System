@@ -72,7 +72,9 @@ namespace RuralTech.Telas
 
         private void OpenModal(object sender, RoutedEventArgs e)
         {
-            Editar = false;
+            // Limpa o objeto e os campos quando adicionando um novo registro
+            _compra = new Compra();
+            Editar = false; // Indica que é um novo registro
             LimparCampos();
             PropertyPopup.IsOpen = true;
         }
@@ -92,6 +94,7 @@ namespace RuralTech.Telas
                     {
                         _compra.Funcionario = str.Id.ToString();
 
+
                     }
                 }
                 foreach (Fornecedor str in fornecedor.GetFornecedor())
@@ -100,40 +103,39 @@ namespace RuralTech.Telas
                     {
                         _compra.Fornecedor = str.Id.ToString();
 
+
                     }
                 }
-               foreach (Produto str in produto.GetProduto())
+                foreach (Produto str in produto.GetProduto())
                 {
                     if (str.Nome == combo_produto.Text)
                     {
-                        _compra.Produto = str.Id.ToString();
-
+                        _compra.Produto= str.Id.ToString();
                     }
                 }
 
+                // Atualiza o objeto _vacina com os valores do formulário
                 _compra.Codigo = txt_codigo.Text;
-                _compra.QuantidadeParcelas = Convert.ToInt32(txt_quantidadeParcela.Text);
+                _compra.FormaPagamento = combo_formaPagamento.Text;
                 _compra.DataCompra = Convert.ToDateTime(txt_dataCompra.Text);
                 _compra.DataPagamento = Convert.ToDateTime(txt_dataPagamento.Text);
-
-                _compra.FormaPagamento = combo_formaPagamento.Text;
+                _compra.QuantidadeParcelas = Convert.ToInt32(txt_quantidadeParcela.Text);
 
                 if (Editar)
                 {
                     _compraDAO.Update(_compra);
                     MessageBox.Show("Registro atualizado com sucesso.");
-                    TelaCompra tela = new TelaCompra();
-                    this.Close();
-                    tela.ShowDialog();
+                    Editar = false; // Volta o estado para novo registro
                 }
                 else
                 {
                     _compraDAO.Insert(_compra); // Insere no banco
                     MessageBox.Show("Registro cadastrado com sucesso.");
-                    TelaCompra tela = new TelaCompra();
-                    this.Close();
-                    tela.ShowDialog();
                 }
+
+                TelaCompra tela = new TelaCompra();
+                this.Close();
+                tela.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -144,22 +146,31 @@ namespace RuralTech.Telas
 
         private void OpenModalEdit(object sender, RoutedEventArgs e)
         {
-            if (sender is FrameworkElement element && element.DataContext is Compra compraSelecionada)
+            if (sender is FrameworkElement element && element.DataContext is Compra compraSelecionado)
             {
-                _compra = compraSelecionada;
-
-                combo_funcionario.Text = _compra.Funcionario;
-                combo_fornecedor.Text = _compra.Fornecedor;
-                combo_produto.Text = _compra.Produto;
-                combo_formaPagamento.Text = _compra.FormaPagamento;
-                txt_codigo.Text = _compra.Codigo;
-                txt_dataCompra.Text = _compra.DataCompra.ToString();
-                txt_dataPagamento.Text = _compra.DataPagamento.ToString();
-                txt_quantidadeParcela.Text = _compra.QuantidadeParcelas.ToString();
-                
+                _compra = compraSelecionado;
+                PreencherCamposComDados(_compra); // Preenche o formulário com os dados para edição
                 Editar = true;
                 PropertyPopup.IsOpen = true;
             }
+        }
+
+
+        private void PreencherCamposComDados(Compra compra)
+        {
+            // txt_atributo1.Text = nome.Atributo1;
+            //combo_atributo2.Text = nome.Atributo2;
+
+            combo_funcionario.Text = compra.Funcionario;
+            combo_fornecedor.Text = compra.Fornecedor;
+            combo_produto.Text = compra.Produto;
+            combo_formaPagamento.Text = compra.FormaPagamento;
+            txt_codigo.Text = compra.Codigo;
+            txt_dataCompra.Text = compra.DataCompra.ToString();
+            txt_dataPagamento.Text = compra.DataPagamento.ToString();
+            txt_quantidadeParcela.Text = compra.QuantidadeParcelas.ToString();
+
+
         }
 
         private void DeleteCompra(object sender, RoutedEventArgs e)
@@ -189,10 +200,10 @@ namespace RuralTech.Telas
         }
         private void LimparCampos()
         {
-            combo_funcionario.Text = null;
-            combo_fornecedor.Text = null;
-            combo_produto.Text = null;
-            combo_formaPagamento.Text = null;
+            combo_funcionario.Text = "";
+            combo_fornecedor.Text = "";
+            combo_produto.Text = "";
+            combo_formaPagamento.Text = "";
             txt_codigo.Clear();
             txt_dataCompra.Clear();
             txt_dataPagamento.Clear();

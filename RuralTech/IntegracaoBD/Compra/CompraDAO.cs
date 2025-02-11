@@ -101,10 +101,20 @@ public class CompraDAO
         {
             var comando = _conn.Query();
 
-            comando.CommandText = "UPDATE compra SET codigo_com = @codigo, formaPagamento_com = @formaPagamento, dataCompra_com = @dataCompra, dataPagamento_com = @dataPagamento, quantidadeParcela = @quantidadeParcelas, id_fun_fk = @idFuncionario WHERE id_com = @id;";
-            comando.CommandText = "UPDATE Fornecedor_Compra SET id_for_fk = @idFornecedor WHERE id_com_fk = @id;";
-            comando.CommandText = "UPDATE Produto_Compra SET id_prod_fk = @idProduto WHERE id_com_fk = @id;";
+            comando.CommandText = @"
+        UPDATE compra 
+        SET codigo_com = @codigo, formaPagamento_com = @formaPagamento, dataCompra_com = @dataCompra, 
+            dataPagamento_com = @dataPagamento, quantidadeParcela = @quantidadeParcelas, id_fun_fk = @idFuncionario 
+        WHERE id_com = @id;
 
+        UPDATE Fornecedor_Compra 
+        SET id_for_fk = @idFornecedor 
+        WHERE id_com_fk = @id;
+
+        UPDATE Produto_Compra 
+        SET id_prod_fk = @idProduto 
+        WHERE id_com_fk = @id;
+    ";
 
             comando.Parameters.AddWithValue("@id", obj.Id);
             comando.Parameters.AddWithValue("@codigo", obj.Codigo);
@@ -115,7 +125,6 @@ public class CompraDAO
             comando.Parameters.AddWithValue("@idFuncionario", obj.Funcionario);
             comando.Parameters.AddWithValue("@idFornecedor", obj.Fornecedor);
             comando.Parameters.AddWithValue("@idProduto", obj.Produto);
-
 
             var resultado = comando.ExecuteNonQuery();
 
@@ -128,6 +137,7 @@ public class CompraDAO
         {
             throw new Exception("Erro ao atualizar a Compra: " + ex.Message, ex);
         }
+
     }
 
     public void Delete(Compra obj)

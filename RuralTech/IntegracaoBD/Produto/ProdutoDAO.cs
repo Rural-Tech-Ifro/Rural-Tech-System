@@ -76,10 +76,6 @@ public class ProdutoDAO
         }
         return produtos;
     }
-<<<<<<< HEAD
-
-    
-=======
     public void Update(Produto obj)
     {
         try
@@ -121,7 +117,6 @@ public class ProdutoDAO
             throw new Exception("Erro ao atualizar o produto: " + ex.Message, ex);
         }
     }
->>>>>>> 95534470f5da23413a483206fb1a993d57187f99
     public void Delete(Produto obj)
     {
         try

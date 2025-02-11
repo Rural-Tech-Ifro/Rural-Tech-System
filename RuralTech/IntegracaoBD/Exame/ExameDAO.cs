@@ -1,11 +1,6 @@
 ﻿using System;
-<<<<<<< HEAD
-using System.Collections.Generic;
-using MySql.Data.MySqlClient;
-=======
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
->>>>>>> 95534470f5da23413a483206fb1a993d57187f99
 using RuralTech.Database;
 using RuralTech.Helpers;
 
@@ -39,10 +34,6 @@ public class ExameDAO
             throw ex;
         }
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 95534470f5da23413a483206fb1a993d57187f99
     public List<Exame> GetExames()
     {
         List<Exame> exames = new List<Exame>();
@@ -57,21 +48,13 @@ public class ExameDAO
             while (reader.Read())
             {
                 Exame exame = new Exame
-<<<<<<< HEAD
-                {
-=======
                 { 
->>>>>>> 95534470f5da23413a483206fb1a993d57187f99
                     Id = DAOHelper.GetInt32(reader, "id_exa"),
                     Tipo = DAOHelper.GetString(reader, "tipo_exa"),
                     Resultado = DAOHelper.GetString(reader, "resultado_exa"),
                     Data = Convert.ToDateTime(DAOHelper.GetDateTime(reader, "data_exa")),
-<<<<<<< HEAD
-                    Animal = DAOHelper.GetString(reader, "id_ani_fk")
-=======
                     Animal = DAOHelper.GetString(reader, "id_ani_fk"),
 
->>>>>>> 95534470f5da23413a483206fb1a993d57187f99
 
                 };
                 exames.Add(exame);
@@ -85,10 +68,6 @@ public class ExameDAO
         }
         return exames;
     }
-<<<<<<< HEAD
-
-
-=======
     public void Update(Exame obj)
     {
         try
@@ -126,7 +105,6 @@ public class ExameDAO
             throw new Exception("Erro ao atualizar o Exame: " + ex.Message, ex);
         }
     }
->>>>>>> 95534470f5da23413a483206fb1a993d57187f99
     public void Delete(Exame obj)
     {
         try

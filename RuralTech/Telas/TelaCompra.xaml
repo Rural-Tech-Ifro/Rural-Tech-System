@@ -377,8 +377,13 @@ CornerRadius="10">
 
                                     </StackPanel>
 
-                                    <!-- Botão com ícone de lápis para abrir o modal -->
-                                  
+                                    <!-- BotÃ£o Editar -->
+                                    <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,-10,0"
+Background="Transparent" BorderBrush="Transparent" Cursor="Hand" 
+Click="OpenModalEdit">
+                                        <materialDesign:PackIcon Kind="Pencil" />
+                                    </Button>
+
                                 </Grid>
                             </Border>
                         </DataTemplate>

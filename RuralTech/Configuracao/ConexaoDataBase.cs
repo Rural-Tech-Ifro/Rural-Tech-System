@@ -12,15 +12,11 @@ namespace RuralTech.Database
     {
         private static string host = "localhost";
 
-        private static string port = "3360";
+        private static string port = "3306";
 
         private static string user = "root";
 
-<<<<<<< HEAD
         private static string password = "200254";
-=======
-        private static string password = "root";
->>>>>>> 95534470f5da23413a483206fb1a993d57187f99
 
         private static string dbname = "RuralTech";
 
