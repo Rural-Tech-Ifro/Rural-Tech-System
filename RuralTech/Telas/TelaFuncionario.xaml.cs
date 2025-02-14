@@ -52,6 +52,10 @@ namespace RuralTech.Telas
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+            // Limpa o objeto e os campos quando adicionando um novo registro
+            _funcionario = new Funcionario();
+            Editar = false; // Indica que é um novo registro
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
@@ -80,8 +84,17 @@ namespace RuralTech.Telas
                 _funcionario.Pais = txt_pais.Text;
                 _funcionario.CEP = txt_cep.Text;
 
-                _funcionarioDAO.Insert(_funcionario); // Insere no banco
-                MessageBox.Show("Registro cadastrado com sucesso.");
+                if (Editar)
+                {
+                    _funcionarioDAO.Update(_funcionario);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    Editar = false; // Volta o estado para novo registro
+                }
+                else
+                {
+                    _funcionarioDAO.Insert(_funcionario); // Insere no banco
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
 
                 TelaFuncionario tela = new TelaFuncionario();
                 this.Close();
@@ -94,7 +107,7 @@ namespace RuralTech.Telas
             PropertyPopup.IsOpen = false;
         }
 
-        /*private void PackIcon_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is Funcionario funcionarioSelecionado)
             {
@@ -106,55 +119,47 @@ namespace RuralTech.Telas
         }
 
 
-
-        private void PreencherCamposComDados(Medicamento medicamento)
+        private void PreencherCamposComDados(Funcionario funcionario)
         {
-            txt_nome.Text = medicamento.Nome;
-            txt_email.Text = medicamento.DiasCarencia.ToString();
-            .Text = medicamento.Estado;
-            txt_inscricao.Text = medicamento.InscricaoEstadual;
-            txt_quantidade.Text = medicamento.Quantidade.ToString();
-            CBunidadeEntrada.Text = medicamento.UnidadeEntrada;
-            CBunidadeSaida.Text = medicamento.UnidadeSaida;
-            txt_observacao.Text = medicamento.Observacao;
+            txt_nome.Text = funcionario.Nome;
+            txt_email.Text = funcionario.Email;
+            txt_telefone.Text = funcionario.Telefone;
+            txt_numero.Text = funcionario.Numero;
+            txt_salario.Text = funcionario.Salario.ToString();
+            txt_celular.Text = funcionario.Celular;
+            txt_logradouro.Text = funcionario.Logradouro;
+            txt_pais.Text = funcionario.Pais;
+            txt_estado.Text = funcionario.Estado;
+            txt_cidade.Text = funcionario.Cidade;
+            txt_cep.Text = funcionario.CEP;
+            txt_cpf.Text = funcionario.CPF;
+            txt_cpf.Text = funcionario.CPF;
+            txt_dataNascimento.Text = funcionario.DataNascimento.ToString();
+            txt_dataPagamento.Text = funcionario.DataPagamento.ToString();
+            txt_dataAdmissao.Text = funcionario.DataAdmissao.ToString();
+
+
         }
-
-        private void DeleteMedicamento(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void LimparCampos()
         {
-            if (sender is FrameworkElement element && element.DataContext is Medicamento medicamentoSelecionado)
-            {
-                // Verifica se a medicamento selecionada é válida para exclusão
-                if (medicamentoSelecionado == null)
-                {
-                    MessageBox.Show("Nenhum medicamento selecionada para exclusão.");
-                    return;
-                }
+            txt_nome.Text = "";
+            txt_email.Text = "";
+            txt_telefone.Text = "";
+            txt_numero.Text = "";
+            txt_salario.Text = "";
+            txt_celular.Text = "";
+            txt_logradouro.Text = "";
+            txt_pais.Text = "";
+            txt_estado.Text = "";
+            txt_cidade.Text = "";
+            txt_cep.Text = "";
+            txt_cpf.Text = "";
+            txt_cpf.Text = "";
+            txt_dataNascimento.Text = "";
+            txt_dataPagamento.Text = "";
+            txt_dataAdmissao.Text = "";
 
-                // Exibir uma mensagem de confirmação antes de excluir
-                var resultado = MessageBox.Show("Tem certeza de que deseja excluir este registro?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-                if (resultado == MessageBoxResult.Yes)
-                {
-                    try
-                    {
-                        // Exclui a medicamento do banco de dados passando o objeto medicamento
-                        _medicamentoDAO.Delete(medicamentoSelecionado);
-
-                        // Remove a medicamento da lista em exibição
-                        MedicamentosList.Remove(medicamentoSelecionado);
-                        MessageBox.Show("Registro deletado com sucesso.");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Erro ao deletar registro: {ex.Message}");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Nenhum medicamento selecionado.");
-            }
-        }*/
+        }
 
         private void Button_Compra(object sender, RoutedEventArgs e)
         {

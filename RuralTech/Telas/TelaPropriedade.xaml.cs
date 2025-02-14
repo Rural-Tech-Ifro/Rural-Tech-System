@@ -51,6 +51,10 @@ namespace RuralTech.Telas
 
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+            // Limpa o objeto e os campos quando adicionando um novo registro
+            _propriedade = new Propriedade();
+            Editar = false; // Indica que é um novo registro
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
@@ -71,8 +75,17 @@ namespace RuralTech.Telas
                 _propriedade.Bairro = txt_bairro.Text;
                 _propriedade.Complemento = txt_complemento.Text;
 
-                _propriedadeDAO.Insert(_propriedade); // Insere no banco
-                MessageBox.Show("Registro cadastrado com sucesso.");
+                if (Editar)
+                {
+                    _propriedadeDAO.Update(_propriedade);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    Editar = false; // Volta o estado para novo registro
+                }
+                else
+                {
+                    _propriedadeDAO.Insert(_propriedade); // Insere no banco
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
                 TelaPropriedade tela = new TelaPropriedade();
                 this.Close();
                 tela.ShowDialog();
@@ -82,6 +95,41 @@ namespace RuralTech.Telas
                 MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
             }
             PropertyPopup.IsOpen = false;
+        }
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Propriedade propriedadeSelecionado)
+            {
+                _propriedade = propriedadeSelecionado;
+                PreencherCamposComDados(_propriedade); // Preenche o formulário com os dados para edição
+                Editar = true;
+                PropertyPopup.IsOpen = true;
+            }
+        }
+
+
+        private void PreencherCamposComDados(Propriedade propriedade)
+        {
+            txt_propriedade.Text = propriedade.NomePropriedade;
+            txt_proprietario.Text = propriedade.NomeProprietario;
+            txt_tamanho.Text = propriedade.Tamanho.ToString();
+            txt_cep.Text = propriedade.CEP;
+            txt_logradouro.Text = propriedade.Logradouro;
+            txt_bairro.Text = propriedade.Bairro;
+            txt_complemento.Text = propriedade.Complemento;
+
+            
+
+        }
+        private void LimparCampos()
+        {
+            txt_propriedade.Text = "";
+            txt_proprietario.Text = "";
+            txt_tamanho.Text = "";
+            txt_cep.Text = "";
+            txt_logradouro.Text = "";
+            txt_bairro.Text = "";
+            txt_complemento.Text = "";
         }
 
         private void Button_Compra(object sender, RoutedEventArgs e)

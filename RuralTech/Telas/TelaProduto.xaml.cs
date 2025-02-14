@@ -50,6 +50,10 @@ namespace RuralTech.Telas
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+            // Limpa o objeto e os campos quando adicionando um novo registro
+            _produto = new Produto();
+            Editar = false; // Indica que é um novo registro
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
@@ -72,8 +76,17 @@ namespace RuralTech.Telas
 
 
 
-                _produtoDAO.Insert(_produto); // Insere no banco
-                MessageBox.Show("Registro cadastrado com sucesso.");
+                if (Editar)
+                {
+                    _produtoDAO.Update(_produto);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    Editar = false; // Volta o estado para novo registro
+                }
+                else
+                {
+                    _produtoDAO.Insert(_produto); // Insere no banco
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
 
                 TelaProduto tela = new TelaProduto();
                 this.Close();
@@ -85,7 +98,40 @@ namespace RuralTech.Telas
             }
             PropertyPopup.IsOpen = false;
         }
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Produto produtoSelecionado)
+            {
+                _produto = produtoSelecionado;
+                PreencherCamposComDados(_produto); // Preenche o formulário com os dados para edição
+                Editar = true;
+                PropertyPopup.IsOpen = true;
+            }
+        }
 
+
+        private void PreencherCamposComDados(Produto produto)
+        {
+            txt_nome.Text = produto.Nome;
+            txt_preco_custo.Text = produto.PrecoCusto.ToString();
+            txt_quantidade.Text = produto.Quantidade.ToString();
+            txt_data_vencimento.Text = produto.DataVencimento.ToString();
+            txt_unidade_entrada.Text = produto.UnidadeEntrada;
+            txt_unidade_saida.Text = produto.UnidadeSaida;
+            txt_preco_venda.Text = produto.PrecoVenda.ToString();
+
+
+        }
+        private void LimparCampos()
+        {
+            txt_nome.Text = "";
+            txt_preco_custo.Text = "";
+            txt_quantidade.Text = "";
+            txt_data_vencimento.Text = "";
+            txt_unidade_entrada.Text = "";
+            txt_unidade_saida.Text = "";
+            txt_preco_venda.Text = "";
+        }
 
         private void Button_Compra(object sender, RoutedEventArgs e)
         {

@@ -59,6 +59,10 @@ namespace RuralTech.Telas
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+            // Limpa o objeto e os campos quando adicionando um novo registro
+            _pasto = new Pasto();
+            Editar = false; // Indica que é um novo registro
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
@@ -84,8 +88,17 @@ namespace RuralTech.Telas
                 _pasto.Descricao = txt_descricao.Text;
                 _pasto.TipoPastagem = txt_tipoPastagem.Text;
 
-                _pastoDAO.Insert(_pasto); // Insere no banco
-                MessageBox.Show("Registro cadastrado com sucesso.");
+                if (Editar)
+                {
+                    _pastoDAO.Update(_pasto);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    Editar = false; // Volta o estado para novo registro
+                }
+                else
+                {
+                    _pastoDAO.Insert(_pasto); // Insere no banco
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
                 TelaPasto tela = new TelaPasto();
                 this.Close();
                 tela.ShowDialog();
@@ -95,6 +108,36 @@ namespace RuralTech.Telas
                 MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
             }
             PropertyPopup.IsOpen = false;
+        }
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Pasto pastoSelecionado)
+            {
+                _pasto = pastoSelecionado;
+                PreencherCamposComDados(_pasto); // Preenche o formulário com os dados para edição
+                Editar = true;
+                PropertyPopup.IsOpen = true;
+            }
+        }
+
+
+        private void PreencherCamposComDados(Pasto pasto)
+        {
+            combo_propriedade.Text = pasto.Propriedade;
+            txt_tamanho.Text = pasto.Tamanho.ToString();
+            txt_limite.Text = pasto.Limite.ToString();
+            txt_descricao.Text = pasto.Descricao;
+            txt_tipoPastagem.Text = pasto.TipoPastagem;
+
+
+        }
+        private void LimparCampos()
+        {
+            combo_propriedade.Text = "";
+            txt_tamanho.Text = "";
+            txt_limite.Text = "";
+            txt_descricao.Text = "";
+            txt_tipoPastagem.Text = "";
         }
 
         private void Button_Compra(object sender, RoutedEventArgs e)

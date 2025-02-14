@@ -60,6 +60,10 @@ namespace RuralTech.Telas
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+            // Limpa o objeto e os campos quando adicionando um novo registro
+            _patrimonio = new Patrimonio();
+            Editar = false; // Indica que é um novo registro
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
@@ -84,8 +88,17 @@ namespace RuralTech.Telas
                 _patrimonio.Descricao = txt_descricao.Text;
                 _patrimonio.Tipo = txt_tipo.Text;
 
-                _patrimonioDAO.Insert(_patrimonio); // Insere no banco
-                MessageBox.Show("Registro cadastrado com sucesso.");
+                if (Editar)
+                {
+                    _patrimonioDAO.Update(_patrimonio);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    Editar = false; // Volta o estado para novo registro
+                }
+                else
+                {
+                    _patrimonioDAO.Insert(_patrimonio); // Insere no banco
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
                 TelaPatrimonio tela = new TelaPatrimonio();
                 this.Close();
                 tela.ShowDialog();
@@ -96,7 +109,36 @@ namespace RuralTech.Telas
             }
             PropertyPopup.IsOpen = false;
         }
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Patrimonio patrimonioSelecionado)
+            {
+                _patrimonio = patrimonioSelecionado;
+                PreencherCamposComDados(_patrimonio); // Preenche o formulário com os dados para edição
+                Editar = true;
+                PropertyPopup.IsOpen = true;
+            }
+        }
 
+
+        private void PreencherCamposComDados(Patrimonio patrimonio)
+        {
+            combo_propriedade.Text = patrimonio.Propriedade;
+            txt_nome.Text = patrimonio.Nome;
+            txt_valor.Text = patrimonio.Valor.ToString();
+            txt_descricao.Text = patrimonio.Descricao;
+            txt_tipo.Text = patrimonio.Tipo;
+
+
+        }
+        private void LimparCampos()
+        {
+            combo_propriedade.Text = "";
+            txt_nome.Text = "";
+            txt_valor.Text = "";
+            txt_descricao.Text = "";
+            txt_tipo.Text = "";
+        }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
             TelaCompra tela = new TelaCompra();
