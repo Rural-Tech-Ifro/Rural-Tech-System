@@ -55,6 +55,7 @@ public class ParicaoDAO
                     DataParto = Convert.ToDateTime(DAOHelper.GetDateTime(reader, "dataParto_par")),
                     Sexo = DAOHelper.GetString(reader, "sexo_par"),
                     Lote = DAOHelper.GetString(reader, "lote_par"),
+                    Tipo = DAOHelper.GetString(reader, "tipo_par"),
                     Detalhamento = DAOHelper.GetString(reader, "detalhamento_par"),
                     Situacao = DAOHelper.GetString(reader, "situacao_par"),
 

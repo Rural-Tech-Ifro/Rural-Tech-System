@@ -83,7 +83,7 @@ public class TransportadorDAO
         {
             var comando = _conn.Query();
 
-            comando.CommandText = "UPDATE transporte SET cpf_tra = @cpf, cnpj_tra = @cnpj, nome_tra = @nome, inscricaoEstadual_tra = @inscricao, estado_tra = @estado, cidade_tra = @cidade, bairro_tra = @bairro, rua_tra = @rua, numero_tra = @numero WHERE id_tra = @id;";
+            comando.CommandText = "UPDATE transportador SET cpf_tra = @cpf, cnpj_tra = @cnpj, nome_tra = @nome, inscricaoEstadual_tra = @inscricao, estado_tra = @estado, cidade_tra = @cidade, bairro_tra = @bairro, rua_tra = @rua, numero_tra = @numero WHERE id_tra = @id;";
 
             // Define os parâmetros para a atualização
             comando.Parameters.AddWithValue("@cpf", obj.Cpf);
@@ -125,7 +125,7 @@ public class TransportadorDAO
         {
             var comando = _conn.Query();
 
-            comando.CommandText = "delete from transporte where id_tra = @id;";
+            comando.CommandText = "delete from transportador where id_tra = @id;";
 
             comando.Parameters.AddWithValue("@id", obj.Id);
 

@@ -32,6 +32,8 @@ namespace RuralTech.Telas
             DataContext = this; // Define o DataContext para a própria janela
             ParicoesList = new ObservableCollection<Paricao>(); // Inicializa a lista como uma ObservableCollection
             CarregarExames();
+
+         
         }
         private void CarregarExames()
         {
@@ -51,6 +53,10 @@ namespace RuralTech.Telas
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+            // Limpa o objeto e os campos quando adicionando um novo registro
+            _paricao = new Paricao();
+            Editar = false; // Indica que é um novo registro
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
@@ -66,16 +72,24 @@ namespace RuralTech.Telas
                 
                 // Atualiza o objeto _vacina com os valores do formulário
                 _paricao.DataParto = Convert.ToDateTime(txt_data.Text);
-                _paricao.Sexo = txt_sexo.Text;
+                _paricao.Sexo = combo_sexo.Text;
                 _paricao.Tipo = txt_tipo.Text;
-                _paricao.Lote = txt_lote.Text;
                 _paricao.Lote = txt_lote.Text;
                 _paricao.Detalhamento = txt_detalhamento.Text;
                 _paricao.Situacao = txt_situacao.Text;
-                
 
-                _paricaoDAO.Insert(_paricao); // Insere no banco
-                MessageBox.Show("Registro cadastrado com sucesso.");
+
+                if (Editar)
+                {
+                    _paricaoDAO.Update(_paricao);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    Editar = false; // Volta o estado para novo registro
+                }
+                else
+                {
+                    _paricaoDAO.Insert(_paricao); // Insere no banco
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
                 TelaParicao tela = new TelaParicao();
                 this.Close();
                 tela.ShowDialog();
@@ -85,6 +99,37 @@ namespace RuralTech.Telas
                 MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
             }
             PropertyPopup.IsOpen = false;
+        }
+
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Paricao paricaoSelecionado)
+            {
+                _paricao = paricaoSelecionado;
+                PreencherCamposComDados(_paricao); // Preenche o formulário com os dados para edição
+                Editar = true;
+                PropertyPopup.IsOpen = true;
+            }
+        }
+
+
+        private void PreencherCamposComDados(Paricao paricao)
+        {
+            txt_data.Text = paricao.DataParto.ToString();
+            combo_sexo.Text = paricao.Sexo.ToString();
+            txt_tipo.Text = paricao.Tipo.ToString();
+            txt_lote.Text = paricao.Lote.ToString();
+            txt_detalhamento.Text = paricao.Detalhamento.ToString();
+            txt_situacao.Text = paricao.Situacao.ToString();
+        }
+        private void LimparCampos()
+        {
+            txt_data.Text = "";
+            combo_sexo.Text = "";
+            txt_tipo.Text = "";
+            txt_lote.Text = "";
+            txt_detalhamento.Text = "";
+            txt_situacao.Text = "";
         }
 
         private void Button_Compra(object sender, RoutedEventArgs e)

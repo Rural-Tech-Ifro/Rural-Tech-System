@@ -34,6 +34,17 @@ namespace RuralTech.Telas
             DataContext = this; // Define o DataContext para a própria janela
             OrdenhasList = new ObservableCollection<Ordenha>(); // Inicializa a lista como uma ObservableCollection
             CarregarOrdenhas();
+
+            //COMBO BOX
+            foreach (Funcionario str in funcionario.GetFuncionario())
+            {
+                combo_funcionario.Items.Add(str.Nome);
+            }
+            foreach (Animals str in animal.GetAnimal())
+            {
+                combo_animal.Items.Add(str.Brinco);
+            }
+
         }
         private void CarregarOrdenhas()
         {
@@ -53,6 +64,10 @@ namespace RuralTech.Telas
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+            // Limpa o objeto e os campos quando adicionando um novo registro
+            _ordenha = new Ordenha();
+            Editar = false; // Indica que é um novo registro
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
@@ -79,16 +94,25 @@ namespace RuralTech.Telas
                 {
                     if (str.Nome == combo_funcionario.Text)
                     {
-                        _ordenha.Animal = str.Id.ToString();
+                        _ordenha.Funcionario = str.Id.ToString();
 
                     }
                 }
                 // Atualiza o objeto _vacina com os valores do formulário
-                _ordenha.TotalLitros = txt_total_litros.Text;
-                
+                _ordenha.TotalLitros = Convert.ToInt32(txt_total_litros.Text);
 
-                _ordenhaDAO.Insert(_ordenha); // Insere no banco
-                MessageBox.Show("Registro cadastrado com sucesso.");
+
+                if (Editar)
+                {
+                    _ordenhaDAO.Update(_ordenha);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    Editar = false; // Volta o estado para novo registro
+                }
+                else
+                {
+                    _ordenhaDAO.Insert(_ordenha); // Insere no banco
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
                 TelaOrdenha tela = new TelaOrdenha();
                 this.Close();
                 tela.ShowDialog();
@@ -99,7 +123,32 @@ namespace RuralTech.Telas
             }
             PropertyPopup.IsOpen = false;
         }
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Ordenha ordenhaSelecionado)
+            {
+                _ordenha = ordenhaSelecionado;
+                PreencherCamposComDados(_ordenha); // Preenche o formulário com os dados para edição
+                Editar = true;
+                PropertyPopup.IsOpen = true;
+            }
+        }
 
+
+        private void PreencherCamposComDados(Ordenha ordenha)
+        {
+            txt_total_litros.Text = ordenha.TotalLitros.ToString();
+            combo_funcionario.Text = ordenha.Funcionario;
+            combo_animal.Text = ordenha.Animal;
+
+
+        }
+        private void LimparCampos()
+        {
+            txt_total_litros.Text = "";
+            combo_funcionario.Text = "";
+            combo_animal.Text = "";
+        }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
             TelaCompra tela = new TelaCompra();

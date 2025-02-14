@@ -237,21 +237,10 @@ CornerRadius="10">
                     <StackPanel Width="300" Margin="0 0 0 30">
                         <TextBlock Text="Paricao" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
 
-                        <ComboBox
-                    x:Name="combo_animal"
-                    Width="300"
-                    Margin="0, 0, 0, 5"
-                    materialDesign:HintAssist.Hint="Selecione um animal"
-                    Style="{StaticResource MaterialDesignFilledComboBox}">
-                        </ComboBox>
+                       
 
 
-                        <TextBox
-                    materialDesign:HintAssist.Hint="Transferência de Lote:"
-                    MaxLength="40"
-                    Style="{StaticResource MaterialDesignFilledTextBox}"
-                    TextWrapping="Wrap" Name="txt_transferencia"
-                    Margin="0,0,0,5"/>
+                      
 
                         <TextBox
                     materialDesign:HintAssist.Hint="Data:"
@@ -260,13 +249,16 @@ CornerRadius="10">
                     TextWrapping="Wrap" Name="txt_data"
                     Margin="0,0,0,5"/>
 
-                        <TextBox
-                    materialDesign:HintAssist.Hint="Sexo:"
-                    MaxLength="40"
-                    Style="{StaticResource MaterialDesignFilledTextBox}"
-                    TextWrapping="Wrap" Name="txt_sexo"
-                    Margin="0,0,0,5"/>
-                        
+                        <ComboBox
+x:Name="combo_sexo"
+Width="300"
+Margin="0, 0, 0, 5"
+materialDesign:HintAssist.Hint="Selecione o sexo"
+Style="{StaticResource MaterialDesignFilledComboBox}">
+                            <ComboBoxItem Content="Femea" />
+                            <ComboBoxItem Content="Macho" />
+                        </ComboBox>
+
                         <TextBox
                     materialDesign:HintAssist.Hint="Lote:"
                     MaxLength="40"
@@ -281,12 +273,6 @@ CornerRadius="10">
                     TextWrapping="Wrap" Name="txt_tipo"
                     Margin="0,0,0,5"/>
 
-                        <TextBox
-                     materialDesign:HintAssist.Hint="Observação:"
-                     MaxLength="40"
-                     Style="{StaticResource MaterialDesignFilledTextBox}"
-                     TextWrapping="Wrap" Name="txt_observacao"
-                     Margin="0,0,0,5"/>
 
                         <TextBox
                     materialDesign:HintAssist.Hint="Situacao:"
@@ -339,29 +325,16 @@ CornerRadius="10">
                                     </Border>
 
                                     <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,0,0,0">
-                                        <TextBlock FontWeight="Bold" Margin="0,5,0,0">
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="Animal: {0}">
-                                                    <Binding Path="Animal" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
 
                                         <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
                                             <TextBlock.Text>
                                                 <MultiBinding StringFormat="Data: {0}">
-                                                    <Binding Path="Data" />
+                                                    <Binding Path="DataParto" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
 
-                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="Transferencia de Lote: {0}">
-                                                    <Binding Path="TransferenciaLote" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
+                                        
 
                                         <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
                                             <TextBlock.Text>
@@ -379,13 +352,7 @@ CornerRadius="10">
                                             </TextBlock.Text>
                                         </TextBlock>
 
-                                        <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="Observação: {0}">
-                                                    <Binding Path="Observacao" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
+                                      
 
                                         <TextBlock Foreground="#7C9C81" FontWeight="SemiBold" Margin="0,0,0,0">
                                             <TextBlock.Text>
@@ -404,9 +371,12 @@ CornerRadius="10">
                                         </TextBlock>
 
                                     </StackPanel>
-
-                                    <!-- Ícone do lápis à direita -->
-                                    <materialDesign:PackIcon Kind="Pencil" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
+                                    <!-- BotÃ£o Editar -->
+                                    <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,-10,0"
+Background="Transparent" BorderBrush="Transparent" Cursor="Hand" 
+Click="OpenModalEdit">
+                                        <materialDesign:PackIcon Kind="Pencil" />
+                                    </Button>
                                 </Grid>
                             </Border>
                         </DataTemplate>

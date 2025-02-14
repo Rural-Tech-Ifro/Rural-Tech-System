@@ -51,6 +51,10 @@ namespace RuralTech.Telas
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+            // Limpa o objeto e os campos quando adicionando um novo registro
+            _transportador = new Transportador();
+            Editar = false; // Indica que é um novo registro
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
@@ -74,10 +78,19 @@ namespace RuralTech.Telas
                 _transportador.Bairro = txt_bairro.Text;
                 _transportador.Rua = txt_rua.Text;
                 _transportador.Numero = txt_numero.Text;
-               
 
-                _transportadorDAO.Insert(_transportador); // Insere no banco
-                MessageBox.Show("Registro cadastrado com sucesso.");
+
+                if (Editar)
+                {
+                    _transportadorDAO.Update(_transportador);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    Editar = false; // Volta o estado para novo registro
+                }
+                else
+                {
+                    _transportadorDAO.Insert(_transportador); // Insere no banco
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
                 TelaTransportador tela = new TelaTransportador();
                 this.Close();
                 tela.ShowDialog();
@@ -88,7 +101,42 @@ namespace RuralTech.Telas
             }
             PropertyPopup.IsOpen = false;
         }
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Transportador transporteSelecionado)
+            {
+                _transportador = transporteSelecionado;
+                PreencherCamposComDados(_transportador); // Preenche o formulário com os dados para edição
+                Editar = true;
+                PropertyPopup.IsOpen = true;
+            }
+        }
 
+
+        private void PreencherCamposComDados(Transportador transporte)
+        {
+            txt_cpf.Text = transporte.Cpf;
+            txt_cnpj.Text = transporte.Cnpj;
+            txt_nome.Text = transporte.Nome;
+            txt_inscricao_estadual.Text = transporte.InscricaoEstadual;
+            combo_estadol.Text = transporte.Estado;
+            txt_cidade.Text = transporte.Cidade;
+            txt_bairro.Text = transporte.Bairro;
+            txt_rua.Text = transporte.Rua;
+            txt_numero.Text = transporte.Numero;
+        }
+        private void LimparCampos()
+        {
+            txt_cpf.Text = "";
+            txt_cnpj.Text = "";
+            txt_nome.Text = "";
+            txt_inscricao_estadual.Text = "";
+            combo_estadol.Text = "";
+            txt_cidade.Text = "";
+            txt_bairro.Text = "";
+            txt_rua.Text = "";
+            txt_numero.Text = "";
+        }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
             TelaCompra tela = new TelaCompra();

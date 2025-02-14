@@ -40,7 +40,7 @@ public class OrdenhaDAO
         try
         {
             var comando = _conn.Query();
-            comando.CommandText = "SELECT id_ord, totalLitros_ord, id_ani_fk, id_fun_fk FROM ordenha;";
+            comando.CommandText = "SELECT ordenha.id_ord, ordenha.totalLitros_ord, animal.brinco_ani, funcionario.nome_fun FROM Ordenha inner join Animal on (Ordenha.id_ani_fk = Animal.id_ani) inner join Funcionario on (Ordenha.id_fun_fk = Funcionario.id_fun);";
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -49,9 +49,9 @@ public class OrdenhaDAO
                 Ordenha ordenha = new Ordenha
                 {
                     Id = DAOHelper.GetInt32(reader, "id_ord"),
-                    TotalLitros = DAOHelper.GetString(reader, "totalLitros_ord"),
-                    Animal = DAOHelper.GetString(reader, "id_ani_fk"),
-                    Funcionario = DAOHelper.GetString(reader, "id_fun_fk"),
+                    TotalLitros = DAOHelper.GetInt32(reader, "totalLitros_ord"),
+                    Animal = DAOHelper.GetString(reader, "brinco_ani"),
+                    Funcionario = DAOHelper.GetString(reader, "nome_fun"),
 
                 };
                 ordenhas.Add(ordenha);

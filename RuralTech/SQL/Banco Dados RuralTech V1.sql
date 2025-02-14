@@ -234,12 +234,13 @@ VALUES
 
 create table ordenha(
 id_ord int primary key auto_increment,
-totalLitros_ord varchar(100),
+totalLitros_ord int,
 id_ani_fk int,
 foreign key(id_ani_fk) references animal(id_ani),
 id_fun_fk int,
 foreign key (id_fun_fk) references Funcionario(id_fun)
 );
+select * from Ordenha;
 
 create table apartacao(
 id_apa int primary key auto_increment,
