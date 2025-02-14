@@ -33,6 +33,13 @@ namespace RuralTech.Telas
             DataContext = this; // Define o DataContext para a própria janela
             ExamesList = new ObservableCollection<Exame>(); // Inicializa a lista como uma ObservableCollection
             CarregarExames();
+            //COMBO BOX
+            
+            foreach (Animals str in animal.GetAnimal())
+            {
+                combo_animal.Items.Add(str.Brinco);
+            }
+
         }
         private void CarregarExames()
         {
@@ -52,6 +59,10 @@ namespace RuralTech.Telas
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+            // Limpa o objeto e os campos quando adicionando um novo registro
+            _exame = new Exame();
+            Editar = false; // Indica que é um novo registro
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
@@ -77,8 +88,17 @@ namespace RuralTech.Telas
                 _exame.Resultado = txt_resultado.Text;
                 _exame.Data = Convert.ToDateTime(txt_data_exame.Text);
 
-                _exameDAO.Insert(_exame); // Insere no banco
-                MessageBox.Show("Registro cadastrado com sucesso.");
+                if (Editar)
+                {
+                    _exameDAO.Update(_exame);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    Editar = false; // Volta o estado para novo registro
+                }
+                else
+                {
+                    _exameDAO.Insert(_exame); // Insere no banco
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
                 TelaExame tela = new TelaExame();
                 this.Close();
                 tela.ShowDialog();
@@ -89,7 +109,34 @@ namespace RuralTech.Telas
             }
             PropertyPopup.IsOpen = false;
         }
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Exame exameSelecionado)
+            {
+                _exame = exameSelecionado;
+                PreencherCamposComDados(_exame); // Preenche o formulário com os dados para edição
+                Editar = true;
+                PropertyPopup.IsOpen = true;
+            }
+        }
 
+
+        private void PreencherCamposComDados(Exame exame)
+        {
+            combo_exame.Text = exame.Tipo;
+            txt_resultado.Text = exame.Resultado;
+            txt_data_exame.Text = exame.Data.ToString();
+            combo_animal.Text = exame.Animal;
+
+
+        }
+        private void LimparCampos()
+        {
+            combo_exame.Text = "";
+            txt_resultado.Text = "";
+            txt_data_exame.Text = "";
+            combo_animal.Text = "";
+        }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
             TelaCompra tela = new TelaCompra();

@@ -74,7 +74,7 @@ lote_par varchar(100),
 detalhamento_par varchar(500),
 situacao_par varchar(300)
 );
-
+select * from Paricao;
 create table peso_animal(
 id_peso_ani int primary key auto_increment,
 peso_peso_ani double,

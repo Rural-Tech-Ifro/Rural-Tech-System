@@ -60,6 +60,10 @@ namespace RuralTech.Telas
         }
         private void OpenModal(object sender, RoutedEventArgs e)
         {
+            // Limpa o objeto e os campos quando adicionando um novo registro
+            _equipamento = new Equipamento();
+            Editar = false; // Indica que é um novo registro
+            LimparCampos();
             PropertyPopup.IsOpen = true;
         }
 
@@ -67,6 +71,7 @@ namespace RuralTech.Telas
         {
             PropertyPopup.IsOpen = false;
         }
+
 
         private void SaveProperty(object sender, RoutedEventArgs e)
         {
@@ -87,8 +92,17 @@ namespace RuralTech.Telas
                 _equipamento.Descricao = txt_descricao.Text;
                 _equipamento.Tipo = txt_tipo.Text;
 
-                _equipamentoDAO.Insert(_equipamento); // Insere no banco
-                MessageBox.Show("Registro cadastrado com sucesso.");
+                if (Editar)
+                {
+                    _equipamentoDAO.Update(_equipamento);
+                    MessageBox.Show("Registro atualizado com sucesso.");
+                    Editar = false; // Volta o estado para novo registro
+                }
+                else
+                {
+                    _equipamentoDAO.Insert(_equipamento); // Insere no banco
+                    MessageBox.Show("Registro cadastrado com sucesso.");
+                }
                 TelaEquipamento tela = new TelaEquipamento();
                 this.Close();
                 tela.ShowDialog();
@@ -99,7 +113,36 @@ namespace RuralTech.Telas
             }
             PropertyPopup.IsOpen = false;
         }
+        private void OpenModalEdit(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Equipamento equipamentoSelecionado)
+            {
+                _equipamento = equipamentoSelecionado;
+                PreencherCamposComDados(_equipamento); // Preenche o formulário com os dados para edição
+                Editar = true;
+                PropertyPopup.IsOpen = true;
+            }
+        }
 
+
+        private void PreencherCamposComDados(Equipamento equipamento)
+        {
+            combo_propriedade.Text = equipamento.Propriedade;
+            txt_nome.Text = equipamento.Nome;
+            txt_tipo.Text = equipamento.Tipo;
+            txt_valor.Text = equipamento.Valor.ToString();
+            txt_descricao.Text = equipamento.Descricao;
+
+
+        }
+        private void LimparCampos()
+        {
+            combo_propriedade.Text = "";
+            txt_nome.Text = "";
+            txt_tipo.Text = "";
+            txt_valor.Text = "";
+            txt_descricao.Text = "";
+        }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
             TelaCompra tela = new TelaCompra();

@@ -41,7 +41,7 @@ public class ExameDAO
         try
         {
             var comando = _conn.Query();
-            comando.CommandText = "SELECT id_exa, tipo_exa, resultado_exa, data_exa, id_ani_fk FROM exame;";
+            comando.CommandText = "SELECT exame.id_exa, exame.tipo_exa, exame.resultado_exa, exame.data_exa, animal.brinco_ani FROM Exame inner join Animal on (Exame.id_ani_fk = Animal.id_ani);;";
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -53,7 +53,7 @@ public class ExameDAO
                     Tipo = DAOHelper.GetString(reader, "tipo_exa"),
                     Resultado = DAOHelper.GetString(reader, "resultado_exa"),
                     Data = Convert.ToDateTime(DAOHelper.GetDateTime(reader, "data_exa")),
-                    Animal = DAOHelper.GetString(reader, "id_ani_fk"),
+                    Animal = DAOHelper.GetString(reader, "brinco_ani"),
 
 
                 };
