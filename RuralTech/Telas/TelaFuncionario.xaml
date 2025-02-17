@@ -343,8 +343,8 @@
                             TextWrapping="Wrap" Name="txt_dataAdmissao"
                             Margin="0,0,0,5"/>
 
-                        <Button Content="Salvar" Click="SaveProperty" Margin="0,10,0,0"/>
-                        <Button Content="Fechar" Click="CloseModal" Margin="0,5,0,0"/>
+                        <Button Content="Salvar" Click="SaveProperty" Margin="0,2,0,0"/>
+                        <Button Content="Fechar" Click="CloseModal" Margin="0,4,0,0"/>
                     </StackPanel>
                 </Border>
             </Popup>

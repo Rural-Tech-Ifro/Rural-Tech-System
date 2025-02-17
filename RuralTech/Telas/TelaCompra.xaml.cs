@@ -173,7 +173,7 @@ namespace RuralTech.Telas
 
         }
 
-        private void DeleteCompra(object sender, RoutedEventArgs e)
+        private void Delete(object sender, RoutedEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is Compra compraSelecionada)
             {

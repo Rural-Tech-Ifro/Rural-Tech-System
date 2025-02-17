@@ -23,6 +23,8 @@ namespace RuralTech.Telas
     /// </summary>
     public partial class TelaAnimal : Window
     {
+        private PropriedadeDAO propriedade = new PropriedadeDAO();
+
         private Animals _animal = new Animals();
         private AnimalDAO _animalDAO = new AnimalDAO();
         public bool Editar = false;
@@ -35,6 +37,15 @@ namespace RuralTech.Telas
             DataContext = this; // Define o DataContext para a própria janela
             AnimaisList = new ObservableCollection<Animals>(); // Inicializa a lista como uma ObservableCollection
             CarregarVacinas();
+
+            //COMBO BOX
+
+            foreach (Propriedade str in propriedade.GetPropriedade())
+            {
+                combo_propriedade.Items.Add(str.NomePropriedade);
+            }
+
+
         }
         private void CarregarVacinas()
         {
@@ -128,7 +139,31 @@ namespace RuralTech.Telas
             txt_classificacao.Text = "";
             combo_origem.Text = "";
         }
+        private void Delete(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Animals animalSelecionada)
+            {
+                var resultado = MessageBox.Show("Tem certeza de que deseja excluir este registro?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        _animalDAO.Delete(animalSelecionada);
+                        AnimaisList.Remove(animalSelecionada);
+                        MessageBox.Show("Registro deletado com sucesso.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao deletar registro: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhum animal selecionada.");
+            }
+        }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
             TelaCompra tela = new TelaCompra();

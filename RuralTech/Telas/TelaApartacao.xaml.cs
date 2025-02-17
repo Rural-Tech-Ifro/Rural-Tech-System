@@ -152,6 +152,8 @@ namespace RuralTech.Telas
                 MessageBox.Show("Nenhuma vacina selecionada.");
             }
         }
+
+        
         private void LimparCampos()
         {
             combo_animal.Text = null;
