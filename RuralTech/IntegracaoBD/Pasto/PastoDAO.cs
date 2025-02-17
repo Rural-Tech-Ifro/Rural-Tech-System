@@ -45,7 +45,7 @@ public class PastoDAO
         try
         {
             var comando = _conn.Query();
-            comando.CommandText = "SELECT Propriedade.nome_pro, Pasto.limete_pas, Pasto.descricao_pas, Pasto.tipo_pas, Pasto.tamanho_pas FROM Propriedade inner join Pasto on (Pasto.id_pro_fk = Propriedade.id_pro);";
+            comando.CommandText = "SELECT Propriedade.nome_pro, Pasto.id_pas, Pasto.limete_pas, Pasto.descricao_pas, Pasto.tipo_pas, Pasto.tamanho_pas FROM Propriedade inner join Pasto on (Pasto.id_pro_fk = Propriedade.id_pro);";
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -53,8 +53,8 @@ public class PastoDAO
             {
                 Pasto pasto = new Pasto
                 {
-                    Id = reader.GetInt32("id_ani"),
-                    Limite = reader.GetInt32("limite_pas"),
+                    Id = reader.GetInt32("id_pas"),
+                    Limite = reader.GetInt32("limete_pas"),
                     Descricao = reader.GetString("descricao_pas"),
                     TipoPastagem = reader.GetString("tipo_pas"),
                     Tamanho = reader.GetInt32("tamanho_pas"),
@@ -77,7 +77,7 @@ public class PastoDAO
         {
             var comando = _conn.Query();
 
-            comando.CommandText = "UPDATE pasto SET limete_pas = @limite, descricao_pas = @descricao, tipo_pas = @tipo, tamanho_pas = @tamanho, null, id_pro_fk = @proproedade WHERE id_pas = @id;";
+            comando.CommandText = "UPDATE pasto SET limete_pas = @limite, descricao_pas = @descricao, tipo_pas = @tipo, tamanho_pas = @tamanho, id_pro_fk = @propriedade WHERE id_pas = @id;";
 
             // Define os parâmetros para a atualização
             comando.Parameters.AddWithValue("@limite", obj.Limite);

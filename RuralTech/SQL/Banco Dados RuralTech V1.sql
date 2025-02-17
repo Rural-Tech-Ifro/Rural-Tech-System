@@ -21,7 +21,38 @@ imagem_pro blob,
 id_usu_fk int,
 foreign key(id_usu_fk) references usuario(id_usu)
 );
+INSERT INTO propriedade (
+    nome_pro, 
+    proprietario_pro, 
+    logradouro_pro, 
+    cep_pro, 
+    bairro_pro, 
+    complemento_pro, 
+    tamanho_pro, 
+    imagem_pro
+) VALUES 
+(
+    'Fazenda Boa Vista', 
+    'João da Silva', 
+    'Rua das Palmeiras, 123', 
+    '12345-678', 
+    'Centro', 
+    'Casa principal', 
+    5000, 
+    NULL
+),
+(
+    'Sítio Recanto Verde', 
+    'Maria Oliveira', 
+    'Estrada do Campo, KM 12', 
+    '98765-432', 
+    'Zona Rural', 
+    'Próximo ao rio', 
+    8000, 
+    NULL
+);
 
+select * from Propriedade;
 create table patrimonio(
 id_pat int primary key auto_increment,
 nome_pat varchar(200),
@@ -202,7 +233,7 @@ foreign key(id_prod_fk) references produto(id_prod),
 id_com_fk int,
 foreign key(id_com_fk) references compra(id_com)
 );
-select * from produto_compra;
+select * from equipamento;
 
 create table transportador(
 id_tra int primary key auto_increment,
