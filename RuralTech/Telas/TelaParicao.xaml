@@ -377,6 +377,13 @@ Background="Transparent" BorderBrush="Transparent" Cursor="Hand"
 Click="OpenModalEdit">
                                         <materialDesign:PackIcon Kind="Pencil" />
                                     </Button>
+
+                                    <!-- BotÃ£o DELETE -->
+                                    <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,-4,-12,5"
+      Background="Transparent" BorderBrush="Transparent" Cursor="Hand" 
+      Click="Delete">
+                                        <materialDesign:PackIcon Kind="Delete"/>
+                                    </Button>
                                 </Grid>
                             </Border>
                         </DataTemplate>

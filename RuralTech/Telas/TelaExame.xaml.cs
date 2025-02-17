@@ -137,6 +137,32 @@ namespace RuralTech.Telas
             txt_data_exame.Text = "";
             combo_animal.Text = "";
         }
+
+        private void Delete(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Exame exameSelecionada)
+            {
+                var resultado = MessageBox.Show("Tem certeza de que deseja excluir este registro?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        _exameDAO.Delete(exameSelecionada);
+                        ExamesList.Remove(exameSelecionada);
+                        MessageBox.Show("Registro deletado com sucesso.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao deletar registro: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhum Exame selecionado.");
+            }
+        }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
             TelaCompra tela = new TelaCompra();

@@ -157,6 +157,32 @@ namespace RuralTech.Telas
             combo_animal.Text = "";
             combo_funcionario.Text = "";
         }
+
+        private void Delete(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is Inseminacao inseminacaoSelecionada)
+            {
+                var resultado = MessageBox.Show("Tem certeza de que deseja excluir este registro?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        _inseminacaoDAO.Delete(inseminacaoSelecionada);
+                        InseminacoesList.Remove(inseminacaoSelecionada);
+                        MessageBox.Show("Registro deletado com sucesso.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao deletar registro: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhuma inseminação selecionada.");
+            }
+        }
         private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
