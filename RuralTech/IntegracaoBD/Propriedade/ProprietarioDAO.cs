@@ -84,7 +84,7 @@ public class PropriedadeDAO
         {
             var comando = _conn.Query();
 
-            comando.CommandText = "UPDATE propriedade SET nome_pro = @nome, proprietario_pro = @proprietario, logradouro_pro = @logradouro, cep_pro = @cep, bairro_pro = @bairro, complemento_pro = @complemento, tamanho_pro = @tamanho, null, id_usu_fk = @usuario WHERE id_pro = @id;";
+            comando.CommandText = "UPDATE propriedade SET nome_pro = @nome, proprietario_pro = @proprietario, logradouro_pro = @logradouro, cep_pro = @cep, bairro_pro = @bairro, complemento_pro = @complemento, tamanho_pro = @tamanho, id_usu_fk = @usuario WHERE id_pro = @id;";
 
             // Define os parâmetros para a atualização
             comando.Parameters.AddWithValue("@nome", obj.NomePropriedade);
