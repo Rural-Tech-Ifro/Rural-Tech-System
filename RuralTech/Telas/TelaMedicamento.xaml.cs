@@ -34,6 +34,8 @@ namespace RuralTech.Telas
             DataContext = this;
             MedicamentosList = new ObservableCollection<Medicamento>();
             CarregarMedicamentos();
+            txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
+
         }
 
         protected void OnPropertyChanged(string propertyName)

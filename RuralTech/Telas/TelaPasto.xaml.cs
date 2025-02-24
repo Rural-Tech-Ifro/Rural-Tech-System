@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,12 +28,24 @@ namespace RuralTech.Telas
         public bool Editar = false;
 
         public ObservableCollection<Pasto> PastosList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                Filtrar();
+            }
+        }
         public TelaPasto()
         {
             InitializeComponent();
             DataContext = this; // Define o DataContext para a própria janela
             PastosList = new ObservableCollection<Pasto>(); // Inicializa a lista como uma ObservableCollection
             CarregarPastos();
+            txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
 
             //COMBO BOX PROPRIEDADE
 
@@ -165,6 +178,37 @@ namespace RuralTech.Telas
             {
                 MessageBox.Show("Nenhum pasto selecionado.");
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void Filtrar()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                CarregarPastos();
+            }
+            else
+            {
+                var pastosFiltrados = _pastoDAO.GetPasto()
+                    .Where(v => v.Propriedade != null && v.Propriedade.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                PastosList.Clear();
+                foreach (var pasto in pastosFiltrados)
+                {
+                    PastosList.Add(pasto);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filtrar();
         }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {

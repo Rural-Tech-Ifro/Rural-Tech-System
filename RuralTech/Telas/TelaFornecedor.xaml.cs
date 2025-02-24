@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,12 +25,25 @@ namespace RuralTech.Telas
         private FornecedorDAO _fornecedorDAO = new FornecedorDAO();
         public bool Editar = false;
         public ObservableCollection<Fornecedor> FornecedoresList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                Filtrar();
+            }
+        }
         public TelaFornecedor()
         {
             InitializeComponent();
             DataContext = this; // Define o DataContext para a própria janela
             FornecedoresList = new ObservableCollection<Fornecedor>(); // Inicializa a lista como uma ObservableCollection
             CarregarFornecedores();
+            txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
+
         }
         private void CarregarFornecedores()
         {
@@ -166,6 +180,37 @@ namespace RuralTech.Telas
             {
                 MessageBox.Show("Nenhum Fornecedor selecionado.");
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void Filtrar()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                CarregarFornecedores();
+            }
+            else
+            {
+                var fornecedoresFiltrados = _fornecedorDAO.GetFornecedor()
+                    .Where(v => v.Nome != null && v.Nome.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                FornecedoresList.Clear();
+                foreach (var fornecedor in fornecedoresFiltrados)
+                {
+                    FornecedoresList.Add(fornecedor);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filtrar();
         }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {

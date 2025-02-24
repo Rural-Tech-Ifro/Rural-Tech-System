@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,17 @@ namespace RuralTech.Telas
         public bool Editar = false;
 
         public ObservableCollection<Ordenha> OrdenhasList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                Filtrar();
+            }
+        }
 
         public TelaOrdenha()
         {
@@ -34,6 +46,8 @@ namespace RuralTech.Telas
             DataContext = this; // Define o DataContext para a própria janela
             OrdenhasList = new ObservableCollection<Ordenha>(); // Inicializa a lista como uma ObservableCollection
             CarregarOrdenhas();
+            txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
+
 
             //COMBO BOX
             foreach (Funcionario str in funcionario.GetFuncionario())
@@ -174,6 +188,37 @@ namespace RuralTech.Telas
             {
                 MessageBox.Show("Nenhuma ordenha selecionada.");
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void Filtrar()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                CarregarOrdenhas();
+            }
+            else
+            {
+                var ordenhasFiltradas = _ordenhaDAO.GetOrdenhas()
+                    .Where(v => v.Animal != null && v.Animal.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                OrdenhasList.Clear();
+                foreach (var ordenha in ordenhasFiltradas)
+                {
+                    OrdenhasList.Add(ordenha);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filtrar();
         }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {

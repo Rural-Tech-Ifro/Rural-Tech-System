@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,12 +25,25 @@ namespace RuralTech.Telas
         private ProdutoDAO _produtoDAO = new ProdutoDAO();
         public bool Editar = false;
         public ObservableCollection<Produto> ProdutosList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                Filtrar();
+            }
+        }
         public TelaProduto()
         {
             InitializeComponent();
             DataContext = this;
             ProdutosList = new ObservableCollection<Produto>();
             CarregarProdutos();
+            txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
+
         }
 
         private void CarregarProdutos()
@@ -158,6 +172,37 @@ namespace RuralTech.Telas
                 MessageBox.Show("Nenhum produto selecionado.");
             }
         }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void Filtrar()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                CarregarProdutos();
+            }
+            else
+            {
+                var produtosFiltrados = _produtoDAO.GetProduto()
+                    .Where(v => v.Nome != null && v.Nome.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                ProdutosList.Clear();
+                foreach (var nome in produtosFiltrados)
+                {
+                    ProdutosList.Add(nome);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filtrar();
+        }
+
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
             TelaCompra tela = new TelaCompra();

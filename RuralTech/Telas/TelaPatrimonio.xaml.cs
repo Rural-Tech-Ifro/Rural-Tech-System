@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,12 +28,25 @@ namespace RuralTech.Telas
         public bool Editar = false;
 
         public ObservableCollection<Patrimonio> PatrimoniosList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                Filtrar();
+            }
+        }
         public TelaPatrimonio()
         {
             InitializeComponent();
             DataContext = this; // Define o DataContext para a própria janela
             PatrimoniosList = new ObservableCollection<Patrimonio>(); // Inicializa a lista como uma ObservableCollection
             CarregarPatrimonios();
+            txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
+
 
             //COMBO BOX PROPRIEDADE
 
@@ -165,6 +179,37 @@ namespace RuralTech.Telas
                 MessageBox.Show("Nenhum patrimônio selecionado.");
             }
         }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void Filtrar()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                CarregarPatrimonios();
+            }
+            else
+            {
+                var patrimoniosFiltrados = _patrimonioDAO.GetPatrimonio()
+                    .Where(v => v.Nome != null && v.Nome.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                PatrimoniosList.Clear();
+                foreach (var patrimonio in patrimoniosFiltrados)
+                {
+                    PatrimoniosList.Add(patrimonio);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filtrar();
+        }
+
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
             TelaCompra tela = new TelaCompra();

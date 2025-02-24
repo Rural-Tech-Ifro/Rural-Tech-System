@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,12 +28,24 @@ namespace RuralTech.Telas
         public bool Editar = false;
 
         public ObservableCollection<Equipamento> EquipamentosList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                Filtrar();
+            }
+        }
         public TelaEquipamento()
         {
             InitializeComponent();
             DataContext = this; // Define o DataContext para a própria janela
             EquipamentosList = new ObservableCollection<Equipamento>(); // Inicializa a lista como uma ObservableCollection
             CarregarEquipamentos();
+            txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
 
             //COMBO BOX PROPRIEDADE
 
@@ -168,6 +181,37 @@ namespace RuralTech.Telas
             {
                 MessageBox.Show("Nenhum equipamento selecionada.");
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void Filtrar()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                CarregarEquipamentos();
+            }
+            else
+            {
+                var equipamentosFiltrados = _equipamentoDAO.GetEquipamento()
+                    .Where(v => v.Nome != null && v.Nome.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                EquipamentosList.Clear();
+                foreach (var equipamento in equipamentosFiltrados)
+                {
+                    EquipamentosList.Add(equipamento);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filtrar();
         }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {

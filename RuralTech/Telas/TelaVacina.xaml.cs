@@ -34,6 +34,8 @@ namespace RuralTech.Telas
             InitializeComponent();
             DataContext = this;
             CarregarVacinas();
+            txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
+
         }
 
         protected void OnPropertyChanged(string propertyName)

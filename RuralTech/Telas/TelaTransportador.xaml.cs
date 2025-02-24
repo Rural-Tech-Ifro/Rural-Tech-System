@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,15 +26,28 @@ namespace RuralTech.Telas
         public bool Editar = false;
 
         public ObservableCollection<Transportador> TransportadoresList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                Filtrar();
+            }
+        }
 
         public TelaTransportador()
         {
             InitializeComponent();
             DataContext = this; // Define o DataContext para a própria janela
             TransportadoresList = new ObservableCollection<Transportador>(); // Inicializa a lista como uma ObservableCollection
-            CarregarExames();
+            CarregarTransportes();
+            txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
+
         }
-        private void CarregarExames()
+        private void CarregarTransportes()
         {
             try
             {
@@ -162,6 +176,37 @@ namespace RuralTech.Telas
             {
                 MessageBox.Show("Nenhum transportador selecionado.");
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void Filtrar()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                CarregarTransportes();
+            }
+            else
+            {
+                var transportadoresFiltrados = _transportadorDAO.GetTransportadores()
+                    .Where(v => v.Nome != null && v.Nome.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                TransportadoresList.Clear();
+                foreach (var transportador in transportadoresFiltrados)
+                {
+                    TransportadoresList.Add(transportador);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filtrar();
         }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {

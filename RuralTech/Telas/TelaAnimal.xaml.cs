@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using RuralTech.Integracoes;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 
 namespace RuralTech.Telas
@@ -30,6 +31,17 @@ namespace RuralTech.Telas
         public bool Editar = false;
 
         public ObservableCollection<Animals> AnimaisList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                FiltrarAnimais();
+            }
+        }
 
         public TelaAnimal()
         {
@@ -37,6 +49,13 @@ namespace RuralTech.Telas
             DataContext = this; // Define o DataContext para a própria janela
             AnimaisList = new ObservableCollection<Animals>(); // Inicializa a lista como uma ObservableCollection
             CarregarVacinas();
+
+            if (TelaLogin.usuarioLogado != null)
+            {
+                txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
+
+            }
+
 
             //COMBO BOX
 
@@ -163,6 +182,36 @@ namespace RuralTech.Telas
             {
                 MessageBox.Show("Nenhum animal selecionada.");
             }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void FiltrarAnimais()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                CarregarVacinas();
+            }
+            else
+            {
+                var medicamentosFiltrados = _animalDAO.GetAnimal()
+                    .Where(v => v.Brinco != null && v.Brinco.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                AnimaisList.Clear();
+                foreach (var medicamento in medicamentosFiltrados)
+                {
+                    AnimaisList.Add(medicamento);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            FiltrarAnimais();
         }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {

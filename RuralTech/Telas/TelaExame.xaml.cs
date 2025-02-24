@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,17 @@ namespace RuralTech.Telas
         public bool Editar = false;
 
         public ObservableCollection<Exame> ExamesList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                Filtrar();
+            }
+        }
 
         public TelaExame()
         {
@@ -33,8 +45,10 @@ namespace RuralTech.Telas
             DataContext = this; // Define o DataContext para a própria janela
             ExamesList = new ObservableCollection<Exame>(); // Inicializa a lista como uma ObservableCollection
             CarregarExames();
+            txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
+
             //COMBO BOX
-            
+
             foreach (Animals str in animal.GetAnimal())
             {
                 combo_animal.Items.Add(str.Brinco);
@@ -162,6 +176,37 @@ namespace RuralTech.Telas
             {
                 MessageBox.Show("Nenhum Exame selecionado.");
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void Filtrar()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                CarregarExames();
+            }
+            else
+            {
+                var examesFiltrados = _exameDAO.GetExames()
+                    .Where(v => v.Animal != null && v.Animal.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                ExamesList.Clear();
+                foreach (var exame in examesFiltrados)
+                {
+                    ExamesList.Add(exame);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filtrar();
         }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,17 @@ namespace RuralTech.Telas
         private ApartacaoDAO _apartacaoDAO = new ApartacaoDAO();
         public bool Editar = false;
         public ObservableCollection<Apartacao> ApartacoesList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                Filtrar();
+            }
+        }
 
         public TelaApartacao()
         {
@@ -33,6 +45,8 @@ namespace RuralTech.Telas
             DataContext = this; 
             ApartacoesList = new ObservableCollection<Apartacao>();
             CarregarApartacoes();
+            txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
+
 
             //COMBO BOX animal
 
@@ -161,6 +175,36 @@ namespace RuralTech.Telas
             combo_lote.Text = null;
             txt_dataTransferencia.Clear();
             txt_observacao.Clear();
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void Filtrar()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                CarregarApartacoes();
+            }
+            else
+            {
+                var apartacoesFiltradas = _apartacaoDAO.GetApartacoes()
+                    .Where(v => v.Animal != null && v.Animal.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                ApartacoesList.Clear();
+                foreach (var apartacao in apartacoesFiltradas)
+                {
+                    ApartacoesList.Add(apartacao);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filtrar();
         }
 
         private void Button_Compra(object sender, RoutedEventArgs e)

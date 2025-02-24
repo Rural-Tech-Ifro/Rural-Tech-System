@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,12 +26,25 @@ namespace RuralTech.Telas
         public bool Editar = false;
 
         public ObservableCollection<Propriedade> PropriedadesList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                Filtrar();
+            }
+        }
         public TelaPropriedade()
         {
             InitializeComponent();
             DataContext = this; // Define o DataContext para a própria janela
             PropriedadesList = new ObservableCollection<Propriedade>(); // Inicializa a lista como uma ObservableCollection
             CarregarPropriedades();
+            txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
+
         }
         private void CarregarPropriedades()
         {
@@ -158,6 +172,36 @@ namespace RuralTech.Telas
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void Filtrar()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                CarregarPropriedades();
+            }
+            else
+            {
+                var propriedadesFiltradas = _propriedadeDAO.GetPropriedade()
+                    .Where(v => v.NomePropriedade != null && v.NomePropriedade.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                PropriedadesList.Clear();
+                foreach (var propriedade in propriedadesFiltradas)
+                {
+                    PropriedadesList.Add(propriedade);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filtrar();
+        }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
             TelaCompra tela = new TelaCompra();

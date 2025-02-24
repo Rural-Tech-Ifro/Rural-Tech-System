@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,15 +28,28 @@ namespace RuralTech.Telas
         public bool Editar = false;
 
         public ObservableCollection<Inseminacao> InseminacoesList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                Filtrar();
+            }
+        }
 
         public TelaInseminacao()
         {
             InitializeComponent();
             DataContext = this; // Define o DataContext para a própria janela
             InseminacoesList = new ObservableCollection<Inseminacao>(); // Inicializa a lista como uma ObservableCollection
-            CarregarExames();
+            CarregarInseminacoes();
+            txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
 
-           
+
+
 
             //COMBO BOX
             foreach (Funcionario str in funcionario.GetFuncionario())
@@ -47,7 +61,7 @@ namespace RuralTech.Telas
                 combo_animal.Items.Add(str.Brinco);
             }
         }
-        private void CarregarExames()
+        private void CarregarInseminacoes()
         {
             try
             {
@@ -183,9 +197,35 @@ namespace RuralTech.Telas
                 MessageBox.Show("Nenhuma inseminação selecionada.");
             }
         }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void Filtrar()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                CarregarInseminacoes();
+            }
+            else
+            {
+                var inseminacoesFiltradas = _inseminacaoDAO.GetInseminacoes()
+                    .Where(v => v.Animal != null && v.Animal.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                InseminacoesList.Clear();
+                foreach (var inseminacao in inseminacoesFiltradas)
+                {
+                    InseminacoesList.Add(inseminacao);
+                }
+            }
+        }
+
         private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            Filtrar();
         }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {

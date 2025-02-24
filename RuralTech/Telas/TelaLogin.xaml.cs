@@ -19,6 +19,7 @@ namespace RuralTech.Telas
     /// </summary>
     public partial class TelaLogin : Window
     {
+        public static Usuario usuarioLogado;
         private UsuarioDAO _usuarioDAO = new UsuarioDAO(); // Objeto responsável por acessar o banco de dados
         public TelaLogin()
         {
@@ -37,6 +38,7 @@ namespace RuralTech.Telas
                 {
                     MessageBox.Show("Logado com sucesso!");
                     validacao = true;
+                    usuarioLogado = new Usuario(str.Nome, str.Senha);
                     TelaAnimal login = new TelaAnimal();
                     this.Close();
                     login.ShowDialog();

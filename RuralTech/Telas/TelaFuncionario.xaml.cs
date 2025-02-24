@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,12 +27,25 @@ namespace RuralTech.Telas
         public bool Editar = false;
 
         public ObservableCollection<Funcionario> FuncionariosList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                Filtrar();
+            }
+        }
         public TelaFuncionario()
         {
             InitializeComponent();
             DataContext = this; // Define o DataContext para a própria janela
             FuncionariosList = new ObservableCollection<Funcionario>(); // Inicializa a lista como uma ObservableCollection
             CarregarFuncionarios();
+            txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
+
         }
 
         private void CarregarFuncionarios()
@@ -185,6 +199,37 @@ namespace RuralTech.Telas
             {
                 MessageBox.Show("Nenhum Funcionario selecionado.");
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void Filtrar()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                CarregarFuncionarios();
+            }
+            else
+            {
+                var funcionariosFiltrados = _funcionarioDAO.GetFuncionario()
+                    .Where(v => v.Nome != null && v.Nome.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                FuncionariosList.Clear();
+                foreach (var funcionario in funcionariosFiltrados)
+                {
+                    FuncionariosList.Add(funcionario);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filtrar();
         }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {

@@ -178,7 +178,7 @@
                 <materialDesign:PackIcon Kind="AccountCircle" Width="40" Height="40" Margin="10" Background="White" Foreground="Green" />
 
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="Serjão dos Foguetes" FontFamily="/Recursos/Fonts/#Poppins Semibold" FontSize="13"/>
+                    <TextBlock Text="" FontFamily="/Recursos/Fonts/#Poppins Semibold" FontSize="13" Name="txt_usuario"/>
                     <WrapPanel>
                         <TextBlock Text="Fazendeiro" FontFamily="/Recursos/Fonts/#Poppins regular" FontSize="13"/>
                         <materialDesign:PackIcon Kind="MenuDown" Width="20" Height="20" Foreground="Green" Background="White"/>
@@ -194,18 +194,19 @@
 
             <!-- Campo de Pesquisa -->
             <materialDesign:AutoSuggestBox
-    materialDesign:HintAssist.Hint="Pesquisar Produto"
-    materialDesign:TextFieldAssist.HasClearButton="True"
-    DropDownElevation="Dp0"
-    Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
-    Suggestions="{Binding AutoSuggestBox2Suggestions}"
-    Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-    ValueMember="Key" 
-    Margin="135,10,535,505" 
-    Grid.Row="1" 
-    Width="400" 
-    Height="50" 
-    RenderTransformOrigin="-0.875,-2.1">
+materialDesign:HintAssist.Hint="Pesquisar Produto"   
+materialDesign:TextFieldAssist.HasClearButton="True"
+DropDownElevation="Dp0"
+Style="{StaticResource MaterialDesignAutoSuggestBox}"  
+Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+TextChanged="AutoSuggestBox_TextChanged"
+ValueMember="Key" 
+Margin="135,10,535,505" 
+Grid.Row="1" 
+Width="400" 
+Height="50" 
+Name="txt_pesquisa"
+RenderTransformOrigin="-0.875,-2.1">
 
                 <materialDesign:AutoSuggestBox.ItemTemplate>
                     <DataTemplate>

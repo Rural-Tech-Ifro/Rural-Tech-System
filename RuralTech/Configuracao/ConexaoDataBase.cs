@@ -5,6 +5,8 @@ using System.Text;
 using System.Data;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using RuralTech.Telas;
+using System.Windows;
 
 namespace RuralTech.Database
 {
@@ -16,13 +18,15 @@ namespace RuralTech.Database
 
         private static string user = "root";
 
-        private static string password = "121203";
+        private static string password = "200254";
 
         private static string dbname = "RuralTech";
 
         private static MySqlConnection connection;
 
         private static MySqlCommand command;
+
+       
 
         public Conexao()
         {

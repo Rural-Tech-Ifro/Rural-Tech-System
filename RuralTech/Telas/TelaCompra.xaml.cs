@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,17 @@ namespace RuralTech.Telas
         private CompraDAO _compraDAO = new CompraDAO();
         public bool Editar = false;
         public ObservableCollection<Compra> ComprasList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                Filtrar();
+            }
+        }
 
         public TelaCompra()
         {
@@ -35,6 +47,8 @@ namespace RuralTech.Telas
             DataContext = this;
             ComprasList = new ObservableCollection<Compra>();
             CarregarCompras();
+            txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
+
 
             //COMBO BOX animal
 
@@ -209,7 +223,36 @@ namespace RuralTech.Telas
             txt_dataPagamento.Clear();
             txt_quantidadeParcela.Clear();
         }
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void Filtrar()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                CarregarCompras();
+            }
+            else
+            {
+                var comprasFiltradas = _compraDAO.GetCompras()
+                    .Where(v => v.Codigo != null && v.Codigo.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                ComprasList.Clear();
+                foreach (var compra in comprasFiltradas)
+                {
+                    ComprasList.Add(compra);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filtrar();
+        }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
             TelaCompra tela = new TelaCompra();

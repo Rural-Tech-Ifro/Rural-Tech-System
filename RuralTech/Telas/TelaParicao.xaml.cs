@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,17 +26,30 @@ namespace RuralTech.Telas
         public bool Editar = false;
 
         public ObservableCollection<Paricao> ParicoesList { get; set; }
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                Filtrar();
+            }
+        }
 
         public TelaParicao()
         {
             InitializeComponent();
             DataContext = this; // Define o DataContext para a própria janela
             ParicoesList = new ObservableCollection<Paricao>(); // Inicializa a lista como uma ObservableCollection
-            CarregarExames();
+            CarregarParicoes();
+            txt_usuario.Text = TelaLogin.usuarioLogado.Nome;
 
-         
+
+
         }
-        private void CarregarExames()
+        private void CarregarParicoes()
         {
             try
             {
@@ -156,6 +170,37 @@ namespace RuralTech.Telas
             {
                 MessageBox.Show("Nenhuma parição selecionada.");
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void Filtrar()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                CarregarParicoes();
+            }
+            else
+            {
+                var paricoesFiltradas = _paricaoDAO.GetParicoes()
+                    .Where(v => v.Tipo != null && v.Tipo.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                ParicoesList.Clear();
+                foreach (var paricao in paricoesFiltradas)
+                {
+                    ParicoesList.Add(paricao);
+                }
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filtrar();
         }
         private void Button_Compra(object sender, RoutedEventArgs e)
         {
